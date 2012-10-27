@@ -20,6 +20,7 @@ namespace Dexter.Data.Raven.Test.PostService
 
 	using Common.Logging;
 
+	using Dexter.Data.DataTransferObjects;
 	using Dexter.Data.Raven.Domain;
 	using Dexter.Data.Raven.Test.PostService.Helpers;
 
@@ -70,7 +71,7 @@ namespace Dexter.Data.Raven.Test.PostService
 
 			this.sut.Session.SaveChanges();
 
-			var expectedPost = this.sut.GetPostDtoById(posts[2].Id);
+			PostDto expectedPost = this.sut.GetPostDtoById(posts[2].Id);
 
 			expectedPost.Should().Not.Be.Null();
 			expectedPost.Title.Should().Be.EqualTo(posts[2].Title);

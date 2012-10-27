@@ -1,7 +1,7 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			AutoMapperConfiguration.cs
+// File:			ICommentService.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/27
@@ -13,26 +13,37 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 #endregion
 
-namespace Dexter.Data.Raven.AutoMapper
+namespace Dexter.Data
 {
-	using System;
-
-	using global::AutoMapper;
-
 	using Dexter.Data.DataTransferObjects;
-	using Dexter.Data.Raven.AutoMapper.Resolvers;
-	using Dexter.Data.Raven.Domain;
+	using Dexter.Data.DataTransferObjects.Result;
 
-	public class AutoMapperConfiguration
+	public interface ICommentService
 	{
 		#region Public Methods and Operators
 
-		public static void Configure()
+		PagedResult<CommentDto> GetCommentForSpecificItem(int postId, int pageIndex, int pageSize, CommentQueryFilter queryFilter);
+
+		#endregion
+	}
+
+	public class CommentQueryFilter
+	{
+		#region Constructors and Destructors
+
+		/// <summary>
+		/// 	Initializes a new instance of the <see cref="T:System.Object" /> class.
+		/// </summary>
+		public CommentQueryFilter()
 		{
-			Mapper.CreateMap<DateTimeOffset, DateTime>().ConvertUsing<DateTimeTypeConverter>();
-			Mapper.CreateMap<Post, PostDto>();
-			Mapper.CreateMap<Comment, CommentDto>();
+			this.CommentStatus = CommentStatus.IsApproved;
 		}
+
+		#endregion
+
+		#region Public Properties
+
+		public CommentStatus CommentStatus { get; set; }
 
 		#endregion
 	}

@@ -15,6 +15,7 @@
 
 namespace Dexter.Data.Raven
 {
+	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 
@@ -43,8 +44,25 @@ namespace Dexter.Data.Raven
 
 		#region Public Methods and Operators
 
+		public void Delete(int id)
+		{
+			Post post = this.Session.Load<Post>(id);
+
+			if (post == null)
+			{
+				throw new PostNotFoundException("Unable to find the post with the specified id");
+			}
+
+			this.Session.Delete(post);
+		}
+
 		public PostDto GetPostDtoById(int id)
 		{
+			if (id < 1)
+			{
+				throw new ArgumentException("The Id must be greater than 0", "id");
+			}
+
 			Post post = this.Session.Query<Post>()
 				.Where(x => x.Id == id)
 				.Include(x => x.CommentsId)
@@ -58,6 +76,16 @@ namespace Dexter.Data.Raven
 
 		public PostDto GetPostDtoByKey(string slug)
 		{
+			if (slug == null)
+			{
+				throw new ArgumentNullException("slug");
+			}
+
+			if (slug == string.Empty)
+			{
+				throw new ArgumentException("The string must have a value.", "slug");
+			}
+
 			Post post = this.Session.Query<Post>().Where(x => x.Slug == slug)
 				.Include(x => x.CommentsId)
 				.Include(x => x.CategoriesId).First();
@@ -69,6 +97,16 @@ namespace Dexter.Data.Raven
 
 		public IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, PostQueryFilter filter)
 		{
+			if (pageIndex < 1)
+			{
+				throw new ArgumentException("The page index must be greater than 0", "pageIndex");
+			}
+
+			if (pageSize < 1)
+			{
+				throw new ArgumentException("The page size must be greater than 0", "pageSize");
+			}
+
 			RavenQueryStatistics stats;
 
 			IRavenQueryable<Post> query = this.Session.Query<Post>();
@@ -104,18 +142,6 @@ namespace Dexter.Data.Raven
 			}
 
 			return new PagedResult<PostDto>(pageIndex, pageSize, posts, stats.TotalResults);
-		}
-
-		public void Delete(int id)
-		{
-			var post = this.Session.Load<Post>(id);
-
-			if (post == null)
-			{
-				throw new PostNotFoundException("Unable to find the post with the specified id");
-			}
-
-			this.Session.Delete(post);
 		}
 
 		#endregion

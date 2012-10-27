@@ -1,7 +1,7 @@
-﻿#region Disclaimer/Info
+#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			Comment.cs
+// File:			CommentStatus.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/27
@@ -13,31 +13,16 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 #endregion
 
-namespace Dexter.Data.Raven.Domain
+namespace Dexter.Data
 {
-	using System;
-	using System.Net.Mail;
-
-	public class Comment : EntityBase
+	public enum CommentStatus
 	{
-		#region Public Properties
+		IsSpam, 
 
-		public string Author { get; set; }
+		IsDeleted, 
 
-		public string Body { get; set; }
+		IsApproved, 
 
-		public virtual MailAddress Email { get; set; }
-
-		public virtual bool Notify { get; set; }
-
-		public CommentStatus Status { get; set; }
-
-		public string UserAgent { get; set; }
-
-		public string UserHostAddress { get; set; }
-
-		public virtual Uri WebSite { get; set; }
-
-		#endregion
+		Pending
 	}
 }
