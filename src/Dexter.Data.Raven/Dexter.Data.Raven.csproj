@@ -102,6 +102,17 @@
     <Compile Include="AutoMapper\AutoMapperConfiguration.cs" />
     <Compile Include="AutoMapper\Profiles\PostDtoProfile.cs" />
     <Compile Include="AutoMapper\Resolvers\DateTimeTypeConverter.cs" />
+    <Compile Include="Domain\BlogSettings.cs" />
+    <Compile Include="Domain\Category.cs" />
+    <Compile Include="Domain\Comment.cs" />
+    <Compile Include="Domain\EntityBase.cs" />
+    <Compile Include="Domain\Item.cs" />
+    <Compile Include="Domain\Link.cs" />
+    <Compile Include="Domain\Page.cs" />
+    <Compile Include="Domain\Post.cs" />
+    <Compile Include="Domain\ReadingConfiguration.cs" />
+    <Compile Include="Domain\SeoConfiguration.cs" />
+    <Compile Include="Domain\SmtpConfiguration.cs" />
     <Compile Include="Extensions\AutoMapperExtensions.cs" />
     <Compile Include="PostService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -114,10 +125,6 @@
     <ProjectReference Include="..\Dexter.Data\Dexter.Data.csproj">
       <Project>{08BF3549-6B10-4E83-AE71-1C4665004C02}</Project>
       <Name>Dexter.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Dexter.Domain\Dexter.Domain.csproj">
-      <Project>{B4EACD87-95BA-40E9-96B6-E3582C121374}</Project>
-      <Name>Dexter.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

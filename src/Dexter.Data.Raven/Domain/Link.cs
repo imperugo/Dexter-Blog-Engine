@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Dexter.Domain
+﻿namespace Dexter.Data.Raven.Domain
 {
+	using System;
+
 	public enum BlogRollFamilyType : short
 	{
 		/// <summary>

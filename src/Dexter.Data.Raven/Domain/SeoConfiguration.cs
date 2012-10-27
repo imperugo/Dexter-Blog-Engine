@@ -1,4 +1,4 @@
-namespace Dexter.Domain
+namespace Dexter.Data.Raven.Domain
 {
 	public class SeoConfiguration
 	{
