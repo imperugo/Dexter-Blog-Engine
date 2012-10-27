@@ -42,12 +42,28 @@ namespace Dexter.Data.Raven
 
 		#region Public Methods and Operators
 
-		public IPagedResult<PostDto> GetLastPost(int pageIndex, int pageSize, PostQueryFilter filter)
+		public IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, PostQueryFilter filter)
 		{
 			RavenQueryStatistics stats;
 
-			List<Post> result = this.Session.Query<Post>()
-				.Where(x => x.PublishAt < filter.MaxPublishAt)
+			var query = this.Session.Query<Post>();
+			
+			if (filter != null && filter.Status.HasValue)
+			{
+				query.Where(x => x.Status == filter.Status);
+			}
+
+			if (filter != null && filter.MinPublishAt.HasValue)
+			{
+				query.Where(x => x.PublishAt > filter.MaxPublishAt);
+			}
+
+			if (filter != null && filter.MaxPublishAt.HasValue)
+			{
+				query.Where(x => x.PublishAt < filter.MaxPublishAt);
+			}
+
+			List<Post> result = query
 				.Include(x => x.CommentsId)
 				.Include(x => x.CategoriesId)
 				.Statistics(out stats)

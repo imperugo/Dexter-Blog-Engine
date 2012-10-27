@@ -11,6 +11,7 @@
 // Dexter is hosted to Github at https://github.com/imperugo/DexterBlogEngine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Data.Raven.Domain
@@ -22,8 +23,6 @@ namespace Dexter.Data.Raven.Domain
 	{
 		#region Public Properties
 
-		public string Abstract { get; set; }
-
 		public bool AllowComments { get; set; }
 
 		public IEnumerable<int> CategoriesId { get; set; }
@@ -32,9 +31,13 @@ namespace Dexter.Data.Raven.Domain
 
 		public string Content { get; set; }
 
+		public string Excerpt { get; set; }
+
 		public DateTimeOffset PublishAt { get; set; }
 
 		public string Slug { get; set; }
+
+		public PostStatus Status { get; set; }
 
 		public ICollection<string> Tags { get; set; }
 

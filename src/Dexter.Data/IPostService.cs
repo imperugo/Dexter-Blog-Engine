@@ -24,7 +24,7 @@ namespace Dexter.Data
 	{
 		#region Public Methods and Operators
 
-		IPagedResult<PostDto> GetLastPost(int pageIndex, int pageSize, PostQueryFilter filter);
+		IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, PostQueryFilter filter);
 
 		PostDto GetPostDtoById(int id);
 
@@ -37,7 +37,11 @@ namespace Dexter.Data
 	{
 		#region Public Properties
 
-		public DateTimeOffset MaxPublishAt { get; set; }
+		public DateTimeOffset? MaxPublishAt { get; set; }
+
+		public DateTimeOffset? MinPublishAt { get; set; }
+
+		public PostStatus? Status { get; set; }
 
 		#endregion
 	}
