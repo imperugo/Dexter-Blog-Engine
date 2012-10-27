@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{506DF938-59BB-44BF-BBC7-1FAA87E7C670}</ProjectGuid>
+    <ProjectGuid>{0517E2DD-D8F2-4A8F-89CB-8BBBE23D86A6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Dexter.Caching.InProc</RootNamespace>
-    <AssemblyName>Dexter.Caching.InProc</AssemblyName>
+    <RootNamespace>Dexter.Localization.Po</RootNamespace>
+    <AssemblyName>Dexter.Localization.Po</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,17 +30,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging">
+      <HintPath>..\packages\Common.Logging.2.1.1\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\doc\Dexter.Build.cs">
-      <Link>Properties\Dexter.Build.cs</Link>
-    </Compile>
-    <Compile Include="InProcCacheProvider.cs" />
-    <Compile Include="Installer.cs" />
+    <Compile Include="CultureDictionary.cs" />
+    <Compile Include="LocalizationProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -48,10 +48,17 @@
       <Project>{FF50D350-E3A2-4BD8-9BBC-58166891E0C2}</Project>
       <Name>Dexter.Caching</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Dexter.Dependency\Dexter.Dependency.csproj">
-      <Project>{07FF041C-FC20-49A3-8BC4-A38E7F72ABAA}</Project>
-      <Name>Dexter.Dependency</Name>
+    <ProjectReference Include="..\Dexter.Extensions\Dexter.Extensions.csproj">
+      <Project>{408d067c-933b-4987-b76f-481708f08470}</Project>
+      <Name>Dexter.Extensions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dexter.Localization\Dexter.Localization.csproj">
+      <Project>{18867265-4DC0-45F9-95A8-1DA69B164399}</Project>
+      <Name>Dexter.Localization</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
