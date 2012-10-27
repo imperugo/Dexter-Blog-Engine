@@ -8,14 +8,13 @@
 // Last edit:	2012/10/27
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
-// Dexter is hosted to Github at https://github.com/imperugo/DexterBlogEngine
+// Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 #endregion
 
 namespace Castle.Windsor
 {
-	using System;
 	using System.Linq;
 
 	using Castle.MicroKernel;
