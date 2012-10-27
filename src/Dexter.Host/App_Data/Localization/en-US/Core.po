@@ -1,0 +1,2 @@
+msgid "StringID"
+msgstr "StringValue"

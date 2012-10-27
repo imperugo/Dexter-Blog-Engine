@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{408D067C-933B-4987-B76F-481708F08470}</ProjectGuid>
+    <ProjectGuid>{B4EACD87-95BA-40E9-96B6-E3582C121374}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Dexter.Extensions</RootNamespace>
-    <AssemblyName>Dexter.Extensions</AssemblyName>
+    <RootNamespace>Dexter.Domain</RootNamespace>
+    <AssemblyName>Dexter.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common.Logging">
-      <HintPath>..\packages\Common.Logging.2.1.1\lib\net40\Common.Logging.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,13 +38,18 @@
     <Compile Include="..\..\doc\Dexter.Build.cs">
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
-    <Compile Include="DateTime\DateTimeOffsetExtensions.cs" />
-    <Compile Include="DateTime\DateTimeOffsetUtil.cs" />
-    <Compile Include="Logging\LoggingExtensions.cs" />
+    <Compile Include="BlogSettings.cs" />
+    <Compile Include="Category.cs" />
+    <Compile Include="Comment.cs" />
+    <Compile Include="EntityBase.cs" />
+    <Compile Include="Item.cs" />
+    <Compile Include="Link.cs" />
+    <Compile Include="Page.cs" />
+    <Compile Include="Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <Compile Include="ReadingConfiguration.cs" />
+    <Compile Include="SeoConfiguration.cs" />
+    <Compile Include="SmtpConfiguration.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
