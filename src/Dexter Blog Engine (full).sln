@@ -3,6 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dexter.Host", "Dexter.Host\Dexter.Host.csproj", "{4B5D01D0-F058-42C3-A906-8B07646540D1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".notes", ".notes", "{40315813-FAE6-47C4-8798-B19412914683}"
+	ProjectSection(SolutionItems) = preProject
+		..\doc\note.txt = ..\doc\note.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
