@@ -43,6 +43,7 @@
     <Compile Include="DataTransferObjects\Result\IPagedResult %28generic%29.cs" />
     <Compile Include="DataTransferObjects\Result\IPagedResult.cs" />
     <Compile Include="DataTransferObjects\Result\PagedResult.cs" />
+    <Compile Include="Exceptions\PostNotFoundException.cs" />
     <Compile Include="IPostService.cs" />
     <Compile Include="PostStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

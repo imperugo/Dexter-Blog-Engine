@@ -22,6 +22,7 @@ namespace Dexter.Data.Raven
 
 	using Dexter.Data.DataTransferObjects;
 	using Dexter.Data.DataTransferObjects.Result;
+	using Dexter.Data.Exceptions;
 	using Dexter.Data.Raven.Domain;
 	using Dexter.Data.Raven.Extensions;
 
@@ -97,7 +98,24 @@ namespace Dexter.Data.Raven
 
 			List<PostDto> posts = result.MapTo<PostDto>();
 
+			if (stats.TotalResults < 1)
+			{
+				return new EmptyPagedResult<PostDto>(pageIndex, pageSize);
+			}
+
 			return new PagedResult<PostDto>(pageIndex, pageSize, posts, stats.TotalResults);
+		}
+
+		public void Delete(int id)
+		{
+			var post = this.Session.Load<Post>(id);
+
+			if (post == null)
+			{
+				throw new PostNotFoundException("Unable to find the post with the specified id");
+			}
+
+			this.Session.Delete(post);
 		}
 
 		#endregion

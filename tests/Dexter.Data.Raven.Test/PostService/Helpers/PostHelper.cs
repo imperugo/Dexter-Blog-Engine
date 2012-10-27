@@ -1,7 +1,7 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			AutoMapperConfiguration.cs
+// File:			PostHelper.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/27
@@ -13,25 +13,21 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 #endregion
 
-namespace Dexter.Data.Raven.AutoMapper
+namespace Dexter.Data.Raven.Test.PostService.Helpers
 {
-	using System;
+	using System.Collections.Generic;
 
-	using Dexter.Data.DataTransferObjects;
 	using Dexter.Data.Raven.Domain;
 
-	using global::AutoMapper;
+	using FizzWare.NBuilder;
 
-	using Dexter.Data.Raven.AutoMapper.Resolvers;
-
-	public class AutoMapperConfiguration
+	internal static class PostHelper
 	{
 		#region Public Methods and Operators
 
-		public static void Configure()
+		public static IList<Post> GetPosts(int numberOfDocument)
 		{
-			Mapper.CreateMap<DateTimeOffset, DateTime>().ConvertUsing<DateTimeTypeConverter>();
-			Mapper.CreateMap<Post, PostDto>();
+			return Builder<Post>.CreateListOfSize(numberOfDocument).Build();
 		}
 
 		#endregion
