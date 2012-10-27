@@ -12,6 +12,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dexter.Dependency", "Dexter
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dexter.Dependency.Castle", "Dexter.Dependency.Castle\Dexter.Dependency.Castle.csproj", "{A04A2782-5DAA-4D17-B91D-6D963967FF6D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{02EA393F-E647-407A-BDE4-05512482C0CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dexter.Dependency.Castle.Test", "..\tests\Dexter.Dependency.Castle.Test\Dexter.Dependency.Castle.Test.csproj", "{AC1606C8-49B1-4288-94AA-BB14CA12862C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dexter.Dependency.Test", "..\tests\Dexter.Dependency.Test\Dexter.Dependency.Test.csproj", "{6EF3ABF5-7E41-4DB2-947D-106B1EEC8B31}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,8 +36,20 @@ Global
 		{A04A2782-5DAA-4D17-B91D-6D963967FF6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A04A2782-5DAA-4D17-B91D-6D963967FF6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A04A2782-5DAA-4D17-B91D-6D963967FF6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC1606C8-49B1-4288-94AA-BB14CA12862C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC1606C8-49B1-4288-94AA-BB14CA12862C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC1606C8-49B1-4288-94AA-BB14CA12862C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC1606C8-49B1-4288-94AA-BB14CA12862C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EF3ABF5-7E41-4DB2-947D-106B1EEC8B31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EF3ABF5-7E41-4DB2-947D-106B1EEC8B31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EF3ABF5-7E41-4DB2-947D-106B1EEC8B31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EF3ABF5-7E41-4DB2-947D-106B1EEC8B31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AC1606C8-49B1-4288-94AA-BB14CA12862C} = {02EA393F-E647-407A-BDE4-05512482C0CA}
+		{6EF3ABF5-7E41-4DB2-947D-106B1EEC8B31} = {02EA393F-E647-407A-BDE4-05512482C0CA}
 	EndGlobalSection
 EndGlobal

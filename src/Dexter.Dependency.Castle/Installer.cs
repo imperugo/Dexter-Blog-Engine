@@ -14,7 +14,7 @@
 		/// 	Setups the service.
 		/// </summary>
 		/// <param name="container"> The container. </param>
-		public void ApplicationStarted(IGaiaContainer container)
+		public void ApplicationStarted(IDexterContainer container)
 		{
 		}
 
@@ -22,7 +22,7 @@
 		/// 	Installs all the component needed by the assembly.
 		/// </summary>
 		/// <param name="container"> The container. </param>
-		public void ServiceRegistration(IGaiaContainer container)
+		public void ServiceRegistration(IDexterContainer container)
 		{
 			container.Register<IHttpModule, PerWebRequestLifestyleModule>(LifeCycle.Singleton);
 		}
@@ -31,7 +31,7 @@
 		/// 	Setups the service.
 		/// </summary>
 		/// <param name="container"> The container. </param>
-		public void ServiceRegistrationComplete(IGaiaContainer container)
+		public void ServiceRegistrationComplete(IDexterContainer container)
 		{
 		}
 

@@ -6,7 +6,7 @@
 	/// <summary>
 	/// 	Concrete class to create IoC Engine
 	/// </summary>
-	public class CastleContainerFactory : IGaiaContainerFactory
+	public class CastleContainerFactory : IDexterContainerFactory
 	{
 		#region Public Methods and Operators
 
@@ -14,7 +14,7 @@
 		/// 	Creates this instance.
 		/// </summary>
 		/// <returns> An instance of the Container </returns>
-		public IGaiaContainer Create()
+		public IDexterContainer Create()
 		{
 			return this.Create(null);
 		}
@@ -24,7 +24,7 @@
 		/// </summary>
 		/// <param name="configuration"> The configuration. </param>
 		/// <returns> An instance of the Container </returns>
-		public IGaiaContainer Create(string configuration)
+		public IDexterContainer Create(string configuration)
 		{
 			CastleContainer castle = new CastleContainer();
 			if (!String.IsNullOrEmpty(configuration))

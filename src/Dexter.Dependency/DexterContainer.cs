@@ -10,7 +10,7 @@
 	using Dexter.Dependency.Extensions;
 	using Dexter.Dependency.Installation;
 
-	public static class GaiaContainer
+	public static class DexterContainer
 	{
 		#region Static Fields
 
@@ -24,7 +24,7 @@
 		/// 	Gets the engine.
 		/// </summary>
 		/// <value> The engine. </value>
-		public static IGaiaContainer Engine { get; private set; }
+		public static IDexterContainer Engine { get; private set; }
 
 		#endregion
 
@@ -145,7 +145,7 @@
 			return Engine.ResolveAll(type);
 		}
 
-		public static void SetCurrent(IGaiaContainer newEngine)
+		public static void SetCurrent(IDexterContainer newEngine)
 		{
 			if (Engine != null)
 			{
@@ -173,14 +173,14 @@
 			{
 				foreach (Type t in a.GetTypes())
 				{
-					if (!t.IsInterface && !t.IsAbstract && typeof(IGaiaContainerFactory).IsAssignableFrom(t))
+					if (!t.IsInterface && !t.IsAbstract && typeof(IDexterContainerFactory).IsAssignableFrom(t))
 					{
 						containerType = t;
 					}
 				}
 			}
 
-			IGaiaContainerFactory factory = Activator.CreateInstance(containerType) as IGaiaContainerFactory;
+			IDexterContainerFactory factory = Activator.CreateInstance(containerType) as IDexterContainerFactory;
 
 			if (factory == null)
 			{
@@ -188,7 +188,7 @@
 			}
 
 			Engine = factory.Create();
-			Engine.Register(typeof(IGaiaContainer), Engine, LifeCycle.Singleton);
+			Engine.Register(typeof(IDexterContainer), Engine, LifeCycle.Singleton);
 
 			alpAssemblies.ForEach(x => Engine.Register<ILayerInstaller>(x, LifeCycle.Singleton));
 

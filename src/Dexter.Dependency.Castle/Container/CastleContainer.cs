@@ -18,10 +18,10 @@
 	using Dexter.Dependency.Castle.SubResolver;
 
 	/// <summary>
-	/// 	The implementation of <see cref="IGaiaContainer" /> using <c>Caslte Windsor</c> container <seealso
+	/// 	The implementation of <see cref="IDexterContainer" /> using <c>Caslte Windsor</c> container <seealso
 	/// 	 cref="http://www.castleproject.org/container/" />. />.
 	/// </summary>
-	public class CastleContainer : IGaiaContainer
+	public class CastleContainer : IDexterContainer
 	{
 		#region Fields
 

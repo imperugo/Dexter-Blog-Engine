@@ -7,18 +7,18 @@
 		/// 	Installs all the component needed by the assembly.
 		/// </summary>
 		/// <param name = "container">The container.</param>
-		void ServiceRegistration ( IGaiaContainer container );
+		void ServiceRegistration ( IDexterContainer container );
 
 		/// <summary>
 		/// 	Setups the service.
 		/// </summary>
 		/// <param name = "container">The container.</param>
-		void ServiceRegistrationComplete ( IGaiaContainer container );
+		void ServiceRegistrationComplete ( IDexterContainer container );
 
 		/// <summary>
 		/// 	Setups the service.
 		/// </summary>
 		/// <param name = "container">The container.</param>
-		void ApplicationStarted ( IGaiaContainer container );
+		void ApplicationStarted ( IDexterContainer container );
 	}
 }
