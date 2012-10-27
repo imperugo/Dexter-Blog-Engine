@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dexter.Dependency.Castle.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dexter.Dependency.Test", "..\tests\Dexter.Dependency.Test\Dexter.Dependency.Test.csproj", "{6EF3ABF5-7E41-4DB2-947D-106B1EEC8B31}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dexter.Extensions", "Dexter.Extensions\Dexter.Extensions.csproj", "{408D067C-933B-4987-B76F-481708F08470}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{6EF3ABF5-7E41-4DB2-947D-106B1EEC8B31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EF3ABF5-7E41-4DB2-947D-106B1EEC8B31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EF3ABF5-7E41-4DB2-947D-106B1EEC8B31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{408D067C-933B-4987-B76F-481708F08470}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{408D067C-933B-4987-B76F-481708F08470}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{408D067C-933B-4987-B76F-481708F08470}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{408D067C-933B-4987-B76F-481708F08470}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
