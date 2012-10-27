@@ -1,4 +1,19 @@
-﻿namespace Dexter.Dependency.Web.Mvc
+﻿#region Disclaimer/Info
+
+// ////////////////////////////////////////////////////////////////////////////////////////////////
+// File:			DexterControllerFactory.cs
+// Website:		http://dexterblogengine.com/
+// Authors:		http://dexterblogengine.com/About.ashx
+// Created:		2012/10/27
+// Last edit:	2012/10/27
+// License:		GNU Library General Public License (LGPL)
+// For updated news and information please visit http://dexterblogengine.com/
+// Dexter is hosted to Github at https://github.com/imperugo/DexterBlogEngine
+// For any question contact info@dexterblogengine.com
+// ////////////////////////////////////////////////////////////////////////////////////////////////
+#endregion
+
+namespace Dexter.Dependency.Web.Mvc
 {
 	using System;
 	using System.Web;
@@ -80,7 +95,7 @@
 		/// <param name="controller"> The controller to release. </param>
 		public override void ReleaseController(IController controller)
 		{
-			//NOTE:The relese method of container will call the dispose id the instance implements IDisposable
+			// NOTE:The relese method of container will call the dispose id the instance implements IDisposable
 			this.container.Release(controller);
 			this.logger.Debug("ReleaseController");
 		}

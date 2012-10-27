@@ -1,4 +1,19 @@
-﻿namespace Dexter.Localization.Po
+﻿#region Disclaimer/Info
+
+// ////////////////////////////////////////////////////////////////////////////////////////////////
+// File:			LocalizationProvider.cs
+// Website:		http://dexterblogengine.com/
+// Authors:		http://dexterblogengine.com/About.ashx
+// Created:		2012/10/27
+// Last edit:	2012/10/27
+// License:		GNU Library General Public License (LGPL)
+// For updated news and information please visit http://dexterblogengine.com/
+// Dexter is hosted to Github at https://github.com/imperugo/DexterBlogEngine
+// For any question contact info@dexterblogengine.com
+// ////////////////////////////////////////////////////////////////////////////////////////////////
+#endregion
+
+namespace Dexter.Localization.Po
 {
 	using System;
 	using System.Collections.Generic;
@@ -15,7 +30,12 @@
 	{
 		#region Static Fields
 
-		private static readonly Dictionary<char, char> EscapeTranslations = new Dictionary<char, char> { { 'n', '\n' }, { 'r', '\r' }, { 't', '\t' } };
+		private static readonly Dictionary<char, char> EscapeTranslations = new Dictionary<char, char>
+			                                                                    {
+				                                                                    { 'n', '\n' }, 
+				                                                                    { 'r', '\r' }, 
+				                                                                    { 't', '\t' }
+			                                                                    };
 
 		#endregion
 
@@ -71,6 +91,16 @@
 		#endregion
 
 		#region Public Methods and Operators
+
+		public static void CopyStream(Stream input, Stream output)
+		{
+			byte[] buffer = new byte[8 * 1024];
+			int len;
+			while ((len = input.Read(buffer, 0, buffer.Length)) > 0)
+			{
+				output.Write(buffer, 0, len);
+			}
+		}
 
 		/// <summary>
 		/// 	Deletes the module.
@@ -131,10 +161,18 @@
 		/// <param name="msgId"> The MSG id. </param>
 		/// <param name="cultureName"> Name of the culture. </param>
 		/// <returns> The result will never be null. </returns>
-		/// <exception cref="ArgumentNullException">Will be throw if <paramref name="msgId" /> is null.</exception>
-		/// <exception cref="ArgumentException">Will be throw if <paramref name="msgId" /> is empty.</exception>
-		/// <exception cref="ArgumentNullException">Will be throw if <paramref name="cultureName" /> is null.</exception>
-		/// <exception cref="ArgumentException">Will be throw if <paramref name="cultureName" /> is empty.</exception>
+		/// <exception cref="ArgumentNullException">Will be throw if
+		/// 	<paramref name="msgId" />
+		/// 	is null.</exception>
+		/// <exception cref="ArgumentException">Will be throw if
+		/// 	<paramref name="msgId" />
+		/// 	is empty.</exception>
+		/// <exception cref="ArgumentNullException">Will be throw if
+		/// 	<paramref name="cultureName" />
+		/// 	is null.</exception>
+		/// <exception cref="ArgumentException">Will be throw if
+		/// 	<paramref name="cultureName" />
+		/// 	is empty.</exception>
 		public LocalizedString GetLocalizedString(string msgId, string cultureName)
 		{
 			return this.GetLocalizedString(null, msgId, cultureName);
@@ -148,10 +186,18 @@
 		/// <param name="cultureName"> Name of the culture. </param>
 		/// <param name="args"> The args. </param>
 		/// <returns> The result will never be null. </returns>
-		/// <exception cref="ArgumentNullException">Will be throw if <paramref name="msgId" /> is null.</exception>
-		/// <exception cref="ArgumentException">Will be throw if <paramref name="msgId" /> is empty.</exception>
-		/// <exception cref="ArgumentNullException">Will be throw if <paramref name="cultureName" /> is null.</exception>
-		/// <exception cref="ArgumentException">Will be throw if <paramref name="cultureName" /> is empty.</exception>
+		/// <exception cref="ArgumentNullException">Will be throw if
+		/// 	<paramref name="msgId" />
+		/// 	is null.</exception>
+		/// <exception cref="ArgumentException">Will be throw if
+		/// 	<paramref name="msgId" />
+		/// 	is empty.</exception>
+		/// <exception cref="ArgumentNullException">Will be throw if
+		/// 	<paramref name="cultureName" />
+		/// 	is null.</exception>
+		/// <exception cref="ArgumentException">Will be throw if
+		/// 	<paramref name="cultureName" />
+		/// 	is empty.</exception>
 		public LocalizedString GetLocalizedString(string moduleName, string msgId, string cultureName, params object[] args)
 		{
 			if (msgId == string.Empty)
@@ -254,7 +300,7 @@
 
 		private static bool IsHostedInAspnet()
 		{
-			return (AppDomain.CurrentDomain.GetData(".appDomain") != null);
+			return AppDomain.CurrentDomain.GetData(".appDomain") != null;
 		}
 
 		private static string ParseId(string line)
@@ -267,7 +313,7 @@
 			StringReader reader = new StringReader(text);
 			string poLine, scope;
 
-			string id = scope = String.Empty;
+			string id = scope = string.Empty;
 
 			while ((poLine = reader.ReadLine()) != null)
 			{
@@ -288,12 +334,13 @@
 					string translation = ParseTranslation(poLine);
 
 					// ignore incomplete localizations (empty msgid or msgstr)
-					if (!String.IsNullOrWhiteSpace(id) && !String.IsNullOrWhiteSpace(translation))
+					if (!string.IsNullOrWhiteSpace(id) && !string.IsNullOrWhiteSpace(translation))
 					{
 						string scopedKey = (scope + "|" + id).ToLowerInvariant();
 						translations.Add(scopedKey, translation);
 					}
-					id = scope = String.Empty;
+
+					id = scope = string.Empty;
 				}
 			}
 		}
@@ -325,6 +372,7 @@
 							sb.Append(str.Substring(0, i - 1));
 						}
 					}
+
 					char unescaped;
 					sb.Append(EscapeTranslations.TryGetValue(c, out unescaped) ? unescaped : c);
 					escaped = false;
@@ -341,6 +389,7 @@
 					}
 				}
 			}
+
 			return sb == null ? str : sb.ToString();
 		}
 
@@ -350,7 +399,11 @@
 
 			CultureDictionary value = this.cacheProvider.Get<CultureDictionary>(key).Return(o => o, () =>
 				{
-					CultureDictionary c = new CultureDictionary { Culture = culture, Translations = this.LoadTranslations(moduleName, culture) };
+					CultureDictionary c = new CultureDictionary
+						                      {
+							                      Culture = culture, 
+							                      Translations = this.LoadTranslations(moduleName, culture)
+						                      };
 
 					this.cacheProvider.Put(key, c, TimeSpan.FromDays(1));
 
@@ -426,15 +479,5 @@
 		}
 
 		#endregion
-
-		public static void CopyStream(Stream input, Stream output)
-		{
-			byte[] buffer = new byte[8 * 1024];
-			int len;
-			while ((len = input.Read(buffer, 0, buffer.Length)) > 0)
-			{
-				output.Write(buffer, 0, len);
-			}
-		}
 	}
 }

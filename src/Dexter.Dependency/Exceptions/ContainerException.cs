@@ -1,36 +1,72 @@
-﻿using System;
-using System.Runtime.Serialization;
+﻿#region Disclaimer/Info
 
-namespace Dexter.Dependency.Exceptions {
+// ////////////////////////////////////////////////////////////////////////////////////////////////
+// File:			ContainerException.cs
+// Website:		http://dexterblogengine.com/
+// Authors:		http://dexterblogengine.com/About.ashx
+// Created:		2012/10/27
+// Last edit:	2012/10/27
+// License:		GNU Library General Public License (LGPL)
+// For updated news and information please visit http://dexterblogengine.com/
+// Dexter is hosted to Github at https://github.com/imperugo/DexterBlogEngine
+// For any question contact info@dexterblogengine.com
+// ////////////////////////////////////////////////////////////////////////////////////////////////
+#endregion
+
+namespace Dexter.Dependency.Exceptions
+{
+	using System;
+	using System.Runtime.Serialization;
+
 	/// <summary>
 	/// 	This is the base exception for all exceptions thrown by the container
 	/// </summary>
-	public class ContainerException : Exception {
-		/// <summary>
-		/// 	Initializes a new instance of the <see cref = "T:System.Exception" /> class.
-		/// </summary>
-		public ContainerException ( ) {}
+	public class ContainerException : Exception
+	{
+		#region Constructors and Destructors
 
 		/// <summary>
-		/// 	Initializes a new instance of the <see cref = "T:System.Exception" /> class with a specified error message.
+		/// 	Initializes a new instance of the <see cref="T:System.Exception" /> class.
 		/// </summary>
-		/// <param name = "message">The message that describes the error. </param>
-		public ContainerException ( string message ) : base ( message ) {}
+		public ContainerException()
+		{
+		}
 
 		/// <summary>
-		/// 	Initializes a new instance of the <see cref = "T:System.Exception" /> class with a specified error message and a reference to the inner exception that is the cause of this exception.
+		/// 	Initializes a new instance of the <see cref="T:System.Exception" /> class with a specified error message.
 		/// </summary>
-		/// <param name = "message">The error message that explains the reason for the exception. </param>
-		/// <param name = "innerException">The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified. </param>
-		public ContainerException ( string message , Exception innerException ) : base ( message , innerException ) {}
+		/// <param name="message"> The message that describes the error. </param>
+		public ContainerException(string message)
+			: base(message)
+		{
+		}
 
 		/// <summary>
-		/// 	Initializes a new instance of the <see cref = "T:System.Exception" /> class with serialized data.
+		/// 	Initializes a new instance of the <see cref="T:System.Exception" /> class with a specified error message and a reference to the inner exception that is the cause of this exception.
 		/// </summary>
-		/// <param name = "info">The <see cref = "T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown. </param>
-		/// <param name = "context">The <see cref = "T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination. </param>
-		/// <exception cref = "T:System.ArgumentNullException">The <paramref name = "info" /> parameter is null. </exception>
-		/// <exception cref = "T:System.Runtime.Serialization.SerializationException">The class name is null or <see cref = "P:System.Exception.HResult" /> is zero (0). </exception>
-		protected ContainerException ( SerializationInfo info , StreamingContext context ) : base ( info , context ) {}
+		/// <param name="message"> The error message that explains the reason for the exception. </param>
+		/// <param name="innerException"> The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified. </param>
+		public ContainerException(string message, Exception innerException)
+			: base(message, innerException)
+		{
+		}
+
+		/// <summary>
+		/// 	Initializes a new instance of the <see cref="T:System.Exception" /> class with serialized data.
+		/// </summary>
+		/// <param name="info"> The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown. </param>
+		/// <param name="context"> The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination. </param>
+		/// <exception cref="T:System.ArgumentNullException">The
+		/// 	<paramref name="info" />
+		/// 	parameter is null.</exception>
+		/// <exception cref="T:System.Runtime.Serialization.SerializationException">The class name is null or
+		/// 	<see cref="P:System.Exception.HResult" />
+		/// 	is zero (0).</exception>
+		protected ContainerException(SerializationInfo info, StreamingContext context)
+			: base(info, context)
+		{
+		}
+
+		#endregion
 	}
 }

@@ -1,4 +1,19 @@
-﻿namespace Dexter.Dependency.Castle.Container
+﻿#region Disclaimer/Info
+
+// ////////////////////////////////////////////////////////////////////////////////////////////////
+// File:			CastleContainer.cs
+// Website:		http://dexterblogengine.com/
+// Authors:		http://dexterblogengine.com/About.ashx
+// Created:		2012/10/27
+// Last edit:	2012/10/27
+// License:		GNU Library General Public License (LGPL)
+// For updated news and information please visit http://dexterblogengine.com/
+// Dexter is hosted to Github at https://github.com/imperugo/DexterBlogEngine
+// For any question contact info@dexterblogengine.com
+// ////////////////////////////////////////////////////////////////////////////////////////////////
+#endregion
+
+namespace Dexter.Dependency.Castle.Container
 {
 	using System;
 	using System.Collections.Generic;
@@ -60,6 +75,7 @@
 			{
 				return this.overrideContainer ?? this.container;
 			}
+
 			set
 			{
 				this.container = value;
@@ -321,40 +337,40 @@
 			}
 		}
 
-		/// <summary>
-		///		Retrieve the instance for the specified <c>type</c>.
-		/// </summary>
-		/// <remarks>
-		///		If there isn't components for the specified type, the container will return null.
-		/// </remarks>
-		/// <param name="type"> The type. </param>
-		/// <returns> The registered instance or null if the instance will not fund. </returns>
+		///<summary>
+		///	Retrieve the instance for the specified <c>type</c>.
+		///</summary>
+		///<remarks>
+		///	If there isn't components for the specified type, the container will return null.
+		///</remarks>
+		///<param name="type"> The type. </param>
+		///<returns> The registered instance or null if the instance will not fund. </returns>
 		public object TryResolve(Type type)
 		{
 			return this.Container.Kernel.HasComponent(type) ? this.Container.Resolve(type) : null;
 		}
 
-		/// <summary>
-		///		Retrieve the instance for the specified <c>type {T}</c>.
-		/// </summary>
-		/// <remarks>
-		///		If there isn't components for the specified type, the container will return null.
-		/// </remarks>
-		/// <typeparam name="T"> The type of the registered instance. </typeparam>
-		/// <returns> The registered instance or null if the instance will not fund. </returns>
+		///<summary>
+		///	Retrieve the instance for the specified <c>type {T}</c>.
+		///</summary>
+		///<remarks>
+		///	If there isn't components for the specified type, the container will return null.
+		///</remarks>
+		///<typeparam name="T"> The type of the registered instance. </typeparam>
+		///<returns> The registered instance or null if the instance will not fund. </returns>
 		public T TryResolve<T>()
 		{
 			return this.HasComponent<T>() ? this.Container.Resolve<T>() : default(T);
 		}
 
-		/// <summary>
-		///		Retrieve all registered instances for the specified <c>type</c>.
-		/// </summary>
-		/// <remarks>
-		///		If there isn't components for the specified type, the container will return null.
-		/// </remarks>
-		/// <typeparam name="T"> The registered type. </typeparam>
-		/// <returns> Null if there aren't registered instances for the specified <c>type</c> . Otherwise an array of the generic type <c>T</c> . </returns>
+		///<summary>
+		///	Retrieve all registered instances for the specified <c>type</c>.
+		///</summary>
+		///<remarks>
+		///	If there isn't components for the specified type, the container will return null.
+		///</remarks>
+		///<typeparam name="T"> The registered type. </typeparam>
+		///<returns> Null if there aren't registered instances for the specified <c>type</c> . Otherwise an array of the generic type <c>T</c> . </returns>
 		public T[] TryResolveAll<T>()
 		{
 			return this.Container.ResolveAll<T>();

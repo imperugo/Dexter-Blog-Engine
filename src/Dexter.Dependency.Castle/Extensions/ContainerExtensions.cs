@@ -1,4 +1,19 @@
-﻿namespace Castle.Windsor
+﻿#region Disclaimer/Info
+
+// ////////////////////////////////////////////////////////////////////////////////////////////////
+// File:			ContainerExtensions.cs
+// Website:		http://dexterblogengine.com/
+// Authors:		http://dexterblogengine.com/About.ashx
+// Created:		2012/10/27
+// Last edit:	2012/10/27
+// License:		GNU Library General Public License (LGPL)
+// For updated news and information please visit http://dexterblogengine.com/
+// Dexter is hosted to Github at https://github.com/imperugo/DexterBlogEngine
+// For any question contact info@dexterblogengine.com
+// ////////////////////////////////////////////////////////////////////////////////////////////////
+#endregion
+
+namespace Castle.Windsor
 {
 	using System;
 	using System.Linq;
@@ -9,7 +24,7 @@
 	{
 		#region Public Methods and Operators
 
-		public static Boolean IsFacilityRegistered<T>(this IWindsorContainer container)
+		public static bool IsFacilityRegistered<T>(this IWindsorContainer container)
 		{
 			IFacility[] facilities = container.Kernel.GetFacilities();
 
@@ -22,7 +37,7 @@
 		/// <typeparam name="T"> The type to look for. </typeparam>
 		/// <param name="container"> The container. </param>
 		/// <returns> <c>true</c> if the specified service type T is registered; otherwise, <c>false</c> . </returns>
-		public static Boolean IsRegistered<T>(this IWindsorContainer container)
+		public static bool IsRegistered<T>(this IWindsorContainer container)
 		{
 			return container.Kernel.HasComponent(typeof(T));
 		}
@@ -33,7 +48,7 @@
 		/// <param name="container"> The container. </param>
 		/// <param name="name"> The name. </param>
 		/// <returns> <c>true</c> if the specified container is registered; otherwise, <c>false</c> . </returns>
-		public static Boolean IsRegistered(this IWindsorContainer container, string name)
+		public static bool IsRegistered(this IWindsorContainer container, string name)
 		{
 			return container.Kernel.HasComponent(name);
 		}

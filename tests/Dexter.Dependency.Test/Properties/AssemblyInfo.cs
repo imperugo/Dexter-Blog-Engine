@@ -1,5 +1,19 @@
-﻿using System.Reflection;
-using System.Runtime.CompilerServices;
+﻿#region Disclaimer/Info
+
+// ////////////////////////////////////////////////////////////////////////////////////////////////
+// File:			AssemblyInfo.cs
+// Website:		http://dexterblogengine.com/
+// Authors:		http://dexterblogengine.com/About.ashx
+// Created:		2012/10/27
+// Last edit:	2012/10/27
+// License:		GNU Library General Public License (LGPL)
+// For updated news and information please visit http://dexterblogengine.com/
+// Dexter is hosted to Github at https://github.com/imperugo/DexterBlogEngine
+// For any question contact info@dexterblogengine.com
+// ////////////////////////////////////////////////////////////////////////////////////////////////
+#endregion
+
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
@@ -23,12 +37,10 @@ using System.Runtime.InteropServices;
 [assembly: Guid("e60f5ed9-ef0a-4f94-9a60-747f3dc51987")]
 
 // Version information for an assembly consists of the following four values:
-//
 //      Major Version
 //      Minor Version 
 //      Build Number
 //      Revision
-//
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]

@@ -1,4 +1,19 @@
-﻿namespace Dexter.Host.Areas.Dxt_Admin
+﻿#region Disclaimer/Info
+
+// ////////////////////////////////////////////////////////////////////////////////////////////////
+// File:			Dxt_AdminAreaRegistration.cs
+// Website:		http://dexterblogengine.com/
+// Authors:		http://dexterblogengine.com/About.ashx
+// Created:		2012/10/27
+// Last edit:	2012/10/27
+// License:		GNU Library General Public License (LGPL)
+// For updated news and information please visit http://dexterblogengine.com/
+// Dexter is hosted to Github at https://github.com/imperugo/DexterBlogEngine
+// For any question contact info@dexterblogengine.com
+// ////////////////////////////////////////////////////////////////////////////////////////////////
+#endregion
+
+namespace Dexter.Host.Areas.Dxt_Admin
 {
 	using System.Web.Mvc;
 
@@ -20,7 +35,11 @@
 
 		public override void RegisterArea(AreaRegistrationContext context)
 		{
-			context.MapRoute("Dxt-Admin_default", "Dxt-Admin/{controller}/{action}/{id}", new { action = "Index", id = UrlParameter.Optional });
+			context.MapRoute("Dxt-Admin_default", "Dxt-Admin/{controller}/{action}/{id}", new
+				                                                                              {
+					                                                                              action = "Index", 
+					                                                                              id = UrlParameter.Optional
+				                                                                              });
 		}
 
 		#endregion

@@ -1,4 +1,19 @@
-﻿namespace Dexter.Data.Raven
+﻿#region Disclaimer/Info
+
+// ////////////////////////////////////////////////////////////////////////////////////////////////
+// File:			PostService.cs
+// Website:		http://dexterblogengine.com/
+// Authors:		http://dexterblogengine.com/About.ashx
+// Created:		2012/10/27
+// Last edit:	2012/10/27
+// License:		GNU Library General Public License (LGPL)
+// For updated news and information please visit http://dexterblogengine.com/
+// Dexter is hosted to Github at https://github.com/imperugo/DexterBlogEngine
+// For any question contact info@dexterblogengine.com
+// ////////////////////////////////////////////////////////////////////////////////////////////////
+#endregion
+
+namespace Dexter.Data.Raven
 {
 	using System.Collections.Generic;
 	using System.Linq;
@@ -31,7 +46,14 @@
 		{
 			RavenQueryStatistics stats;
 
-			List<Post> result = this.Session.Query<Post>().Where(x => x.PublishAt < filter.MaxPublishAt).Include(x => x.CommentsId).Include(x => x.CategoriesId).Statistics(out stats).Take(pageIndex).Skip(pageIndex).ToList();
+			List<Post> result = this.Session.Query<Post>()
+				.Where(x => x.PublishAt < filter.MaxPublishAt)
+				.Include(x => x.CommentsId)
+				.Include(x => x.CategoriesId)
+				.Statistics(out stats)
+				.Take(pageIndex)
+				.Skip(pageIndex)
+				.ToList();
 
 			List<PostDto> posts = result.MapTo<PostDto>();
 
@@ -40,7 +62,11 @@
 
 		public PostDto GetPostDtoById(int id)
 		{
-			Post post = this.Session.Query<Post>().Where(x => x.Id == id).Include(x => x.CommentsId).Include(x => x.CategoriesId).First();
+			Post post = this.Session.Query<Post>()
+				.Where(x => x.Id == id)
+				.Include(x => x.CommentsId)
+				.Include(x => x.CategoriesId)
+				.First();
 
 			PostDto result = post.MapTo<PostDto>();
 
@@ -49,7 +75,9 @@
 
 		public PostDto GetPostDtoByKey(string slug)
 		{
-			Post post = this.Session.Query<Post>().Where(x => x.Slug == slug).Include(x => x.CommentsId).Include(x => x.CategoriesId).First();
+			Post post = this.Session.Query<Post>().Where(x => x.Slug == slug)
+				.Include(x => x.CommentsId)
+				.Include(x => x.CategoriesId).First();
 
 			PostDto result = post.MapTo<PostDto>();
 
