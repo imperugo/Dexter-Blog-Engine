@@ -50,7 +50,7 @@ namespace Dexter.Data.Raven
 
 			if (post == null)
 			{
-				throw new PostNotFoundException("Unable to find the post with the specified id");
+				throw new ItemNotFoundException(id);
 			}
 
 			this.Session.Delete(post);
@@ -68,6 +68,11 @@ namespace Dexter.Data.Raven
 				.Include(x => x.CommentsId)
 				.Include(x => x.CategoriesId)
 				.First();
+
+			if (post == null)
+			{
+				throw new ItemNotFoundException(id);
+			}
 
 			PostDto result = post.MapTo<PostDto>();
 
@@ -89,6 +94,11 @@ namespace Dexter.Data.Raven
 			Post post = this.Session.Query<Post>().Where(x => x.Slug == slug)
 				.Include(x => x.CommentsId)
 				.Include(x => x.CategoriesId).First();
+
+			if (post == null)
+			{
+				throw new ItemNotFoundException(id);
+			}
 
 			PostDto result = post.MapTo<PostDto>();
 

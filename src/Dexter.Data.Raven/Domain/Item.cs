@@ -26,7 +26,7 @@ namespace Dexter.Data.Raven.Domain
 
 		public IEnumerable<int> CategoriesId { get; set; }
 
-		public IEnumerable<int> CommentsId { get; set; }
+		public int CommentsId { get; set; }
 
 		public string Content { get; set; }
 

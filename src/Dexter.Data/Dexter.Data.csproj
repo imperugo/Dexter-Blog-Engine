@@ -38,12 +38,15 @@
     <Compile Include="..\..\doc\Dexter.Build.cs">
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
+    <Compile Include="CommentStatus.cs" />
+    <Compile Include="DataTransferObjects\CommentDto.cs" />
     <Compile Include="DataTransferObjects\PostDto.cs" />
     <Compile Include="DataTransferObjects\Result\EmptyPagedResult.cs" />
     <Compile Include="DataTransferObjects\Result\IPagedResult %28generic%29.cs" />
     <Compile Include="DataTransferObjects\Result\IPagedResult.cs" />
     <Compile Include="DataTransferObjects\Result\PagedResult.cs" />
-    <Compile Include="Exceptions\PostNotFoundException.cs" />
+    <Compile Include="Exceptions\ItemNotFoundException.cs" />
+    <Compile Include="ICommentService.cs" />
     <Compile Include="IPostService.cs" />
     <Compile Include="PostStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

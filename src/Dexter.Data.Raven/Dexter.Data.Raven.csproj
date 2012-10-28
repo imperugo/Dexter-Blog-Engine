@@ -102,11 +102,13 @@
     <Compile Include="AutoMapper\AutoMapperConfiguration.cs" />
     <Compile Include="AutoMapper\Profiles\PostDtoProfile.cs" />
     <Compile Include="AutoMapper\Resolvers\DateTimeTypeConverter.cs" />
+    <Compile Include="CommentService.cs" />
     <Compile Include="Domain\BlogSettings.cs" />
     <Compile Include="Domain\Category.cs" />
     <Compile Include="Domain\Comment.cs" />
     <Compile Include="Domain\EntityBase.cs" />
     <Compile Include="Domain\Item.cs" />
+    <Compile Include="Domain\ItemComments.cs" />
     <Compile Include="Domain\Link.cs" />
     <Compile Include="Domain\Page.cs" />
     <Compile Include="Domain\Post.cs" />

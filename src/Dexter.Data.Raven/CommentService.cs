@@ -5,30 +5,28 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/27
-// Last edit:	2012/10/27
+// Last edit:	2012/10/28
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Data.Raven
 {
 	using System;
 	using System.Collections.Generic;
-	using System.Linq;
 
 	using Common.Logging;
 
 	using Dexter.Data.DataTransferObjects;
-	using Dexter.Data.DataTransferObjects.Result;
+	using Dexter.Data.Exceptions;
 	using Dexter.Data.Raven.Domain;
 	using Dexter.Data.Raven.Extensions;
 
 	using global::Raven.Client;
-
-	using global::Raven.Client.Linq;
 
 	public class CommentService : ServiceBase, ICommentService
 	{
@@ -43,45 +41,57 @@ namespace Dexter.Data.Raven
 
 		#region Public Methods and Operators
 
-		public PagedResult<CommentDto> GetCommentForSpecificItem(int postId, int pageIndex, int pageSize, CommentQueryFilter queryFilter)
+		public IList<CommentDto> GetCommentForSpecificItem(int commentsId, CommentQueryFilter queryFilter)
 		{
-			if (pageIndex < 1)
+			if (commentsId < 1)
 			{
-				throw new ArgumentException("The page index must be greater than 0", "pageIndex");
+				throw new ArgumentException("The comments id must be greater than 0", "commentsId");
 			}
 
-			if (pageSize < 1)
+			ItemComments result = this.Session.Load<ItemComments>(commentsId);
+
+			List<Comment> commentsToMaps = new List<Comment>();
+
+			if (queryFilter.CommentStatus == CommentStatus.Pending)
 			{
-				throw new ArgumentException("The page size must be greater than 0", "pageSize");
+				commentsToMaps = result.Pending;
 			}
 
-			if (queryFilter == null)
+			if (queryFilter.CommentStatus == CommentStatus.IsApproved)
 			{
-				queryFilter = new CommentQueryFilter
-					              {
-						              CommentStatus = CommentStatus.IsApproved;
-					              };
+				commentsToMaps = result.Approved;
 			}
 
-			RavenQueryStatistics stats;
-
-			IRavenQueryable<Comment> query = this.Session.Query<Comment>()
-				.Where(x => x.Status == queryFilter.CommentStatus);
-
-			List<Comment> result = query
-				.Statistics(out stats)
-				.Take(pageIndex)
-				.Skip(pageIndex)
-				.ToList();
-
-			List<CommentDto> comments = result.MapTo<CommentDto>();
-
-			if (stats.TotalResults < 1)
+			if (queryFilter.CommentStatus == CommentStatus.IsDeleted)
 			{
-				return new EmptyPagedResult<CommentDto>(pageIndex, pageSize);
+				commentsToMaps = result.Deleted;
 			}
 
-			return new PagedResult<CommentDto>(pageIndex, pageSize, comments, stats.TotalResults);
+			if (queryFilter.CommentStatus == CommentStatus.IsSpam)
+			{
+				commentsToMaps = result.Spam;
+			}
+
+			return commentsToMaps.MapTo<CommentDto>();
+		}
+
+		public void AddComment(CommentDto comment, int itemId, CommentStatus status)
+		{
+			var item = this.Session.Load<Item>(itemId);
+
+			if (item == null)
+			{
+				throw new ItemNotFoundException(itemId);
+			}
+
+			var itemComments = this.Session.Load<ItemComments>(itemId) 
+												?? new ItemComments(itemId);
+
+			var domainComment = comment.MapTo<Comment>();
+
+			itemComments.AddComment(domainComment, status);
+
+			this.Session.Store(itemComments);
 		}
 
 		#endregion
