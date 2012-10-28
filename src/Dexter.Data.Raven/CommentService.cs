@@ -81,7 +81,7 @@ namespace Dexter.Data.Raven
 
 			if (item == null)
 			{
-				throw new ItemNotFoundException(itemId);
+				throw new ItemNotFoundException("id");
 			}
 
 			var itemComments = this.Session.Load<ItemComments>(itemId) 

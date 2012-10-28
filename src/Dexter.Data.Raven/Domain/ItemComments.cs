@@ -22,9 +22,7 @@ namespace Dexter.Data.Raven.Domain
 
 	public class ItemComments
 	{
-		private ItemComments()
-		{
-		}
+		#region Constructors and Destructors
 
 		public ItemComments(int itemId)
 		{
@@ -34,6 +32,12 @@ namespace Dexter.Data.Raven.Domain
 			this.Pending = new List<Comment>();
 			this.Spam = new List<Comment>();
 		}
+
+		private ItemComments()
+		{
+		}
+
+		#endregion
 
 		#region Public Properties
 
@@ -47,7 +51,41 @@ namespace Dexter.Data.Raven.Domain
 
 		public List<Comment> Spam { get; set; }
 
+		public int TotalApprovedComments
+		{
+			get
+			{
+				return this.Approved.Count;
+			}
+		}
+
+		public int TotalDeletedComments
+		{
+			get
+			{
+				return this.Deleted.Count;
+			}
+		}
+
+		public int TotalPendingComments
+		{
+			get
+			{
+				return this.Pending.Count;
+			}
+		}
+
+		public int TotalSpamComments
+		{
+			get
+			{
+				return this.Spam.Count;
+			}
+		}
+
 		#endregion
+
+		#region Public Methods and Operators
 
 		public void AddComment(Comment item, CommentStatus status)
 		{
@@ -81,32 +119,34 @@ namespace Dexter.Data.Raven.Domain
 
 			switch (status)
 			{
-					case CommentStatus.Pending:
+				case CommentStatus.Pending:
 					{
 						itemToRemove = this.Pending.SingleOrDefault(x => x.Id == commentId);
 						this.Deleted.Add(itemToRemove);
 						this.Pending.Remove(itemToRemove);
 						break;
 					}
-					case CommentStatus.IsSpam:
+				case CommentStatus.IsSpam:
 					{
 						itemToRemove = this.Spam.SingleOrDefault(x => x.Id == commentId);
 						this.Deleted.Add(itemToRemove);
 						this.Spam.Remove(itemToRemove);
 						break;
 					}
-					case CommentStatus.IsApproved:
+				case CommentStatus.IsApproved:
 					{
 						itemToRemove = this.Approved.SingleOrDefault(x => x.Id == commentId);
 						this.Deleted.Add(itemToRemove);
 						this.Approved.Remove(itemToRemove);
 						break;
 					}
-					default:
+				default:
 					{
 						throw new ArgumentException("Unable to find a comment with the specified id", "commentId");
 					}
 			}
 		}
+
+		#endregion
 	}
 }

@@ -20,36 +20,16 @@ namespace Dexter.Data.Exceptions
 
 	public class ItemNotFoundException : ArgumentException
 	{
-		#region Fields
-
-		private readonly int itemId;
-
-		#endregion
-
 		#region Constructors and Destructors
 
-		public ItemNotFoundException(int itemId)
-			: this("Unable to find the Item with the specified id", itemId)
+		public ItemNotFoundException(string parameterName)
+			: base("Unable to find the Item with the specified filter.", parameterName)
 		{
-			this.itemId = itemId;
 		}
 
-		public ItemNotFoundException(string message, int itemId)
-			: base(message)
+		public ItemNotFoundException(string message, string paramName)
+			: base(message, paramName)
 		{
-			this.itemId = itemId;
-		}
-
-		#endregion
-
-		#region Public Properties
-
-		public int ItemId
-		{
-			get
-			{
-				return this.itemId;
-			}
 		}
 
 		#endregion

@@ -50,7 +50,7 @@ namespace Dexter.Data.Raven
 
 			if (post == null)
 			{
-				throw new ItemNotFoundException(id);
+				throw new ItemNotFoundException("id");
 			}
 
 			this.Session.Delete(post);
@@ -71,7 +71,7 @@ namespace Dexter.Data.Raven
 
 			if (post == null)
 			{
-				throw new ItemNotFoundException(id);
+				throw new ItemNotFoundException("id");
 			}
 
 			PostDto result = post.MapTo<PostDto>();
@@ -97,7 +97,7 @@ namespace Dexter.Data.Raven
 
 			if (post == null)
 			{
-				throw new ItemNotFoundException(id);
+				throw new ItemNotFoundException("slug");
 			}
 
 			PostDto result = post.MapTo<PostDto>();
