@@ -71,7 +71,7 @@ namespace Dexter.Data.Raven.Test.PostService
 
 			this.sut.Session.SaveChanges();
 
-			PostDto expectedPost = this.sut.GetPostDtoById(posts[2].Id);
+			PostDto expectedPost = this.sut.GetPostById(posts[2].Id);
 
 			expectedPost.Should().Not.Be.Null();
 			expectedPost.Title.Should().Be.EqualTo(posts[2].Title);

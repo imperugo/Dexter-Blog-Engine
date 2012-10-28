@@ -56,7 +56,7 @@ namespace Dexter.Data.Raven
 			this.Session.Delete(post);
 		}
 
-		public PostDto GetPostDtoById(int id)
+		public PostDto GetPostById(int id)
 		{
 			if (id < 1)
 			{
@@ -79,7 +79,7 @@ namespace Dexter.Data.Raven
 			return result;
 		}
 
-		public PostDto GetPostDtoByKey(string slug)
+		public PostDto GetPostBySlug(string slug)
 		{
 			if (slug == null)
 			{

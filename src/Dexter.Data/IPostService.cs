@@ -24,9 +24,9 @@ namespace Dexter.Data
 	{
 		#region Public Methods and Operators
 
-		PostDto GetPostDtoById(int id);
+		PostDto GetPostById(int id);
 
-		PostDto GetPostDtoByKey(string slug);
+		PostDto GetPostBySlug(string slug);
 
 		IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, PostQueryFilter filter);
 
