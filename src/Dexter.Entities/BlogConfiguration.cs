@@ -11,7 +11,6 @@
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Entities
@@ -20,13 +19,13 @@ namespace Dexter.Entities
 	{
 		#region Public Properties
 
+		public string DefaultDomain { get; set; }
+
 		public int DefaultHttpsPort { get; set; }
 
 		public int DefaultPort { get; set; }
 
 		public bool EnableHttps { get; set; }
-
-		public string DefaultDomain { get; set; }
 
 		#endregion
 	}

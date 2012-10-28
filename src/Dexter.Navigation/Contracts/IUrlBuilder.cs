@@ -11,12 +11,10 @@
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Navigation.Contracts
 {
-	using System;
 	using System.Web;
 
 	using Dexter.Navigation.Helpers;
@@ -25,9 +23,9 @@ namespace Dexter.Navigation.Contracts
 	{
 		#region Public Properties
 
-		SiteUrl Home { get; }
-
 		IAdminUrlBuilder Admin { get; }
+
+		SiteUrl Home { get; }
 
 		#endregion
 

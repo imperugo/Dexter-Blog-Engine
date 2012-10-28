@@ -4,7 +4,7 @@
 // File:			AssemblyInfo.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/10/27
+// Created:		2012/10/28
 // Last edit:	2012/10/28
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
@@ -16,10 +16,10 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Dexter.Host")]
-[assembly: AssemblyDescription("The application host")]
+[assembly: AssemblyTitle("Dexter.Web")]
+[assembly: AssemblyDescription("All the necessary classes for Dexter (web side)")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyProduct("Dexter.Host")]
+[assembly: AssemblyProduct("Dexter.Web")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: Guid("70e4445b-17ae-4957-b65b-e2ebab54f374")]
+[assembly: Guid("613425b8-7995-4128-8448-233e50913676")]

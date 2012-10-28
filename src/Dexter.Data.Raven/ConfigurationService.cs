@@ -11,7 +11,6 @@
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Data.Raven
@@ -31,9 +30,12 @@ namespace Dexter.Data.Raven
 
 		#endregion
 
+		#region Public Methods and Operators
+
 		public void GetConfiguration()
 		{
-			
 		}
+
+		#endregion
 	}
 }

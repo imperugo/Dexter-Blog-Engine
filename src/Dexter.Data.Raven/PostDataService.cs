@@ -11,13 +11,13 @@
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Data.Raven
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Linq;
 
 	using Common.Logging;
 
@@ -30,9 +30,6 @@ namespace Dexter.Data.Raven
 	using global::Raven.Client;
 
 	using global::Raven.Client.Linq;
-
-	using Enumerable = System.Linq.Enumerable;
-	using Queryable = System.Linq.Queryable;
 
 	public class PostDataService : ServiceBase, IPostDataService
 	{
