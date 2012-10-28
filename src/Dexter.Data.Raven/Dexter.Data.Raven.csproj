@@ -102,7 +102,8 @@
     <Compile Include="AutoMapper\AutoMapperConfiguration.cs" />
     <Compile Include="AutoMapper\Profiles\PostDtoProfile.cs" />
     <Compile Include="AutoMapper\Resolvers\DateTimeTypeConverter.cs" />
-    <Compile Include="CommentService.cs" />
+    <Compile Include="CommentDataService.cs" />
+    <Compile Include="ConfigurationService.cs" />
     <Compile Include="Domain\BlogSettings.cs" />
     <Compile Include="Domain\Category.cs" />
     <Compile Include="Domain\Comment.cs" />
@@ -116,7 +117,7 @@
     <Compile Include="Domain\SeoConfiguration.cs" />
     <Compile Include="Domain\SmtpConfiguration.cs" />
     <Compile Include="Extensions\AutoMapperExtensions.cs" />
-    <Compile Include="PostService.cs" />
+    <Compile Include="PostDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceBase.cs" />
   </ItemGroup>
@@ -127,6 +128,10 @@
     <ProjectReference Include="..\Dexter.Data\Dexter.Data.csproj">
       <Project>{08BF3549-6B10-4E83-AE71-1C4665004C02}</Project>
       <Name>Dexter.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Entities\Dexter.Entities.csproj">
+      <Project>{5FB1AED5-D55E-43CC-A3E0-5E788BD72144}</Project>
+      <Name>Dexter.Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

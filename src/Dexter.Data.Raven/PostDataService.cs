@@ -1,41 +1,44 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			PostService.cs
+// File:			PostDataService.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/27
-// Last edit:	2012/10/27
+// Last edit:	2012/10/28
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Data.Raven
 {
 	using System;
 	using System.Collections.Generic;
-	using System.Linq;
 
 	using Common.Logging;
 
-	using Dexter.Data.DataTransferObjects;
-	using Dexter.Data.DataTransferObjects.Result;
 	using Dexter.Data.Exceptions;
 	using Dexter.Data.Raven.Domain;
 	using Dexter.Data.Raven.Extensions;
+	using Dexter.Entities;
+	using Dexter.Entities.Result;
 
 	using global::Raven.Client;
 
 	using global::Raven.Client.Linq;
 
-	public class PostService : ServiceBase, IPostService
+	using Enumerable = System.Linq.Enumerable;
+	using Queryable = System.Linq.Queryable;
+
+	public class PostDataService : ServiceBase, IPostDataService
 	{
 		#region Constructors and Destructors
 
-		public PostService(ILog logger, IDocumentSession session)
+		public PostDataService(ILog logger, IDocumentSession session)
 			: base(logger, session)
 		{
 		}
@@ -63,11 +66,10 @@ namespace Dexter.Data.Raven
 				throw new ArgumentException("The Id must be greater than 0", "id");
 			}
 
-			Post post = this.Session.Query<Post>()
+			Post post = Queryable.First(this.Session.Query<Post>()
 				.Where(x => x.Id == id)
 				.Include(x => x.CommentsId)
-				.Include(x => x.CategoriesId)
-				.First();
+				.Include(x => x.CategoriesId));
 
 			if (post == null)
 			{
@@ -91,9 +93,9 @@ namespace Dexter.Data.Raven
 				throw new ArgumentException("The string must have a value.", "slug");
 			}
 
-			Post post = this.Session.Query<Post>().Where(x => x.Slug == slug)
+			Post post = Queryable.First(this.Session.Query<Post>().Where(x => x.Slug == slug)
 				.Include(x => x.CommentsId)
-				.Include(x => x.CategoriesId).First();
+				.Include(x => x.CategoriesId));
 
 			if (post == null)
 			{
@@ -136,13 +138,10 @@ namespace Dexter.Data.Raven
 				query.Where(x => x.PublishAt < filter.MaxPublishAt);
 			}
 
-			List<Post> result = query
+			List<Post> result = Enumerable.ToList(Queryable.Skip(Queryable.Take(query
 				.Include(x => x.CommentsId)
 				.Include(x => x.CategoriesId)
-				.Statistics(out stats)
-				.Take(pageIndex)
-				.Skip(pageIndex)
-				.ToList();
+				.Statistics(out stats), pageIndex), pageIndex));
 
 			List<PostDto> posts = result.MapTo<PostDto>();
 

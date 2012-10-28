@@ -31,7 +31,7 @@ namespace Dexter.Data.Raven.Domain
 
 		public DayOfWeek FirstDayOfWeek { get; set; }
 
-		public Uri MainUrl { get; set; }
+		public Uri MainDomain { get; set; }
 
 		public MailAddress OwnerEmail { get; set; }
 

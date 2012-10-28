@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{08BF3549-6B10-4E83-AE71-1C4665004C02}</ProjectGuid>
+    <ProjectGuid>{BE578436-AD00-48FA-A16D-245044F109C2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Dexter.Data</RootNamespace>
-    <AssemblyName>Dexter.Data</AssemblyName>
+    <RootNamespace>Dexter.Services</RootNamespace>
+    <AssemblyName>Dexter.Services</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -38,10 +38,7 @@
     <Compile Include="..\..\doc\Dexter.Build.cs">
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
-    <Compile Include="Exceptions\ItemNotFoundException.cs" />
-    <Compile Include="IBlogConfigurationDataService.cs" />
-    <Compile Include="ICommentDataService.cs" />
-    <Compile Include="IPostDataService.cs" />
+    <Compile Include="IConfigurationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
-﻿#region Disclaimer/Info
+#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			Item.cs
+// File:			PostDto.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/27
@@ -13,32 +13,26 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 #endregion
 
-namespace Dexter.Data.Raven.Domain
+namespace Dexter.Entities
 {
 	using System;
 	using System.Collections.Generic;
 
-	using Dexter.Entities;
-
-	public abstract class Item : EntityBase
+	public class PostDto
 	{
 		#region Public Properties
 
+		public string Abstract { get; set; }
+
 		public bool AllowComments { get; set; }
 
-		public IEnumerable<int> CategoriesId { get; set; }
-
-		public int CommentsId { get; set; }
+		public string[] Categories { get; set; }
 
 		public string Content { get; set; }
-
-		public string Excerpt { get; set; }
 
 		public DateTimeOffset PublishAt { get; set; }
 
 		public string Slug { get; set; }
-
-		public PostStatus Status { get; set; }
 
 		public ICollection<string> Tags { get; set; }
 

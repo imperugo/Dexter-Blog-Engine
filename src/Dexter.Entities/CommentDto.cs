@@ -1,7 +1,7 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			Item.cs
+// File:			CommentDto.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/27
@@ -13,40 +13,22 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 #endregion
 
-namespace Dexter.Data.Raven.Domain
+namespace Dexter.Entities
 {
 	using System;
-	using System.Collections.Generic;
+	using System.Net.Mail;
 
-	using Dexter.Entities;
-
-	public abstract class Item : EntityBase
+	public class CommentDto
 	{
 		#region Public Properties
 
-		public bool AllowComments { get; set; }
+		public string Author { get; set; }
 
-		public IEnumerable<int> CategoriesId { get; set; }
+		public string Body { get; set; }
 
-		public int CommentsId { get; set; }
+		public virtual MailAddress Email { get; set; }
 
-		public string Content { get; set; }
-
-		public string Excerpt { get; set; }
-
-		public DateTimeOffset PublishAt { get; set; }
-
-		public string Slug { get; set; }
-
-		public PostStatus Status { get; set; }
-
-		public ICollection<string> Tags { get; set; }
-
-		public string Title { get; set; }
-
-		public int TotalComments { get; set; }
-
-		public int TotalTrackback { get; set; }
+		public virtual Uri WebSite { get; set; }
 
 		#endregion
 	}

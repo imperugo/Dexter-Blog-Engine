@@ -1,7 +1,7 @@
-#region Disclaimer/Info
+﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			PostDto.cs
+// File:			IPagedResult.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/27
@@ -13,35 +13,9 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 #endregion
 
-namespace Dexter.Data.DataTransferObjects
+namespace Dexter.Entities.Result
 {
-	using System;
-	using System.Collections.Generic;
-
-	public class PostDto
+	public interface IPagedResult : IPagedResult<object>
 	{
-		#region Public Properties
-
-		public string Abstract { get; set; }
-
-		public bool AllowComments { get; set; }
-
-		public string[] Categories { get; set; }
-
-		public string Content { get; set; }
-
-		public DateTimeOffset PublishAt { get; set; }
-
-		public string Slug { get; set; }
-
-		public ICollection<string> Tags { get; set; }
-
-		public string Title { get; set; }
-
-		public int TotalComments { get; set; }
-
-		public int TotalTrackback { get; set; }
-
-		#endregion
 	}
 }

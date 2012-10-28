@@ -1,52 +1,51 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			Item.cs
+// File:			ICommentDataService.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/27
-// Last edit:	2012/10/27
+// Last edit:	2012/10/28
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
-namespace Dexter.Data.Raven.Domain
+namespace Dexter.Data
 {
-	using System;
 	using System.Collections.Generic;
 
 	using Dexter.Entities;
 
-	public abstract class Item : EntityBase
+	public interface ICommentDataService
 	{
+		#region Public Methods and Operators
+
+		IList<CommentDto> GetCommentForSpecificItem(int itemId, CommentQueryFilter queryFilter);
+
+		#endregion
+	}
+
+	public class CommentQueryFilter
+	{
+		#region Constructors and Destructors
+
+		/// <summary>
+		/// 	Initializes a new instance of the <see cref="T:System.Object" /> class.
+		/// </summary>
+		public CommentQueryFilter()
+		{
+			this.CommentStatus = CommentStatus.IsApproved;
+		}
+
+		#endregion
+
 		#region Public Properties
 
-		public bool AllowComments { get; set; }
-
-		public IEnumerable<int> CategoriesId { get; set; }
-
-		public int CommentsId { get; set; }
-
-		public string Content { get; set; }
-
-		public string Excerpt { get; set; }
-
-		public DateTimeOffset PublishAt { get; set; }
-
-		public string Slug { get; set; }
-
-		public PostStatus Status { get; set; }
-
-		public ICollection<string> Tags { get; set; }
-
-		public string Title { get; set; }
-
-		public int TotalComments { get; set; }
-
-		public int TotalTrackback { get; set; }
+		public CommentStatus CommentStatus { get; set; }
 
 		#endregion
 	}

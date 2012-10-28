@@ -1,10 +1,10 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			AutoMapperConfiguration.cs
+// File:			IBlogConfigurationDataService.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/10/27
+// Created:		2012/10/28
 // Last edit:	2012/10/28
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
@@ -14,26 +14,15 @@
 
 #endregion
 
-namespace Dexter.Data.Raven.AutoMapper
+namespace Dexter.Data
 {
-	using System;
-
-	using global::AutoMapper;
-
-	using Dexter.Data.Raven.AutoMapper.Resolvers;
-	using Dexter.Data.Raven.Domain;
 	using Dexter.Entities;
 
-	public class AutoMapperConfiguration
+	public interface IBlogConfigurationDataService
 	{
 		#region Public Methods and Operators
 
-		public static void Configure()
-		{
-			Mapper.CreateMap<DateTimeOffset, DateTime>().ConvertUsing<DateTimeTypeConverter>();
-			Mapper.CreateMap<Post, PostDto>();
-			Mapper.CreateMap<Comment, CommentDto>();
-		}
+		BlogConfiguration GetConfiguration();
 
 		#endregion
 	}

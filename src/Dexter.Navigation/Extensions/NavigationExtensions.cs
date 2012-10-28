@@ -1,10 +1,10 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			AutoMapperConfiguration.cs
+// File:			NavigationExtensions.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/10/27
+// Created:		2012/10/28
 // Last edit:	2012/10/28
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
@@ -14,25 +14,17 @@
 
 #endregion
 
-namespace Dexter.Data.Raven.AutoMapper
+namespace System.Web.Mvc
 {
-	using System;
+	using Dexter.Navigation.Helpers;
 
-	using global::AutoMapper;
-
-	using Dexter.Data.Raven.AutoMapper.Resolvers;
-	using Dexter.Data.Raven.Domain;
-	using Dexter.Entities;
-
-	public class AutoMapperConfiguration
+	public static class NavigationExtensions
 	{
 		#region Public Methods and Operators
 
-		public static void Configure()
+		public static ActionResult Redirect(this SiteUrl url)
 		{
-			Mapper.CreateMap<DateTimeOffset, DateTime>().ConvertUsing<DateTimeTypeConverter>();
-			Mapper.CreateMap<Post, PostDto>();
-			Mapper.CreateMap<Comment, CommentDto>();
+			return new RedirectResult(url);
 		}
 
 		#endregion

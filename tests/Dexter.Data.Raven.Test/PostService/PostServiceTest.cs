@@ -20,9 +20,9 @@ namespace Dexter.Data.Raven.Test.PostService
 
 	using Common.Logging;
 
-	using Dexter.Data.DataTransferObjects;
 	using Dexter.Data.Raven.Domain;
 	using Dexter.Data.Raven.Test.PostService.Helpers;
+	using Dexter.Entities;
 
 	using Moq;
 
@@ -30,13 +30,11 @@ namespace Dexter.Data.Raven.Test.PostService
 
 	using Xunit;
 
-	using PostService = Dexter.Data.Raven.PostService;
-
 	public class PostServiceTest : RavenDbTestBase, IDisposable
 	{
 		#region Fields
 
-		private readonly PostService sut;
+		private readonly PostDataService sut;
 
 		#endregion
 
@@ -47,7 +45,7 @@ namespace Dexter.Data.Raven.Test.PostService
 		/// </summary>
 		public PostServiceTest()
 		{
-			this.sut = new PostService(new Mock<ILog>().Object, this.DocumentStore.OpenSession());
+			this.sut = new PostDataService(new Mock<ILog>().Object, this.DocumentStore.OpenSession());
 		}
 
 		#endregion

@@ -15,9 +15,10 @@
 
 namespace Dexter.Data.Raven.AutoMapper.Profiles
 {
+	using Dexter.Entities;
+
 	using global::AutoMapper;
 
-	using Dexter.Data.DataTransferObjects;
 	using Dexter.Data.Raven.Domain;
 
 	public class PostDtoProfile : Profile

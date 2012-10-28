@@ -20,6 +20,8 @@ namespace Dexter.Data.Raven.Domain
 	using System.Collections.Generic;
 	using System.Linq;
 
+	using Dexter.Entities;
+
 	public class ItemComments
 	{
 		#region Constructors and Destructors

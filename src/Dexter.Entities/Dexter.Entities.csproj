@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{08BF3549-6B10-4E83-AE71-1C4665004C02}</ProjectGuid>
+    <ProjectGuid>{5FB1AED5-D55E-43CC-A3E0-5E788BD72144}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Dexter.Data</RootNamespace>
-    <AssemblyName>Dexter.Data</AssemblyName>
+    <RootNamespace>Dexter.Entities</RootNamespace>
+    <AssemblyName>Dexter.Entities</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,23 +32,21 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\doc\Dexter.Build.cs">
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
-    <Compile Include="Exceptions\ItemNotFoundException.cs" />
-    <Compile Include="IBlogConfigurationDataService.cs" />
-    <Compile Include="ICommentDataService.cs" />
-    <Compile Include="IPostDataService.cs" />
+    <Compile Include="CommentDto.cs" />
+    <Compile Include="BlogConfiguration.cs" />
+    <Compile Include="CommentStatus.cs" />
+    <Compile Include="PostDto.cs" />
+    <Compile Include="PostStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Dexter.Entities\Dexter.Entities.csproj">
-      <Project>{5FB1AED5-D55E-43CC-A3E0-5E788BD72144}</Project>
-      <Name>Dexter.Entities</Name>
-    </ProjectReference>
+    <Compile Include="Result\EmptyPagedResult.cs" />
+    <Compile Include="Result\IPagedResult %28generic%29.cs" />
+    <Compile Include="Result\IPagedResult.cs" />
+    <Compile Include="Result\PagedResult.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

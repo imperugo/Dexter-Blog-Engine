@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{08BF3549-6B10-4E83-AE71-1C4665004C02}</ProjectGuid>
+    <ProjectGuid>{CBC7440D-F0C3-418E-B733-AB2F68CF0DB5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Dexter.Data</RootNamespace>
-    <AssemblyName>Dexter.Data</AssemblyName>
+    <RootNamespace>Dexter.Services.Implmentation</RootNamespace>
+    <AssemblyName>Dexter.Services.Implmentation</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,22 +32,30 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\doc\Dexter.Build.cs">
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
-    <Compile Include="Exceptions\ItemNotFoundException.cs" />
-    <Compile Include="IBlogConfigurationDataService.cs" />
-    <Compile Include="ICommentDataService.cs" />
-    <Compile Include="IPostDataService.cs" />
+    <Compile Include="ConfigurationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dexter.Caching\Dexter.Caching.csproj">
+      <Project>{FF50D350-E3A2-4BD8-9BBC-58166891E0C2}</Project>
+      <Name>Dexter.Caching</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Data\Dexter.Data.csproj">
+      <Project>{08bf3549-6b10-4e83-ae71-1c4665004c02}</Project>
+      <Name>Dexter.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dexter.Entities\Dexter.Entities.csproj">
       <Project>{5FB1AED5-D55E-43CC-A3E0-5E788BD72144}</Project>
       <Name>Dexter.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Services\Dexter.Services.csproj">
+      <Project>{BE578436-AD00-48FA-A16D-245044F109C2}</Project>
+      <Name>Dexter.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
