@@ -23,7 +23,11 @@ namespace Dexter.Data
 	{
 		#region Public Methods and Operators
 
+		void AddComment(CommentDto comment, int itemId, CommentStatus status);
+
 		IList<CommentDto> GetCommentForSpecificItem(int itemId, CommentQueryFilter queryFilter);
+
+		IList<CommentDto> GetRecentComments(int maxValues);
 
 		#endregion
 	}

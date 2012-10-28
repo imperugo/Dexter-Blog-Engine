@@ -17,5 +17,8 @@ namespace Dexter.Data.Raven.Domain
 {
 	public class Page : Item
 	{
+		public int? ParentPageId { get; set; }
+
+		public int Sort { get; set; }
 	}
 }

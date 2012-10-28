@@ -26,8 +26,6 @@ namespace Dexter.Data.Raven.Domain
 
 		public bool AllowComments { get; set; }
 
-		public IEnumerable<int> CategoriesId { get; set; }
-
 		public int CommentsId { get; set; }
 
 		public string Content { get; set; }
@@ -38,9 +36,7 @@ namespace Dexter.Data.Raven.Domain
 
 		public string Slug { get; set; }
 
-		public PostStatus Status { get; set; }
-
-		public ICollection<string> Tags { get; set; }
+		public ItemStatus Status { get; set; }
 
 		public string Title { get; set; }
 
