@@ -15,12 +15,7 @@
 
 namespace Dexter.Data.Raven.Domain
 {
-	using System.Collections.Generic;
-
 	public class Post : Item
 	{
-		public IEnumerable<int> CategoriesId { get; set; }
-
-		public ICollection<string> Tags { get; set; }
 	}
 }

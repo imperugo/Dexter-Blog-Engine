@@ -30,10 +30,6 @@ namespace Dexter.Data
 
 		IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, PostQueryFilter filter);
 
-		IPagedResult<PostDto> GetPostsByTag(string tagName, int pageIndex, int pageSize, PostQueryFilter filter);
-
-		IPagedResult<PostDto> GetPostsByDate(int year, int? month, int? day, int pageIndex, int pageSize, PostQueryFilter filter);
-
 		#endregion
 	}
 
@@ -45,7 +41,7 @@ namespace Dexter.Data
 
 		public DateTimeOffset? MinPublishAt { get; set; }
 
-		public ItemStatus? Status { get; set; }
+		public PostStatus? Status { get; set; }
 
 		#endregion
 	}
