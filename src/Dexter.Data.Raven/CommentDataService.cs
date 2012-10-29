@@ -93,11 +93,6 @@ namespace Dexter.Data.Raven
 			return commentsToMaps.MapTo<CommentDto>();
 		}
 
-		public IList<CommentDto> GetRecentComments(int maxValues)
-		{
-			throw new NotImplementedException();
-		}
-
 		#endregion
 	}
 }
