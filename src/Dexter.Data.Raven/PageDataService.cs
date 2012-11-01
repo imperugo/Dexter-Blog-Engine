@@ -141,8 +141,7 @@ namespace Dexter.Data.Raven
 			List<Page> result = query
 				.Include(x => x.CommentsId)
 				.Statistics(out stats)
-				.Take(pageIndex)
-				.Skip(pageIndex)
+				.Paging(pageIndex, pageSize)
 				.ToList();
 
 			List<PageDto> posts = result.MapTo<PageDto>();

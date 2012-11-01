@@ -59,6 +59,16 @@ namespace Dexter.Services
 		event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, ItemQueryFilter>, IPagedResult<PostDto>>> PostsRetrievingWithFilters;
 
 
+		/// <summary>
+		/// This event will raise after to retrieve <see cref="IPagedResult"/> of <see cref="PostDto"/> by tag with specific filters. The event is raised by by the implementation of <see cref="GetPostsByTag"/> or the async version.
+		/// </summary>
+		event EventHandler<GenericEventArgs<IPagedResult<PostDto>>> PostsRetrievedByTag;
+
+		/// <summary>
+		/// This event will raise before to retrieve <see cref="IPagedResult"/> of <see cref="PostDto"/> by tag with specific filters. The event is raised by by the implementation of <see cref="GetPostsByTag"/> or the async version.
+		/// </summary>
+		event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, string, ItemQueryFilter>, IPagedResult<PostDto>>> PostsRetrievingBytag;
+
 		#endregion
 
 		#region Public Methods and Operators
@@ -74,6 +84,10 @@ namespace Dexter.Services
 		IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, ItemQueryFilter filters = null);
 
 		Task<IPagedResult<PostDto>> GetPostsAsync(int pageIndex, int pageSize, ItemQueryFilter filter = null);
+
+		IPagedResult<PostDto> GetPostsByTag(int pageIndex, int pageSize, string tag, ItemQueryFilter filters = null);
+
+		Task<IPagedResult<PostDto>> GetPostsByTagAsync(int pageIndex, int pageSize, string tag, ItemQueryFilter filters = null);
 
 		#endregion
 	}

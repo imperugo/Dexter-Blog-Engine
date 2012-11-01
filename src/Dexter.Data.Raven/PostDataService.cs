@@ -105,7 +105,7 @@ namespace Dexter.Data.Raven
 			return result;
 		}
 
-		public IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, ItemQueryFilter filter)
+		public IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, ItemQueryFilter filters)
 		{
 			if (pageIndex < 1)
 			{
@@ -121,27 +121,76 @@ namespace Dexter.Data.Raven
 
 			IRavenQueryable<Post> query = this.Session.Query<Post>();
 
-			if (filter != null && filter.Status.HasValue)
+			if (filters != null && filters.Status.HasValue)
 			{
-				query.Where(x => x.Status == filter.Status);
+				query.Where(x => x.Status == filters.Status);
 			}
 
-			if (filter != null && filter.MinPublishAt.HasValue)
+			if (filters != null && filters.MinPublishAt.HasValue)
 			{
-				query.Where(x => x.PublishAt > filter.MaxPublishAt);
+				query.Where(x => x.PublishAt > filters.MaxPublishAt);
 			}
 
-			if (filter != null && filter.MaxPublishAt.HasValue)
+			if (filters != null && filters.MaxPublishAt.HasValue)
 			{
-				query.Where(x => x.PublishAt < filter.MaxPublishAt);
+				query.Where(x => x.PublishAt < filters.MaxPublishAt);
 			}
 
 			List<Post> result = query
 				.Include(x => x.CommentsId)
 				.Include(x => x.CategoriesId)
 				.Statistics(out stats)
-				.Take(pageIndex)
-				.Skip(pageIndex)
+				.Paging(pageIndex, pageSize)
+				.ToList();
+
+			List<PostDto> posts = result.MapTo<PostDto>();
+
+			if (stats.TotalResults < 1)
+			{
+				return new EmptyPagedResult<PostDto>(pageIndex, pageSize);
+			}
+
+			return new PagedResult<PostDto>(pageIndex, pageSize, posts, stats.TotalResults);
+		}
+
+		public IPagedResult<PostDto> GetPostsByTag(int pageIndex, int pageSize, string tag, ItemQueryFilter filters)
+		{
+			if (pageIndex < 1)
+			{
+				throw new ArgumentException("The page index must be greater than 0", "pageIndex");
+			}
+
+			if (pageSize < 1)
+			{
+				throw new ArgumentException("The page size must be greater than 0", "pageSize");
+			}
+
+			RavenQueryStatistics stats;
+
+			IRavenQueryable<Post> query = this.Session.Query<Post>();
+
+			if (filters != null && filters.Status.HasValue)
+			{
+				query.Where(x => x.Status == filters.Status);
+			}
+
+			if (filters != null && filters.MinPublishAt.HasValue)
+			{
+				query.Where(x => x.PublishAt > filters.MaxPublishAt);
+			}
+
+			if (filters != null && filters.MaxPublishAt.HasValue)
+			{
+				query.Where(x => x.PublishAt < filters.MaxPublishAt);
+			}
+
+			List<Post> result = query
+				.Include(x => x.CommentsId)
+				.Include(x => x.CategoriesId)
+				.Statistics(out stats)
+				.Where(post => post.Tags.Any(postTag => postTag == tag))
+				.OrderByDescending(post => post.PublishAt)
+				.Paging(pageIndex,pageSize)
 				.ToList();
 
 			List<PostDto> posts = result.MapTo<PostDto>();

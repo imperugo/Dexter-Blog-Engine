@@ -58,7 +58,11 @@ namespace Dexter.Services.Implmentation
 
 		public event EventHandler<CancelEventArgsWithOneParameter<string, PostDto>> PostRetrievingBySlug;
 
+		public event EventHandler<GenericEventArgs<IPagedResult<PostDto>>> PostsRetrievedByTag;
+
 		public event EventHandler<GenericEventArgs<IPagedResult<PostDto>>> PostsRetrievedWithFilters;
+
+		public event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, string, ItemQueryFilter>, IPagedResult<PostDto>>> PostsRetrievingBytag;
 
 		public event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, ItemQueryFilter>, IPagedResult<PostDto>>> PostsRetrievingWithFilters;
 
@@ -168,6 +172,55 @@ namespace Dexter.Services.Implmentation
 		public Task<IPagedResult<PostDto>> GetPostsAsync(int pageIndex, int pageSize, ItemQueryFilter filter)
 		{
 			return Task.Run(() => this.GetPostsAsync(pageIndex, pageSize, filter));
+		}
+
+		public IPagedResult<PostDto> GetPostsByTag(int pageIndex, int pageSize, string tag, ItemQueryFilter filters = null)
+		{
+			if (pageIndex < 1)
+			{
+				throw new ArgumentException("The page index must be greater than 0", "pageIndex");
+			}
+
+			if (pageSize < 1)
+			{
+				throw new ArgumentException("The page size must be greater than 0", "pageSize");
+			}
+
+			if (tag == null)
+			{
+				throw new ArgumentNullException("tag", "The string tag must contains a value");
+			}
+
+			if (tag == string.Empty)
+			{
+				throw new ArgumentException("The string tag must not be empty", "tag");
+			}
+
+			if (filters == null)
+			{
+				filters = new ItemQueryFilter();
+				filters.MaxPublishAt = DateTime.Now;
+				filters.Status = ItemStatus.Published;
+			}
+
+			CancelEventArgsWithOneParameter<Tuple<int, int, string, ItemQueryFilter>, IPagedResult<PostDto>> e = new CancelEventArgsWithOneParameter<Tuple<int, int, string, ItemQueryFilter>, IPagedResult<PostDto>>(new Tuple<int, int, string, ItemQueryFilter>(pageIndex, pageSize, tag, filters), null);
+
+			if (e.Cancel)
+			{
+				this.logger.DebugAsync("The result of the method 'GetPostsByTag' is overridden by the event 'PostsRetrievingBytag'.");
+				return e.Result;
+			}
+
+			IPagedResult<PostDto> result = this.postDataService.GetPostsByTag(pageIndex, pageSize, tag, filters);
+
+			this.PostsRetrievedByTag.Raise(this, new GenericEventArgs<IPagedResult<PostDto>>(result));
+
+			return result;
+		}
+
+		public Task<IPagedResult<PostDto>> GetPostsByTagAsync(int pageIndex, int pageSize, string tag, ItemQueryFilter filters = null)
+		{
+			return Task.Run(() => this.GetPostsByTag(pageIndex, pageSize, tag, filters));
 		}
 
 		#endregion

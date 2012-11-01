@@ -1,37 +1,33 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			IPostDataService.cs
+// File:			QueryExtensions.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/10/27
-// Last edit:	2012/10/28
+// Created:		2012/11/01
+// Last edit:	2012/11/01
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
-namespace Dexter.Data
+namespace Dexter.Data.Raven.Extensions
 {
-	using Dexter.Entities;
-	using Dexter.Entities.Filters;
-	using Dexter.Entities.Result;
+	using System.Linq;
 
-	public interface IPostDataService
+	internal static class QueryExtensions
 	{
 		#region Public Methods and Operators
 
-		void Delete(int id);
-
-		PostDto GetPostByKey(int id);
-
-		PostDto GetPostBySlug(string slug);
-
-		IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, ItemQueryFilter filters);
-
-		IPagedResult<PostDto> GetPostsByTag(int pageIndex, int pageSize, string tag, ItemQueryFilter filters);
+		public static IQueryable<T> Paging<T>(this IQueryable<T> query, int currentPage, int pageSize)
+		{
+			return query
+				.Skip((currentPage - 1) * pageSize)
+				.Take(pageSize);
+		}
 
 		#endregion
 	}

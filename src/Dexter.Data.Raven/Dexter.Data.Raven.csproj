@@ -119,6 +119,7 @@
     <Compile Include="Domain\SeoConfiguration.cs" />
     <Compile Include="Domain\SmtpConfiguration.cs" />
     <Compile Include="Extensions\AutoMapperExtensions.cs" />
+    <Compile Include="Extensions\QueryExtensions.cs" />
     <Compile Include="PageDataService.cs" />
     <Compile Include="PostDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
