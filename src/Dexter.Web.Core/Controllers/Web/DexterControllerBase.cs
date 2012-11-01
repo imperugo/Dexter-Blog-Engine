@@ -16,11 +16,13 @@
 
 namespace Dexter.Web.Core.Controllers.Web
 {
+	using System.Threading.Tasks;
 	using System.Web.Mvc;
 
 	using Common.Logging;
 
 	using Dexter.Services;
+	using Dexter.Web.Core.Models;
 
 	public class DexterControllerBase : AsyncController
 	{
@@ -28,16 +30,22 @@ namespace Dexter.Web.Core.Controllers.Web
 
 		private readonly IConfigurationService configurationService;
 
+		private readonly IPostService postService;
+
+		private readonly ICommentService commentService;
+
 		private readonly ILog logger;
 
 		#endregion
 
 		#region Constructors and Destructors
 
-		public DexterControllerBase(ILog logger, IConfigurationService configurationService)
+		public DexterControllerBase(ILog logger, IConfigurationService configurationService, IPostService postService, ICommentService commentService)
 		{
 			this.logger = logger;
 			this.configurationService = configurationService;
+			this.postService = postService;
+			this.commentService = commentService;
 		}
 
 		#endregion
@@ -61,5 +69,25 @@ namespace Dexter.Web.Core.Controllers.Web
 		}
 
 		#endregion
+
+		public async new Task<ActionResult> View(object model)
+		{
+			return await this.View(null, model);
+		}
+
+		public async new Task<ActionResult> View(string viewName, object model)
+		{
+			DexterModelBase m = (DexterModelBase)model;
+
+			var recentPosts = this.postService.GetPostsAsync(1, 5);
+			var recentComments = this.commentService.GetRecentCommentsAsync(5);
+
+			Task.WhenAll(recentPosts, recentComments);
+
+			m.RecentPost = recentPosts.Result.Result;
+			m.RecentComment = recentComments.Result;
+
+			return base.View(viewName, model);
+		} 
 	}
 }

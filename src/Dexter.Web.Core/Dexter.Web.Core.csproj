@@ -91,7 +91,9 @@
     <Compile Include="Controllers\Web\DexterControllerBase.cs" />
     <Compile Include="HttpApplication\DexterApplication.cs" />
     <Compile Include="HttpApplication\IDexterApplication.cs" />
+    <Compile Include="Invokers\DexterControllerActionInvoker.cs" />
     <Compile Include="LayerInstaller.cs" />
+    <Compile Include="Models\DexterModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Routing\IRoutingService.cs" />
   </ItemGroup>
@@ -99,6 +101,10 @@
     <ProjectReference Include="..\Dexter.Dependency\Dexter.Dependency.csproj">
       <Project>{07FF041C-FC20-49A3-8BC4-A38E7F72ABAA}</Project>
       <Name>Dexter.Dependency</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Entities\Dexter.Entities.csproj">
+      <Project>{5FB1AED5-D55E-43CC-A3E0-5E788BD72144}</Project>
+      <Name>Dexter.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\Dexter.Services\Dexter.Services.csproj">
       <Project>{BE578436-AD00-48FA-A16D-245044F109C2}</Project>

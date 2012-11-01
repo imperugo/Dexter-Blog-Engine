@@ -24,6 +24,7 @@ namespace Dexter.Data.Raven
 	using Dexter.Data.Raven.Domain;
 	using Dexter.Data.Raven.Extensions;
 	using Dexter.Entities;
+	using Dexter.Entities.Filters;
 
 	using global::Raven.Client;
 

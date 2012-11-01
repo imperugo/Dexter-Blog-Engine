@@ -40,6 +40,8 @@
     <Compile Include="..\..\doc\Dexter.Build.cs">
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
+    <Compile Include="ICommentService.cs" />
+    <Compile Include="IPageService.cs" />
     <Compile Include="Events\CancelEventArgsWithOneParameter.cs" />
     <Compile Include="Events\GenericEventArgs.cs" />
     <Compile Include="IConfigurationService.cs" />

@@ -40,9 +40,11 @@
     <Compile Include="CommentDto.cs" />
     <Compile Include="BlogConfiguration.cs" />
     <Compile Include="CommentStatus.cs" />
+    <Compile Include="Filters\CommentQueryFilter.cs" />
+    <Compile Include="PageDto.cs" />
     <Compile Include="PostDto.cs" />
-    <Compile Include="Filters\PostQueryFilter.cs" />
-    <Compile Include="PostStatus.cs" />
+    <Compile Include="Filters\ItemQueryFilter.cs" />
+    <Compile Include="ItemStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Result\EmptyPagedResult.cs" />
     <Compile Include="Result\IPagedResult %28generic%29.cs" />

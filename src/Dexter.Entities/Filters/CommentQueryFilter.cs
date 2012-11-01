@@ -1,32 +1,38 @@
-﻿#region Disclaimer/Info
+#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			ICommentDataService.cs
+// File:			CommentQueryFilter.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/10/27
-// Last edit:	2012/10/28
+// Created:		2012/11/01
+// Last edit:	2012/11/01
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
-namespace Dexter.Data
+namespace Dexter.Entities.Filters
 {
-	using System.Collections.Generic;
-
-	using Dexter.Entities;
-	using Dexter.Entities.Filters;
-
-	public interface ICommentDataService
+	public class CommentQueryFilter
 	{
-		#region Public Methods and Operators
+		#region Constructors and Destructors
 
-		void AddComment(CommentDto comment, int itemId, CommentStatus status);
+		/// <summary>
+		/// 	Initializes a new instance of the <see cref="T:System.Object" /> class.
+		/// </summary>
+		public CommentQueryFilter()
+		{
+			this.CommentStatus = CommentStatus.IsApproved;
+		}
 
-		IList<CommentDto> GetCommentForSpecificItem(int itemId, CommentQueryFilter queryFilter);
+		#endregion
+
+		#region Public Properties
+
+		public CommentStatus CommentStatus { get; set; }
 
 		#endregion
 	}

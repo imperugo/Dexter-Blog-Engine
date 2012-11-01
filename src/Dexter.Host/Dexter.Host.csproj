@@ -144,6 +144,7 @@
     <Folder Include="Areas\Dxt_Admin\Controllers\" />
     <Folder Include="Areas\Dxt_Admin\Models\" />
     <Folder Include="Areas\Dxt_Admin\Views\Shared\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
