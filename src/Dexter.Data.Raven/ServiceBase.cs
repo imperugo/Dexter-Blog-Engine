@@ -19,6 +19,8 @@ namespace Dexter.Data.Raven
 
 	using Common.Logging;
 
+	using Dexter.Data.Exceptions;
+
 	using global::Raven.Client;
 
 	public class ServiceBase : IDisposable

@@ -1,7 +1,7 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			Post.cs
+// File:			IPostDataService.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/27
@@ -13,12 +13,24 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 #endregion
 
-namespace Dexter.Data.Raven.Domain
+namespace Dexter.Data
 {
-	using System.Collections.Generic;
+	using Dexter.Entities;
+	using Dexter.Entities.Filters;
+	using Dexter.Entities.Result;
 
-	public class Post : Item
+	public interface IPageDataService
 	{
-		public IEnumerable<int> CategoriesId { get; set; }
+		#region Public Methods and Operators
+
+		void Delete(int id);
+
+		PageDto GetPageByKey(int id);
+
+		PageDto GetPageBySlug(string slug);
+
+		IPagedResult<PageDto> GetPages(int pageIndex, int pageSize, ItemQueryFilter filter);
+
+		#endregion
 	}
 }

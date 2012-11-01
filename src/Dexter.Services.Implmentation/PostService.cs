@@ -60,7 +60,7 @@ namespace Dexter.Services.Implmentation
 
 		public event EventHandler<GenericEventArgs<IPagedResult<PostDto>>> PostsRetrievedWithFilters;
 
-		public event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, PostQueryFilter>, IPagedResult<PostDto>>> PostsRetrievingWithFilters;
+		public event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, ItemQueryFilter>, IPagedResult<PostDto>>> PostsRetrievingWithFilters;
 
 		#endregion
 
@@ -129,7 +129,7 @@ namespace Dexter.Services.Implmentation
 			return Task.Run(() => this.GetPostBySlug(slug));
 		}
 
-		public IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, PostQueryFilter filters)
+		public IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, ItemQueryFilter filters)
 		{
 			if (pageIndex < 1)
 			{
@@ -143,12 +143,12 @@ namespace Dexter.Services.Implmentation
 
 			if (filters == null)
 			{
-				filters = new PostQueryFilter();
+				filters = new ItemQueryFilter();
 				filters.MaxPublishAt = DateTime.Now;
-				filters.Status = PostStatus.Published;
+				filters.Status = ItemStatus.Published;
 			}
 
-			CancelEventArgsWithOneParameter<Tuple<int, int, PostQueryFilter>, IPagedResult<PostDto>> e = new CancelEventArgsWithOneParameter<Tuple<int, int, PostQueryFilter>, IPagedResult<PostDto>>(new Tuple<int, int, PostQueryFilter>(pageIndex, pageSize, filters), null);
+			CancelEventArgsWithOneParameter<Tuple<int, int, ItemQueryFilter>, IPagedResult<PostDto>> e = new CancelEventArgsWithOneParameter<Tuple<int, int, ItemQueryFilter>, IPagedResult<PostDto>>(new Tuple<int, int, ItemQueryFilter>(pageIndex, pageSize, filters), null);
 
 			this.PostsRetrievingWithFilters.Raise(this, e);
 
@@ -165,7 +165,7 @@ namespace Dexter.Services.Implmentation
 			return result;
 		}
 
-		public Task<IPagedResult<PostDto>> GetPostsAsync(int pageIndex, int pageSize, PostQueryFilter filter)
+		public Task<IPagedResult<PostDto>> GetPostsAsync(int pageIndex, int pageSize, ItemQueryFilter filter)
 		{
 			return Task.Run(() => this.GetPostsAsync(pageIndex, pageSize, filter));
 		}

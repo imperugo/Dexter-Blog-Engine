@@ -22,7 +22,7 @@ namespace Dexter.Web.Core.Controllers.Web
 
 	using Dexter.Services;
 
-	public class DexterControllerBase : Controller
+	public class DexterControllerBase : AsyncController
 	{
 		#region Fields
 

@@ -56,7 +56,7 @@ namespace Dexter.Services
 		/// <summary>
 		/// This event will raise before to retrieve <see cref="IPagedResult"/> of <see cref="PostDto"/> with specific filters. The event is raised by by the implementation of <see cref="GetPosts"/> or the async version.
 		/// </summary>
-		event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, PostQueryFilter>, IPagedResult<PostDto>>> PostsRetrievingWithFilters;
+		event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, ItemQueryFilter>, IPagedResult<PostDto>>> PostsRetrievingWithFilters;
 
 
 		#endregion
@@ -71,9 +71,9 @@ namespace Dexter.Services
 
 		Task<PostDto> GetPostBySlugAsync(string slug);
 
-		IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, PostQueryFilter filters);
+		IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, ItemQueryFilter filters);
 
-		Task<IPagedResult<PostDto>> GetPostsAsync(int pageIndex, int pageSize, PostQueryFilter filter);
+		Task<IPagedResult<PostDto>> GetPostsAsync(int pageIndex, int pageSize, ItemQueryFilter filter);
 
 		#endregion
 	}

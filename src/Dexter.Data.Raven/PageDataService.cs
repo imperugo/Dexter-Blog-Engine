@@ -1,16 +1,17 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			PostDataService.cs
+// File:			PageDataService.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/10/27
-// Last edit:	2012/10/28
+// Created:		2012/11/01
+// Last edit:	2012/11/01
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Data.Raven
@@ -32,11 +33,11 @@ namespace Dexter.Data.Raven
 
 	using global::Raven.Client.Linq;
 
-	public class PostDataService : ServiceBase, IPostDataService
+	public class PageDataService : ServiceBase, IPageDataService
 	{
 		#region Constructors and Destructors
 
-		public PostDataService(ILog logger, IDocumentSession session)
+		public PageDataService(ILog logger, IDocumentSession session)
 			: base(logger, session)
 		{
 		}
@@ -47,39 +48,39 @@ namespace Dexter.Data.Raven
 
 		public void Delete(int id)
 		{
-			Post post = this.Session.Load<Post>(id);
+			Page page = this.Session.Load<Page>(id);
 
-			if (post == null)
+			if (page == null)
 			{
 				throw new ItemNotFoundException("id");
 			}
 
-			this.Session.Delete(post);
+			this.Session.Delete(page);
 		}
 
-		public PostDto GetPostByKey(int id)
+		public PageDto GetPageByKey(int id)
 		{
 			if (id < 1)
 			{
 				throw new ArgumentException("The Id must be greater than 0", "id");
 			}
 
-			Post post = this.Session.Query<Post>()
+			Page page = this.Session.Query<Page>()
 				.Where(x => x.Id == id)
 				.Include(x => x.CommentsId)
-				.Include(x => x.CategoriesId).First();
+				.First();
 
-			if (post == null)
+			if (page == null)
 			{
 				throw new ItemNotFoundException("id");
 			}
 
-			PostDto result = post.MapTo<PostDto>();
+			PageDto result = page.MapTo<PageDto>();
 
 			return result;
 		}
 
-		public PostDto GetPostBySlug(string slug)
+		public PageDto GetPageBySlug(string slug)
 		{
 			if (slug == null)
 			{
@@ -91,21 +92,22 @@ namespace Dexter.Data.Raven
 				throw new ArgumentException("The string must have a value.", "slug");
 			}
 
-			Post post = this.Session.Query<Post>().Where(x => x.Slug == slug)
+			Page page = this.Session.Query<Page>()
+				.Where(x => x.Slug == slug)
 				.Include(x => x.CommentsId)
-				.Include(x => x.CategoriesId).First();
+				.First();
 
-			if (post == null)
+			if (page == null)
 			{
 				throw new ItemNotFoundException("slug");
 			}
 
-			PostDto result = post.MapTo<PostDto>();
+			PageDto result = page.MapTo<PageDto>();
 
 			return result;
 		}
 
-		public IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, ItemQueryFilter filter)
+		public IPagedResult<PageDto> GetPages(int pageIndex, int pageSize, ItemQueryFilter filter)
 		{
 			if (pageIndex < 1)
 			{
@@ -119,7 +121,7 @@ namespace Dexter.Data.Raven
 
 			RavenQueryStatistics stats;
 
-			IRavenQueryable<Post> query = this.Session.Query<Post>();
+			IRavenQueryable<Page> query = this.Session.Query<Page>();
 
 			if (filter != null && filter.Status.HasValue)
 			{
@@ -136,22 +138,21 @@ namespace Dexter.Data.Raven
 				query.Where(x => x.PublishAt < filter.MaxPublishAt);
 			}
 
-			List<Post> result = query
+			List<Page> result = query
 				.Include(x => x.CommentsId)
-				.Include(x => x.CategoriesId)
 				.Statistics(out stats)
 				.Take(pageIndex)
 				.Skip(pageIndex)
 				.ToList();
 
-			List<PostDto> posts = result.MapTo<PostDto>();
+			List<PageDto> posts = result.MapTo<PageDto>();
 
 			if (stats.TotalResults < 1)
 			{
-				return new EmptyPagedResult<PostDto>(pageIndex, pageSize);
+				return new EmptyPagedResult<PageDto>(pageIndex, pageSize);
 			}
 
-			return new PagedResult<PostDto>(pageIndex, pageSize, posts, stats.TotalResults);
+			return new PagedResult<PageDto>(pageIndex, pageSize, posts, stats.TotalResults);
 		}
 
 		#endregion

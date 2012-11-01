@@ -23,11 +23,13 @@ namespace Dexter.Data
 	{
 		#region Public Methods and Operators
 
+		void Delete(int id);
+
 		PostDto GetPostByKey(int id);
 
 		PostDto GetPostBySlug(string slug);
 
-		IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, PostQueryFilter filter);
+		IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, ItemQueryFilter filter);
 
 		#endregion
 	}

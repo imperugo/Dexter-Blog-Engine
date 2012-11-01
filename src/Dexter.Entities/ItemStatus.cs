@@ -1,7 +1,7 @@
 #region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			PostStatus.cs
+// File:			ItemStatus.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/28
@@ -15,7 +15,7 @@
 
 namespace Dexter.Entities
 {
-	public enum PostStatus
+	public enum ItemStatus
 	{
 		Draft, 
 

@@ -4,7 +4,7 @@ namespace Dexter.Entities.Filters
 
 	using Dexter.Entities;
 
-	public class PostQueryFilter
+	public class ItemQueryFilter
 	{
 		#region Public Properties
 
@@ -12,7 +12,7 @@ namespace Dexter.Entities.Filters
 
 		public DateTimeOffset? MinPublishAt { get; set; }
 
-		public PostStatus? Status { get; set; }
+		public ItemStatus? Status { get; set; }
 
 		#endregion
 	}
