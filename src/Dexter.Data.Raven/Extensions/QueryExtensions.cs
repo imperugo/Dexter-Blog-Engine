@@ -26,7 +26,7 @@ namespace Dexter.Data.Raven.Extensions
 	{
 		#region Public Methods and Operators
 
-		public static IRavenQueryable<T> ApplyFilterItem<T>(this IQueryable<T> query, ItemQueryFilter filters) where T : Item
+		public static IRavenQueryable<T> ApplyFilterItem<T>(this IRavenQueryable<T> query, ItemQueryFilter filters) where T : Item
 		{
 			if (filters != null && filters.Status.HasValue)
 			{
