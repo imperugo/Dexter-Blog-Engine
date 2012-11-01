@@ -154,6 +154,16 @@
   <ItemGroup>
     <Content Include="App_Data\Localization\en-US\Core.po" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dexter.Dependency\Dexter.Dependency.csproj">
+      <Project>{07FF041C-FC20-49A3-8BC4-A38E7F72ABAA}</Project>
+      <Name>Dexter.Dependency</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Web.Core\Dexter.Web.Core.csproj">
+      <Project>{AEB41407-67EB-4AB2-881C-3DFB5CD8B540}</Project>
+      <Name>Dexter.Web.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

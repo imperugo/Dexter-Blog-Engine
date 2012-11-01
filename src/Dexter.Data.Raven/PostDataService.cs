@@ -25,6 +25,7 @@ namespace Dexter.Data.Raven
 	using Dexter.Data.Raven.Domain;
 	using Dexter.Data.Raven.Extensions;
 	using Dexter.Entities;
+	using Dexter.Entities.Filters;
 	using Dexter.Entities.Result;
 
 	using global::Raven.Client;
@@ -56,17 +57,17 @@ namespace Dexter.Data.Raven
 			this.Session.Delete(post);
 		}
 
-		public PostDto GetPostById(int id)
+		public PostDto GetPostByKey(int id)
 		{
 			if (id < 1)
 			{
 				throw new ArgumentException("The Id must be greater than 0", "id");
 			}
 
-			Post post = Queryable.First(this.Session.Query<Post>()
+			Post post = this.Session.Query<Post>()
 				.Where(x => x.Id == id)
 				.Include(x => x.CommentsId)
-				.Include(x => x.CategoriesId));
+				.Include(x => x.CategoriesId).First();
 
 			if (post == null)
 			{
@@ -90,9 +91,9 @@ namespace Dexter.Data.Raven
 				throw new ArgumentException("The string must have a value.", "slug");
 			}
 
-			Post post = Queryable.First(this.Session.Query<Post>().Where(x => x.Slug == slug)
+			Post post = this.Session.Query<Post>().Where(x => x.Slug == slug)
 				.Include(x => x.CommentsId)
-				.Include(x => x.CategoriesId));
+				.Include(x => x.CategoriesId).First();
 
 			if (post == null)
 			{
@@ -135,10 +136,13 @@ namespace Dexter.Data.Raven
 				query.Where(x => x.PublishAt < filter.MaxPublishAt);
 			}
 
-			List<Post> result = Enumerable.ToList(Queryable.Skip(Queryable.Take(query
+			List<Post> result = query
 				.Include(x => x.CommentsId)
 				.Include(x => x.CategoriesId)
-				.Statistics(out stats), pageIndex), pageIndex));
+				.Statistics(out stats)
+				.Take(pageIndex)
+				.Skip(pageIndex)
+				.ToList();
 
 			List<PostDto> posts = result.MapTo<PostDto>();
 

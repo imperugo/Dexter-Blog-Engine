@@ -1,33 +1,45 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			IPostDataService.cs
+// File:			GenericEventArgs.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/10/27
-// Last edit:	2012/10/28
+// Created:		2012/11/01
+// Last edit:	2012/11/01
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
-namespace Dexter.Data
+namespace Dexter.Services.Events
 {
-	using Dexter.Entities;
-	using Dexter.Entities.Filters;
-	using Dexter.Entities.Result;
+	#region Usings
 
-	public interface IPostDataService
+	using System;
+
+	#endregion
+
+	public class GenericEventArgs<T> : EventArgs
 	{
-		#region Public Methods and Operators
+		#region Constructors and Destructors
 
-		PostDto GetPostByKey(int id);
+		public GenericEventArgs(T returnObject)
+		{
+			this.Objects = returnObject;
+		}
 
-		PostDto GetPostBySlug(string slug);
+		#endregion
 
-		IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, PostQueryFilter filter);
+		#region Public Properties
+
+		/// <summary>
+		/// Gets or sets the object.
+		/// </summary>
+		/// <value>The object.</value>
+		public T Objects { get; set; }
 
 		#endregion
 	}

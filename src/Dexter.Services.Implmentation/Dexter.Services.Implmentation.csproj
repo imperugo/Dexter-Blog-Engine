@@ -11,6 +11,8 @@
     <AssemblyName>Dexter.Services.Implmentation</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging, Version=2.1.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Common.Logging.2.1.1\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
@@ -38,6 +44,7 @@
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
     <Compile Include="ConfigurationService.cs" />
+    <Compile Include="PostService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -53,12 +60,20 @@
       <Project>{5FB1AED5-D55E-43CC-A3E0-5E788BD72144}</Project>
       <Name>Dexter.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dexter.Extensions\Dexter.Extensions.csproj">
+      <Project>{408d067c-933b-4987-b76f-481708f08470}</Project>
+      <Name>Dexter.Extensions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dexter.Services\Dexter.Services.csproj">
       <Project>{BE578436-AD00-48FA-A16D-245044F109C2}</Project>
       <Name>Dexter.Services</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -41,6 +41,7 @@
     <Compile Include="BlogConfiguration.cs" />
     <Compile Include="CommentStatus.cs" />
     <Compile Include="PostDto.cs" />
+    <Compile Include="Filters\PostQueryFilter.cs" />
     <Compile Include="PostStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Result\EmptyPagedResult.cs" />

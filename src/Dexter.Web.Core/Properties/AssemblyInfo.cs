@@ -1,10 +1,10 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			IPostDataService.cs
+// File:			AssemblyInfo.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/10/27
+// Created:		2012/10/28
 // Last edit:	2012/10/28
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
@@ -13,22 +13,13 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 #endregion
 
-namespace Dexter.Data
-{
-	using Dexter.Entities;
-	using Dexter.Entities.Filters;
-	using Dexter.Entities.Result;
+using System.Reflection;
+using System.Runtime.InteropServices;
 
-	public interface IPostDataService
-	{
-		#region Public Methods and Operators
-
-		PostDto GetPostByKey(int id);
-
-		PostDto GetPostBySlug(string slug);
-
-		IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, PostQueryFilter filter);
-
-		#endregion
-	}
-}
+[assembly: AssemblyTitle("Dexter.Web.Core")]
+[assembly: AssemblyDescription("The business logic of the web application and some cool extensions")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyProduct("Dexter.Web.Core")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+[assembly: Guid("6a1c2ed0-7033-44df-a64c-fcfafde68792")]

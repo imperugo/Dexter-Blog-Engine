@@ -1,33 +1,34 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			IPostDataService.cs
+// File:			IDexterApplication.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/10/27
-// Last edit:	2012/10/28
+// Created:		2012/11/01
+// Last edit:	2012/11/01
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
-namespace Dexter.Data
+namespace Dexter.Web.Core.HttpApplication
 {
-	using Dexter.Entities;
-	using Dexter.Entities.Filters;
-	using Dexter.Entities.Result;
-
-	public interface IPostDataService
+	public interface IDexterApplication
 	{
 		#region Public Methods and Operators
 
-		PostDto GetPostByKey(int id);
+		void ApplicationEnd();
 
-		PostDto GetPostBySlug(string slug);
+		void ApplicationError(System.Web.HttpApplication application);
 
-		IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, PostQueryFilter filter);
+		void ApplicationStart();
+
+		void AuthenticateRequest();
+
+		void Init(System.Web.HttpApplication application);
 
 		#endregion
 	}
