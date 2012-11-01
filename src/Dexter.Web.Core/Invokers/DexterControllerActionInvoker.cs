@@ -62,7 +62,7 @@ namespace Dexter.Web.Core.Invokers
 				DexterModelBase model = (DexterModelBase)result.Model;
 
 				// DexterControllerBase controllerBase = ((DexterControllerBase)controllerContext.Controller);
-				model.RecentPost = this.postService.GetPosts(1, 5, null).Result;
+				model.RecentPosts = this.postService.GetPosts(1, 5, null).Result;
 			}
 
 			return base.CreateActionResult(controllerContext, actionDescriptor, actionReturnValue);

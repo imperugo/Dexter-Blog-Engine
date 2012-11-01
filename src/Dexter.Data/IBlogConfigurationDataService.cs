@@ -23,6 +23,8 @@ namespace Dexter.Data
 
 		BlogConfiguration GetConfiguration();
 
+		void SaveConfiguration(BlogConfiguration configuration);
+
 		#endregion
 	}
 }

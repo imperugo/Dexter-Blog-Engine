@@ -88,8 +88,8 @@ namespace Dexter.Web.Core.Controllers.Web
 
 			Task.WhenAll(recentPosts, recentComments);
 
-			m.RecentPost = recentPosts.Result.Result;
-			m.RecentComment = recentComments.Result;
+			m.RecentPosts = recentPosts.Result.Result;
+			m.RecentComments = recentComments.Result;
 
 			return base.View(viewName, model);
 		}

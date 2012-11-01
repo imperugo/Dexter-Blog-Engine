@@ -123,6 +123,7 @@ namespace Dexter.Data.Raven
 				.ApplyFilterItem(filters)
 				.Include(x => x.CommentsId)
 				.Include(x => x.CategoriesId)
+				.OrderByDescending(post => post.PublishAt)
 				.Statistics(out stats)
 				.Paging(pageIndex, pageSize)
 				.ToList();
@@ -157,6 +158,66 @@ namespace Dexter.Data.Raven
 				.Include(x => x.CategoriesId)
 				.Statistics(out stats)
 				.Where(post => post.Tags.Any(postTag => postTag == tag))
+				.OrderByDescending(post => post.PublishAt)
+				.Paging(pageIndex, pageSize)
+				.ToList();
+
+			List<PostDto> posts = result.MapTo<PostDto>();
+
+			if (stats.TotalResults < 1)
+			{
+				return new EmptyPagedResult<PostDto>(pageIndex, pageSize);
+			}
+
+			return new PagedResult<PostDto>(pageIndex, pageSize, posts, stats.TotalResults);
+		}
+
+		public IPagedResult<PostDto> GetPostsByDate(int pageIndex, int pageSize, int year, int? month, int? day, ItemQueryFilter filters)
+		{
+			if (pageIndex < 1)
+			{
+				throw new ArgumentException("The page index must be greater than 0", "pageIndex");
+			}
+
+			if (pageSize < 1)
+			{
+				throw new ArgumentException("The page size must be greater than 0", "pageSize");
+			}
+
+			if (year < 1700)
+			{
+				throw new ArgumentException("The year value must be greater than 1700. Internet did not exist in 1700!", "year");
+			}
+
+			if (month.HasValue && (month.Value < 1 || month.Value > 12))
+			{
+				throw new ArgumentException("The month value must be greater than 0 and lesser than 12", "month");
+			}
+
+			if (day.HasValue && (day.Value < 1 || day.Value > 31))
+			{
+				throw new ArgumentException("The day value must be greater than 0 and lesser than 31", "month");
+			}
+
+			RavenQueryStatistics stats;
+
+			var query = this.Session.Query<Post>()
+				.Where(post => post.PublishAt.Year == year)
+				.ApplyFilterItem(filters);
+
+			if (month.HasValue)
+			{
+				query.Where(post => post.PublishAt.Month == month.Value);
+			}
+
+			if (day.HasValue)
+			{
+				query.Where(post => post.PublishAt.Day == day.Value);
+			}
+
+			List<Post> result = query.Include(x => x.CommentsId)
+				.Include(x => x.CategoriesId)
+				.Statistics(out stats)
 				.OrderByDescending(post => post.PublishAt)
 				.Paging(pageIndex, pageSize)
 				.ToList();

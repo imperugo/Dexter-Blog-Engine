@@ -33,6 +33,8 @@ namespace Dexter.Data
 
 		IPagedResult<PostDto> GetPostsByTag(int pageIndex, int pageSize, string tag, ItemQueryFilter filters);
 
+		IPagedResult<PostDto> GetPostsByDate(int pageIndex, int pageSize, int year, int? month, int? day, ItemQueryFilter filters);
+
 		#endregion
 	}
 }
