@@ -5,7 +5,7 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/27
-// Last edit:	2012/10/28
+// Last edit:	2012/11/01
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -119,24 +119,8 @@ namespace Dexter.Data.Raven
 
 			RavenQueryStatistics stats;
 
-			IRavenQueryable<Post> query = this.Session.Query<Post>();
-
-			if (filters != null && filters.Status.HasValue)
-			{
-				query.Where(x => x.Status == filters.Status);
-			}
-
-			if (filters != null && filters.MinPublishAt.HasValue)
-			{
-				query.Where(x => x.PublishAt > filters.MaxPublishAt);
-			}
-
-			if (filters != null && filters.MaxPublishAt.HasValue)
-			{
-				query.Where(x => x.PublishAt < filters.MaxPublishAt);
-			}
-
-			List<Post> result = query
+			List<Post> result = this.Session.Query<Post>()
+				.ApplyFilterItem(filters)
 				.Include(x => x.CommentsId)
 				.Include(x => x.CategoriesId)
 				.Statistics(out stats)
@@ -167,30 +151,14 @@ namespace Dexter.Data.Raven
 
 			RavenQueryStatistics stats;
 
-			IRavenQueryable<Post> query = this.Session.Query<Post>();
-
-			if (filters != null && filters.Status.HasValue)
-			{
-				query.Where(x => x.Status == filters.Status);
-			}
-
-			if (filters != null && filters.MinPublishAt.HasValue)
-			{
-				query.Where(x => x.PublishAt > filters.MaxPublishAt);
-			}
-
-			if (filters != null && filters.MaxPublishAt.HasValue)
-			{
-				query.Where(x => x.PublishAt < filters.MaxPublishAt);
-			}
-
-			List<Post> result = query
+			List<Post> result = this.Session.Query<Post>()
+				.ApplyFilterItem(filters)
 				.Include(x => x.CommentsId)
 				.Include(x => x.CategoriesId)
 				.Statistics(out stats)
 				.Where(post => post.Tags.Any(postTag => postTag == tag))
 				.OrderByDescending(post => post.PublishAt)
-				.Paging(pageIndex,pageSize)
+				.Paging(pageIndex, pageSize)
 				.ToList();
 
 			List<PostDto> posts = result.MapTo<PostDto>();

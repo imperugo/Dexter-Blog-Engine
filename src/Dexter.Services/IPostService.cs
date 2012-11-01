@@ -11,7 +11,6 @@
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Services
@@ -34,14 +33,14 @@ namespace Dexter.Services
 		event EventHandler<GenericEventArgs<PostDto>> PostRetrievedById;
 
 		/// <summary>
-		/// This event will raise before to retrieve <see cref="PostDto"/> by specific key. The event is raised by by the implementation of <see cref="GetPostByKey"/> or the async version.
-		/// </summary>
-		event EventHandler<CancelEventArgsWithOneParameter<int, PostDto>> PostRetrievingById;
-
-		/// <summary>
 		/// This event will raise after to retrieve <see cref="PostDto"/> by specific slug. The event is raised by by the implementation of <see cref="GetPostBySlug"/> or the async version.
 		/// </summary>
 		event EventHandler<GenericEventArgs<PostDto>> PostRetrievedBySlug;
+
+		/// <summary>
+		/// This event will raise before to retrieve <see cref="PostDto"/> by specific key. The event is raised by by the implementation of <see cref="GetPostByKey"/> or the async version.
+		/// </summary>
+		event EventHandler<CancelEventArgsWithOneParameter<int, PostDto>> PostRetrievingById;
 
 		/// <summary>
 		/// This event will raise before to retrieve <see cref="PostDto"/> by specific slug. The event is raised by by the implementation of <see cref="GetPostBySlug"/> or the async version.
@@ -49,25 +48,24 @@ namespace Dexter.Services
 		event EventHandler<CancelEventArgsWithOneParameter<string, PostDto>> PostRetrievingBySlug;
 
 		/// <summary>
-		/// This event will raise after to retrieve <see cref="IPagedResult"/> of <see cref="PostDto"/> with specific filters. The event is raised by by the implementation of <see cref="GetPosts"/> or the async version.
-		/// </summary>
-		event EventHandler<GenericEventArgs<IPagedResult<PostDto>>> PostsRetrievedWithFilters;
-
-		/// <summary>
-		/// This event will raise before to retrieve <see cref="IPagedResult"/> of <see cref="PostDto"/> with specific filters. The event is raised by by the implementation of <see cref="GetPosts"/> or the async version.
-		/// </summary>
-		event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, ItemQueryFilter>, IPagedResult<PostDto>>> PostsRetrievingWithFilters;
-
-
-		/// <summary>
 		/// This event will raise after to retrieve <see cref="IPagedResult"/> of <see cref="PostDto"/> by tag with specific filters. The event is raised by by the implementation of <see cref="GetPostsByTag"/> or the async version.
 		/// </summary>
 		event EventHandler<GenericEventArgs<IPagedResult<PostDto>>> PostsRetrievedByTag;
 
 		/// <summary>
+		/// This event will raise after to retrieve <see cref="IPagedResult"/> of <see cref="PostDto"/> with specific filters. The event is raised by by the implementation of <see cref="GetPosts"/> or the async version.
+		/// </summary>
+		event EventHandler<GenericEventArgs<IPagedResult<PostDto>>> PostsRetrievedWithFilters;
+
+		/// <summary>
 		/// This event will raise before to retrieve <see cref="IPagedResult"/> of <see cref="PostDto"/> by tag with specific filters. The event is raised by by the implementation of <see cref="GetPostsByTag"/> or the async version.
 		/// </summary>
 		event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, string, ItemQueryFilter>, IPagedResult<PostDto>>> PostsRetrievingBytag;
+
+		/// <summary>
+		/// This event will raise before to retrieve <see cref="IPagedResult"/> of <see cref="PostDto"/> with specific filters. The event is raised by by the implementation of <see cref="GetPosts"/> or the async version.
+		/// </summary>
+		event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, ItemQueryFilter>, IPagedResult<PostDto>>> PostsRetrievingWithFilters;
 
 		#endregion
 

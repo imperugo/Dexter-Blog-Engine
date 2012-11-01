@@ -11,7 +11,6 @@
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Data.Raven
@@ -121,24 +120,8 @@ namespace Dexter.Data.Raven
 
 			RavenQueryStatistics stats;
 
-			IRavenQueryable<Page> query = this.Session.Query<Page>();
-
-			if (filter != null && filter.Status.HasValue)
-			{
-				query.Where(x => x.Status == filter.Status);
-			}
-
-			if (filter != null && filter.MinPublishAt.HasValue)
-			{
-				query.Where(x => x.PublishAt > filter.MaxPublishAt);
-			}
-
-			if (filter != null && filter.MaxPublishAt.HasValue)
-			{
-				query.Where(x => x.PublishAt < filter.MaxPublishAt);
-			}
-
-			List<Page> result = query
+			List<Page> result = this.Session.Query<Page>()
+				.ApplyFilterItem(filter)
 				.Include(x => x.CommentsId)
 				.Statistics(out stats)
 				.Paging(pageIndex, pageSize)

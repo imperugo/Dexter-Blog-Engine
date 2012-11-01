@@ -11,7 +11,6 @@
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Web.Core.Models
@@ -22,7 +21,12 @@ namespace Dexter.Web.Core.Models
 
 	public class DexterModelBase
 	{
-		public virtual IEnumerable<PostDto> RecentPost { get; internal set; }
+		#region Public Properties
+
 		public virtual IEnumerable<CommentDto> RecentComment { get; internal set; }
+
+		public virtual IEnumerable<PostDto> RecentPost { get; internal set; }
+
+		#endregion
 	}
 }

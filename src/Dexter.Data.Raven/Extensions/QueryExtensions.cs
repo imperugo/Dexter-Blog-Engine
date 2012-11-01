@@ -11,16 +11,40 @@
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Data.Raven.Extensions
 {
 	using System.Linq;
 
+	using Dexter.Data.Raven.Domain;
+	using Dexter.Entities.Filters;
+
+	using global::Raven.Client.Linq;
+
 	internal static class QueryExtensions
 	{
 		#region Public Methods and Operators
+
+		public static IRavenQueryable<T> ApplyFilterItem<T>(this IQueryable<T> query, ItemQueryFilter filters) where T : Item
+		{
+			if (filters != null && filters.Status.HasValue)
+			{
+				query.Where(x => x.Status == filters.Status);
+			}
+
+			if (filters != null && filters.MinPublishAt.HasValue)
+			{
+				query.Where(x => x.PublishAt > filters.MaxPublishAt);
+			}
+
+			if (filters != null && filters.MaxPublishAt.HasValue)
+			{
+				query.Where(x => x.PublishAt < filters.MaxPublishAt);
+			}
+
+			return query;
+		}
 
 		public static IQueryable<T> Paging<T>(this IQueryable<T> query, int currentPage, int pageSize)
 		{

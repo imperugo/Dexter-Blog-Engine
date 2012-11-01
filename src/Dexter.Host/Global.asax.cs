@@ -11,7 +11,6 @@
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Host
@@ -103,7 +102,6 @@ namespace Dexter.Host
 		#endregion
 
 		// Initialize only on the first request
-
 		#region Public Methods and Operators
 
 		public static void Initialize(HttpContext context)
@@ -119,6 +117,7 @@ namespace Dexter.Host
 				{
 					return;
 				}
+
 				InizializeWithContext();
 				initializedAlready = true;
 			}

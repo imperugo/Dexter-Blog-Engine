@@ -11,7 +11,6 @@
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Web.Core.HttpApplication
@@ -55,27 +54,27 @@ namespace Dexter.Web.Core.HttpApplication
 
 		public void ApplicationEnd()
 		{
-			var runtime = (HttpRuntime)typeof(HttpRuntime).InvokeMember("_theRuntime", BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.GetField, null, null, null);
+			HttpRuntime runtime = (HttpRuntime)typeof(HttpRuntime).InvokeMember("_theRuntime", BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.GetField, null, null, null);
 
 			if (runtime != null)
 			{
-				var shutDownMessage = (string)runtime.GetType().InvokeMember("_shutDownMessage", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.GetField, null, runtime, null);
-				var shutDownStack = (string)runtime.GetType().InvokeMember("_shutDownStack", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.GetField, null, runtime, null);
+				string shutDownMessage = (string)runtime.GetType().InvokeMember("_shutDownMessage", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.GetField, null, runtime, null);
+				string shutDownStack = (string)runtime.GetType().InvokeMember("_shutDownStack", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.GetField, null, runtime, null);
 
 				if (shutDownMessage.Contains("HostingEnvironment initiated shutdown"))
 				{
-					//The normal app domain recycle should be logged as a info
-					logger.InfoFormat("{0} stack = {1}", shutDownMessage, shutDownStack);
+					// The normal app domain recycle should be logged as a info
+					this.logger.InfoFormat("{0} stack = {1}", shutDownMessage, shutDownStack);
 				}
 				else
 				{
-					//maybe there is a problem :)
-					logger.WarnFormat("{0} stack = {1}", shutDownMessage, shutDownStack);
+					// maybe there is a problem :)
+					this.logger.WarnFormat("{0} stack = {1}", shutDownMessage, shutDownStack);
 				}
 			}
 
-			logger.Info("Application shutdown");
-			container.Shutdown();
+			this.logger.Info("Application shutdown");
+			this.container.Shutdown();
 		}
 
 		public void ApplicationError(HttpApplication application)
@@ -87,12 +86,12 @@ namespace Dexter.Web.Core.HttpApplication
 				HttpException httpException = (HttpException)exception;
 				if (httpException.GetHttpCode() == (int)HttpStatusCode.NotFound)
 				{
-					logger.Debug("Web resource not found", httpException);
+					this.logger.Debug("Web resource not found", httpException);
 				}
 			}
 			else
 			{
-				logger.Error("Unhandled Exception!", exception);
+				this.logger.Error("Unhandled Exception!", exception);
 			}
 
 			application.Server.ClearError();
@@ -102,9 +101,9 @@ namespace Dexter.Web.Core.HttpApplication
 		{
 			AreaRegistration.RegisterAllAreas();
 
-			routingService.RegisterRoutes();
+			this.routingService.RegisterRoutes();
 
-			RegisterGlobalFilters(GlobalFilters.Filters);
+			this.RegisterGlobalFilters(GlobalFilters.Filters);
 			DependencyResolver.SetResolver(this.container.Resolve<IDependencyResolver>());
 			GlobalConfiguration.Configuration.DependencyResolver = this.container.Resolve<System.Web.Http.Dependencies.IDependencyResolver>();
 		}
@@ -125,14 +124,18 @@ namespace Dexter.Web.Core.HttpApplication
 
 		#endregion
 
+		#region Methods
+
 		private void RegisterGlobalFilters(GlobalFilterCollection filters)
 		{
-			var f = container.ResolveAll<FilterAttribute>();
+			FilterAttribute[] f = this.container.ResolveAll<FilterAttribute>();
 
-			foreach (var filter in f)
+			foreach (FilterAttribute filter in f)
 			{
 				filters.Add(filter);
 			}
 		}
+
+		#endregion
 	}
 }

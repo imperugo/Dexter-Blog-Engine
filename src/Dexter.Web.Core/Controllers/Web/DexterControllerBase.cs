@@ -11,16 +11,18 @@
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Web.Core.Controllers.Web
 {
+	using System.Collections.Generic;
 	using System.Threading.Tasks;
 	using System.Web.Mvc;
 
 	using Common.Logging;
 
+	using Dexter.Entities;
+	using Dexter.Entities.Result;
 	using Dexter.Services;
 	using Dexter.Web.Core.Models;
 
@@ -28,13 +30,13 @@ namespace Dexter.Web.Core.Controllers.Web
 	{
 		#region Fields
 
-		private readonly IConfigurationService configurationService;
-
-		private readonly IPostService postService;
-
 		private readonly ICommentService commentService;
 
+		private readonly IConfigurationService configurationService;
+
 		private readonly ILog logger;
+
+		private readonly IPostService postService;
 
 		#endregion
 
@@ -70,17 +72,19 @@ namespace Dexter.Web.Core.Controllers.Web
 
 		#endregion
 
-		public async new Task<ActionResult> View(object model)
+		#region Public Methods and Operators
+
+		public new async Task<ActionResult> View(object model)
 		{
 			return await this.View(null, model);
 		}
 
-		public async new Task<ActionResult> View(string viewName, object model)
+		public new async Task<ActionResult> View(string viewName, object model)
 		{
 			DexterModelBase m = (DexterModelBase)model;
 
-			var recentPosts = this.postService.GetPostsAsync(1, 5);
-			var recentComments = this.commentService.GetRecentCommentsAsync(5);
+			Task<IPagedResult<PostDto>> recentPosts = this.postService.GetPostsAsync(1, 5);
+			Task<IList<CommentDto>> recentComments = this.commentService.GetRecentCommentsAsync(5);
 
 			Task.WhenAll(recentPosts, recentComments);
 
@@ -88,6 +92,8 @@ namespace Dexter.Web.Core.Controllers.Web
 			m.RecentComment = recentComments.Result;
 
 			return base.View(viewName, model);
-		} 
+		}
+
+		#endregion
 	}
 }

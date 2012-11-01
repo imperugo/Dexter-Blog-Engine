@@ -11,7 +11,6 @@
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Services
@@ -57,7 +56,7 @@ namespace Dexter.Services
 		Task<IList<CommentDto>> GetCommentForSpecificItemAsync(int itemId, CommentQueryFilter queryFilter = null);
 
 		IList<CommentDto> GetRecentComments(int maxNumber, CommentQueryFilter queryFilter = null);
-		
+
 		Task<IList<CommentDto>> GetRecentCommentsAsync(int maxNumber, CommentQueryFilter queryFilter = null);
 
 		#endregion

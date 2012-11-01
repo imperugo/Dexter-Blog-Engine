@@ -11,7 +11,6 @@
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Web.Core.Invokers
@@ -23,12 +22,20 @@ namespace Dexter.Web.Core.Invokers
 
 	public class DexterControllerBase : ControllerActionInvoker
 	{
+		#region Fields
+
 		private readonly IPostService postService;
+
+		#endregion
+
+		#region Constructors and Destructors
 
 		public DexterControllerBase(IPostService postService)
 		{
 			this.postService = postService;
 		}
+
+		#endregion
 
 		#region Methods
 
@@ -54,8 +61,7 @@ namespace Dexter.Web.Core.Invokers
 			{
 				DexterModelBase model = (DexterModelBase)result.Model;
 
-				//DexterControllerBase controllerBase = ((DexterControllerBase)controllerContext.Controller);
-
+				// DexterControllerBase controllerBase = ((DexterControllerBase)controllerContext.Controller);
 				model.RecentPost = this.postService.GetPosts(1, 5, null).Result;
 			}
 
