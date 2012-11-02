@@ -110,6 +110,10 @@
       <Project>{BE578436-AD00-48FA-A16D-245044F109C2}</Project>
       <Name>Dexter.Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dexter.Session\Dexter.Async.csproj">
+      <Project>{93F94260-4A10-41FD-AB0F-C1C22BFE3E78}</Project>
+      <Name>Dexter.Async</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

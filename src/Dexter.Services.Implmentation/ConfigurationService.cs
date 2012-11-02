@@ -26,7 +26,7 @@ namespace Dexter.Services.Implmentation
 	{
 		#region Fields
 
-		private readonly IBlogConfigurationDataService blogConfigurationDataService;
+		private readonly IConfigurationDataService configurationDataService;
 
 		private readonly ICacheProvider cacheProvider;
 
@@ -34,10 +34,10 @@ namespace Dexter.Services.Implmentation
 
 		#region Constructors and Destructors
 
-		public ConfigurationService(ICacheProvider cacheProvider, IBlogConfigurationDataService blogConfigurationDataService)
+		public ConfigurationService(ICacheProvider cacheProvider, IConfigurationDataService configurationDataService)
 		{
 			this.cacheProvider = cacheProvider;
-			this.blogConfigurationDataService = blogConfigurationDataService;
+			this.configurationDataService = configurationDataService;
 		}
 
 		#endregion
@@ -50,7 +50,7 @@ namespace Dexter.Services.Implmentation
 
 			if (result == null)
 			{
-				result = this.blogConfigurationDataService.GetConfiguration();
+				result = this.configurationDataService.GetConfiguration();
 				this.cacheProvider.Put("dexter.blog.configuration", result, TimeSpan.FromHours(3));
 			}
 
@@ -65,7 +65,7 @@ namespace Dexter.Services.Implmentation
 			{
 				Task.Run(() =>
 					{
-						result = this.blogConfigurationDataService.GetConfiguration();
+						result = this.configurationDataService.GetConfiguration();
 
 						this.cacheProvider.PutAsync("dexter.blog.configuration", result, TimeSpan.FromHours(3));
 					});

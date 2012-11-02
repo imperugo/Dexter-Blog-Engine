@@ -1,7 +1,7 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			IDexterCall.cs
+// File:			DexterCall.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/02
@@ -14,17 +14,39 @@
 
 #endregion
 
-namespace Dexter.Async
+namespace Dexter.Data.Raven
 {
-	using System;
+	using Dexter.Async;
+	using Dexter.Data.Raven.Session;
 
-	public interface IDexterCall
+	public class DexterCall : IDexterCall
 	{
+		#region Fields
+
+		private readonly ISessionFactory sessionFactory;
+
+		#endregion
+
+		#region Constructors and Destructors
+
+		public DexterCall(ISessionFactory sessionFactory)
+		{
+			this.sessionFactory = sessionFactory;
+		}
+
+		#endregion
+
 		#region Public Methods and Operators
 
-		void Complete(bool succesfully);
+		public void Complete(bool succesfully)
+		{
+			this.sessionFactory.EndSession(succesfully);
+		}
 
-		void StartSession();
+		public void StartSession()
+		{
+			this.sessionFactory.StartSession();
+		}
 
 		#endregion
 	}

@@ -4,8 +4,8 @@
 // File:			Installer.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/11/01
-// Last edit:	2012/11/01
+// Created:		2012/11/02
+// Last edit:	2012/11/02
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -14,17 +14,12 @@
 
 #endregion
 
-namespace Dexter.Data.Raven
+namespace Dexter.Async
 {
-	using Dexter.Async;
-	using Dexter.Data.Raven.Services;
-	using Dexter.Data.Raven.Session;
+	using Dexter.Async.Async;
+	using Dexter.Async.Web;
 	using Dexter.Dependency;
 	using Dexter.Dependency.Installation;
-
-	using global::Raven.Client;
-
-	using global::Raven.Client.Embedded;
 
 	public class Installer : ILayerInstaller
 	{
@@ -32,31 +27,17 @@ namespace Dexter.Data.Raven
 
 		public void ApplicationStarted(IDexterContainer container)
 		{
+			container.Register<ICallContextFactory, DexterCallContextFactory>(LifeCycle.Singleton);
+			container.Register<IAsyncCallContext, AsyncCallContext>(LifeCycle.Singleton);
+			container.Register<IWebCallContext, WebCallContext>(LifeCycle.Singleton);
 		}
 
 		public void ServiceRegistration(IDexterContainer container)
 		{
-			container.Register<IPostDataService, PostDataService>(LifeCycle.Singleton);
-			container.Register<IPageDataService, PageDataService>(LifeCycle.Singleton);
-			container.Register<ICommentDataService, CommentDataService>(LifeCycle.Singleton);
-			container.Register<IConfigurationDataService, ConfigurationDataService>(LifeCycle.Singleton);
-			container.Register<IDexterCall, DexterCall>(LifeCycle.Singleton);
-			container.Register<ISessionFactory, SessionFactory>(LifeCycle.Singleton);
-
-			IDocumentStore store = new EmbeddableDocumentStore
-			{
-				RunInMemory = false,
-				DataDirectory = "App_Data/db",
-			};
-
-			store.Initialize();
-
-			container.Register(typeof(IDocumentStore), store, LifeCycle.Singleton);
 		}
 
 		public void ServiceRegistrationComplete(IDexterContainer container)
 		{
-			
 		}
 
 		#endregion

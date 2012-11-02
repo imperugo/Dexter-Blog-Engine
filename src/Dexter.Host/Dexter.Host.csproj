@@ -220,6 +220,10 @@
       <Project>{be578436-ad00-48fa-a16d-245044f109c2}</Project>
       <Name>Dexter.Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dexter.Session\Dexter.Async.csproj">
+      <Project>{93f94260-4a10-41fd-ab0f-c1c22bfe3e78}</Project>
+      <Name>Dexter.Async</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dexter.Web.Core\Dexter.Web.Core.csproj">
       <Project>{AEB41407-67EB-4AB2-881C-3DFB5CD8B540}</Project>
       <Name>Dexter.Web.Core</Name>

@@ -5,12 +5,13 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/01
-// Last edit:	2012/11/01
+// Last edit:	2012/11/02
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Web.Core.HttpApplication
@@ -24,6 +25,7 @@ namespace Dexter.Web.Core.HttpApplication
 
 	using Common.Logging;
 
+	using Dexter.Async;
 	using Dexter.Dependency;
 	using Dexter.Web.Core.Routing;
 
@@ -33,6 +35,8 @@ namespace Dexter.Web.Core.HttpApplication
 
 		private readonly IDexterContainer container;
 
+		private readonly IDexterCall dexterCall;
+
 		private readonly ILog logger;
 
 		private readonly IRoutingService routingService;
@@ -41,11 +45,12 @@ namespace Dexter.Web.Core.HttpApplication
 
 		#region Constructors and Destructors
 
-		public DexterApplication(IRoutingService routingService, IDexterContainer container, ILog logger)
+		public DexterApplication(IRoutingService routingService, IDexterContainer container, ILog logger, IDexterCall dexterCall)
 		{
 			this.routingService = routingService;
 			this.container = container;
 			this.logger = logger;
+			this.dexterCall = dexterCall;
 		}
 
 		#endregion
@@ -104,12 +109,25 @@ namespace Dexter.Web.Core.HttpApplication
 			this.routingService.RegisterRoutes();
 
 			this.RegisterGlobalFilters(GlobalFilters.Filters);
+
 			DependencyResolver.SetResolver(this.container.Resolve<IDependencyResolver>());
 			GlobalConfiguration.Configuration.DependencyResolver = this.container.Resolve<System.Web.Http.Dependencies.IDependencyResolver>();
 		}
 
 		public void AuthenticateRequest()
 		{
+		}
+
+		public void BeginRequest(HttpApplication application)
+		{
+			this.dexterCall.StartSession();
+		}
+
+		public void EndRequest(HttpApplication application)
+		{
+			Exception errors = application.Server.GetLastError();
+
+			this.dexterCall.Complete(errors == null);
 		}
 
 		public void Init(HttpApplication application)

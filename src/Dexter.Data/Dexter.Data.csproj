@@ -40,7 +40,7 @@
     </Compile>
     <Compile Include="IPageDataService.cs" />
     <Compile Include="Exceptions\ItemNotFoundException.cs" />
-    <Compile Include="IBlogConfigurationDataService.cs" />
+    <Compile Include="IConfigurationDataService.cs" />
     <Compile Include="ICommentDataService.cs" />
     <Compile Include="IPostDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

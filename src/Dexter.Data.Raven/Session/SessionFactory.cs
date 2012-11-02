@@ -24,13 +24,11 @@ namespace Dexter.Data.Raven.Session
 
 	using global::Raven.Client;
 
-	using global::Raven.Client.Document;
-
 	public class SessionFactory : ISessionFactory
 	{
 		#region Constants
 
-		internal const String SESSION_STATE_KEY = "{740123ac-1ef2-422f-b8d9-019bf3f36e1e}";
+		internal const String SessionStateKey = "{740123ac-1ef2-422f-b8d9-019bf3f36e1e}";
 
 		#endregion
 
@@ -38,7 +36,7 @@ namespace Dexter.Data.Raven.Session
 
 		private readonly ICallContextFactory callContextFactory;
 
-		private readonly DocumentStore documentStore;
+		private readonly IDocumentStore documentStore;
 
 		private readonly ILog logger;
 
@@ -46,7 +44,7 @@ namespace Dexter.Data.Raven.Session
 
 		#region Constructors and Destructors
 
-		public SessionFactory(ICallContextFactory callContextFactory, ILog logger, DocumentStore documentStore)
+		public SessionFactory(ICallContextFactory callContextFactory, ILog logger, IDocumentStore documentStore)
 		{
 			this.callContextFactory = callContextFactory;
 			this.logger = logger;
@@ -70,19 +68,19 @@ namespace Dexter.Data.Raven.Session
 		{
 			get
 			{
-				ICallContext currentContext = callContextFactory.RetrieveCallContext();
+				ICallContext currentContext = this.callContextFactory.RetrieveCallContext();
 
 				IDocumentSession session;
 
-				if (currentContext[SESSION_STATE_KEY] == null)
+				if (currentContext[SessionStateKey] == null)
 				{
-					logger.Debug("Session·Created");
-					session = CreateAndPutSessionInContext(currentContext);
+					this.logger.Debug("Session·Created");
+					session = this.CreateAndPutSessionInContext(currentContext);
 				}
 				else
 				{
-					logger.Debug("Session·was·already·created");
-					session = (IDocumentSession)currentContext[SESSION_STATE_KEY];
+					this.logger.Debug("Session·was·already·created");
+					session = (IDocumentSession)currentContext[SessionStateKey];
 				}
 
 				return session;
@@ -102,19 +100,29 @@ namespace Dexter.Data.Raven.Session
 				return;
 			}
 
-			if (currentContext[SESSION_STATE_KEY] == null)
+			if (currentContext[SessionStateKey] == null)
 			{
 				return;
 			}
 
-			IDocumentSession session = currentContext[SESSION_STATE_KEY] as IDocumentSession;
+			IDocumentSession session = currentContext[SessionStateKey] as IDocumentSession;
 
 			if (session == null)
 			{
 				return;
 			}
 
-			session.SaveChanges();
+			try
+			{
+				if (succesfully)
+				{
+					session.SaveChanges();
+				}
+			}
+			finally
+			{
+				session.Dispose();
+			}
 		}
 
 		public void StartSession()
@@ -129,7 +137,7 @@ namespace Dexter.Data.Raven.Session
 		{
 			IDocumentSession session = this.documentStore.OpenSession();
 
-			dexterContext[SESSION_STATE_KEY] = session;
+			dexterContext[SessionStateKey] = session;
 			return session;
 		}
 

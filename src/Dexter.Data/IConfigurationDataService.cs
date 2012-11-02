@@ -1,10 +1,10 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			IDexterApplication.cs
+// File:			IConfigurationDataService.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/11/01
+// Created:		2012/10/28
 // Last edit:	2012/11/01
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
@@ -13,27 +13,17 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 #endregion
 
-namespace Dexter.Web.Core.HttpApplication
+namespace Dexter.Data
 {
-	using System.Web;
+	using Dexter.Entities;
 
-	public interface IDexterApplication
+	public interface IConfigurationDataService
 	{
 		#region Public Methods and Operators
 
-		void BeginRequest(HttpApplication application);
+		BlogConfiguration GetConfiguration();
 
-		void EndRequest(HttpApplication application);
-
-		void ApplicationEnd();
-
-		void ApplicationError(HttpApplication application);
-
-		void ApplicationStart();
-
-		void AuthenticateRequest();
-
-		void Init(HttpApplication application);
+		void SaveConfiguration(BlogConfiguration configuration);
 
 		#endregion
 	}
