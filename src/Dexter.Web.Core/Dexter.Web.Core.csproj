@@ -91,11 +91,11 @@
     <Compile Include="Controllers\Web\DexterControllerBase.cs" />
     <Compile Include="HttpApplication\DexterApplication.cs" />
     <Compile Include="HttpApplication\IDexterApplication.cs" />
-    <Compile Include="Invokers\DexterControllerActionInvoker.cs" />
     <Compile Include="LayerInstaller.cs" />
     <Compile Include="Models\DexterModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Routing\IRoutingService.cs" />
+    <Compile Include="Routing\RoutingService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dexter.Dependency\Dexter.Dependency.csproj">

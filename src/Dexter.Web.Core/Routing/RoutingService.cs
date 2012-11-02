@@ -1,7 +1,7 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			LayerInstaller.cs
+// File:			RoutingService.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/01
@@ -14,28 +14,17 @@
 
 #endregion
 
-namespace Dexter.Web.Core
+namespace Dexter.Web.Core.Routing
 {
-	using Dexter.Dependency;
-	using Dexter.Dependency.Installation;
-	using Dexter.Web.Core.HttpApplication;
-	using Dexter.Web.Core.Routing;
-
-	public class LayerInstaller : ILayerInstaller
+	public class RoutingService : IRoutingService
 	{
 		#region Public Methods and Operators
 
-		public void ApplicationStarted(IDexterContainer container)
+		public void RegisterRoutes()
 		{
 		}
 
-		public void ServiceRegistration(IDexterContainer container)
-		{
-			container.Register<IDexterApplication, DexterApplication>(LifeCycle.Singleton);
-			container.Register<IRoutingService, RoutingService>(LifeCycle.Singleton);
-		}
-
-		public void ServiceRegistrationComplete(IDexterContainer container)
+		public void UpdateRoutes()
 		{
 		}
 

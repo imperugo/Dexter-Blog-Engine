@@ -1,11 +1,11 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			LayerInstaller.cs
+// File:			ISessionFactory.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/11/01
-// Last edit:	2012/11/01
+// Created:		2012/11/02
+// Last edit:	2012/11/02
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -14,30 +14,19 @@
 
 #endregion
 
-namespace Dexter.Web.Core
+namespace Dexter.Data.Raven.Session
 {
-	using Dexter.Dependency;
-	using Dexter.Dependency.Installation;
-	using Dexter.Web.Core.HttpApplication;
-	using Dexter.Web.Core.Routing;
+	using global::Raven.Client;
 
-	public class LayerInstaller : ILayerInstaller
+	public interface ISessionFactory
 	{
 		#region Public Methods and Operators
 
-		public void ApplicationStarted(IDexterContainer container)
-		{
-		}
+		void EndSession(bool succesfully);
 
-		public void ServiceRegistration(IDexterContainer container)
-		{
-			container.Register<IDexterApplication, DexterApplication>(LifeCycle.Singleton);
-			container.Register<IRoutingService, RoutingService>(LifeCycle.Singleton);
-		}
+		void StartSession();
 
-		public void ServiceRegistrationComplete(IDexterContainer container)
-		{
-		}
+		IDocumentSession Session { get; }
 
 		#endregion
 	}

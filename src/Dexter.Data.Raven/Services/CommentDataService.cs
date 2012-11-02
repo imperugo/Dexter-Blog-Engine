@@ -13,7 +13,7 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 #endregion
 
-namespace Dexter.Data.Raven
+namespace Dexter.Data.Raven.Services
 {
 	using System;
 	using System.Collections.Generic;

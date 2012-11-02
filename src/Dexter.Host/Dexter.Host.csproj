@@ -41,6 +41,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging, Version=2.1.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Common.Logging.2.1.1\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Log4Net">
+      <HintPath>..\packages\Common.Logging.Log4Net.2.0.1\lib\net20\Common.Logging.Log4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -125,9 +135,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Dxt_Admin\Dxt_AdminAreaRegistration.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\HomeController\IndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -141,10 +153,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\db\" />
     <Folder Include="Areas\Dxt_Admin\Controllers\" />
     <Folder Include="Areas\Dxt_Admin\Models\" />
     <Folder Include="Areas\Dxt_Admin\Views\Shared\" />
-    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -156,9 +168,57 @@
     <Content Include="App_Data\Localization\en-US\Core.po" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dexter.Caching.InProc\Dexter.Caching.InProc.csproj">
+      <Project>{506df938-59bb-44bf-bbc7-1faa87e7c670}</Project>
+      <Name>Dexter.Caching.InProc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Caching\Dexter.Caching.csproj">
+      <Project>{ff50d350-e3a2-4bd8-9bbc-58166891e0c2}</Project>
+      <Name>Dexter.Caching</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Data.Raven\Dexter.Data.Raven.csproj">
+      <Project>{c8a68591-9dff-4640-bdd5-e00d97b9848c}</Project>
+      <Name>Dexter.Data.Raven</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Data\Dexter.Data.csproj">
+      <Project>{08bf3549-6b10-4e83-ae71-1c4665004c02}</Project>
+      <Name>Dexter.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Dependency.Castle\Dexter.Dependency.Castle.csproj">
+      <Project>{a04a2782-5daa-4d17-b91d-6d963967ff6d}</Project>
+      <Name>Dexter.Dependency.Castle</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dexter.Dependency\Dexter.Dependency.csproj">
       <Project>{07FF041C-FC20-49A3-8BC4-A38E7F72ABAA}</Project>
       <Name>Dexter.Dependency</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Entities\Dexter.Entities.csproj">
+      <Project>{5fb1aed5-d55e-43cc-a3e0-5e788bd72144}</Project>
+      <Name>Dexter.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Extensions\Dexter.Extensions.csproj">
+      <Project>{408d067c-933b-4987-b76f-481708f08470}</Project>
+      <Name>Dexter.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Localization.Po\Dexter.Localization.Po.csproj">
+      <Project>{0517e2dd-d8f2-4a8f-89cb-8bbbe23d86a6}</Project>
+      <Name>Dexter.Localization.Po</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Localization\Dexter.Localization.csproj">
+      <Project>{18867265-4dc0-45f9-95a8-1da69b164399}</Project>
+      <Name>Dexter.Localization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Navigation\Dexter.Navigation.csproj">
+      <Project>{d84ad077-7a5c-43d9-b09a-4f750bfadb6b}</Project>
+      <Name>Dexter.Navigation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Services.Implmentation\Dexter.Services.Implmentation.csproj">
+      <Project>{cbc7440d-f0c3-418e-b733-ab2f68cf0db5}</Project>
+      <Name>Dexter.Services.Implmentation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Services\Dexter.Services.csproj">
+      <Project>{be578436-ad00-48fa-a16d-245044f109c2}</Project>
+      <Name>Dexter.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\Dexter.Web.Core\Dexter.Web.Core.csproj">
       <Project>{AEB41407-67EB-4AB2-881C-3DFB5CD8B540}</Project>

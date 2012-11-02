@@ -1,7 +1,7 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			LayerInstaller.cs
+// File:			Installer.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/01
@@ -14,29 +14,42 @@
 
 #endregion
 
-namespace Dexter.Web.Core
+namespace Dexter.Data.Raven
 {
+	using Dexter.Data.Raven.Services;
 	using Dexter.Dependency;
 	using Dexter.Dependency.Installation;
-	using Dexter.Web.Core.HttpApplication;
-	using Dexter.Web.Core.Routing;
 
-	public class LayerInstaller : ILayerInstaller
+	using global::Raven.Client;
+
+	using global::Raven.Client.Embedded;
+
+	public class Installer : ILayerInstaller
 	{
 		#region Public Methods and Operators
 
 		public void ApplicationStarted(IDexterContainer container)
 		{
+			
 		}
 
 		public void ServiceRegistration(IDexterContainer container)
 		{
-			container.Register<IDexterApplication, DexterApplication>(LifeCycle.Singleton);
-			container.Register<IRoutingService, RoutingService>(LifeCycle.Singleton);
+			container.Register<IPostDataService, PostDataService>(LifeCycle.Singleton);
+			container.Register<IPageDataService, PageDataService>(LifeCycle.Singleton);
+			container.Register<ICommentDataService, CommentDataService>(LifeCycle.Singleton);
+			container.Register<IBlogConfigurationDataService, BlogConfigurationDataService>(LifeCycle.Singleton);
 		}
 
 		public void ServiceRegistrationComplete(IDexterContainer container)
 		{
+			IDocumentStore store = new EmbeddableDocumentStore
+				                       {
+					                       RunInMemory = false, 
+					                       DataDirectory = "App_Data/db", 
+				                       };
+
+			store.Initialize();
 		}
 
 		#endregion

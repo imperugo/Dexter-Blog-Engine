@@ -104,8 +104,8 @@
     <Compile Include="AutoMapper\AutoMapperConfiguration.cs" />
     <Compile Include="AutoMapper\Profiles\PostDtoProfile.cs" />
     <Compile Include="AutoMapper\Resolvers\DateTimeTypeConverter.cs" />
-    <Compile Include="CommentDataService.cs" />
-    <Compile Include="ConfigurationService.cs" />
+    <Compile Include="Services\BlogConfigurationDataService.cs" />
+    <Compile Include="Services\CommentDataService.cs" />
     <Compile Include="Domain\BlogSettings.cs" />
     <Compile Include="Domain\Category.cs" />
     <Compile Include="Domain\Comment.cs" />
@@ -120,10 +120,13 @@
     <Compile Include="Domain\SmtpConfiguration.cs" />
     <Compile Include="Extensions\AutoMapperExtensions.cs" />
     <Compile Include="Extensions\QueryExtensions.cs" />
-    <Compile Include="PageDataService.cs" />
-    <Compile Include="PostDataService.cs" />
+    <Compile Include="Installer.cs" />
+    <Compile Include="Services\PageDataService.cs" />
+    <Compile Include="Services\PostDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceBase.cs" />
+    <Compile Include="Services\ServiceBase.cs" />
+    <Compile Include="Session\ISessionFactory.cs" />
+    <Compile Include="Session\SessionFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -133,9 +136,17 @@
       <Project>{08BF3549-6B10-4E83-AE71-1C4665004C02}</Project>
       <Name>Dexter.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dexter.Dependency\Dexter.Dependency.csproj">
+      <Project>{07FF041C-FC20-49A3-8BC4-A38E7F72ABAA}</Project>
+      <Name>Dexter.Dependency</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dexter.Entities\Dexter.Entities.csproj">
       <Project>{5FB1AED5-D55E-43CC-A3E0-5E788BD72144}</Project>
       <Name>Dexter.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Session\Dexter.Async.csproj">
+      <Project>{93F94260-4A10-41FD-AB0F-C1C22BFE3E78}</Project>
+      <Name>Dexter.Async</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -21,6 +21,7 @@ namespace Dexter.Data.Raven.Test.PostService
 	using Common.Logging;
 
 	using Dexter.Data.Raven.Domain;
+	using Dexter.Data.Raven.Services;
 	using Dexter.Data.Raven.Test.PostService.Helpers;
 	using Dexter.Entities;
 

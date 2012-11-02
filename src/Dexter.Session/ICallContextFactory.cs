@@ -1,40 +1,45 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			ConfigurationService.cs
+// File:			ICallContextFactory.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/10/28
-// Last edit:	2012/11/01
+// Created:		2012/11/02
+// Last edit:	2012/11/02
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
-namespace Dexter.Data.Raven
+namespace Dexter.Async
 {
-	using Common.Logging;
-
-	using global::Raven.Client;
-
-	public class ConfigurationService : ServiceBase
+	/// <summary>
+	/// This class resolve the context calls implementations
+	/// </summary>
+	public interface ICallContextFactory
 	{
-		#region Constructors and Destructors
+		#region Public Properties
 
-		public ConfigurationService(ILog logger, IDocumentSession session)
-			: base(logger, session)
-		{
-		}
+		/// <summary>
+		/// Determines whether [is web request].
+		/// </summary>
+		/// <returns>
+		/// 	<c>true</c> if [is web request]; otherwise, <c>false</c>.
+		/// </returns>
+		bool IsWebRequest { get; }
 
 		#endregion
 
 		#region Public Methods and Operators
 
-		public void GetConfiguration()
-		{
-		}
+		/// <summary>
+		/// Return the WebCallContext or the ThreadCallContext
+		/// </summary>
+		/// <returns></returns>
+		ICallContext RetrieveCallContext();
 
 		#endregion
 	}

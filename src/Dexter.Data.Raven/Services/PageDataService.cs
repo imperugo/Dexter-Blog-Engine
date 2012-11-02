@@ -13,7 +13,7 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 #endregion
 
-namespace Dexter.Data.Raven
+namespace Dexter.Data.Raven.Services
 {
 	using System;
 	using System.Collections.Generic;
@@ -29,7 +29,6 @@ namespace Dexter.Data.Raven
 	using Dexter.Entities.Result;
 
 	using global::Raven.Client;
-
 	using global::Raven.Client.Linq;
 
 	public class PageDataService : ServiceBase, IPageDataService

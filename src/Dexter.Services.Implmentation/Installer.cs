@@ -1,7 +1,7 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			LayerInstaller.cs
+// File:			Installer.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/01
@@ -14,14 +14,12 @@
 
 #endregion
 
-namespace Dexter.Web.Core
+namespace Dexter.Services.Implmentation
 {
 	using Dexter.Dependency;
 	using Dexter.Dependency.Installation;
-	using Dexter.Web.Core.HttpApplication;
-	using Dexter.Web.Core.Routing;
 
-	public class LayerInstaller : ILayerInstaller
+	public class Installer : ILayerInstaller
 	{
 		#region Public Methods and Operators
 
@@ -31,8 +29,10 @@ namespace Dexter.Web.Core
 
 		public void ServiceRegistration(IDexterContainer container)
 		{
-			container.Register<IDexterApplication, DexterApplication>(LifeCycle.Singleton);
-			container.Register<IRoutingService, RoutingService>(LifeCycle.Singleton);
+			container.Register<IPostService, PostService>(LifeCycle.Singleton);
+			container.Register<IPageService, PageService>(LifeCycle.Singleton);
+			container.Register<IConfigurationService, ConfigurationService>(LifeCycle.Singleton);
+			container.Register<ICommentService, CommentService>(LifeCycle.Singleton);
 		}
 
 		public void ServiceRegistrationComplete(IDexterContainer container)

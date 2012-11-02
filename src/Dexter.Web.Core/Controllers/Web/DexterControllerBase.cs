@@ -11,6 +11,7 @@
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Web.Core.Controllers.Web
@@ -74,6 +75,21 @@ namespace Dexter.Web.Core.Controllers.Web
 
 		#region Public Methods and Operators
 
+		public new async Task<ActionResult> Json(object model, JsonRequestBehavior behavior)
+		{
+			DexterModelBase m = (DexterModelBase)model;
+
+			Task<IPagedResult<PostDto>> recentPosts = this.postService.GetPostsAsync(1, 5);
+			Task<IList<CommentDto>> recentComments = this.commentService.GetRecentCommentsAsync(5);
+
+			await Task.WhenAll(recentPosts, recentComments);
+
+			m.RecentPosts = recentPosts.Result.Result;
+			m.RecentComments = recentComments.Result;
+
+			return base.Json(model, behavior);
+		}
+
 		public new async Task<ActionResult> View(object model)
 		{
 			return await this.View(null, model);
@@ -86,7 +102,7 @@ namespace Dexter.Web.Core.Controllers.Web
 			Task<IPagedResult<PostDto>> recentPosts = this.postService.GetPostsAsync(1, 5);
 			Task<IList<CommentDto>> recentComments = this.commentService.GetRecentCommentsAsync(5);
 
-			Task.WhenAll(recentPosts, recentComments);
+			await Task.WhenAll(recentPosts, recentComments);
 
 			m.RecentPosts = recentPosts.Result.Result;
 			m.RecentComments = recentComments.Result;
