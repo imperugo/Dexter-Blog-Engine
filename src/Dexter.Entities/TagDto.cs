@@ -1,29 +1,34 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			Post.cs
+// File:			TagDto.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/10/27
-// Last edit:	2012/11/01
+// Created:		2012/11/02
+// Last edit:	2012/11/02
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
-namespace Dexter.Data.Raven.Domain
+namespace Dexter.Entities
 {
-	using System.Collections.Generic;
+	using System;
 
-	public class Post : Item
+	public class TagDto
 	{
 		#region Public Properties
 
-		public IEnumerable<int> CategoriesId { get; set; }
+		public int Count { get; set; }
 
-		public ICollection<string> Tags { get; set; }
+		public DateTimeOffset LastSeenAt { get; set; }
+
+		public string Name { get; set; }
+
+		public ItemStatus ItemStatus { get; set; }
 
 		#endregion
 	}

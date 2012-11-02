@@ -1,7 +1,7 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			PostsByMonthPublishedCount.cs
+// File:			MonthOfPublishedPostsWithCountIndex.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/02
@@ -25,11 +25,11 @@ namespace Dexter.Data.Raven.Indexes
 
 	using global::Raven.Client.Indexes;
 
-	public class PostsByMonthPublishedCount : AbstractIndexCreationTask<Post, MonthDto>
+	public class MonthOfPublishedPostsWithCountIndex : AbstractIndexCreationTask<Post, MonthDto>
 	{
 		#region Constructors and Destructors
 
-		public PostsByMonthPublishedCount()
+		public MonthOfPublishedPostsWithCountIndex()
 		{
 			this.Map = posts => posts.Where(x => x.Status == ItemStatus.Published).Select(post => new
 				                                                                                      {

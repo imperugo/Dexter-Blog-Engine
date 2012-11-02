@@ -16,17 +16,12 @@
 
 namespace Dexter.Data.Raven
 {
-	using System.Linq;
-
 	using Dexter.Async;
 	using Dexter.Data.Raven.AutoMapper;
-	using Dexter.Data.Raven.Domain;
 	using Dexter.Data.Raven.Services;
 	using Dexter.Data.Raven.Session;
 	using Dexter.Dependency;
 	using Dexter.Dependency.Installation;
-
-	using global::Raven.Abstractions.Data;
 
 	using global::Raven.Client;
 

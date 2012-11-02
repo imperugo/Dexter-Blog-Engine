@@ -120,6 +120,8 @@ namespace Dexter.Web.Core.Models
 
 		public virtual IList<MonthDto> Months { get; internal set; }
 
+		public virtual IList<TagDto> TopTags { get; internal set; }
+
 		#endregion
 
 		#region Public Methods and Operators

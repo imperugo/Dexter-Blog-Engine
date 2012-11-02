@@ -51,6 +51,10 @@ namespace Dexter.Services.Implmentation
 
 		#region Public Events
 
+		public event EventHandler<GenericEventArgs<IList<TagDto>>> TagsRetrievedForPublishedPosts;
+
+		public event EventHandler<CancelEventArgsWithOneParameter<int, IList<TagDto>>> TagsRetrievingForPublishedPosts;
+
 		public event EventHandler<GenericEventArgs<IList<MonthDto>>> MonthsRetrievedForPublishedPosts;
 
 		public event EventHandler<CancelEventArgsWithoutParameters<IList<MonthDto>>> MonthsRetrievingForPublishedPosts;
@@ -254,6 +258,34 @@ namespace Dexter.Services.Implmentation
 		public void SaveOrUpdate(PostDto item)
 		{
 			this.postDataService.SaveOrUpdate(item);
+		}
+
+		public IList<TagDto> GetTopTagsForPublishedPosts(int maxNumberOfTags)
+		{
+			if (maxNumberOfTags < 1)
+			{
+				throw new ArgumentException("The number of tags to retrieve must be greater than 0", "numberOfTags");
+			}
+
+			CancelEventArgsWithOneParameter<int, IList<TagDto>> e = new CancelEventArgsWithOneParameter<int, IList<TagDto>>(maxNumberOfTags, null);
+
+			TagsRetrievingForPublishedPosts.Raise(this, e);
+
+			if (e.Cancel)
+			{
+				return e.Result;
+			}
+
+			var data = this.postDataService.GetTopTagsForPublishedPosts(maxNumberOfTags);
+
+			TagsRetrievedForPublishedPosts.Raise(this, new GenericEventArgs<IList<TagDto>>(data));
+
+			return data;
+		}
+
+		public Task<IList<TagDto>> GetTopTagsForPublishedPostsAsync(int maxNumberOfTags)
+		{
+			return Task.Run(() => this.GetTopTagsForPublishedPosts(maxNumberOfTags));
 		}
 
 		#endregion

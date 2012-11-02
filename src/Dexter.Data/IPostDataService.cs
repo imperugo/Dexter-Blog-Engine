@@ -5,12 +5,13 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/27
-// Last edit:	2012/11/01
+// Last edit:	2012/11/02
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Data
@@ -27,19 +28,21 @@ namespace Dexter.Data
 
 		void Delete(int id);
 
+		IList<MonthDto> GetMonthsForPublishedPosts();
+
 		PostDto GetPostByKey(int id);
 
 		PostDto GetPostBySlug(string slug);
 
-		void SaveOrUpdate(PostDto item);
-
-		IList<MonthDto> GetMonthsForPublishedPosts();
-
 		IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, ItemQueryFilter filters);
+
+		IPagedResult<PostDto> GetPostsByDate(int pageIndex, int pageSize, int year, int? month, int? day, ItemQueryFilter filters);
 
 		IPagedResult<PostDto> GetPostsByTag(int pageIndex, int pageSize, string tag, ItemQueryFilter filters);
 
-		IPagedResult<PostDto> GetPostsByDate(int pageIndex, int pageSize, int year, int? month, int? day, ItemQueryFilter filters);
+		IList<TagDto> GetTopTagsForPublishedPosts(int numberOfTags);
+
+		void SaveOrUpdate(PostDto item);
 
 		#endregion
 	}

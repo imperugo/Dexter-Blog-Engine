@@ -38,8 +38,6 @@ namespace Dexter.Data.Raven.Domain
 
 		public ItemStatus Status { get; set; }
 
-		public ICollection<string> Tags { get; set; }
-
 		public string Title { get; set; }
 
 		public int TotalComments { get; set; }

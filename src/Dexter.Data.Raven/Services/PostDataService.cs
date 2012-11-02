@@ -101,7 +101,7 @@ namespace Dexter.Data.Raven.Services
 		{
 			var now = DateTime.Now;
 
-			var dates = this.Session.Query<MonthDto, PostsByMonthPublishedCount>()
+			var dates = this.Session.Query<MonthDto, MonthOfPublishedPostsWithCountIndex>()
 				.OrderByDescending(x => x.Year)
 				.ThenByDescending(x => x.Month)
 				.Where(x => (x.Year < now.Year || x.Year == now.Year) && x.Month <= now.Month)
@@ -230,6 +230,20 @@ namespace Dexter.Data.Raven.Services
 			}
 
 			return new PagedResult<PostDto>(pageIndex, pageSize, posts, stats.TotalResults);
+		}
+
+		public IList<TagDto> GetTopTagsForPublishedPosts(int numberOfTags)
+		{
+			if (numberOfTags < 1)
+			{
+				throw new ArgumentException("The number of tags to retrieve must be greater than 0", "numberOfTags");
+			}
+
+			return  this.Session.Query<TagDto, TagsForPublishedPostsWithCountIndex>()
+				
+				.OrderBy(x => x.Count)
+				.Take(numberOfTags)
+				.ToList();
 		}
 
 		public void SaveOrUpdate(PostDto item)

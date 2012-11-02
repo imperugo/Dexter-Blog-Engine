@@ -30,7 +30,17 @@ namespace Dexter.Services
 		#region Public Events
 
 		/// <summary>
-		/// This event will raise before to retrieve <see cref="MonthDto"/> of <see cref="PostDto"/> with specific filters. The event is raised by by the implementation of <see cref="GetMonthsForPublishedPosts"/> or the async version.
+		/// This event will raise after to retrieve <see cref="TagDto"/> of <see cref="PostDto"/> with specific filters. The event is raised by by the implementation of <see cref="GetTopTagsForPublishedPosts"/> or the async version.
+		/// </summary>
+		event EventHandler<GenericEventArgs<IList<TagDto>>> TagsRetrievedForPublishedPosts;
+
+		/// <summary>
+		/// This event will raise before to retrieve <see cref="TagDto"/> of <see cref="PostDto"/> by tag with specific filters. The event is raised by by the implementation of <see cref="GetTopTagsForPublishedPosts"/> or the async version.
+		/// </summary>
+		event EventHandler<CancelEventArgsWithOneParameter<int, IList<TagDto>>> TagsRetrievingForPublishedPosts;
+
+		/// <summary>
+		/// This event will raise after to retrieve <see cref="MonthDto"/> of <see cref="PostDto"/> with specific filters. The event is raised by by the implementation of <see cref="GetMonthsForPublishedPosts"/> or the async version.
 		/// </summary>
 		event EventHandler<GenericEventArgs<IList<MonthDto>>> MonthsRetrievedForPublishedPosts;
 
@@ -104,6 +114,10 @@ namespace Dexter.Services
 		Task<IPagedResult<PostDto>> GetPostsByTagAsync(int pageIndex, int pageSize, string tag, ItemQueryFilter filters = null);
 
 		void SaveOrUpdate(PostDto item);
+
+		IList<TagDto> GetTopTagsForPublishedPosts(int maxNumberOfTags);
+		
+		Task<IList<TagDto>> GetTopTagsForPublishedPostsAsync(int maxNumberOfTags);
 
 		#endregion
 	}

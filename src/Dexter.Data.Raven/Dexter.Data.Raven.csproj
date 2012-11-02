@@ -112,7 +112,8 @@
     <Compile Include="AutoMapper\Resolvers\DateTimeTypeConverter.cs" />
     <Compile Include="DexterCall.cs" />
     <Compile Include="Helpers\SlugHelper.cs" />
-    <Compile Include="Indexes\PostsByMonthPublishedCount.cs" />
+    <Compile Include="Indexes\MonthOfPublishedPostsWithCountIndex.cs" />
+    <Compile Include="Indexes\TagsForPublishedPostsWithCountIndex.cs" />
     <Compile Include="Services\ConfigurationDataService.cs" />
     <Compile Include="Services\CommentDataService.cs" />
     <Compile Include="Domain\BlogSettings.cs" />
@@ -136,6 +137,7 @@
     <Compile Include="Services\ServiceBase.cs" />
     <Compile Include="Session\ISessionFactory.cs" />
     <Compile Include="Session\SessionFactory.cs" />
+    <Compile Include="Setup\Indexes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
