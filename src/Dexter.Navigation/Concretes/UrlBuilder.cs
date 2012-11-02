@@ -55,7 +55,7 @@ namespace Dexter.Navigation.Concretes
 		{
 			get
 			{
-				BlogConfiguration conf = this.configurationService.GetConfiguration();
+				BlogConfigurationDto conf = this.configurationService.GetConfiguration();
 
 				return new SiteUrl(conf.DefaultDomain, conf.DefaultHttpsPort, false, null, "Home", "Index", null);
 			}

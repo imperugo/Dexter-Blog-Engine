@@ -44,22 +44,22 @@ namespace Dexter.Services.Implmentation
 
 		#region Public Methods and Operators
 
-		public BlogConfiguration GetConfiguration()
+		public BlogConfigurationDto GetConfiguration()
 		{
-			BlogConfiguration result = this.cacheProvider.Get<BlogConfiguration>("dexter.blog.configuration");
+			BlogConfigurationDto result = this.cacheProvider.Get<BlogConfigurationDto>("dexter.blog.configurationDto");
 
 			if (result == null)
 			{
 				result = this.configurationDataService.GetConfiguration();
-				this.cacheProvider.Put("dexter.blog.configuration", result, TimeSpan.FromHours(3));
+				this.cacheProvider.Put("dexter.blog.configurationDto", result, TimeSpan.FromHours(3));
 			}
 
 			return result;
 		}
 
-		public async Task<BlogConfiguration> GetConfigurationAsync()
+		public async Task<BlogConfigurationDto> GetConfigurationAsync()
 		{
-			BlogConfiguration result = await this.cacheProvider.GetAsync<BlogConfiguration>("dexter.blog.configuration");
+			BlogConfigurationDto result = await this.cacheProvider.GetAsync<BlogConfigurationDto>("dexter.blog.configurationDto");
 
 			if (result == null)
 			{
@@ -67,7 +67,7 @@ namespace Dexter.Services.Implmentation
 					{
 						result = this.configurationDataService.GetConfiguration();
 
-						this.cacheProvider.PutAsync("dexter.blog.configuration", result, TimeSpan.FromHours(3));
+						this.cacheProvider.PutAsync("dexter.blog.configurationDto", result, TimeSpan.FromHours(3));
 					});
 			}
 

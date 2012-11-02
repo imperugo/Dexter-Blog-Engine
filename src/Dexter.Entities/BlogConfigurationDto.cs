@@ -1,7 +1,7 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			BlogConfiguration.cs
+// File:			BlogConfigurationDto.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/28
@@ -15,7 +15,7 @@
 
 namespace Dexter.Entities
 {
-	public class BlogConfiguration
+	public class BlogConfigurationDto
 	{
 		#region Public Properties
 
@@ -27,12 +27,12 @@ namespace Dexter.Entities
 
 		public bool EnableHttps { get; set; }
 
-		public SeoConfiguration SeoConfiguration { get; set; }
+		public SeoConfigurationDto SeoConfigurationDto { get; set; }
 
 		#endregion
 	}
 
-	public class SeoConfiguration
+	public class SeoConfigurationDto
 	{
 		#region Public Properties
 

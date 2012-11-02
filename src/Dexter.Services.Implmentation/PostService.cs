@@ -5,17 +5,19 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/01
-// Last edit:	2012/11/01
+// Last edit:	2012/11/02
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Services.Implmentation
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Threading.Tasks;
 
 	using Common.Logging;
@@ -49,6 +51,10 @@ namespace Dexter.Services.Implmentation
 
 		#region Public Events
 
+		public event EventHandler<GenericEventArgs<IList<MonthDto>>> MonthsRetrievedForPublishedPosts;
+
+		public event EventHandler<CancelEventArgsWithoutParameters<IList<MonthDto>>> MonthsRetrievingForPublishedPosts;
+
 		public event EventHandler<GenericEventArgs<PostDto>> PostRetrievedById;
 
 		public event EventHandler<GenericEventArgs<PostDto>> PostRetrievedBySlug;
@@ -68,6 +74,29 @@ namespace Dexter.Services.Implmentation
 		#endregion
 
 		#region Public Methods and Operators
+
+		public IList<MonthDto> GetMonthsForPublishedPosts()
+		{
+			CancelEventArgsWithoutParameters<IList<MonthDto>> e = new CancelEventArgsWithoutParameters<IList<MonthDto>>(null);
+
+			this.MonthsRetrievingForPublishedPosts.Raise(this, e);
+
+			if (e.Cancel)
+			{
+				return e.Result;
+			}
+
+			IList<MonthDto> data = this.postDataService.GetMonthsForPublishedPosts();
+
+			this.MonthsRetrievedForPublishedPosts.Raise(this, new GenericEventArgs<IList<MonthDto>>(data));
+
+			return data;
+		}
+
+		public Task<IList<MonthDto>> GetMonthsForPublishedPostsAsync()
+		{
+			return Task.Run(() => this.GetMonthsForPublishedPosts());
+		}
 
 		public PostDto GetPostByKey(int key)
 		{
@@ -125,11 +154,6 @@ namespace Dexter.Services.Implmentation
 			this.PostRetrievedBySlug.Raise(this, new GenericEventArgs<PostDto>(result));
 
 			return result;
-		}
-
-		public void SaveOrUpdate(PostDto item)
-		{
-			this.postDataService.SaveOrUpdate(item);
 		}
 
 		public Task<PostDto> GetPostBySlugAsync(string slug)
@@ -225,6 +249,11 @@ namespace Dexter.Services.Implmentation
 		public Task<IPagedResult<PostDto>> GetPostsByTagAsync(int pageIndex, int pageSize, string tag, ItemQueryFilter filters = null)
 		{
 			return Task.Run(() => this.GetPostsByTag(pageIndex, pageSize, tag, filters));
+		}
+
+		public void SaveOrUpdate(PostDto item)
+		{
+			this.postDataService.SaveOrUpdate(item);
 		}
 
 		#endregion

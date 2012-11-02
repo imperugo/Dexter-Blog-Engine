@@ -103,10 +103,13 @@ namespace Dexter.Web.Core.Controllers.Web
 
 			Task<IList<CommentDto>> recentComments = this.commentService.GetRecentCommentsAsync(5);
 
-			await Task.WhenAll(recentPosts, recentComments);
+			var monthsWithPublishedPosts = this.postService.GetMonthsForPublishedPostsAsync();
+
+			await Task.WhenAll(recentPosts, recentComments, monthsWithPublishedPosts);
 
 			m.RecentPosts = recentPosts.Result.Result;
 			m.RecentComments = recentComments.Result;
+			m.Months = monthsWithPublishedPosts.Result;
 
 			return base.Json(model, behavior);
 		}

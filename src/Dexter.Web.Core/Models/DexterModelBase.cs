@@ -44,15 +44,15 @@ namespace Dexter.Web.Core.Models
 
 		public virtual string Author { get; set; }
 
-		public virtual BlogConfiguration Configuration { get; internal set; }
+		public virtual BlogConfigurationDto ConfigurationDto { get; internal set; }
 
 		public virtual string CopyRight
 		{
 			get
 			{
-				if (string.IsNullOrEmpty(this.copyRight) && this.Configuration != null)
+				if (string.IsNullOrEmpty(this.copyRight) && this.ConfigurationDto != null)
 				{
-					return this.Configuration.SeoConfiguration.CopyRight;
+					return this.ConfigurationDto.SeoConfigurationDto.CopyRight;
 				}
 
 				return this.copyRight;
@@ -67,9 +67,9 @@ namespace Dexter.Web.Core.Models
 		{
 			get
 			{
-				if (string.IsNullOrEmpty(this.description) && this.Configuration != null)
+				if (string.IsNullOrEmpty(this.description) && this.ConfigurationDto != null)
 				{
-					return this.Configuration.SeoConfiguration.DefaultDescription;
+					return this.ConfigurationDto.SeoConfigurationDto.DefaultDescription;
 				}
 
 				return this.description;
@@ -84,9 +84,9 @@ namespace Dexter.Web.Core.Models
 		{
 			get
 			{
-				if (string.IsNullOrEmpty(this.keywords) && this.Configuration != null)
+				if (string.IsNullOrEmpty(this.keywords) && this.ConfigurationDto != null)
 				{
-					return string.Join(",", this.Configuration.SeoConfiguration.DefaultKeyWords);
+					return string.Join(",", this.ConfigurationDto.SeoConfigurationDto.DefaultKeyWords);
 				}
 
 				return this.keywords;
@@ -105,9 +105,9 @@ namespace Dexter.Web.Core.Models
 		{
 			get
 			{
-				if (string.IsNullOrEmpty(this.title) && this.Configuration != null)
+				if (string.IsNullOrEmpty(this.title) && this.ConfigurationDto != null)
 				{
-					return this.Configuration.SeoConfiguration.DefaultTitle;
+					return this.ConfigurationDto.SeoConfigurationDto.DefaultTitle;
 				}
 
 				return this.title;
@@ -117,6 +117,8 @@ namespace Dexter.Web.Core.Models
 				this.title = value;
 			}
 		}
+
+		public virtual IList<MonthDto> Months { get; internal set; }
 
 		#endregion
 

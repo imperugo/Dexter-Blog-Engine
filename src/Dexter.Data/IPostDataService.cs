@@ -15,6 +15,8 @@
 
 namespace Dexter.Data
 {
+	using System.Collections.Generic;
+
 	using Dexter.Entities;
 	using Dexter.Entities.Filters;
 	using Dexter.Entities.Result;
@@ -30,6 +32,8 @@ namespace Dexter.Data
 		PostDto GetPostBySlug(string slug);
 
 		void SaveOrUpdate(PostDto item);
+
+		IList<MonthDto> GetMonthsForPublishedPosts();
 
 		IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, ItemQueryFilter filters);
 

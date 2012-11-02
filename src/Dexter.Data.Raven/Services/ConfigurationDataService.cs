@@ -41,14 +41,14 @@ namespace Dexter.Data.Raven.Services
 
 		#region Public Methods and Operators
 
-		public BlogConfiguration GetConfiguration()
+		public BlogConfigurationDto GetConfiguration()
 		{
 			BlogSettings configuration = this.Session.Load<BlogSettings>().First();
 
-			return configuration.MapTo<BlogConfiguration>();
+			return configuration.MapTo<BlogConfigurationDto>();
 		}
 
-		public void SaveConfiguration(BlogConfiguration configuration)
+		public void SaveConfiguration(BlogConfigurationDto configurationDto)
 		{
 			throw new NotImplementedException();
 		}

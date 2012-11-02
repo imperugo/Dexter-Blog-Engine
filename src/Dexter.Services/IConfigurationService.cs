@@ -23,9 +23,9 @@ namespace Dexter.Services
 	{
 		#region Public Methods and Operators
 
-		BlogConfiguration GetConfiguration();
+		BlogConfigurationDto GetConfiguration();
 
-		Task<BlogConfiguration> GetConfigurationAsync();
+		Task<BlogConfigurationDto> GetConfigurationAsync();
 
 		#endregion
 	}

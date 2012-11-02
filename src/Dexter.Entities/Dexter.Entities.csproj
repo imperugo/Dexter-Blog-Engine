@@ -38,10 +38,11 @@
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
     <Compile Include="CommentDto.cs" />
-    <Compile Include="BlogConfiguration.cs" />
+    <Compile Include="BlogConfigurationDto.cs" />
     <Compile Include="CommentStatus.cs" />
     <Compile Include="Exceptions\InvalidItemSlugException.cs" />
     <Compile Include="Filters\CommentQueryFilter.cs" />
+    <Compile Include="MonthDto.cs" />
     <Compile Include="PageDto.cs" />
     <Compile Include="PostDto.cs" />
     <Compile Include="Filters\ItemQueryFilter.cs" />
