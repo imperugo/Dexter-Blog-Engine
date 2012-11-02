@@ -16,7 +16,11 @@
 
 namespace Dexter.Data.Raven
 {
+	using System.Linq;
+
 	using Dexter.Async;
+	using Dexter.Data.Raven.AutoMapper;
+	using Dexter.Data.Raven.Domain;
 	using Dexter.Data.Raven.Services;
 	using Dexter.Data.Raven.Session;
 	using Dexter.Dependency;
@@ -25,6 +29,7 @@ namespace Dexter.Data.Raven
 	using global::Raven.Client;
 
 	using global::Raven.Client.Embedded;
+	using global::Raven.Client.Indexes;
 
 	public class Installer : ILayerInstaller
 	{
@@ -51,12 +56,21 @@ namespace Dexter.Data.Raven
 
 			store.Initialize();
 
+			store.DatabaseCommands.PutIndex("BlogPosts/BySlug",
+				new IndexDefinitionBuilder<Item>
+					{
+						Map = items => items.Select(post => new
+							                                    {
+								                                    post.Slug
+							                                    })
+					});
+
 			container.Register(typeof(IDocumentStore), store, LifeCycle.Singleton);
 		}
 
 		public void ServiceRegistrationComplete(IDexterContainer container)
 		{
-			
+			AutoMapperConfiguration.Configure();
 		}
 
 		#endregion

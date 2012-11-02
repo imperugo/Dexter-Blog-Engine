@@ -5,21 +5,24 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/27
-// Last edit:	2012/11/01
+// Last edit:	2012/11/02
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Dependency.Castle
 {
 	using System.Web;
+	using System.Web.Mvc;
 
 	using global::Castle.MicroKernel.Lifestyle;
 
 	using Dexter.Dependency.Installation;
+	using Dexter.Dependency.Web.Mvc;
 
 	public class CastleInstaller : ILayerInstaller
 	{
@@ -40,6 +43,8 @@ namespace Dexter.Dependency.Castle
 		public void ServiceRegistration(IDexterContainer container)
 		{
 			container.Register<IHttpModule, PerWebRequestLifestyleModule>(LifeCycle.Singleton);
+			container.Register<IDependencyResolver, DexterDependencyResolver>(LifeCycle.Singleton);
+			container.Register<System.Web.Http.Dependencies.IDependencyResolver, Web.WebApi.DexterDependencyResolver>(LifeCycle.Singleton);
 		}
 
 		/// <summary>

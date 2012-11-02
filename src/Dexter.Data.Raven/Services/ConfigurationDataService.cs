@@ -23,6 +23,7 @@ namespace Dexter.Data.Raven.Services
 
 	using Dexter.Data.Raven.Domain;
 	using Dexter.Data.Raven.Extensions;
+	using Dexter.Data.Raven.Session;
 	using Dexter.Entities;
 
 	using global::Raven.Client;
@@ -31,8 +32,8 @@ namespace Dexter.Data.Raven.Services
 	{
 		#region Constructors and Destructors
 
-		public ConfigurationDataService(ILog logger, IDocumentSession session)
-			: base(logger, session)
+		public ConfigurationDataService(ILog logger, ISessionFactory sessionFactory)
+			: base(logger, sessionFactory)
 		{
 		}
 

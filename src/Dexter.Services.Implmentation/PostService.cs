@@ -127,6 +127,11 @@ namespace Dexter.Services.Implmentation
 			return result;
 		}
 
+		public void SaveOrUpdate(PostDto item)
+		{
+			this.postDataService.SaveOrUpdate(item);
+		}
+
 		public Task<PostDto> GetPostBySlugAsync(string slug)
 		{
 			return Task.Run(() => this.GetPostBySlug(slug));
@@ -170,7 +175,7 @@ namespace Dexter.Services.Implmentation
 
 		public Task<IPagedResult<PostDto>> GetPostsAsync(int pageIndex, int pageSize, ItemQueryFilter filter)
 		{
-			return Task.Run(() => this.GetPostsAsync(pageIndex, pageSize, filter));
+			return Task.Run(() => this.GetPosts(pageIndex, pageSize, filter));
 		}
 
 		public IPagedResult<PostDto> GetPostsByTag(int pageIndex, int pageSize, string tag, ItemQueryFilter filters = null)

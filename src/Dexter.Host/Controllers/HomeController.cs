@@ -42,7 +42,7 @@ namespace Dexter.Host.Controllers
 		{
 			IndexViewModel model = new IndexViewModel();
 
-			return this.Json(model);
+			return await this.Json(model, JsonRequestBehavior.AllowGet);
 		}
 
 		#endregion

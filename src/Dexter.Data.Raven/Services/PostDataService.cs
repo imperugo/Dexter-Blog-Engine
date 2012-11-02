@@ -24,6 +24,8 @@ namespace Dexter.Data.Raven.Services
 	using Dexter.Data.Exceptions;
 	using Dexter.Data.Raven.Domain;
 	using Dexter.Data.Raven.Extensions;
+	using Dexter.Data.Raven.Helpers;
+	using Dexter.Data.Raven.Session;
 	using Dexter.Entities;
 	using Dexter.Entities.Filters;
 	using Dexter.Entities.Result;
@@ -35,8 +37,8 @@ namespace Dexter.Data.Raven.Services
 	{
 		#region Constructors and Destructors
 
-		public PostDataService(ILog logger, IDocumentSession session)
-			: base(logger, session)
+		public PostDataService(ILog logger, ISessionFactory sessionFactory)
+			: base(logger, sessionFactory)
 		{
 		}
 
@@ -80,19 +82,7 @@ namespace Dexter.Data.Raven.Services
 
 		public PostDto GetPostBySlug(string slug)
 		{
-			if (slug == null)
-			{
-				throw new ArgumentNullException("slug");
-			}
-
-			if (slug == string.Empty)
-			{
-				throw new ArgumentException("The string must have a value.", "slug");
-			}
-
-			Post post = this.Session.Query<Post>().Where(x => x.Slug == slug)
-				.Include(x => x.CommentsId)
-				.Include(x => x.CategoriesId).First();
+			Post post = this.GetPostBySlugInternal(slug);
 
 			if (post == null)
 			{
@@ -102,6 +92,20 @@ namespace Dexter.Data.Raven.Services
 			PostDto result = post.MapTo<PostDto>();
 
 			return result;
+		}
+
+		public void SaveOrUpdate(PostDto item)
+		{
+			if (item == null)
+			{
+				throw new ArgumentNullException("item", "The post item must be contains a valid instance");
+			}
+
+			var itemToSave  = item.MapTo<Post>();
+
+			SlugHelper.GenerateSlug(itemToSave, this.GetPostBySlugInternal);
+
+			Session.Store(itemToSave);
 		}
 
 		public IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, ItemQueryFilter filters)
@@ -120,8 +124,6 @@ namespace Dexter.Data.Raven.Services
 
 			List<Post> result = this.Session.Query<Post>()
 				.ApplyFilterItem(filters)
-				.Include(x => x.CommentsId)
-				.Include(x => x.CategoriesId)
 				.OrderByDescending(post => post.PublishAt)
 				.Statistics(out stats)
 				.Paging(pageIndex, pageSize)
@@ -153,8 +155,6 @@ namespace Dexter.Data.Raven.Services
 
 			List<Post> result = this.Session.Query<Post>()
 				.ApplyFilterItem(filters)
-				.Include(x => x.CommentsId)
-				.Include(x => x.CategoriesId)
 				.Statistics(out stats)
 				.Where(post => post.Tags.Any(postTag => postTag == tag))
 				.OrderByDescending(post => post.PublishAt)
@@ -215,7 +215,6 @@ namespace Dexter.Data.Raven.Services
 			}
 
 			List<Post> result = query.Include(x => x.CommentsId)
-				.Include(x => x.CategoriesId)
 				.Statistics(out stats)
 				.OrderByDescending(post => post.PublishAt)
 				.Paging(pageIndex, pageSize)
@@ -232,5 +231,24 @@ namespace Dexter.Data.Raven.Services
 		}
 
 		#endregion
+
+		private Post GetPostBySlugInternal(string slug)
+		{
+			if (slug == null)
+			{
+				throw new ArgumentNullException("slug");
+			}
+
+			if (slug == string.Empty)
+			{
+				throw new ArgumentException("The string must have a value.", "slug");
+			}
+
+			Post post = this.Session.Query<Post>().Where(x => x.Slug == slug)
+				.Include(x => x.CommentsId)
+				.Include(x => x.CategoriesId).First();
+
+			return post;
+		}
 	}
 }

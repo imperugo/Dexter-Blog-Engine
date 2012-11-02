@@ -4,42 +4,40 @@
 // File:			ServiceBase.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/10/27
-// Last edit:	2012/11/01
+// Created:		2012/11/02
+// Last edit:	2012/11/02
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Data.Raven.Services
 {
-	using System;
-
 	using Common.Logging;
+
+	using Dexter.Data.Raven.Session;
 
 	using global::Raven.Client;
 
-	public class ServiceBase : IDisposable
+	public class ServiceBase
 	{
 		#region Fields
 
 		private readonly ILog logger;
 
-		private readonly IDocumentSession session;
-
-		private IDisposable aggressivelyCacheFor;
+		private readonly ISessionFactory sessionFactory;
 
 		#endregion
 
 		#region Constructors and Destructors
 
-		public ServiceBase(ILog logger, IDocumentSession session)
+		public ServiceBase(ILog logger, ISessionFactory sessionFactory)
 		{
 			this.logger = logger;
-			this.session = session;
-			this.aggressivelyCacheFor = session.Advanced.DocumentStore.AggressivelyCacheFor(TimeSpan.FromMinutes(10));
+			this.sessionFactory = sessionFactory;
 		}
 
 		#endregion
@@ -58,20 +56,15 @@ namespace Dexter.Data.Raven.Services
 		{
 			get
 			{
-				return this.session;
+				return this.sessionFactory.Session;
 			}
 		}
 
-		#endregion
-
-		#region Public Methods and Operators
-
-		public void Dispose()
+		public ISessionFactory SessionFactory
 		{
-			if (this.aggressivelyCacheFor != null)
+			get
 			{
-				this.aggressivelyCacheFor.Dispose();
-				this.aggressivelyCacheFor = null;
+				return this.sessionFactory;
 			}
 		}
 

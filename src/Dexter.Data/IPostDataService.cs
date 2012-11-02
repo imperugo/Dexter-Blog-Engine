@@ -29,6 +29,8 @@ namespace Dexter.Data
 
 		PostDto GetPostBySlug(string slug);
 
+		void SaveOrUpdate(PostDto item);
+
 		IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, ItemQueryFilter filters);
 
 		IPagedResult<PostDto> GetPostsByTag(int pageIndex, int pageSize, string tag, ItemQueryFilter filters);

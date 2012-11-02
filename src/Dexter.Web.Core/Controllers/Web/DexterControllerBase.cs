@@ -23,6 +23,7 @@ namespace Dexter.Web.Core.Controllers.Web
 	using Common.Logging;
 
 	using Dexter.Entities;
+	using Dexter.Entities.Filters;
 	using Dexter.Entities.Result;
 	using Dexter.Services;
 	using Dexter.Web.Core.Models;
@@ -71,6 +72,22 @@ namespace Dexter.Web.Core.Controllers.Web
 			}
 		}
 
+		public ICommentService CommentService
+		{
+			get
+			{
+				return this.commentService;
+			}
+		}
+
+		public IPostService PostService
+		{
+			get
+			{
+				return this.postService;
+			}
+		}
+
 		#endregion
 
 		#region Public Methods and Operators
@@ -79,7 +96,11 @@ namespace Dexter.Web.Core.Controllers.Web
 		{
 			DexterModelBase m = (DexterModelBase)model;
 
-			Task<IPagedResult<PostDto>> recentPosts = this.postService.GetPostsAsync(1, 5);
+			Task<IPagedResult<PostDto>> recentPosts = this.postService.GetPostsAsync(1, 5, new ItemQueryFilter()
+				                                                                               {
+					                                                                               Status = ItemStatus.Published
+				                                                                               });
+
 			Task<IList<CommentDto>> recentComments = this.commentService.GetRecentCommentsAsync(5);
 
 			await Task.WhenAll(recentPosts, recentComments);

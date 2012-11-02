@@ -22,6 +22,8 @@ namespace Dexter.Entities
 	{
 		#region Public Properties
 
+		public int Id { get; set; }
+
 		public string Abstract { get; set; }
 
 		public bool AllowComments { get; set; }
@@ -35,6 +37,8 @@ namespace Dexter.Entities
 		public string Slug { get; set; }
 
 		public ICollection<string> Tags { get; set; }
+
+		public ItemStatus Status { get; set; }
 
 		public string Title { get; set; }
 

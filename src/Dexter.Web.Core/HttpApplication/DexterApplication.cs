@@ -18,7 +18,6 @@ namespace Dexter.Web.Core.HttpApplication
 {
 	using System;
 	using System.Net;
-	using System.Reflection;
 	using System.Web;
 	using System.Web.Http;
 	using System.Web.Mvc;
@@ -29,7 +28,7 @@ namespace Dexter.Web.Core.HttpApplication
 	using Dexter.Dependency;
 	using Dexter.Web.Core.Routing;
 
-	public class DexterApplication : IDexterApplication
+	public class DexterApplication : HttpApplication
 	{
 		#region Fields
 
@@ -45,46 +44,44 @@ namespace Dexter.Web.Core.HttpApplication
 
 		#region Constructors and Destructors
 
-		public DexterApplication(IRoutingService routingService, IDexterContainer container, ILog logger, IDexterCall dexterCall)
+		static DexterApplication()
 		{
-			this.routingService = routingService;
-			this.container = container;
-			this.logger = logger;
-			this.dexterCall = dexterCall;
+			DexterContainer.StartUp();
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:System.Web.HttpApplication"/> class.
+		/// </summary>
+		public DexterApplication()
+		{
+			this.container = DexterContainer.Resolve<IDexterContainer>();
+			this.dexterCall = DexterContainer.Resolve<IDexterCall>();
+			this.routingService = DexterContainer.Resolve<IRoutingService>();
+			this.logger = LogManager.GetCurrentClassLogger();
+
+			base.BeginRequest += (o, args) => this.BeginRequest();
+			base.EndRequest += (o, args) => this.EndRequest();
 		}
 
 		#endregion
 
 		#region Public Methods and Operators
 
-		public void ApplicationEnd()
+		public new void BeginRequest()
 		{
-			HttpRuntime runtime = (HttpRuntime)typeof(HttpRuntime).InvokeMember("_theRuntime", BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.GetField, null, null, null);
-
-			if (runtime != null)
-			{
-				string shutDownMessage = (string)runtime.GetType().InvokeMember("_shutDownMessage", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.GetField, null, runtime, null);
-				string shutDownStack = (string)runtime.GetType().InvokeMember("_shutDownStack", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.GetField, null, runtime, null);
-
-				if (shutDownMessage.Contains("HostingEnvironment initiated shutdown"))
-				{
-					// The normal app domain recycle should be logged as a info
-					this.logger.InfoFormat("{0} stack = {1}", shutDownMessage, shutDownStack);
-				}
-				else
-				{
-					// maybe there is a problem :)
-					this.logger.WarnFormat("{0} stack = {1}", shutDownMessage, shutDownStack);
-				}
-			}
-
-			this.logger.Info("Application shutdown");
-			this.container.Shutdown();
+			this.dexterCall.StartSession();
 		}
 
-		public void ApplicationError(HttpApplication application)
+		public new void EndRequest()
 		{
-			Exception exception = application.Server.GetLastError();
+			Exception errors = this.Server.GetLastError();
+
+			this.dexterCall.Complete(errors == null);
+		}
+
+		public new void Error()
+		{
+			Exception exception = this.Server.GetLastError();
 
 			if (exception is HttpException)
 			{
@@ -99,10 +96,29 @@ namespace Dexter.Web.Core.HttpApplication
 				this.logger.Error("Unhandled Exception!", exception);
 			}
 
-			application.Server.ClearError();
+			this.Server.ClearError();
 		}
 
-		public void ApplicationStart()
+		public new void Init()
+		{
+			IHttpModule[] modules = this.container.ResolveAll<IHttpModule>();
+
+			foreach (IHttpModule httpModule in modules)
+			{
+				httpModule.Init(this);
+			}
+		}
+
+		#endregion
+
+		#region Methods
+
+		protected void Application_End(object sender, EventArgs e)
+		{
+			this.container.Shutdown();
+		}
+
+		protected void Application_Start(object sender, EventArgs e)
 		{
 			AreaRegistration.RegisterAllAreas();
 
@@ -113,36 +129,6 @@ namespace Dexter.Web.Core.HttpApplication
 			DependencyResolver.SetResolver(this.container.Resolve<IDependencyResolver>());
 			GlobalConfiguration.Configuration.DependencyResolver = this.container.Resolve<System.Web.Http.Dependencies.IDependencyResolver>();
 		}
-
-		public void AuthenticateRequest()
-		{
-		}
-
-		public void BeginRequest(HttpApplication application)
-		{
-			this.dexterCall.StartSession();
-		}
-
-		public void EndRequest(HttpApplication application)
-		{
-			Exception errors = application.Server.GetLastError();
-
-			this.dexterCall.Complete(errors == null);
-		}
-
-		public void Init(HttpApplication application)
-		{
-			IHttpModule[] modules = this.container.ResolveAll<IHttpModule>();
-
-			foreach (IHttpModule httpModule in modules)
-			{
-				httpModule.Init(application);
-			}
-		}
-
-		#endregion
-
-		#region Methods
 
 		private void RegisterGlobalFilters(GlobalFilterCollection filters)
 		{

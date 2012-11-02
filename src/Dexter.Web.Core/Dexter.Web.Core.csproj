@@ -90,7 +90,6 @@
     </Compile>
     <Compile Include="Controllers\Web\DexterControllerBase.cs" />
     <Compile Include="HttpApplication\DexterApplication.cs" />
-    <Compile Include="HttpApplication\IDexterApplication.cs" />
     <Compile Include="LayerInstaller.cs" />
     <Compile Include="Models\DexterModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -23,6 +23,7 @@ namespace Dexter.Data.Raven.Services
 	using Dexter.Data.Exceptions;
 	using Dexter.Data.Raven.Domain;
 	using Dexter.Data.Raven.Extensions;
+	using Dexter.Data.Raven.Session;
 	using Dexter.Entities;
 	using Dexter.Entities.Filters;
 
@@ -32,8 +33,8 @@ namespace Dexter.Data.Raven.Services
 	{
 		#region Constructors and Destructors
 
-		public CommentDataService(ILog logger, IDocumentSession session)
-			: base(logger, session)
+		public CommentDataService(ILog logger, ISessionFactory sessionFactory)
+			: base(logger, sessionFactory)
 		{
 		}
 

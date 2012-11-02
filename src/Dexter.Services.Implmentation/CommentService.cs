@@ -107,7 +107,7 @@ namespace Dexter.Services.Implmentation
 
 		public Task<IList<CommentDto>> GetRecentCommentsAsync(int maxNumber, CommentQueryFilter queryFilter = null)
 		{
-			return Task.Run(() => this.GetRecentCommentsAsync(maxNumber, queryFilter));
+			return Task.Run(() => this.GetRecentComments(maxNumber, queryFilter));
 		}
 
 		#endregion

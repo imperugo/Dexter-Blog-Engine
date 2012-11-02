@@ -40,6 +40,7 @@
     <Compile Include="CommentDto.cs" />
     <Compile Include="BlogConfiguration.cs" />
     <Compile Include="CommentStatus.cs" />
+    <Compile Include="Exceptions\InvalidItemSlugException.cs" />
     <Compile Include="Filters\CommentQueryFilter.cs" />
     <Compile Include="PageDto.cs" />
     <Compile Include="PostDto.cs" />

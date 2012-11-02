@@ -31,6 +31,7 @@ namespace Dexter.Data.Raven.AutoMapper
 		{
 			Mapper.CreateMap<DateTimeOffset, DateTime>().ConvertUsing<DateTimeTypeConverter>();
 			Mapper.CreateMap<Post, PostDto>();
+			Mapper.CreateMap<PostDto, Post>();
 			Mapper.CreateMap<Comment, CommentDto>();
 		}
 

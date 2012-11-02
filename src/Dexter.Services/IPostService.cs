@@ -77,6 +77,8 @@ namespace Dexter.Services
 
 		PostDto GetPostBySlug(string slug);
 
+		void SaveOrUpdate(PostDto item);
+
 		Task<PostDto> GetPostBySlugAsync(string slug);
 
 		IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, ItemQueryFilter filters = null);

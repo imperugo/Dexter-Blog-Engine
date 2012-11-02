@@ -24,6 +24,7 @@ namespace Dexter.Data.Raven.Services
 	using Dexter.Data.Exceptions;
 	using Dexter.Data.Raven.Domain;
 	using Dexter.Data.Raven.Extensions;
+	using Dexter.Data.Raven.Session;
 	using Dexter.Entities;
 	using Dexter.Entities.Filters;
 	using Dexter.Entities.Result;
@@ -35,8 +36,8 @@ namespace Dexter.Data.Raven.Services
 	{
 		#region Constructors and Destructors
 
-		public PageDataService(ILog logger, IDocumentSession session)
-			: base(logger, session)
+		public PageDataService(ILog logger, ISessionFactory sessionFactory)
+			: base(logger, sessionFactory)
 		{
 		}
 
