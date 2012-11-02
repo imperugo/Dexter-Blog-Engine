@@ -14,7 +14,7 @@
 
 #endregion
 
-namespace Dexter.Data.Raven.Indexes
+namespace Dexter.Data.Raven.Indexes.Reading
 {
 	using System.Linq;
 
@@ -22,7 +22,6 @@ namespace Dexter.Data.Raven.Indexes
 	using Dexter.Entities;
 
 	using global::Raven.Abstractions.Indexing;
-
 	using global::Raven.Client.Indexes;
 
 	public class MonthOfPublishedPostsWithCountIndex : AbstractIndexCreationTask<Post, MonthDto>

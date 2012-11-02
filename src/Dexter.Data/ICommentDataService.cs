@@ -26,7 +26,9 @@ namespace Dexter.Data
 
 		void AddComment(CommentDto comment, int itemId, CommentStatus status);
 
-		IList<CommentDto> GetCommentForSpecificItem(int itemId, CommentQueryFilter queryFilter);
+		IList<CommentDto> GetCommentForSpecificItem(int itemId, CommentQueryFilter filters);
+
+		IList<CommentDto> GetRecentApprovedComments(int maxNumberOfComments, ItemQueryFilter filters);
 
 		#endregion
 	}

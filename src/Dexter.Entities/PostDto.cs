@@ -15,36 +15,15 @@
 
 namespace Dexter.Entities
 {
-	using System;
 	using System.Collections.Generic;
 
-	public class PostDto
+	public class PostDto : ItemDto
 	{
 		#region Public Properties
 
-		public int Id { get; set; }
-
-		public string Abstract { get; set; }
-
-		public bool AllowComments { get; set; }
-
 		public string[] Categories { get; set; }
 
-		public string Content { get; set; }
-
-		public DateTimeOffset PublishAt { get; set; }
-
-		public string Slug { get; set; }
-
 		public ICollection<string> Tags { get; set; }
-
-		public ItemStatus Status { get; set; }
-
-		public string Title { get; set; }
-
-		public int TotalComments { get; set; }
-
-		public int TotalTrackback { get; set; }
 
 		#endregion
 	}

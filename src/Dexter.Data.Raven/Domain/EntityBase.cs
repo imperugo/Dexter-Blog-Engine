@@ -25,8 +25,14 @@ namespace Dexter.Data.Raven.Domain
 
 		public int Id { get; set; }
 
-		public DateTimeOffset UpdatedAt { get; set; }
-
 		#endregion
+
+		public bool IsTransient
+		{
+			get
+			{
+				return Id == 0;
+			}
+		}
 	}
 }

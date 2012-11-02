@@ -26,9 +26,12 @@ namespace Dexter.Entities
 
 		public string Body { get; set; }
 
-		public virtual MailAddress Email { get; set; }
+		public MailAddress Email { get; set; }
 
-		public virtual Uri WebSite { get; set; }
+		public Uri WebSite { get; set; }
+
+		public ItemBaseInfo ItemInfo { get; set; }
+
 
 		#endregion
 	}

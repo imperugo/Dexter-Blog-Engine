@@ -60,6 +60,7 @@ namespace Dexter.Data.Raven.Services
 			}
 		}
 
+
 		public ISessionFactory SessionFactory
 		{
 			get

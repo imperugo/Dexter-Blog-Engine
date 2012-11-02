@@ -27,6 +27,8 @@ namespace Dexter.Data.Raven.Services
 	using Dexter.Data.Raven.Extensions;
 	using Dexter.Data.Raven.Helpers;
 	using Dexter.Data.Raven.Indexes;
+	using Dexter.Data.Raven.Indexes.Reading;
+	using Dexter.Data.Raven.Indexes.Updating;
 	using Dexter.Data.Raven.Session;
 	using Dexter.Entities;
 	using Dexter.Entities.Filters;
@@ -38,11 +40,14 @@ namespace Dexter.Data.Raven.Services
 
 	public class PostDataService : ServiceBase, IPostDataService
 	{
+		private readonly IDocumentStore store;
+
 		#region Constructors and Destructors
 
-		public PostDataService(ILog logger, ISessionFactory sessionFactory)
+		public PostDataService(ILog logger, ISessionFactory sessionFactory, IDocumentStore store)
 			: base(logger, sessionFactory)
 		{
+			this.store = store;
 		}
 
 		#endregion
@@ -253,11 +258,27 @@ namespace Dexter.Data.Raven.Services
 				throw new ArgumentNullException("item", "The post item must be contains a valid instance");
 			}
 
-			Post itemToSave = item.MapTo<Post>();
+			Post post = this.Session.Load<Post>(item.Id) 
+																?? new Post
+				                                                    {
+					                                                    CreatedAt = DateTimeOffset.Now
+				                                                    };
 
-			SlugHelper.GenerateSlug(itemToSave, this.GetPostBySlugInternal);
+			if (post.IsTransient)
+			{
+				post.Slug = SlugHelper.GenerateSlug(post, this.GetPostBySlugInternal);
+			}
 
-			this.Session.Store(itemToSave);
+			bool mustUpdateDenormalizedObject = !post.Slug.Equals(item.Slug) || post.Title.Equals(item.Title) || !post.PublishAt.Equals(item.PublishAt);
+			
+			item.MapPropertiesToInstance(post);
+
+			this.Session.Store(post);
+
+			if (mustUpdateDenormalizedObject)
+			{
+				UpdateDenormalizedItemIndex.UpdateIndexes(this.store, this.Session, post);
+			}
 		}
 
 		#endregion

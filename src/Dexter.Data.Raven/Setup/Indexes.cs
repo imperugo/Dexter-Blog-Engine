@@ -20,6 +20,7 @@ namespace Dexter.Data.Raven.Setup
 
 	using Dexter.Data.Raven.Domain;
 
+	using global::Raven.Abstractions.Data;
 	using global::Raven.Abstractions.Indexing;
 
 	using global::Raven.Client;

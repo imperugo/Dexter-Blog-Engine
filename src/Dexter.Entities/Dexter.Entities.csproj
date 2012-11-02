@@ -42,6 +42,8 @@
     <Compile Include="CommentStatus.cs" />
     <Compile Include="Exceptions\InvalidItemSlugException.cs" />
     <Compile Include="Filters\CommentQueryFilter.cs" />
+    <Compile Include="ItemBaseInfo.cs" />
+    <Compile Include="ItemDto.cs" />
     <Compile Include="MonthDto.cs" />
     <Compile Include="PageDto.cs" />
     <Compile Include="PostDto.cs" />

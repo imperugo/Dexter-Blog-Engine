@@ -28,6 +28,7 @@ namespace Dexter.Data.Raven
 	using global::Raven.Client.Embedded;
 
 	using global::Raven.Client.Indexes;
+	using global::Raven.Imports.Newtonsoft.Json;
 
 	public class Installer : ILayerInstaller
 	{

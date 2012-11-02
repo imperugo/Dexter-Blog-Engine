@@ -14,7 +14,7 @@
 
 #endregion
 
-namespace Dexter.Data.Raven.Indexes
+namespace Dexter.Data.Raven.Indexes.Reading
 {
 	using System.Globalization;
 	using System.Linq;
