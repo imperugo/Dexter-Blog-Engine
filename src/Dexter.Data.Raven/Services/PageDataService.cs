@@ -122,7 +122,6 @@ namespace Dexter.Data.Raven.Services
 
 			List<Page> result = this.Session.Query<Page>()
 				.ApplyFilterItem(filter)
-				.Include(x => x.CommentsId)
 				.OrderByDescending(post => post.PublishAt)
 				.Statistics(out stats)
 				.Paging(pageIndex, pageSize)

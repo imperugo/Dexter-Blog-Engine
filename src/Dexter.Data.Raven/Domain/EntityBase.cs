@@ -16,14 +16,15 @@
 namespace Dexter.Data.Raven.Domain
 {
 	using System;
+	using System.Collections.Generic;
 
-	public class EntityBase
+	public class EntityBase<T>
 	{
 		#region Public Properties
 
 		public DateTimeOffset CreatedAt { get; set; }
 
-		public int Id { get; set; }
+		public T Id { get; set; }
 
 		#endregion
 
@@ -31,7 +32,7 @@ namespace Dexter.Data.Raven.Domain
 		{
 			get
 			{
-				return Id == 0;
+				return EqualityComparer<T>.Default.Equals(this.Id, default(T));
 			}
 		}
 	}

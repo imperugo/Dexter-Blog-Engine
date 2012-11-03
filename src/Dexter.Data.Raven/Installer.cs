@@ -50,9 +50,8 @@ namespace Dexter.Data.Raven
 			IDocumentStore store = new EmbeddableDocumentStore
 				                       {
 					                       RunInMemory = false, 
-					                       DataDirectory = "App_Data/db", 
+					                       DataDirectory = "App_Data/db"
 				                       };
-
 			store.Initialize();
 
 			Setup.Indexes.UpdateDatabaseIndexes(store);

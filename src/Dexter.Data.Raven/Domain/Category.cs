@@ -17,7 +17,7 @@ namespace Dexter.Data.Raven.Domain
 {
 	using System.Collections.Generic;
 
-	public class Category : EntityBase
+	public class Category : EntityBase<string>
 	{
 		#region Public Properties
 

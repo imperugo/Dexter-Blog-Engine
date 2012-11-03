@@ -71,7 +71,7 @@ namespace Dexter.Data.Raven.Domain
 		Neighbor = 2
 	}
 
-	public class Link : EntityBase
+	public class Link : EntityBase<int>
 	{
 		#region Public Properties
 

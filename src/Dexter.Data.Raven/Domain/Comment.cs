@@ -18,7 +18,7 @@ namespace Dexter.Data.Raven.Domain
 	using System;
 	using System.Net.Mail;
 
-	public class Comment : EntityBase
+	public class Comment : EntityBase<int>
 	{
 		#region Public Properties
 

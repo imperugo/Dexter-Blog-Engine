@@ -21,16 +21,12 @@ namespace Dexter.Data.Raven.Domain
 
 	using Dexter.Entities;
 
-	public class ItemComments : EntityBase
+	public class ItemComments : EntityBase<string>
 	{
 		#region Constructors and Destructors
 
 		public ItemComments()
 		{
-			this.Approved = new List<Comment>();
-			this.Deleted = new List<Comment>();
-			this.Pending = new List<Comment>();
-			this.Spam = new List<Comment>();
 		}
 
 		#endregion

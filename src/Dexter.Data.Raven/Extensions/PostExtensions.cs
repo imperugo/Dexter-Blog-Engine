@@ -1,48 +1,47 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			Item.cs
+// File:			PostExtensions.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/10/27
-// Last edit:	2012/11/01
+// Created:		2012/11/03
+// Last edit:	2012/11/03
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
-namespace Dexter.Data.Raven.Domain
+namespace Dexter.Data.Raven.Extensions
 {
-	using System;
-	using System.Collections.Generic;
-
+	using Dexter.Data.Raven.Domain;
 	using Dexter.Entities;
 
-	public abstract class Item : EntityBase<int>
+	internal static class PostExtensions
 	{
-		#region Public Properties
+		#region Public Methods and Operators
 
-		public bool AllowComments { get; set; }
+		public static bool MustUpdateDenormalizedObject(this Post target, PostDto source)
+		{
+			if (!target.Slug.Equals(source.Slug))
+			{
+				return true;
+			}
 
-		public string CommentsId { get; set; }
+			if (!target.Title.Equals(source.Title))
+			{
+				return true;
+			}
 
-		public string Content { get; set; }
+			if (!target.PublishAt.Equals(source.PublishAt))
+			{
+				return true;
+			}
 
-		public string Excerpt { get; set; }
-
-		public DateTimeOffset PublishAt { get; set; }
-
-		public string Slug { get; set; }
-
-		public ItemStatus Status { get; set; }
-
-		public string Title { get; set; }
-
-		public int TotalComments { get; set; }
-
-		public int TotalTrackback { get; set; }
+			return false;
+		}
 
 		#endregion
 	}

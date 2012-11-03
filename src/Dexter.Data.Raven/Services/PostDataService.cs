@@ -5,7 +5,7 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/02
-// Last edit:	2012/11/02
+// Last edit:	2012/11/03
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -26,7 +26,6 @@ namespace Dexter.Data.Raven.Services
 	using Dexter.Data.Raven.Domain;
 	using Dexter.Data.Raven.Extensions;
 	using Dexter.Data.Raven.Helpers;
-	using Dexter.Data.Raven.Indexes;
 	using Dexter.Data.Raven.Indexes.Reading;
 	using Dexter.Data.Raven.Indexes.Updating;
 	using Dexter.Data.Raven.Session;
@@ -40,7 +39,11 @@ namespace Dexter.Data.Raven.Services
 
 	public class PostDataService : ServiceBase, IPostDataService
 	{
+		#region Fields
+
 		private readonly IDocumentStore store;
+
+		#endregion
 
 		#region Constructors and Destructors
 
@@ -66,6 +69,19 @@ namespace Dexter.Data.Raven.Services
 			this.Session.Delete(post);
 		}
 
+		public IList<MonthDto> GetMonthsForPublishedPosts()
+		{
+			DateTime now = DateTime.Now;
+
+			List<MonthDto> dates = this.Session.Query<MonthDto, MonthOfPublishedPostsWithCountIndex>()
+				.OrderByDescending(x => x.Year)
+				.ThenByDescending(x => x.Month)
+				.Where(x => (x.Year < now.Year || x.Year == now.Year) && x.Month <= now.Month)
+				.ToList();
+
+			return dates;
+		}
+
 		public PostDto GetPostByKey(int id)
 		{
 			if (id < 1)
@@ -76,7 +92,7 @@ namespace Dexter.Data.Raven.Services
 			Post post = this.Session.Query<Post>()
 				.Where(x => x.Id == id)
 				.Include(x => x.CommentsId)
-				.Include(x => x.CategoriesId).First();
+				.First();
 
 			if (post == null)
 			{
@@ -100,19 +116,6 @@ namespace Dexter.Data.Raven.Services
 			PostDto result = post.MapTo<PostDto>();
 
 			return result;
-		}
-
-		public IList<MonthDto> GetMonthsForPublishedPosts()
-		{
-			var now = DateTime.Now;
-
-			var dates = this.Session.Query<MonthDto, MonthOfPublishedPostsWithCountIndex>()
-				.OrderByDescending(x => x.Year)
-				.ThenByDescending(x => x.Month)
-				.Where(x => (x.Year < now.Year || x.Year == now.Year) && x.Month <= now.Month)
-				.ToList();
-
-			return dates;
 		}
 
 		public IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, ItemQueryFilter filters)
@@ -189,7 +192,7 @@ namespace Dexter.Data.Raven.Services
 				query.Where(post => post.PublishAt.Day == day.Value);
 			}
 
-			List<Post> result = query.Include(x => x.CommentsId)
+			List<Post> result = query
 				.Statistics(out stats)
 				.OrderByDescending(post => post.PublishAt)
 				.Paging(pageIndex, pageSize)
@@ -244,8 +247,7 @@ namespace Dexter.Data.Raven.Services
 				throw new ArgumentException("The number of tags to retrieve must be greater than 0", "numberOfTags");
 			}
 
-			return  this.Session.Query<TagDto, TagsForPublishedPostsWithCountIndex>()
-				
+			return this.Session.Query<TagDto, TagsForPublishedPostsWithCountIndex>()
 				.OrderBy(x => x.Count)
 				.Take(numberOfTags)
 				.ToList();
@@ -255,25 +257,42 @@ namespace Dexter.Data.Raven.Services
 		{
 			if (item == null)
 			{
-				throw new ArgumentNullException("item", "The post item must be contains a valid instance");
+				throw new ArgumentNullException("item", "The post target must be contains a valid instance");
 			}
 
-			Post post = this.Session.Load<Post>(item.Id) 
-																?? new Post
-				                                                    {
-					                                                    CreatedAt = DateTimeOffset.Now
-				                                                    };
+			Post post = this.Session.Load<Post>(item.Id)
+			            ?? new Post
+				               {
+					               CreatedAt = DateTimeOffset.Now
+				               };
+
+			bool mustUpdateDenormalizedObject = post.MustUpdateDenormalizedObject(item);
+
+			item.MapPropertiesToInstance(post);
+
+			this.Session.Store(post);
 
 			if (post.IsTransient)
 			{
 				post.Slug = SlugHelper.GenerateSlug(post, this.GetPostBySlugInternal);
+
+				ItemComments comments = new ItemComments
+					                        {
+						                        Approved = new List<Comment>(), 
+						                        Deleted = new List<Comment>(), 
+						                        Pending = new List<Comment>(), 
+						                        Spam = new List<Comment>(), 
+						                        Item = new ItemReference
+							                               {
+								                               Id = post.Id, 
+								                               Status = post.Status, 
+								                               ItemPublishedAt = post.PublishAt
+							                               }
+					                        };
+
+				this.Session.Store(comments);
+				post.CommentsId = comments.Id;
 			}
-
-			bool mustUpdateDenormalizedObject = !post.Slug.Equals(item.Slug) || post.Title.Equals(item.Title) || !post.PublishAt.Equals(item.PublishAt);
-			
-			item.MapPropertiesToInstance(post);
-
-			this.Session.Store(post);
 
 			if (mustUpdateDenormalizedObject)
 			{
@@ -297,9 +316,10 @@ namespace Dexter.Data.Raven.Services
 				throw new ArgumentException("The string must have a value.", "slug");
 			}
 
-			Post post = this.Session.Query<Post>().Where(x => x.Slug == slug)
+			Post post = this.Session.Query<Post>()
+				.Where(x => x.Slug == slug)
 				.Include(x => x.CommentsId)
-				.Include(x => x.CategoriesId).First();
+				.First();
 
 			return post;
 		}
