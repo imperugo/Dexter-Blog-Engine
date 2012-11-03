@@ -16,6 +16,7 @@
 
 namespace Dexter.Web.Core.Controllers.Web
 {
+	using System;
 	using System.Collections.Generic;
 	using System.Threading.Tasks;
 	using System.Web.Mvc;
@@ -25,6 +26,7 @@ namespace Dexter.Web.Core.Controllers.Web
 	using Dexter.Entities;
 	using Dexter.Entities.Filters;
 	using Dexter.Entities.Result;
+	using Dexter.Extensions.DateTime;
 	using Dexter.Services;
 	using Dexter.Web.Core.Models;
 
@@ -125,7 +127,12 @@ namespace Dexter.Web.Core.Controllers.Web
 		{
 			DexterModelBase m = (DexterModelBase)model;
 
-			Task<IPagedResult<PostDto>> recentPosts = this.postService.GetPostsAsync(1, 5);
+			Task<IPagedResult<PostDto>> recentPosts = this.postService.GetPostsAsync(1, 5, new ItemQueryFilter()
+				                                                                               {
+																								   MaxPublishAt = DateTimeOffset.Now.AsMinutes(),
+					                                                                               Status = ItemStatus.Published
+				                                                                               });
+
 			Task<IList<CommentDto>> recentComments = this.commentService.GetRecentCommentsAsync(5);
 
 			await Task.WhenAll(recentPosts, recentComments);

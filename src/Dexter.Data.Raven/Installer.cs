@@ -51,18 +51,7 @@ namespace Dexter.Data.Raven
 			IDocumentStore store = new EmbeddableDocumentStore
 				                       {
 					                       RunInMemory = false, 
-					                       DataDirectory = "App_Data/db",
-										   Conventions =
-										   {
-											   FindTypeTagName = type =>
-											   {
-												   if (typeof(Item).IsAssignableFrom(type))
-												   {
-													   return "Items";
-												   }
-												   return DocumentConvention.DefaultTypeTagName(type);
-											   }
-										   }
+					                       DataDirectory = "App_Data/db"
 				                       };
 			store.Initialize();
 

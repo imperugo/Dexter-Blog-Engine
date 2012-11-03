@@ -21,6 +21,7 @@ namespace Dexter.Data.Raven.Test.PostService
 	using Common.Logging;
 
 	using Dexter.Data.Raven.Domain;
+	using Dexter.Data.Raven.Extensions;
 	using Dexter.Data.Raven.Services;
 	using Dexter.Data.Raven.Test.PostService.Helpers;
 	using Dexter.Entities;
@@ -83,7 +84,7 @@ namespace Dexter.Data.Raven.Test.PostService
 		}
 
 		[Fact]
-		public void SaveComments_WithValidData_ShouldSaveThePostAndTheItemComments()
+		public void SavePost_WithValidData_ShouldSaveThePostAndTheItemComments()
 		{
 			var post = PostHelper.GetPostsDto(1)[0];
 
@@ -104,6 +105,51 @@ namespace Dexter.Data.Raven.Test.PostService
 			var itemComments = this.sut.Session.Load<ItemComments>(postEntity.CommentsId);
 
 			itemComments.Should().Not.Be.Null();
+		}
+
+		[Fact]
+		public void SavePost_ChangingSlug_ShouldUpdateDenormalizedData()
+		{
+			Post post;
+			ItemComments comments;
+
+			using(var testSession = this.DocumentStore.OpenSession())
+			{
+				post = PostHelper.GetPosts(1)[0];
+				post.Status = ItemStatus.Published;
+				post.PublishAt = DateTime.Today;
+
+				testSession.Store(post);
+
+				comments = new ItemComments();
+				comments.Approved = new List<Comment>();
+				comments.Item = new ItemReference
+				{
+					Id = post.Id,
+					Status = post.Status,
+					ItemPublishedAt = post.PublishAt
+				};
+
+				testSession.Store(comments);
+				post.CommentsId = comments.Id;
+
+				testSession.SaveChanges();
+			}
+
+
+			post.PublishAt = DateTime.Today.AddDays(5);
+
+			var postDto = post.MapTo<PostDto>();
+
+			this.sut.SaveOrUpdate(postDto);
+
+			this.sut.Session.SaveChanges();
+
+			var retrievedComments = this.sut.Session.Load<ItemComments>(comments.Id);
+			
+			retrievedComments.Should().Not.Be.Null();
+			retrievedComments.Item.Should().Not.Be.Null();
+			retrievedComments.Item.ItemPublishedAt.Should().Be.EqualTo(post.PublishAt);
 		}
 
 		#endregion

@@ -88,11 +88,6 @@ namespace Dexter.Data.Raven.Services
 				commentsToMaps = result.Approved;
 			}
 
-			if (filters.CommentStatus == CommentStatus.IsDeleted)
-			{
-				commentsToMaps = result.Deleted;
-			}
-
 			if (filters.CommentStatus == CommentStatus.IsSpam)
 			{
 				commentsToMaps = result.Spam;

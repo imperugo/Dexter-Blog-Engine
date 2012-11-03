@@ -93,7 +93,7 @@ namespace Dexter.Data.Raven.Services
 			Page page = this.Session.Query<Page>()
 				.Where(x => x.Slug == slug)
 				.Include(x => x.CommentsId)
-				.First();
+				.FirstOrDefault();
 
 			if (page == null)
 			{

@@ -284,7 +284,6 @@ namespace Dexter.Data.Raven.Services
 				ItemComments comments = new ItemComments
 					                        {
 						                        Approved = new List<Comment>(), 
-						                        Deleted = new List<Comment>(), 
 						                        Pending = new List<Comment>(), 
 						                        Spam = new List<Comment>(), 
 						                        Item = new ItemReference
