@@ -25,6 +25,8 @@ namespace Dexter.Data.Raven.Test.PostService
 	using Dexter.Data.Raven.Test.PostService.Helpers;
 	using Dexter.Entities;
 
+	using FizzWare.NBuilder;
+
 	using Moq;
 
 	using SharpTestsEx;
@@ -37,6 +39,8 @@ namespace Dexter.Data.Raven.Test.PostService
 
 		private readonly PostDataService sut;
 
+		private readonly TestSessionFactory sessionFactory;
+
 		#endregion
 
 		#region Constructors and Destructors
@@ -46,7 +50,8 @@ namespace Dexter.Data.Raven.Test.PostService
 		/// </summary>
 		public PostServiceTest()
 		{
-			this.sut = new PostDataService(new Mock<ILog>().Object, this.DocumentStore.OpenSession());
+			this.sessionFactory = new TestSessionFactory(this.DocumentStore);
+			this.sut = new PostDataService(new Mock<ILog>().Object, sessionFactory, this.DocumentStore);
 		}
 
 		#endregion
@@ -55,6 +60,7 @@ namespace Dexter.Data.Raven.Test.PostService
 
 		public new void Dispose()
 		{
+			this.sut.Session.Dispose();
 		}
 
 		[Fact]
@@ -74,6 +80,30 @@ namespace Dexter.Data.Raven.Test.PostService
 
 			expectedPost.Should().Not.Be.Null();
 			expectedPost.Title.Should().Be.EqualTo(posts[2].Title);
+		}
+
+		[Fact]
+		public void SaveComments_WithValidData_ShouldSaveThePostAndTheItemComments()
+		{
+			var post = PostHelper.GetPostsDto(1)[0];
+
+			this.sut.SaveOrUpdate(post);
+
+			this.sut.Session.SaveChanges();
+
+			post.Id.Should().Be.GreaterThan(0);
+
+			var postEntity = this.sut.Session
+										.Include<Post>(x => x.CommentsId)
+										.Load<Post>(post.Id);
+
+			postEntity.Should().Not.Be.Null();
+			postEntity.Title.Should().Be.EqualTo(post.Title);
+			post.Slug.Should().Not.Be.Null();
+
+			var itemComments = this.sut.Session.Load<ItemComments>(postEntity.CommentsId);
+
+			itemComments.Should().Not.Be.Null();
 		}
 
 		#endregion

@@ -23,5 +23,13 @@ namespace Dexter.Entities
 		public int TotalComments { get; set; }
 
 		public int TotalTrackback { get; set; }
+
+		public bool IsTransient
+		{
+			get
+			{
+				return Id == 0;
+			}
+		}
 	}
 }

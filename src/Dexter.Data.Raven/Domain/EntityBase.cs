@@ -27,13 +27,5 @@ namespace Dexter.Data.Raven.Domain
 		public T Id { get; set; }
 
 		#endregion
-
-		public bool IsTransient
-		{
-			get
-			{
-				return EqualityComparer<T>.Default.Equals(this.Id, default(T));
-			}
-		}
 	}
 }

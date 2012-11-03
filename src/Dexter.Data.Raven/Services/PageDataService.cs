@@ -64,10 +64,9 @@ namespace Dexter.Data.Raven.Services
 				throw new ArgumentException("The Id must be greater than 0", "id");
 			}
 
-			Page page = this.Session.Query<Page>()
-				.Where(x => x.Id == id)
-				.Include(x => x.CommentsId)
-				.First();
+			Page page = this.Session
+				.Include<Page>(x => x.CommentsId)
+				.Load(id);
 
 			if (page == null)
 			{

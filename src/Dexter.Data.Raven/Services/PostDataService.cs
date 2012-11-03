@@ -89,10 +89,10 @@ namespace Dexter.Data.Raven.Services
 				throw new ArgumentException("The Id must be greater than 0", "id");
 			}
 
-			Post post = this.Session.Query<Post>()
-				.Where(x => x.Id == id)
-				.Include(x => x.CommentsId)
-				.First();
+			Post post = this.Session
+				.Include<Post>(x => x.CommentsId)
+				.Load(id);
+				
 
 			if (post == null)
 			{
@@ -266,13 +266,18 @@ namespace Dexter.Data.Raven.Services
 					               CreatedAt = DateTimeOffset.Now
 				               };
 
-			bool mustUpdateDenormalizedObject = post.MustUpdateDenormalizedObject(item);
+			bool mustUpdateDenormalizedObject = false;
+
+			if (!item.IsTransient)
+			{
+				mustUpdateDenormalizedObject = post.MustUpdateDenormalizedObject(item);
+			}
 
 			item.MapPropertiesToInstance(post);
 
 			this.Session.Store(post);
 
-			if (post.IsTransient)
+			if (item.IsTransient)
 			{
 				post.Slug = SlugHelper.GenerateSlug(post, this.GetPostBySlugInternal);
 
@@ -298,6 +303,8 @@ namespace Dexter.Data.Raven.Services
 			{
 				UpdateDenormalizedItemIndex.UpdateIndexes(this.store, this.Session, post);
 			}
+
+			item.Id = post.Id;
 		}
 
 		#endregion
@@ -319,7 +326,7 @@ namespace Dexter.Data.Raven.Services
 			Post post = this.Session.Query<Post>()
 				.Where(x => x.Slug == slug)
 				.Include(x => x.CommentsId)
-				.First();
+				.FirstOrDefault();
 
 			return post;
 		}

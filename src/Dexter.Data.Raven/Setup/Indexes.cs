@@ -27,7 +27,7 @@ namespace Dexter.Data.Raven.Setup
 
 	using global::Raven.Client.Indexes;
 
-	internal class Indexes
+	public class Indexes
 	{
 		#region Public Methods and Operators
 

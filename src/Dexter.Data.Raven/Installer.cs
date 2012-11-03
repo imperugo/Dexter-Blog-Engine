@@ -18,13 +18,14 @@ namespace Dexter.Data.Raven
 {
 	using Dexter.Async;
 	using Dexter.Data.Raven.AutoMapper;
+	using Dexter.Data.Raven.Domain;
 	using Dexter.Data.Raven.Services;
 	using Dexter.Data.Raven.Session;
 	using Dexter.Dependency;
 	using Dexter.Dependency.Installation;
 
 	using global::Raven.Client;
-
+	using global::Raven.Client.Document;
 	using global::Raven.Client.Embedded;
 
 	using global::Raven.Client.Indexes;
@@ -50,7 +51,18 @@ namespace Dexter.Data.Raven
 			IDocumentStore store = new EmbeddableDocumentStore
 				                       {
 					                       RunInMemory = false, 
-					                       DataDirectory = "App_Data/db"
+					                       DataDirectory = "App_Data/db",
+										   Conventions =
+										   {
+											   FindTypeTagName = type =>
+											   {
+												   if (typeof(Item).IsAssignableFrom(type))
+												   {
+													   return "Items";
+												   }
+												   return DocumentConvention.DefaultTypeTagName(type);
+											   }
+										   }
 				                       };
 			store.Initialize();
 

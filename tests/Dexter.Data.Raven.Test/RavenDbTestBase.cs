@@ -18,10 +18,12 @@ namespace Dexter.Data.Raven.Test
 	using System;
 
 	using Dexter.Data.Raven.AutoMapper;
+	using Dexter.Data.Raven.Domain;
 
 	using global::Raven.Client;
-
+	using global::Raven.Client.Document;
 	using global::Raven.Client.Embedded;
+	using global::Raven.Client.Indexes;
 
 	public class RavenDbTestBase : IDisposable
 	{
@@ -39,11 +41,26 @@ namespace Dexter.Data.Raven.Test
 		public RavenDbTestBase()
 		{
 			this.documentStore = new EmbeddableDocumentStore
-				                     {
-					                     RunInMemory = true
-				                     };
+			{
+				RunInMemory = true,
+				Conventions =
+				{
+					FindTypeTagName = type =>
+					{
+						if (typeof(Item).IsAssignableFrom(type))
+						{
+							return "Items";
+						}
+						return DocumentConvention.DefaultTypeTagName(type);
+					}
+				}
+			};
 
 			this.documentStore.Initialize();
+
+			Dexter.Data.Raven.Setup.Indexes.UpdateDatabaseIndexes(documentStore);
+
+			IndexCreation.CreateIndexes(this.GetType().Assembly, documentStore);
 
 			AutoMapperConfiguration.Configure();
 		}

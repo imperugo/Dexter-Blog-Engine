@@ -1,11 +1,11 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			PostHelper.cs
+// File:			TestSessionFactory.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/10/27
-// Last edit:	2012/11/01
+// Created:		2012/11/03
+// Last edit:	2012/11/03
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -13,34 +13,44 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 #endregion
 
-namespace Dexter.Data.Raven.Test.PostService.Helpers
+namespace Dexter.Data.Raven.Test
 {
-	using System.Collections.Generic;
+	using Dexter.Data.Raven.Session;
 
-	using Dexter.Data.Raven.Domain;
-	using Dexter.Entities;
+	using global::Raven.Client;
 
-	using FizzWare.NBuilder;
-
-	internal static class PostHelper
+	public class TestSessionFactory : ISessionFactory
 	{
-		#region Public Methods and Operators
+		#region Fields
 
-		public static IList<Post> GetPosts(int numberOfDocument)
+		private readonly IDocumentStore store;
+
+		#endregion
+
+		#region Constructors and Destructors
+
+		public TestSessionFactory(IDocumentStore store)
 		{
-			return Builder<Post>.CreateListOfSize(numberOfDocument)
-							.All()
-							.With(x => x.Id = 0)
-							.With(x => x.CommentsId = null)
-							.Build();
+			this.store = store;
+			this.Session = this.store.OpenSession();
 		}
 
-		public static IList<PostDto> GetPostsDto(int numberOfDocument)
+		#endregion
+
+		#region Public Properties
+
+		public IDocumentSession Session { get; private set; }
+
+		#endregion
+
+		#region Public Methods and Operators
+
+		public void EndSession(bool succesfully)
 		{
-			return Builder<PostDto>.CreateListOfSize(numberOfDocument)
-							.All()
-							.With(x => x.Id = 0)
-							.Build();
+		}
+
+		public void StartSession()
+		{
 		}
 
 		#endregion
