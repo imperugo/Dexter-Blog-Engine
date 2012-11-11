@@ -91,6 +91,7 @@ namespace Dexter.Data.Raven.Services
 
 			Post post = this.Session
 				.Include<Post>(x => x.CommentsId)
+				.Include<Post>(x => x.TrackbacksId)
 				.Load(id);
 				
 			if (post == null)
@@ -324,6 +325,7 @@ namespace Dexter.Data.Raven.Services
 			Post post = this.Session.Query<Post>()
 				.Where(x => x.Slug == slug)
 				.Include(x => x.CommentsId)
+				.Include(x => x.TrackbacksId)
 				.FirstOrDefault();
 
 			return post;

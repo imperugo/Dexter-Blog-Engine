@@ -72,6 +72,11 @@ namespace Dexter.Navigation.Concretes
 			return new SiteUrl(request.Request.Url.Host, request.Request.Url.Port, request.Request.IsSecureConnection, area, request.Request.RequestContext.RouteData.Values["controller"].ToString(), request.Request.RequestContext.RouteData.Values["action"].ToString(), null);
 		}
 
+		public SiteUrl PingbackUrl()
+		{
+			return null;
+		}
+
 		#endregion
 	}
 }

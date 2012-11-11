@@ -112,6 +112,8 @@
     <Compile Include="AutoMapper\Resolvers\DateTimeTypeConverter.cs" />
     <Compile Include="DexterCall.cs" />
     <Compile Include="Domain\ItemReference.cs" />
+    <Compile Include="Domain\ItemTrackbacks.cs" />
+    <Compile Include="Domain\Trackback.cs" />
     <Compile Include="Extensions\PostExtensions.cs" />
     <Compile Include="Helpers\SlugHelper.cs" />
     <Compile Include="Indexes\Reading\MonthOfPublishedPostsWithCountIndex.cs" />

@@ -135,13 +135,26 @@
     <Compile Include="Areas\Dxt_Admin\Dxt_AdminAreaRegistration.cs" />
     <Compile Include="Controllers\FakeDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PageController.cs" />
+    <Compile Include="Controllers\ServicesController.cs" />
+    <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\HomeController\ArchiveViewModel.cs" />
+    <Compile Include="Model\TagController\ArchiveViewModel.cs" />
+    <Compile Include="Model\PageController\IndexViewModel.cs" />
     <Compile Include="Model\HomeController\IndexViewModel.cs" />
+    <Compile Include="Model\HomeController\PostViewModel.cs" />
+    <Compile Include="Model\TagController\IndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Themes\Default\Assemblies\readme.txt" />
+    <Content Include="App_Data\Themes\Default\Contents\readme.txt" />
+    <Content Include="App_Data\Themes\Default\Javascripts\readme.txt" />
+    <Content Include="App_Data\Themes\Default\Styles\readme.txt" />
+    <Content Include="App_Data\Themes\Default\Views\readme.txt" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -156,7 +169,6 @@
     <Folder Include="App_Data\Plugins\" />
     <Folder Include="App_Data\Setup\" />
     <Folder Include="App_Data\Temp\" />
-    <Folder Include="App_Data\Themes\Default\Shared\" />
     <Folder Include="Areas\Dxt_Admin\Controllers\" />
     <Folder Include="Areas\Dxt_Admin\Models\" />
     <Folder Include="Areas\Dxt_Admin\Views\Shared\" />
