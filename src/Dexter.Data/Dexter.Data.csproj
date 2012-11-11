@@ -38,6 +38,7 @@
     <Compile Include="..\..\doc\Dexter.Build.cs">
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
+    <Compile Include="ILinkDataService.cs" />
     <Compile Include="IPageDataService.cs" />
     <Compile Include="Exceptions\ItemNotFoundException.cs" />
     <Compile Include="IConfigurationDataService.cs" />

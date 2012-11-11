@@ -27,9 +27,18 @@ namespace Dexter.Entities
 
 		public bool EnableHttps { get; set; }
 
-		public SeoConfigurationDto SeoConfigurationDto { get; set; }
+		public SeoConfigurationDto SeoConfiguration { get; set; }
+
+		public CommentSettingsDto CommentSettings { get; set; }
 
 		#endregion
+	}
+
+	public class CommentSettingsDto
+	{
+		public int NumberOfDayBeforeCloseComments { get; set; }
+
+		public bool EnablePremoderation { get; set; }
 	}
 
 	public class SeoConfigurationDto

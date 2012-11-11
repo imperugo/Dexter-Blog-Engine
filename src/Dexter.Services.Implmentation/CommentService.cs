@@ -19,6 +19,8 @@ namespace Dexter.Services.Implmentation
 	using System.Collections.Generic;
 	using System.Threading.Tasks;
 
+	using Akismet.NET;
+
 	using Dexter.Data;
 	using Dexter.Entities;
 	using Dexter.Entities.Filters;
@@ -30,13 +32,16 @@ namespace Dexter.Services.Implmentation
 
 		private readonly ICommentDataService commentDataService;
 
+		private readonly IConfigurationService configurationService;
+
 		#endregion
 
 		#region Constructors and Destructors
 
-		public CommentService(ICommentDataService commentDataService)
+		public CommentService(ICommentDataService commentDataService, IConfigurationService configurationService)
 		{
 			this.commentDataService = commentDataService;
+			this.configurationService = configurationService;
 		}
 
 		#endregion
@@ -108,6 +113,25 @@ namespace Dexter.Services.Implmentation
 		public Task<IList<CommentDto>> GetRecentCommentsAsync(int maxNumber, CommentQueryFilter queryFilter = null)
 		{
 			return Task.Run(() => this.GetRecentComments(maxNumber, queryFilter));
+		}
+
+		public void AddComment(CommentDto item, int itemId)
+		{
+			if (item == null)
+			{
+				throw new ArgumentNullException("item","The comment item must contain a valid instance.");
+			}
+
+			if (itemId < 1)
+			{
+				throw new ArgumentException("The item id must be greater than 0", "itemId");
+			}
+
+			BlogConfigurationDto configuration = configurationService.GetConfiguration();
+
+			CommentStatus status = configuration.CommentSettings.EnablePremoderation ? CommentStatus.Pending : CommentStatus.IsApproved;
+
+			this.commentDataService.AddComment(item, itemId, status);
 		}
 
 		#endregion

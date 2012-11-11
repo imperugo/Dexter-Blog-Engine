@@ -1,39 +1,29 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			IUrlBuilder.cs
+// File:			IndexViewModel.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/10/28
-// Last edit:	2012/11/01
+// Created:		2012/11/11
+// Last edit:	2012/11/11
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
-namespace Dexter.Navigation.Contracts
+namespace Dexter.Host.Model.HomeController
 {
-	using System.Web;
+	using Dexter.Entities;
+	using Dexter.Web.Core.Models;
 
-	using Dexter.Navigation.Helpers;
-
-	public interface IUrlBuilder
+	public class PostViewModel : DexterModelBase
 	{
 		#region Public Properties
 
-		IAdminUrlBuilder Admin { get; }
-
-		SiteUrl Home { get; }
-
-		#endregion
-
-		#region Public Methods and Operators
-
-		SiteUrl CurrentUrl(HttpContextWrapper request);
-
-		SiteUrl PingbackUrl();
+		public PostDto Post { get; set; }
 
 		#endregion
 	}

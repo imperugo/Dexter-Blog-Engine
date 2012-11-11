@@ -5,7 +5,7 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/01
-// Last edit:	2012/11/01
+// Last edit:	2012/11/11
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -26,7 +26,6 @@ namespace Dexter.Web.Core.Controllers.Web
 	using Dexter.Entities;
 	using Dexter.Entities.Filters;
 	using Dexter.Entities.Result;
-	using Dexter.Extensions.DateTime;
 	using Dexter.Services;
 	using Dexter.Web.Core.Models;
 
@@ -58,6 +57,22 @@ namespace Dexter.Web.Core.Controllers.Web
 
 		#region Public Properties
 
+		public BlogConfigurationDto BlogConfiguration
+		{
+			get
+			{
+				return this.ConfigurationService.GetConfiguration();
+			}
+		}
+
+		public ICommentService CommentService
+		{
+			get
+			{
+				return this.commentService;
+			}
+		}
+
 		public IConfigurationService ConfigurationService
 		{
 			get
@@ -71,14 +86,6 @@ namespace Dexter.Web.Core.Controllers.Web
 			get
 			{
 				return this.logger;
-			}
-		}
-
-		public ICommentService CommentService
-		{
-			get
-			{
-				return this.commentService;
 			}
 		}
 
@@ -98,7 +105,7 @@ namespace Dexter.Web.Core.Controllers.Web
 		{
 			DexterModelBase m = (DexterModelBase)model;
 
-			Task<IPagedResult<PostDto>> recentPosts = this.postService.GetPostsAsync(1, 5, new ItemQueryFilter()
+			Task<IPagedResult<PostDto>> recentPosts = this.postService.GetPostsAsync(1, 5, new ItemQueryFilter
 				                                                                               {
 					                                                                               Status = ItemStatus.Published
 				                                                                               });
@@ -127,9 +134,9 @@ namespace Dexter.Web.Core.Controllers.Web
 		{
 			DexterModelBase m = (DexterModelBase)model;
 
-			Task<IPagedResult<PostDto>> recentPosts = this.postService.GetPostsAsync(1, 5, new ItemQueryFilter()
+			Task<IPagedResult<PostDto>> recentPosts = this.postService.GetPostsAsync(1, 5, new ItemQueryFilter
 				                                                                               {
-																								   MaxPublishAt = DateTimeOffset.Now.AsMinutes(),
+					                                                                               MaxPublishAt = DateTimeOffset.Now.AsMinutes(), 
 					                                                                               Status = ItemStatus.Published
 				                                                                               });
 

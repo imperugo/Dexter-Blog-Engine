@@ -1,7 +1,7 @@
 #region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			SeoConfigurationDto.cs
+// File:			SeoConfiguration.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/27

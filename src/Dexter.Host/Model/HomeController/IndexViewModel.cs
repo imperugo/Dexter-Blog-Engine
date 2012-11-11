@@ -16,9 +16,14 @@
 
 namespace Dexter.Host.Model.HomeController
 {
+	using System.Collections.Generic;
+
+	using Dexter.Entities;
+	using Dexter.Entities.Result;
 	using Dexter.Web.Core.Models;
 
 	public class IndexViewModel : DexterModelBase
 	{
+		public IPagedResult<PostDto> Posts { get; set; }
 	}
 }

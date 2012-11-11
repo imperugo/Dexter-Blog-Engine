@@ -19,8 +19,6 @@ namespace Dexter.Entities
 	{
 		IsSpam, 
 
-		IsDeleted, 
-
 		IsApproved, 
 
 		Pending

@@ -52,7 +52,7 @@ namespace Dexter.Web.Core.Models
 			{
 				if (string.IsNullOrEmpty(this.copyRight) && this.ConfigurationDto != null)
 				{
-					return this.ConfigurationDto.SeoConfigurationDto.CopyRight;
+					return this.ConfigurationDto.SeoConfiguration.CopyRight;
 				}
 
 				return this.copyRight;
@@ -69,7 +69,7 @@ namespace Dexter.Web.Core.Models
 			{
 				if (string.IsNullOrEmpty(this.description) && this.ConfigurationDto != null)
 				{
-					return this.ConfigurationDto.SeoConfigurationDto.DefaultDescription;
+					return this.ConfigurationDto.SeoConfiguration.DefaultDescription;
 				}
 
 				return this.description;
@@ -86,7 +86,7 @@ namespace Dexter.Web.Core.Models
 			{
 				if (string.IsNullOrEmpty(this.keywords) && this.ConfigurationDto != null)
 				{
-					return string.Join(",", this.ConfigurationDto.SeoConfigurationDto.DefaultKeyWords);
+					return string.Join(",", this.ConfigurationDto.SeoConfiguration.DefaultKeyWords);
 				}
 
 				return this.keywords;
@@ -107,7 +107,7 @@ namespace Dexter.Web.Core.Models
 			{
 				if (string.IsNullOrEmpty(this.title) && this.ConfigurationDto != null)
 				{
-					return this.ConfigurationDto.SeoConfigurationDto.DefaultTitle;
+					return this.ConfigurationDto.SeoConfiguration.DefaultTitle;
 				}
 
 				return this.title;
