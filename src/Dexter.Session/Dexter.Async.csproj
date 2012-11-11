@@ -30,6 +30,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging, Version=2.1.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dexter.Host\bin\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Abstractions">
+      <HintPath>..\packages\RavenDB.Client.1.2.2135-Unstable\lib\net40\Raven.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,6 +54,9 @@
     <Compile Include="IDexterCall.cs" />
     <Compile Include="Installer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskExecutor\BackgroundTask.cs" />
+    <Compile Include="TaskExecutor\ITaskExecutor.cs" />
+    <Compile Include="TaskExecutor\TaskExecutor.cs" />
     <Compile Include="Web\IWebCallContext.cs" />
     <Compile Include="Web\WebCallContext.cs" />
   </ItemGroup>

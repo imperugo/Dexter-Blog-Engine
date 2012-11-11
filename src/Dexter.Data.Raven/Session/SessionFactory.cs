@@ -122,6 +122,7 @@ namespace Dexter.Data.Raven.Session
 			finally
 			{
 				session.Dispose();
+				currentContext[SessionStateKey] = null;
 			}
 		}
 
