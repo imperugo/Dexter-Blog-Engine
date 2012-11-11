@@ -45,7 +45,7 @@ namespace Dexter.Host.Controllers
 
 		[PingBack]
 		[AcceptVerbs(HttpVerbs.Get | HttpVerbs.Head)]
-		public ActionResult Archive(int? year, int? month, int page = 1)
+		public async Task<ActionResult> Archive(int? year, int? month, int page = 1)
 		{
 			if (year == null || month == null)
 			{
@@ -59,7 +59,15 @@ namespace Dexter.Host.Controllers
 				return this.HttpNotFound();
 			}
 
-			throw new NotImplementedException("To be completed");
+			ArchiveViewModel model = new ArchiveViewModel();
+
+			var postsTask = this.PostService.GetPostsByDateAsync(page, 10, year.Value, month, null, null);
+
+			await Task.WhenAll(postsTask);
+
+			model.Posts = postsTask.Result;
+
+			return await this.View(model);
 		}
 
 		[PingBack]

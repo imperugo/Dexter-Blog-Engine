@@ -5,7 +5,7 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/01
-// Last edit:	2012/11/02
+// Last edit:	2012/11/11
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -51,10 +51,6 @@ namespace Dexter.Services.Implmentation
 
 		#region Public Events
 
-		public event EventHandler<GenericEventArgs<IList<TagDto>>> TagsRetrievedForPublishedPosts;
-
-		public event EventHandler<CancelEventArgsWithOneParameter<int, IList<TagDto>>> TagsRetrievingForPublishedPosts;
-
 		public event EventHandler<GenericEventArgs<IList<MonthDto>>> MonthsRetrievedForPublishedPosts;
 
 		public event EventHandler<CancelEventArgsWithoutParameters<IList<MonthDto>>> MonthsRetrievingForPublishedPosts;
@@ -67,13 +63,21 @@ namespace Dexter.Services.Implmentation
 
 		public event EventHandler<CancelEventArgsWithOneParameter<string, PostDto>> PostRetrievingBySlug;
 
+		public event EventHandler<GenericEventArgs<IPagedResult<PostDto>>> PostsRetrievedByDates;
+
 		public event EventHandler<GenericEventArgs<IPagedResult<PostDto>>> PostsRetrievedByTag;
 
 		public event EventHandler<GenericEventArgs<IPagedResult<PostDto>>> PostsRetrievedWithFilters;
 
+		public event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, int, int?, int?, ItemQueryFilter>, IPagedResult<PostDto>>> PostsRetrievingByDates;
+
 		public event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, string, ItemQueryFilter>, IPagedResult<PostDto>>> PostsRetrievingBytag;
 
 		public event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, ItemQueryFilter>, IPagedResult<PostDto>>> PostsRetrievingWithFilters;
+
+		public event EventHandler<GenericEventArgs<IList<TagDto>>> TagsRetrievedForPublishedPosts;
+
+		public event EventHandler<CancelEventArgsWithOneParameter<int, IList<TagDto>>> TagsRetrievingForPublishedPosts;
 
 		#endregion
 
@@ -206,6 +210,63 @@ namespace Dexter.Services.Implmentation
 			return Task.Run(() => this.GetPosts(pageIndex, pageSize, filter));
 		}
 
+		public IPagedResult<PostDto> GetPostsByDate(int pageIndex, int pageSize, int year, int? month, int? day, ItemQueryFilter filters = null)
+		{
+			if (pageIndex < 1)
+			{
+				throw new ArgumentException("The page index must be greater than 0", "pageIndex");
+			}
+
+			if (pageSize < 1)
+			{
+				throw new ArgumentException("The page size must be greater than 0", "pageSize");
+			}
+
+			if (year < 1700)
+			{
+				throw new ArgumentException("The year value must be greater than 1700. Internet did not exist in 1700!", "year");
+			}
+
+			if (month.HasValue && (month.Value < 1 || month.Value > 12))
+			{
+				throw new ArgumentException("The month value must be greater than 0 and lesser than 12", "month");
+			}
+
+			if (day.HasValue && (day.Value < 1 || day.Value > 31))
+			{
+				throw new ArgumentException("The day value must be greater than 0 and lesser than 31", "month");
+			}
+
+			if (filters == null)
+			{
+				filters = new ItemQueryFilter();
+				filters.MaxPublishAt = DateTimeOffset.Now.AsMinutes();
+				filters.Status = ItemStatus.Published;
+			}
+
+			Tuple<int, int, int, int?, int?, ItemQueryFilter> p = new Tuple<int, int, int, int?, int?, ItemQueryFilter>(pageIndex, pageSize, year, month, day, filters);
+
+			CancelEventArgsWithOneParameter<Tuple<int, int, int, int?, int?, ItemQueryFilter>, IPagedResult<PostDto>> e = new CancelEventArgsWithOneParameter<Tuple<int, int, int, int?, int?, ItemQueryFilter>, IPagedResult<PostDto>>(p, null);
+
+			this.PostsRetrievingByDates.Raise(this, e);
+
+			if (e.Cancel)
+			{
+				return e.Result;
+			}
+
+			IPagedResult<PostDto> result = this.postDataService.GetPostsByDate(pageIndex, pageSize, year, month, day, filters);
+
+			this.PostsRetrievedByDates.Raise(this, new GenericEventArgs<IPagedResult<PostDto>>(result));
+
+			return result;
+		}
+
+		public Task<IPagedResult<PostDto>> GetPostsByDateAsync(int pageIndex, int pageSize, int year, int? month, int? day, ItemQueryFilter filters = null)
+		{
+			return Task.Run(() => this.GetPostsByDate(pageIndex, pageSize, year, month, day, filters));
+		}
+
 		public IPagedResult<PostDto> GetPostsByTag(int pageIndex, int pageSize, string tag, ItemQueryFilter filters = null)
 		{
 			if (pageIndex < 1)
@@ -255,30 +316,25 @@ namespace Dexter.Services.Implmentation
 			return Task.Run(() => this.GetPostsByTag(pageIndex, pageSize, tag, filters));
 		}
 
-		public void SaveOrUpdate(PostDto item)
-		{
-			this.postDataService.SaveOrUpdate(item);
-		}
-
 		public IList<TagDto> GetTopTagsForPublishedPosts(int maxNumberOfTags)
 		{
 			if (maxNumberOfTags < 1)
 			{
-				throw new ArgumentException("The number of tags to retrieve must be greater than 0", "numberOfTags");
+				throw new ArgumentException("The number of tags to retrieve must be greater than 0", "maxNumberOfTags");
 			}
 
 			CancelEventArgsWithOneParameter<int, IList<TagDto>> e = new CancelEventArgsWithOneParameter<int, IList<TagDto>>(maxNumberOfTags, null);
 
-			TagsRetrievingForPublishedPosts.Raise(this, e);
+			this.TagsRetrievingForPublishedPosts.Raise(this, e);
 
 			if (e.Cancel)
 			{
 				return e.Result;
 			}
 
-			var data = this.postDataService.GetTopTagsForPublishedPosts(maxNumberOfTags);
+			IList<TagDto> data = this.postDataService.GetTopTagsForPublishedPosts(maxNumberOfTags);
 
-			TagsRetrievedForPublishedPosts.Raise(this, new GenericEventArgs<IList<TagDto>>(data));
+			this.TagsRetrievedForPublishedPosts.Raise(this, new GenericEventArgs<IList<TagDto>>(data));
 
 			return data;
 		}
@@ -286,6 +342,11 @@ namespace Dexter.Services.Implmentation
 		public Task<IList<TagDto>> GetTopTagsForPublishedPostsAsync(int maxNumberOfTags)
 		{
 			return Task.Run(() => this.GetTopTagsForPublishedPosts(maxNumberOfTags));
+		}
+
+		public void SaveOrUpdate(PostDto item)
+		{
+			this.postDataService.SaveOrUpdate(item);
 		}
 
 		#endregion

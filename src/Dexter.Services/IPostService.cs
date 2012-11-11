@@ -30,6 +30,16 @@ namespace Dexter.Services
 		#region Public Events
 
 		/// <summary>
+		/// This event will raise after to retrieve <see cref="PostDto"/> filtered by the specified filters.. The event is raised by by the implementation of <see cref="GetPostsByDate"/> or the async version.
+		/// </summary>
+		event EventHandler<GenericEventArgs<IPagedResult<PostDto>>> PostsRetrievedByDates;
+
+		/// <summary>
+		/// This event will raise before to retrieve <see cref="PostDto"/> filtered by the specified filters. The event is raised by by the implementation of <see cref="GetPostsByDate"/> or the async version.
+		/// </summary>
+		event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, int, int?, int?, ItemQueryFilter>, IPagedResult<PostDto>>> PostsRetrievingByDates;
+		
+		/// <summary>
 		/// This event will raise after to retrieve <see cref="TagDto"/> of <see cref="PostDto"/> with specific filters. The event is raised by by the implementation of <see cref="GetTopTagsForPublishedPosts"/> or the async version.
 		/// </summary>
 		event EventHandler<GenericEventArgs<IList<TagDto>>> TagsRetrievedForPublishedPosts;
@@ -112,6 +122,10 @@ namespace Dexter.Services
 		IPagedResult<PostDto> GetPostsByTag(int pageIndex, int pageSize, string tag, ItemQueryFilter filters = null);
 
 		Task<IPagedResult<PostDto>> GetPostsByTagAsync(int pageIndex, int pageSize, string tag, ItemQueryFilter filters = null);
+
+		IPagedResult<PostDto> GetPostsByDate(int pageIndex, int pageSize, int year, int? month, int? day, ItemQueryFilter filters = null);
+
+		Task<IPagedResult<PostDto>> GetPostsByDateAsync(int pageIndex, int pageSize, int year, int? month, int? day, ItemQueryFilter filters = null);
 
 		void SaveOrUpdate(PostDto item);
 

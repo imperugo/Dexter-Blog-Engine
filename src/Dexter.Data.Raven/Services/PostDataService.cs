@@ -93,7 +93,6 @@ namespace Dexter.Data.Raven.Services
 				.Include<Post>(x => x.CommentsId)
 				.Load(id);
 				
-
 			if (post == null)
 			{
 				throw new ItemNotFoundException("id");
