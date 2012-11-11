@@ -4,8 +4,8 @@
 // File:			Installer.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/11/02
-// Last edit:	2012/11/02
+// Created:		2012/11/12
+// Last edit:	2012/11/12
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -14,13 +14,12 @@
 
 #endregion
 
-namespace Dexter.Async
+namespace Dexter.Navigation
 {
-	using Dexter.Async.Async;
-	using Dexter.Async.TaskExecutor;
-	using Dexter.Async.Web;
 	using Dexter.Dependency;
 	using Dexter.Dependency.Installation;
+	using Dexter.Navigation.Concretes;
+	using Dexter.Navigation.Contracts;
 
 	public class Installer : ILayerInstaller
 	{
@@ -28,10 +27,8 @@ namespace Dexter.Async
 
 		public void ApplicationStarted(IDexterContainer container)
 		{
-			container.Register<ICallContextFactory, DexterCallContextFactory>(LifeCycle.Singleton);
-			container.Register<IAsyncCallContext, AsyncCallContext>(LifeCycle.Singleton);
-			container.Register<IWebCallContext, WebCallContext>(LifeCycle.Singleton);
-			container.Register<ITaskExecutor, TaskExecutor.TaskExecutor>(LifeCycle.Singleton);
+			container.Register<IUrlBuilder, UrlBuilder>(LifeCycle.Singleton);
+			container.Register<IAdminUrlBuilder, AdminUrlBuilder>(LifeCycle.Singleton);
 		}
 
 		public void ServiceRegistration(IDexterContainer container)

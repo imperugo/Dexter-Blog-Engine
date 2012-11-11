@@ -25,6 +25,7 @@ namespace Dexter.Web.Core.HttpApplication
 	using Common.Logging;
 
 	using Dexter.Async;
+	using Dexter.Async.TaskExecutor;
 	using Dexter.Dependency;
 	using Dexter.Web.Core.Routing;
 
@@ -39,6 +40,8 @@ namespace Dexter.Web.Core.HttpApplication
 		private readonly ILog logger;
 
 		private readonly IRoutingService routingService;
+
+		private readonly ITaskExecutor taskExecutor;
 
 		#endregion
 
@@ -57,6 +60,7 @@ namespace Dexter.Web.Core.HttpApplication
 			this.container = DexterContainer.Resolve<IDexterContainer>();
 			this.dexterCall = DexterContainer.Resolve<IDexterCall>();
 			this.routingService = DexterContainer.Resolve<IRoutingService>();
+			this.taskExecutor = DexterContainer.Resolve<ITaskExecutor>();
 			this.logger = LogManager.GetCurrentClassLogger();
 
 			base.BeginRequest += (o, args) => this.BeginRequest();
@@ -77,6 +81,8 @@ namespace Dexter.Web.Core.HttpApplication
 			Exception errors = this.Server.GetLastError();
 
 			this.dexterCall.Complete(errors == null);
+
+			this.taskExecutor.StartExecuting();
 		}
 
 		public new void Error()

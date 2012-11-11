@@ -43,7 +43,7 @@ namespace Dexter.Data.Raven.Services
 
 		public BlogConfigurationDto GetConfiguration()
 		{
-			BlogSettings configuration = this.Session.Load<BlogSettings>().First();
+			BlogSettings configuration = this.Session.Load<BlogSettings>().FirstOrDefault();
 
 			return configuration.MapTo<BlogConfigurationDto>();
 		}

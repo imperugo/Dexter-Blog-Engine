@@ -74,7 +74,7 @@ namespace Dexter.Navigation.Concretes
 
 		public SiteUrl PingbackUrl()
 		{
-			return null;
+			return new SiteUrl(Home.Domain, Home.Port, Home.IsSecureConnection, Home.Area, "Services", "Pingback", null);
 		}
 
 		#endregion
