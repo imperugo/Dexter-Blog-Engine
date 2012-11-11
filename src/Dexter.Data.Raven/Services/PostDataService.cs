@@ -257,7 +257,7 @@ namespace Dexter.Data.Raven.Services
 		{
 			if (item == null)
 			{
-				throw new ArgumentNullException("item", "The post target must be contains a valid instance");
+				throw new ArgumentNullException("item", "The post must be contains a valid instance");
 			}
 
 			Post post = this.Session.Load<Post>(item.Id)
@@ -283,9 +283,6 @@ namespace Dexter.Data.Raven.Services
 
 				ItemComments comments = new ItemComments
 					                        {
-						                        Approved = new List<Comment>(), 
-						                        Pending = new List<Comment>(), 
-						                        Spam = new List<Comment>(), 
 						                        Item = new ItemReference
 							                               {
 								                               Id = post.Id, 
@@ -304,6 +301,46 @@ namespace Dexter.Data.Raven.Services
 			}
 
 			item.Id = post.Id;
+		}
+
+		public void SaveTrackback(TrackBackDto trackBack, int itemId)
+		{
+			if (trackBack == null)
+			{
+				throw new ArgumentNullException("trackBack", "The trackBack must be contains a valid instance");
+			}
+
+			if (itemId < 1)
+			{
+				throw new ArgumentException("The Id must be greater than 0", "itemId");
+			}
+
+			var post = this.Session
+									.Include<Post>(x => x.TrackbacksId)
+									.Load<Post>(itemId);
+
+			if (post == null)
+			{
+				throw new ItemNotFoundException("itemId");
+			}
+
+			var trackbacks = this.Session.Load<ItemTrackbacks>(post.TrackbacksId) 
+									?? new ItemTrackbacks
+										   {
+											   Item = new ItemReference
+											   {
+												   Id = post.Id,
+												   Status = post.Status,
+												   ItemPublishedAt = post.PublishAt
+											   }
+										   };
+
+			trackbacks.AddTrackback(trackBack.MapTo<Trackback>(), trackBack.Status);
+
+			this.Session.Store(trackbacks);
+			post.TrackbacksId = trackbacks.Id;
+
+			this.Session.Store(post);
 		}
 
 		#endregion

@@ -44,6 +44,8 @@ namespace Dexter.Data
 
 		void SaveOrUpdate(PostDto item);
 
+		void SaveTrackback(TrackBackDto trackBack, int itemId);
+
 		#endregion
 	}
 }

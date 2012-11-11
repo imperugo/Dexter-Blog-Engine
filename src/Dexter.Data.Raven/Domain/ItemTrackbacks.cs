@@ -76,7 +76,7 @@ namespace Dexter.Data.Raven.Domain
 
 		#endregion
 
-		public void AddComment(Trackback item, TrackbackStatus status)
+		public void AddTrackback(Trackback item, TrackbackStatus status)
 		{
 			switch (status)
 			{
