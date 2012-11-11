@@ -292,7 +292,7 @@ namespace Dexter.Services.Implmentation
 			if (filters == null)
 			{
 				filters = new ItemQueryFilter();
-				filters.MaxPublishAt = DateTime.Now;
+				filters.MaxPublishAt = DateTimeOffset.Now.AsMinutes();
 				filters.Status = ItemStatus.Published;
 			}
 
