@@ -1,11 +1,11 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			Post.cs
+// File:			NoStaleQueriesListener.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/10/27
-// Last edit:	2012/11/01
+// Created:		2012/12/01
+// Last edit:	2012/12/01
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -13,17 +13,19 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 #endregion
 
-namespace Dexter.Data.Raven.Domain
+namespace Dexter.Data.Raven.Test.RavenDb
 {
-	using System.Collections.Generic;
+	using global::Raven.Client;
+	using global::Raven.Client.Listeners;
 
-	public class Post : Item
+	public class NoStaleQueriesListener : IDocumentQueryListener
 	{
-		#region Public Properties
+		#region Public Methods and Operators
 
-		public IEnumerable<string> Categories { get; set; }
-
-		public ICollection<string> Tags { get; set; }
+		public void BeforeQueryExecuted(IDocumentQueryCustomization queryCustomization)
+		{
+			queryCustomization.WaitForNonStaleResults();
+		}
 
 		#endregion
 	}

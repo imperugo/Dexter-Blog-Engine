@@ -1,7 +1,7 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			PostServiceTest.cs
+// File:			PostDataServiceTest.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/27
@@ -23,7 +23,7 @@ namespace Dexter.Data.Raven.Test.PostService
 	using Dexter.Data.Raven.Domain;
 	using Dexter.Data.Raven.Extensions;
 	using Dexter.Data.Raven.Services;
-	using Dexter.Data.Raven.Test.PostService.Helpers;
+	using Dexter.Data.Raven.Test.Helpers;
 	using Dexter.Entities;
 
 	using FizzWare.NBuilder;
@@ -34,7 +34,7 @@ namespace Dexter.Data.Raven.Test.PostService
 
 	using Xunit;
 
-	public class PostServiceTest : RavenDbTestBase, IDisposable
+	public class PostDataServiceTest : RavenDbTestBase, IDisposable
 	{
 		#region Fields
 
@@ -49,7 +49,7 @@ namespace Dexter.Data.Raven.Test.PostService
 		/// <summary>
 		/// 	Initializes a new instance of the <see cref="T:System.Object" /> class.
 		/// </summary>
-		public PostServiceTest()
+		public PostDataServiceTest()
 		{
 			this.sessionFactory = new TestSessionFactory(this.DocumentStore);
 			this.sut = new PostDataService(new Mock<ILog>().Object, sessionFactory, this.DocumentStore);

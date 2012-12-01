@@ -79,7 +79,9 @@
     <Compile Include="Indexes\Reading\MonthOfPublishedPostsWithCountIndex.cs" />
     <Compile Include="Indexes\Reading\PostCommentsCreationDateIndex.cs" />
     <Compile Include="Indexes\Reading\TagsForPublishedPostsWithCountIndex.cs" />
+    <Compile Include="Indexes\Updating\UpdateCategoryIndex.cs" />
     <Compile Include="Indexes\Updating\UpdateDenormalizedItemIndex.cs" />
+    <Compile Include="Services\CategoryDataService.cs" />
     <Compile Include="Services\ConfigurationDataService.cs" />
     <Compile Include="Services\CommentDataService.cs" />
     <Compile Include="Domain\DexterSettings.cs" />

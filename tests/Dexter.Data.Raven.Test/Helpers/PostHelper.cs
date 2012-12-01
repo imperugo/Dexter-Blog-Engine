@@ -1,7 +1,7 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			Post.cs
+// File:			PostHelper.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/27
@@ -13,17 +13,35 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 #endregion
 
-namespace Dexter.Data.Raven.Domain
+namespace Dexter.Data.Raven.Test.Helpers
 {
 	using System.Collections.Generic;
 
-	public class Post : Item
+	using Dexter.Data.Raven.Domain;
+	using Dexter.Entities;
+
+	using FizzWare.NBuilder;
+
+	internal static class PostHelper
 	{
-		#region Public Properties
+		#region Public Methods and Operators
 
-		public IEnumerable<string> Categories { get; set; }
+		public static IList<Post> GetPosts(int numberOfDocument)
+		{
+			return Builder<Post>.CreateListOfSize(numberOfDocument)
+							.All()
+							.With(x => x.Id = 0)
+							.With(x => x.CommentsId = null)
+							.Build();
+		}
 
-		public ICollection<string> Tags { get; set; }
+		public static IList<PostDto> GetPostsDto(int numberOfDocument)
+		{
+			return Builder<PostDto>.CreateListOfSize(numberOfDocument)
+							.All()
+							.With(x => x.Id = 0)
+							.Build();
+		}
 
 		#endregion
 	}

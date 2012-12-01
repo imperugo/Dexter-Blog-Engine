@@ -132,10 +132,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PostService\Helpers\PostHelper.cs" />
-    <Compile Include="PostService\PostServiceTest.cs" />
+    <Compile Include="CategoryService\CategoryDataServiceTest.cs" />
+    <Compile Include="Helpers\CategoryHelper.cs" />
+    <Compile Include="Helpers\PostHelper.cs" />
+    <Compile Include="PostService\PostDataServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RavenDbTestBase.cs" />
+    <Compile Include="RavenDb\NoStaleQueriesListener.cs" />
     <Compile Include="TestSessionFactory.cs" />
   </ItemGroup>
   <ItemGroup>

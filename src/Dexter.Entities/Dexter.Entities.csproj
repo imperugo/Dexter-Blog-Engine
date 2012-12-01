@@ -37,6 +37,7 @@
     <Compile Include="..\..\doc\Dexter.Build.cs">
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
+    <Compile Include="CategoryDto.cs" />
     <Compile Include="CommentDto.cs" />
     <Compile Include="BlogConfigurationDto.cs" />
     <Compile Include="CommentStatus.cs" />

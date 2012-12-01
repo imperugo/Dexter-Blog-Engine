@@ -38,6 +38,8 @@
     <Compile Include="..\..\doc\Dexter.Build.cs">
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
+    <Compile Include="Exceptions\CategoryNotFoundException.cs" />
+    <Compile Include="ICategoryDataService.cs" />
     <Compile Include="ILinkDataService.cs" />
     <Compile Include="IPageDataService.cs" />
     <Compile Include="Exceptions\ItemNotFoundException.cs" />

@@ -1,11 +1,11 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			PostHelper.cs
+// File:			CategoryHelper.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/10/27
-// Last edit:	2012/11/01
+// Created:		2012/12/01
+// Last edit:	2012/12/01
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -13,36 +13,25 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 #endregion
 
-namespace Dexter.Data.Raven.Test.PostService.Helpers
+namespace Dexter.Data.Raven.Test.Helpers
 {
 	using System.Collections.Generic;
 
 	using Dexter.Data.Raven.Domain;
-	using Dexter.Entities;
 
 	using FizzWare.NBuilder;
 
-	internal static class PostHelper
+	internal static class CategoryHelper
 	{
-		#region Public Methods and Operators
-
-		public static IList<Post> GetPosts(int numberOfDocument)
+		public static IList<Category> GetCategories(int numberOfDocument)
 		{
-			return Builder<Post>.CreateListOfSize(numberOfDocument)
+			return Builder<Category>.CreateListOfSize(numberOfDocument)
 							.All()
-							.With(x => x.Id = 0)
-							.With(x => x.CommentsId = null)
+							.With(x => x.Id = null)
+							.With(x => x.ParentId = null)
+							.With(x => x.ChildrenIds = null)
+							.With(x => x.IsDefault = false)
 							.Build();
 		}
-
-		public static IList<PostDto> GetPostsDto(int numberOfDocument)
-		{
-			return Builder<PostDto>.CreateListOfSize(numberOfDocument)
-							.All()
-							.With(x => x.Id = 0)
-							.Build();
-		}
-
-		#endregion
 	}
 }

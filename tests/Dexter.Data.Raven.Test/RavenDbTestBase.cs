@@ -5,7 +5,7 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/27
-// Last edit:	2012/11/01
+// Last edit:	2012/12/01
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -16,13 +16,16 @@
 namespace Dexter.Data.Raven.Test
 {
 	using System;
+	using System.Threading;
 
 	using Dexter.Data.Raven.AutoMapper;
-	using Dexter.Data.Raven.Domain;
+	using Dexter.Data.Raven.Setup;
+	using Dexter.Data.Raven.Test.RavenDb;
 
 	using global::Raven.Client;
-	using global::Raven.Client.Document;
+
 	using global::Raven.Client.Embedded;
+
 	using global::Raven.Client.Indexes;
 
 	public class RavenDbTestBase : IDisposable
@@ -41,26 +44,17 @@ namespace Dexter.Data.Raven.Test
 		public RavenDbTestBase()
 		{
 			this.documentStore = new EmbeddableDocumentStore
-			{
-				RunInMemory = true,
-				Conventions =
-				{
-					FindTypeTagName = type =>
-					{
-						if (typeof(Item).IsAssignableFrom(type))
-						{
-							return "Items";
-						}
-						return DocumentConvention.DefaultTypeTagName(type);
-					}
-				}
-			};
+				                     {
+					                     RunInMemory = true
+				                     };
 
 			this.documentStore.Initialize();
 
-			Dexter.Data.Raven.Setup.Indexes.UpdateDatabaseIndexes(documentStore);
+			this.documentStore.RegisterListener(new NoStaleQueriesListener());
 
-			IndexCreation.CreateIndexes(this.GetType().Assembly, documentStore);
+			Indexes.UpdateDatabaseIndexes(this.documentStore);
+
+			IndexCreation.CreateIndexes(this.GetType().Assembly, this.documentStore);
 
 			AutoMapperConfiguration.Configure();
 		}
@@ -96,6 +90,14 @@ namespace Dexter.Data.Raven.Test
 			{
 				action(session);
 				session.SaveChanges();
+			}
+		}
+
+		protected void WaitStaleIndexes()
+		{
+			while (this.DocumentStore.DocumentDatabase.Statistics.StaleIndexes.Length != 0)
+			{
+				Thread.Sleep(10);
 			}
 		}
 

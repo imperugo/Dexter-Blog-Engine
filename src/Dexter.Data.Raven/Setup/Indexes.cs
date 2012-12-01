@@ -34,6 +34,7 @@ namespace Dexter.Data.Raven.Setup
 		public static void UpdateDatabaseIndexes(IDocumentStore store)
 		{
 			IndexDefinition postsBySlugIndex = store.DatabaseCommands.GetIndex("BlogPosts/BySlug");
+			IndexDefinition categoryByDefault = store.DatabaseCommands.GetIndex("Category/ById");
 
 			if (postsBySlugIndex == null)
 			{
@@ -46,6 +47,19 @@ namespace Dexter.Data.Raven.Setup
 								                                    })
 						});
 			}
+
+			if (categoryByDefault == null)
+			{
+				store.DatabaseCommands.PutIndex("Category/ById",
+							new IndexDefinitionBuilder<Category>
+							{
+								Map = posts => posts.Select(post => new
+												                        {
+													                        post.Id
+												                        })
+							});
+			}
+
 		}
 
 		#endregion
