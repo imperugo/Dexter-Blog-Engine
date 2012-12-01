@@ -1,77 +1,58 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			BlogConfigurationDto.cs
+// File:			DexterSettings.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/10/28
-// Last edit:	2012/11/01
+// Created:		2012/10/27
+// Last edit:	2012/12/01
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
-namespace Dexter.Entities
+namespace Dexter.Data.Raven.Domain
 {
-	public class BlogConfigurationDto
+	using System;
+	using System.Collections.Generic;
+	using System.Net.Mail;
+
+	public class DexterSettings
 	{
 		#region Public Properties
+
+		public string DateFormatPatter { get; set; }
+
+		public int DefaultPostCategoryId { get; set; }
+
+		public bool EnableXmlRpc { get; set; }
+
+		public DayOfWeek FirstDayOfWeek { get; set; }
+
+		public Uri MainDomain { get; set; }
+
+		public MailAddress OwnerEmail { get; set; }
+
+		public ReadingConfiguration ReadingConfiguration { get; set; }
+
+		public SeoConfiguration SeoConfiguration { get; set; }
+
+		public SmtpConfiguration SmtpConfiguration { get; set; }
+
+		public string SubTitle { get; set; }
+
+		public string TimeFormatPatter { get; set; }
+
+		public string TimeZoneId { get; set; }
+
+		public string Title { get; set; }
 
 		public Tracking Tracking { get; set; }
 
-		public string DefaultDomain { get; set; }
-
-		public int DefaultHttpsPort { get; set; }
-
-		public int DefaultPort { get; set; }
-
-		public bool EnableHttps { get; set; }
-
-		public SeoConfigurationDto SeoConfiguration { get; set; }
-
-		public CommentSettingsDto CommentSettings { get; set; }
-
-		#endregion
-	}
-
-	public class CommentSettingsDto
-	{
-		public int NumberOfDayBeforeCloseComments { get; set; }
-
-		public bool EnablePremoderation { get; set; }
-	}
-
-	public class SeoConfigurationDto
-	{
-		#region Public Properties
-
-		public bool AllowIndicization { get; set; }
-
-		/// <summary>
-		/// 	Gets or sets the copy right.
-		/// </summary>
-		/// <value> The copy right. </value>
-		public string CopyRight { get; set; }
-
-		/// <summary>
-		/// 	Gets or sets the default description.
-		/// </summary>
-		/// <value> The default description. </value>
-		public string DefaultDescription { get; set; }
-
-		/// <summary>
-		/// 	Gets or sets the default key words.
-		/// </summary>
-		/// <value> The default key words. </value>
-		public string[] DefaultKeyWords { get; set; }
-
-		/// <summary>
-		/// 	Gets or sets the default title.
-		/// </summary>
-		/// <value> The default title. </value>
-		public string DefaultTitle { get; set; }
+		public IList<Uri> UpdateServices { get; set; }
 
 		#endregion
 	}

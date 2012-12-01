@@ -5,12 +5,13 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/28
-// Last edit:	2012/11/01
+// Last edit:	2012/12/01
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Navigation.Concretes
@@ -28,8 +29,6 @@ namespace Dexter.Navigation.Concretes
 	{
 		#region Fields
 
-		private readonly IAdminUrlBuilder adminUrlBuilder;
-
 		private readonly IConfigurationService configurationService;
 
 		private readonly ILog logger;
@@ -38,10 +37,11 @@ namespace Dexter.Navigation.Concretes
 
 		#region Constructors and Destructors
 
-		public UrlBuilder(ILog logger, IAdminUrlBuilder adminUrlBuilder, IConfigurationService configurationService)
+		public UrlBuilder(ILog logger, IAdminUrlBuilder adminUrlBuilder, IConfigurationService configurationService, IPostUrlBuilder postUrlBuilder)
 		{
 			this.logger = logger;
-			this.adminUrlBuilder = adminUrlBuilder;
+			this.Admin = adminUrlBuilder;
+			this.Post = postUrlBuilder;
 			this.configurationService = configurationService;
 		}
 
@@ -61,6 +61,8 @@ namespace Dexter.Navigation.Concretes
 			}
 		}
 
+		public IPostUrlBuilder Post { get; set; }
+
 		#endregion
 
 		#region Public Methods and Operators
@@ -74,7 +76,7 @@ namespace Dexter.Navigation.Concretes
 
 		public SiteUrl PingbackUrl()
 		{
-			return new SiteUrl(Home.Domain, Home.Port, Home.IsSecureConnection, Home.Area, "Services", "Pingback", null);
+			return new SiteUrl(this.Home.Domain, this.Home.Port, this.Home.IsSecureConnection, this.Home.Area, "Services", "Pingback", null);
 		}
 
 		#endregion

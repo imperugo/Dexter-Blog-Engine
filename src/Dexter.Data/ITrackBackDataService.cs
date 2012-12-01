@@ -1,11 +1,11 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			TrackbackDto.cs
+// File:			ITrackBackDataService.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/11/11
-// Last edit:	2012/11/11
+// Created:		2012/11/24
+// Last edit:	2012/11/24
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -14,27 +14,15 @@
 
 #endregion
 
-namespace Dexter.Entities
+namespace Dexter.Data
 {
 	using System;
 
-	public class TrackBackDto
+	public interface ITrackBackDataService
 	{
-		#region Public Properties
+		#region Public Methods and Operators
 
-		public string Excerpt { get; set; }
-
-		public bool IsSpam { get; set; }
-
-		public string Name { get; set; }
-
-		public string Title { get; set; }
-
-		public Uri Url { get; set; }
-
-		public TrackbackStatus Status { get; set; }
-
-		public int ItemId { get; set; }
+		bool IsFirstTrackbackBack(int itemId, Uri url);
 
 		#endregion
 	}

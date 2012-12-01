@@ -67,7 +67,7 @@ namespace Dexter.Host.Controllers
 
 			model.Posts = postsTask.Result;
 
-			return await this.View(model);
+			return this.View(model);
 		}
 
 		[PingBack]
@@ -86,7 +86,7 @@ namespace Dexter.Host.Controllers
 
 			model.Posts = postsTasks.Result;
 
-			return await this.Json(model, JsonRequestBehavior.AllowGet);
+			return this.Json(model, JsonRequestBehavior.AllowGet);
 		}
 
 		[PingBack]
@@ -101,7 +101,7 @@ namespace Dexter.Host.Controllers
 
 			model.Post = postTasks.Result;
 
-			return await this.View(model);
+			return this.View(model);
 		}
 
 		#endregion

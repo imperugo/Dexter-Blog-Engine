@@ -97,10 +97,6 @@ namespace Dexter.Web.Core.Models
 			}
 		}
 
-		public virtual IEnumerable<CommentDto> RecentComments { get; internal set; }
-
-		public virtual IEnumerable<PostDto> RecentPosts { get; internal set; }
-
 		public virtual string Title
 		{
 			get
@@ -117,10 +113,6 @@ namespace Dexter.Web.Core.Models
 				this.title = value;
 			}
 		}
-
-		public virtual IList<MonthDto> Months { get; internal set; }
-
-		public virtual IList<TagDto> TopTags { get; internal set; }
 
 		#endregion
 

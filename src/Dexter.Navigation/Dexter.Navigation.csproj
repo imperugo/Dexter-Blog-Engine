@@ -73,9 +73,11 @@
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
     <Compile Include="Concretes\UrlBuilder.cs" />
-    <Compile Include="Concretes\UserUrlBuilder.cs" />
+    <Compile Include="Concretes\AdminUrlBuilder.cs" />
     <Compile Include="Contracts\IAdminUrlBuilder.cs" />
+    <Compile Include="Contracts\IPostUrlBuilder.cs" />
     <Compile Include="Contracts\IUrlBuilder.cs" />
+    <Compile Include="Concretes\PostUrlBuilder.cs" />
     <Compile Include="Extensions\NavigationExtensions.cs" />
     <Compile Include="Helpers\SiteUrl.cs" />
     <Compile Include="Installer.cs" />

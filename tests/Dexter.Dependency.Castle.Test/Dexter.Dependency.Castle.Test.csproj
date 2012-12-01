@@ -60,17 +60,21 @@
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Xml" />
-    <Reference Include="xunit">
-      <HintPath>..\..\src\packages\xunit.1.9.1\lib\net20\xunit.dll</HintPath>
+    <Reference Include="xunit, Version=2.0.0.1611, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\src\packages\xunit.2.0.0-alpha-build1611\lib\net45\xunit.dll</HintPath>
     </Reference>
-    <Reference Include="xunit.runner.msbuild">
-      <HintPath>..\..\src\packages\xunit.1.9.1\lib\net20\xunit.runner.msbuild.dll</HintPath>
+    <Reference Include="xunit.runner.msbuild, Version=2.0.0.1611, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\src\packages\xunit.2.0.0-alpha-build1611\lib\net45\xunit.runner.msbuild.dll</HintPath>
     </Reference>
-    <Reference Include="xunit.runner.tdnet">
-      <HintPath>..\..\src\packages\xunit.1.9.1\lib\net20\xunit.runner.tdnet.dll</HintPath>
+    <Reference Include="xunit.runner.tdnet, Version=2.0.0.1611, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\src\packages\xunit.2.0.0-alpha-build1611\lib\net45\xunit.runner.tdnet.dll</HintPath>
     </Reference>
-    <Reference Include="xunit.runner.utility">
-      <HintPath>..\..\src\packages\xunit.1.9.1\lib\net20\xunit.runner.utility.dll</HintPath>
+    <Reference Include="xunit.runner.utility, Version=2.0.0.1611, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\src\packages\xunit.2.0.0-alpha-build1611\lib\net45\xunit.runner.utility.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

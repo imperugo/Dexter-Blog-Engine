@@ -25,6 +25,8 @@ namespace Dexter.Navigation.Contracts
 
 		IAdminUrlBuilder Admin { get; }
 
+		IPostUrlBuilder Post { get; set; }
+
 		SiteUrl Home { get; }
 
 		#endregion

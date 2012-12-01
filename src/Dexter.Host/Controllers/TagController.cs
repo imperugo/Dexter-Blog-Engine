@@ -51,7 +51,7 @@ namespace Dexter.Host.Controllers
 
 			model.Posts = await this.PostService.GetPostsByTagAsync(page, 10, id);
 
-			return await this.View(model);
+			return this.View(model);
 		}
 
 		[AcceptVerbs(HttpVerbs.Get | HttpVerbs.Head)]
@@ -61,7 +61,7 @@ namespace Dexter.Host.Controllers
 
 			model.Tags = await this.PostService.GetTopTagsForPublishedPostsAsync(50);
 
-			return await this.View(model);
+			return this.View(model);
 		}
 
 		#endregion

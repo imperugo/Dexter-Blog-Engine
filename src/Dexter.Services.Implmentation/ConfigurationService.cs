@@ -17,6 +17,7 @@ namespace Dexter.Services.Implmentation
 {
 	using System;
 	using System.Threading.Tasks;
+	using System.Web;
 
 	using Dexter.Caching;
 	using Dexter.Data;
@@ -29,6 +30,7 @@ namespace Dexter.Services.Implmentation
 		private readonly IConfigurationDataService configurationDataService;
 
 		private readonly ICacheProvider cacheProvider;
+
 
 		#endregion
 
@@ -51,6 +53,18 @@ namespace Dexter.Services.Implmentation
 			if (result == null)
 			{
 				result = this.configurationDataService.GetConfiguration();
+
+				if (result == null)
+				{
+					result = new BlogConfigurationDto()
+						         {
+							         DefaultDomain = HttpContext.Current.Request.Url.Host,
+							         DefaultHttpsPort = 443,
+							         DefaultPort = HttpContext.Current.Request.Url.Port,
+							         EnableHttps = false,
+						         };
+				}
+
 				this.cacheProvider.Put("dexter.blog.configurationDto", result, TimeSpan.FromHours(3));
 			}
 

@@ -1,7 +1,7 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			Installer.cs
+// File:			ITrackbackService.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/12
@@ -14,31 +14,17 @@
 
 #endregion
 
-namespace Dexter.Navigation
+namespace Dexter.Data
 {
-	using Dexter.Dependency;
-	using Dexter.Dependency.Installation;
-	using Dexter.Navigation.Concretes;
-	using Dexter.Navigation.Contracts;
+	using System.Threading.Tasks;
 
-	public class Installer : ILayerInstaller
+	using Dexter.Entities;
+
+	public interface ITrackbackService
 	{
 		#region Public Methods and Operators
 
-		public void ApplicationStarted(IDexterContainer container)
-		{
-			container.Register<IUrlBuilder, UrlBuilder>(LifeCycle.Singleton);
-			container.Register<IAdminUrlBuilder, AdminUrlBuilder>(LifeCycle.Singleton);
-			container.Register<IPostUrlBuilder, PostUrlBuilder>(LifeCycle.Singleton);
-		}
-
-		public void ServiceRegistration(IDexterContainer container)
-		{
-		}
-
-		public void ServiceRegistrationComplete(IDexterContainer container)
-		{
-		}
+		Task SaveOrUpdateAsync(TrackBackDto trackBack, ItemType itemType);
 
 		#endregion
 	}

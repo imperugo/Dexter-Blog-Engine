@@ -33,7 +33,7 @@ namespace Dexter.Data.Raven.AutoMapper
 			Mapper.CreateMap<Post, PostDto>();
 			Mapper.CreateMap<PostDto, Post>();
 			Mapper.CreateMap<Comment, CommentDto>();
-			Mapper.CreateMap<BlogSettings, BlogConfigurationDto>();
+			Mapper.CreateMap<DexterSettings, BlogConfigurationDto>();
 		}
 
 		#endregion

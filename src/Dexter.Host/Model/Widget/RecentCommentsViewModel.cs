@@ -1,11 +1,11 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			TrackbackDto.cs
+// File:			RecentCommentsViewModel.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/11/11
-// Last edit:	2012/11/11
+// Created:		2012/12/01
+// Last edit:	2012/12/01
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -14,27 +14,17 @@
 
 #endregion
 
-namespace Dexter.Entities
+namespace Dexter.Host.Model.Widget
 {
-	using System;
+	using System.Collections.Generic;
 
-	public class TrackBackDto
+	using Dexter.Entities;
+
+	public class RecentCommentsViewModel
 	{
 		#region Public Properties
 
-		public string Excerpt { get; set; }
-
-		public bool IsSpam { get; set; }
-
-		public string Name { get; set; }
-
-		public string Title { get; set; }
-
-		public Uri Url { get; set; }
-
-		public TrackbackStatus Status { get; set; }
-
-		public int ItemId { get; set; }
+		public IList<CommentDto> Comments { get; set; }
 
 		#endregion
 	}

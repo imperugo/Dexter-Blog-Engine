@@ -40,6 +40,7 @@
     <Compile Include="CommentDto.cs" />
     <Compile Include="BlogConfigurationDto.cs" />
     <Compile Include="CommentStatus.cs" />
+    <Compile Include="ItemType.cs" />
     <Compile Include="TrackbackDto.cs" />
     <Compile Include="TrackbackStatus.cs" />
     <Compile Include="Exceptions\InvalidItemSlugException.cs" />

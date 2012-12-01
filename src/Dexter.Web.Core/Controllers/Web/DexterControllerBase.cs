@@ -98,58 +98,5 @@ namespace Dexter.Web.Core.Controllers.Web
 		}
 
 		#endregion
-
-		#region Public Methods and Operators
-
-		public new async Task<ActionResult> Json(object model, JsonRequestBehavior behavior)
-		{
-			DexterModelBase m = (DexterModelBase)model;
-
-			Task<IPagedResult<PostDto>> recentPosts = this.postService.GetPostsAsync(1, 5, new ItemQueryFilter
-				                                                                               {
-					                                                                               Status = ItemStatus.Published
-				                                                                               });
-
-			Task<IList<CommentDto>> recentComments = this.commentService.GetRecentCommentsAsync(5);
-
-			Task<IList<MonthDto>> monthsWithPublishedPosts = this.postService.GetMonthsForPublishedPostsAsync();
-			Task<IList<TagDto>> topTags = this.postService.GetTopTagsForPublishedPostsAsync(50);
-
-			await Task.WhenAll(recentPosts, recentComments, monthsWithPublishedPosts, topTags);
-
-			m.RecentPosts = recentPosts.Result.Result;
-			m.RecentComments = recentComments.Result;
-			m.Months = monthsWithPublishedPosts.Result;
-			m.TopTags = topTags.Result;
-
-			return base.Json(model, behavior);
-		}
-
-		public new async Task<ActionResult> View(object model)
-		{
-			return await this.View(null, model);
-		}
-
-		public new async Task<ActionResult> View(string viewName, object model)
-		{
-			DexterModelBase m = (DexterModelBase)model;
-
-			Task<IPagedResult<PostDto>> recentPosts = this.postService.GetPostsAsync(1, 5, new ItemQueryFilter
-				                                                                               {
-					                                                                               MaxPublishAt = DateTimeOffset.Now.AsMinutes(), 
-					                                                                               Status = ItemStatus.Published
-				                                                                               });
-
-			Task<IList<CommentDto>> recentComments = this.commentService.GetRecentCommentsAsync(5);
-
-			await Task.WhenAll(recentPosts, recentComments);
-
-			m.RecentPosts = recentPosts.Result.Result;
-			m.RecentComments = recentComments.Result;
-
-			return base.View(viewName, model);
-		}
-
-		#endregion
 	}
 }

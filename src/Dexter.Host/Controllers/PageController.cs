@@ -69,7 +69,7 @@ namespace Dexter.Host.Controllers
 
 			model.Page = pageTasks.Result;
 
-			return await this.View(model);
+			return this.View(model);
 		}
 
 		#endregion
