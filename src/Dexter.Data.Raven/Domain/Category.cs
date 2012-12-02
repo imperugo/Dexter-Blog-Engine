@@ -24,8 +24,6 @@ namespace Dexter.Data.Raven.Domain
 
 		public bool IsDefault { get; set; }
 
-		public string ItemId { get; set; }
-
 		public string Name { get; set; }
 
 		public string ParentId { get; set; }

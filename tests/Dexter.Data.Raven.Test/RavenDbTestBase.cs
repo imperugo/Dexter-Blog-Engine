@@ -19,6 +19,7 @@ namespace Dexter.Data.Raven.Test
 	using System.Threading;
 
 	using Dexter.Data.Raven.AutoMapper;
+	using Dexter.Data.Raven.Indexes.Reading;
 	using Dexter.Data.Raven.Setup;
 	using Dexter.Data.Raven.Test.RavenDb;
 
@@ -54,7 +55,7 @@ namespace Dexter.Data.Raven.Test
 
 			Indexes.UpdateDatabaseIndexes(this.documentStore);
 
-			IndexCreation.CreateIndexes(this.GetType().Assembly, this.documentStore);
+			IndexCreation.CreateIndexes(typeof(PostTrackbacksCreationDateIndex).Assembly, this.documentStore);
 
 			AutoMapperConfiguration.Configure();
 		}

@@ -5,7 +5,7 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/02
-// Last edit:	2012/11/02
+// Last edit:	2012/12/02
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -20,7 +20,6 @@ namespace Dexter.Data.Raven.Setup
 
 	using Dexter.Data.Raven.Domain;
 
-	using global::Raven.Abstractions.Data;
 	using global::Raven.Abstractions.Indexing;
 
 	using global::Raven.Client;
@@ -50,16 +49,15 @@ namespace Dexter.Data.Raven.Setup
 
 			if (categoryByDefault == null)
 			{
-				store.DatabaseCommands.PutIndex("Category/ById",
-							new IndexDefinitionBuilder<Category>
-							{
-								Map = posts => posts.Select(post => new
-												                        {
-													                        post.Id
-												                        })
-							});
+				store.DatabaseCommands.PutIndex("Category/ById", 
+					new IndexDefinitionBuilder<Category>
+						{
+							Map = categories => categories.Select(category => new
+								                                                  {
+									                                                  category.Id
+								                                                  })
+						});
 			}
-
 		}
 
 		#endregion
