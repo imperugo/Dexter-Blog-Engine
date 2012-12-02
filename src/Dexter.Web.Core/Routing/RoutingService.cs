@@ -30,21 +30,22 @@ namespace Dexter.Web.Core.Routing
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
 			routes.MapRoute(
-				name: "Default", 
-				url: "{controller}/{action}/{id}", 
-				defaults: new
+				"Default", 
+				"{controller}/{action}/{id}", 
+				new
 					          {
 						          controller = "Home", 
 						          action = "Index", 
 						          id = UrlParameter.Optional
-					          });
+					          },
+				new[] { "Dexter.Host.Controllers" });
 
 			HttpConfiguration webApiConfiguration = GlobalConfiguration.Configuration;
 
 			webApiConfiguration.Routes.MapHttpRoute(
-				name: "DefaultApi", 
-				routeTemplate: "api/{controller}/{id}", 
-				defaults: new
+				"DefaultApi",
+				"api/{controller}/{id}",
+				new
 					          {
 						          id = RouteParameter.Optional
 					          });

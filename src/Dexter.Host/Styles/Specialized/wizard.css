@@ -1,0 +1,165 @@
+/**
+ * Wizard styles
+ */
+
+.wizard-steps {
+	height: 6em;
+	line-height: 5.5em;
+	border: 1px solid #b5b3b4;
+	border-width: 1px 0;
+	border-top: 1px solid #9bd2ee;
+	background: #0c5fa3 url(../images/old-browsers-bg/block-header-bg.png) repeat-x top;
+	-webkit-background-size: 100% 100%;
+	-moz-background-size: 100% 100%;
+	-o-background-size: 100% 100%;
+	background-size: 100% 100%;
+	background: -moz-linear-gradient(
+		top,
+		#6dc3e6,
+		#0c5fa3
+	);
+	background: -webkit-gradient(
+		linear,
+		left top, left bottom,
+		from(#6dc3e6),
+		to(#0c5fa3)
+	);
+	text-align: center;
+	margin-left: -1.667em;
+	margin-right: -1.667em;
+	}
+	.block-controls + .wizard-steps,
+	.no-margin + .wizard-steps {
+		margin-top: -1.667em;
+	}
+	.wizard-steps li {
+		display: inline-block;
+		height: 100%;
+		color: white;
+		font-size: 2em;
+		font-weight: bold;
+		font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Sans", Arial, Helvetica, sans-serif;
+		-moz-text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
+		-webkit-text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
+		text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
+		background: url(../images/wizard-head-effect.png) no-repeat right center;
+		padding: 0 1.25em 0 0.75em;
+		position: relative;
+		z-index: 89;
+		}
+		/* IE class */
+		.ie7 .wizard-steps li {
+			display: inline;
+		}
+		.wizard-steps li:last-child {
+			background: none;
+			padding-right: 0.75em;
+		}
+		/* IE class */
+		.wizard-steps li.last-child {
+			background: none;
+			padding-right: 0.75em;
+		}
+		.wizard-steps li.disabled {
+			-moz-text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.25);
+			-webkit-text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.25);
+			text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.25);
+			color: rgba(255, 255, 255, 0.5);
+		}
+		.wizard-steps li a {
+			color: white;
+			}
+			.wizard-steps li.disabled a {
+				color: rgba(255, 255, 255, 0.5);
+			}
+		.wizard-steps li .number {
+			font-size: 0.583em;
+			line-height: 1em;
+			width: 1.571em;
+			text-indent: 0;
+			padding: 0.286em 0;
+			position: absolute;
+			float: none;
+			z-index: 89;
+			left: 50%;
+			margin: 0 0 0 -1.143em;
+			bottom: -0.786em;
+			background: #0c5fa5 url(../images/old-browsers-bg/number-bg.png) repeat-x top;
+			-webkit-background-size: 100% 100%;
+			-moz-background-size: 100% 100%;
+			-o-background-size: 100% 100%;
+			background-size: 100% 100%;
+			background: -moz-linear-gradient(
+				top,
+				#72c6e4,
+				#0c5fa5
+			);
+			background: -webkit-gradient(
+				linear,
+				left top, left bottom,
+				from(#72c6e4),
+				to(#0c5fa5)
+			);
+			border: 1px solid white;
+			-moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+			-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+			box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+			-moz-text-shadow: none;
+			-webkit-text-shadow: none;
+			text-shadow: none;
+			-moz-transition: all 100ms;
+			-webkit-transition: all 100ms;
+			-o-transition: all 100ms;
+			transition: all 100ms;
+			}
+			.wizard-steps li:last-child .number {
+				margin-left: -0.786em;
+			}
+			/* IE class */
+			.wizard-steps li.last-child .number {
+				margin-left: -0.786em;
+			}
+			.wizard-steps li a:hover .number {
+				margin-bottom: 0.286em;
+			}
+			.wizard-steps li.disabled .number {
+				background: #dfdfdf url(../images/old-browsers-bg/button-bg.png) repeat-x top;
+				-webkit-background-size: 100% 100%;
+				-moz-background-size: 100% 100%;
+				-o-background-size: 100% 100%;
+				background-size: 100% 100%;
+				background: -moz-linear-gradient(
+					top,
+					#f6f6f6,
+					#dfdfdf
+				);
+				background: -webkit-gradient(
+					linear,
+					left top, left bottom,
+					from(#f6f6f6),
+					to(#dfdfdf)
+				);
+				color: #333333;
+			}
+			.wizard-steps li .number .status-ok,
+			.wizard-steps li .number .status-error,
+			.wizard-steps li .number .status-warning {
+				position: absolute;
+				z-index: 89;
+				width: 16px;
+				height: 16px;
+				background-repeat: no-repeat;
+				right: -8px;
+				top: -8px;
+				}
+				.wizard-steps li .number .status-ok { background-image: url(../images/icons/fugue/tick-circle.png); }
+				.wizard-steps li .number .status-error { background-image: url(../images/icons/fugue/cross-circle.png); }
+				.wizard-steps li .number .status-warning { background-image: url(../images/icons/fugue/exclamation-diamond.png); }
+			
+	.block-content .wizard-steps + .no-margin {
+		margin-top: -1.667em;
+	}		
+	.block-content .wizard-steps + .message.no-margin {
+		margin-top: -1.667em;
+		border-top: none;
+	}

@@ -1,0 +1,150 @@
+/**
+ * Gallery styles
+ */
+
+.gallery.with-padding {
+	padding: 2em 1em;
+	}
+	.gallery li {
+		width: 9em;
+		height: 6em;
+		line-height: 6em;
+		float: left;
+		text-align: center;
+		vertical-align: middle;
+		color: #999999;
+		}
+		.gallery li img {
+			border: 1px solid white;
+			background: #efefef;
+			background: rgba(0, 0, 0, 0.2);
+			-moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+			-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+			box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+			vertical-align: middle;
+			margin-top: -4px;
+			-moz-transition: all 250ms;
+			-webkit-transition: all 250ms;
+			-o-transition: all 250ms;
+			transition: all 250ms;
+			}
+			.gallery li a:hover img {
+				padding: 4px;
+				-moz-border-radius: 5px;
+				-webkit-border-radius: 5px;
+				-webkit-background-clip: padding-box;
+				border-radius: 5px;
+				margin: -8px -5px -4px;
+				-moz-transition: all 100ms;
+				-webkit-transition: all 100ms;
+				-o-transition: all 100ms;
+				transition: all 100ms;
+			}
+
+.gallery-preview {
+	position: relative;
+	z-index: 89;
+	min-height: 92px;
+	padding: 2em;
+	text-align: center;
+	}
+	.gallery-preview img {
+		border: 1px solid white;
+		background: #efefef;
+		background: rgba(0, 0, 0, 0.2);
+		-moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+		-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+		box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+		vertical-align: middle;
+		margin-top: -4px;
+		-moz-transition: all 250ms;
+		-webkit-transition: all 250ms;
+		-o-transition: all 250ms;
+		transition: all 250ms;
+		}
+		.gallery-preview a:hover img {
+			padding: 4px;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+			-webkit-background-clip: padding-box;
+			border-radius: 5px;
+			margin: -8px -5px -4px;
+			-moz-transition: all 100ms;
+			-webkit-transition: all 100ms;
+			-o-transition: all 100ms;
+			transition: all 100ms;
+		}
+	.gallery-preview .prev,
+	.gallery-preview .next {
+		display: block;
+		position: absolute;
+		z-index: 89;
+		width: 35px;
+		height: 92px;
+		line-height: 92px;
+		top: 50%;
+		margin-top: -46px;
+		}
+		.gallery-preview .prev img,
+		.gallery-preview .next img {
+			border: 0;
+			margin: 0;
+			background: none;
+			-moz-box-shadow: none;
+			-webkit-box-shadow: none;
+			box-shadow: none;
+		}
+		/* IE class */
+		.ie7 .gallery-preview .prev img,
+		.ie7 .gallery-preview .next img {
+			margin-top: 40px;
+		}
+		.gallery-preview .prev:hover img,
+		.gallery-preview .next:hover img {
+			border: 0;
+			margin: 0;
+			padding: 0;
+		}
+		/* IE class */
+		.ie7 .gallery-preview .prev:hover img,
+		.ie7 .gallery-preview .next:hover img {
+			margin-top: 40px;
+		}
+		.gallery-preview .prev {
+			left: 0;
+			background: url(../images/gallery-bt-prev.png) no-repeat 100px 0;
+			}
+			.gallery-preview .prev:hover {
+				background-position: 0 0;
+			}
+		.gallery-preview .next {
+			right: 0;
+			background: url(../images/gallery-bt-next.png) no-repeat 100px 0;
+			}
+			.gallery-preview .next:hover {
+				background-position: 0 0;
+			}
+
+/* http://perishablepress.com/press/2008/02/05/lessons-learned-concerning-the-clearfix-css-hack */
+.gallery:after {
+	clear: both;
+	content: ' ';
+	display: block;
+	font-size: 0;
+	line-height: 0;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+.gallery {
+	display: inline-block;
+}
+
+* html .gallery {
+	height: 1%;
+}
+
+.gallery {
+	display: block;
+}

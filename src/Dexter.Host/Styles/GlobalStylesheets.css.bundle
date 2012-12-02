@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bundle minify="true" runOnBuild="true">
+  <!--The order of the <file> elements determins the order of them when bundled.-->
+  <file>/Styles/Global/standard.css</file>
+  <file>/Styles/Global/common.css</file>
+  <file>/Styles/Global/form.css</file>
+  <file>/Styles/Global/reset.css</file>
+  <file>/Styles/Global/special-pages.css</file>
+</bundle>

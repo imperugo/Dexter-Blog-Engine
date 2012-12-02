@@ -1,0 +1,69 @@
+/*
+ * Global reset
+ * Based on Eric Meyer's : http://meyerweb.com/eric/thoughts/2008/01/15/resetting-again/
+ */ 
+a, abbr, acronym, address, applet, article, aside, audio, 
+b, big, blockquote, body,
+canvas, caption, center, cite, code, command,
+datalist, dd, del, details, dfn, div, dl, dt,
+em, embed,
+fieldset, figcaption, figure, font, footer, form,
+h1, h2, h3, h4, h5, h6, header, hgroup, html,
+i, iframe, img, ins,
+kbd, keygen,
+label, legend, li,
+meter,
+nav,
+object, ol, output,
+p, pre, progress,
+q,
+s, samp, section, small, source, span, strike, strong, sub, sup,
+table, tbody, td, tfoot, th, thead, tr, tt,
+u, ul,
+var, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+	z-index: 1;
+}
+
+/*
+ * Default HTML5 behaviour for older browsers
+ */
+article, aside, audio, canvas, command, datalist, 
+details, embed, figcaption, figure, footer, header, 
+hgroup, keygen, meter, nav, output, progress, 
+section, source, video { display: block; }
+mark, rp, rt, ruby, summary, time{ display: inline }
+
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+:focus {
+	outline: 0;
+}
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+a {
+	text-decoration: none;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
