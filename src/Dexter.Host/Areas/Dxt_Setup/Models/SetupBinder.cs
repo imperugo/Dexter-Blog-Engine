@@ -24,6 +24,8 @@ namespace Dexter.Host.Areas.Dxt_Setup.Models
 
 		[Required]
 		[Display(Name = "Password")]
+		[RegularExpression(@"^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)).+$", ErrorMessage = "Password must contains a number, lovercase, uppercase and one simbol")]
+		[StringLength(18, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
 		public string AdminPassword { get; set; }
 
 		[Compare("AdminPassword")]
