@@ -5,7 +5,7 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/01
-// Last edit:	2012/11/02
+// Last edit:	2012/12/23
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -16,20 +16,20 @@
 
 namespace Dexter.Data.Raven
 {
+	using System;
+
 	using Dexter.Async;
 	using Dexter.Data.Raven.AutoMapper;
-	using Dexter.Data.Raven.Domain;
 	using Dexter.Data.Raven.Services;
 	using Dexter.Data.Raven.Session;
 	using Dexter.Dependency;
 	using Dexter.Dependency.Installation;
 
 	using global::Raven.Client;
-	using global::Raven.Client.Document;
+
 	using global::Raven.Client.Embedded;
 
 	using global::Raven.Client.Indexes;
-	using global::Raven.Imports.Newtonsoft.Json;
 
 	public class Installer : ILayerInstaller
 	{

@@ -1,10 +1,10 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			Installer.cs
+// File:			UriTypeConverter.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/11/02
+// Created:		2012/12/23
 // Last edit:	2012/12/23
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
@@ -14,30 +14,19 @@
 
 #endregion
 
-namespace Dexter.Host.App_Start
+namespace Dexter.Automapper.Extensions.Resolvers
 {
-	using System.Web.Mvc;
+	using System;
 
-	using Dexter.Dependency;
-	using Dexter.Dependency.Installation;
-	using Dexter.Host.App_Start.Automapper;
+	using AutoMapper;
 
-	public class Installer : ILayerInstaller
+	public class UriTypeConverter : TypeConverter<String, Uri>
 	{
-		#region Public Methods and Operators
+		#region Methods
 
-		public void ApplicationStarted(IDexterContainer container)
+		protected override Uri ConvertCore(String source)
 		{
-		}
-
-		public void ServiceRegistration(IDexterContainer container)
-		{
-			container.RegisterComponentsByBaseClass<Controller>(this.GetType().Assembly, LifeCycle.Transient);
-		}
-
-		public void ServiceRegistrationComplete(IDexterContainer container)
-		{
-			AutoMapperConfiguration.Configure();
+			return new Uri(source);
 		}
 
 		#endregion

@@ -1,33 +1,36 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			PostDtoProfile.cs
+// File:			ISetupService.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/10/27
-// Last edit:	2012/11/01
+// Created:		2012/12/23
+// Last edit:	2012/12/23
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
-namespace Dexter.Data.Raven.AutoMapper.Profiles
+namespace Dexter.Services
 {
-	using global::AutoMapper;
+	using System.Threading.Tasks;
 
-	using Dexter.Data.Raven.Domain;
 	using Dexter.Entities;
 
-	public class PostDtoProfile : Profile
+	public interface ISetupService
 	{
-		#region Methods
+		#region Public Properties
 
-		protected override void Configure()
-		{
-			Mapper.CreateMap<Post, PostDto>();
-		}
+		bool IsInstalled { get; }
+
+		#endregion
+
+		#region Public Methods and Operators
+
+		void Initialize(Setup item);
 
 		#endregion
 	}

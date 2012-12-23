@@ -6,12 +6,7 @@
 
 	<title>Dexter Setup Page</title>
 	<meta charset="utf-8">
-
-	<link href="~/Styles/Global/reset.css" rel="stylesheet" type="text/css">
-	<link href="~/Styles/Global/common.css" rel="stylesheet" type="text/css">
-	<link href="~/Styles/Global/form.css" rel="stylesheet" type="text/css">
-	<link href="~/Styles/Global/standard.css" rel="stylesheet" type="text/css">
-	<link href="~/Styles/Global/special-pages.css" rel="stylesheet" type="text/css">
+	<link href="~/Styles/Global/CommonStyles.min.css" rel="stylesheet" />
 	
 	<!-- Custom styles -->
 	<link href="~/Styles/Specialized/wizard.css" rel="stylesheet" />
@@ -43,7 +38,7 @@
 	
 	<section>
 		<div class="block-border">
-			<form class="block-content form inline-medium-label" name="login-form" id="login-form" method="post" action="">
+			<form class="block-content form inline-medium-label" name="login-form" id="login-form" method="post" action="#">
 				
 				<h1>Dexter Setup</h1>
 			
@@ -63,49 +58,43 @@
 				<p class="required relative">
 					@Html.LabelFor(x => x.Setup.BlogName,"Blog name")
 					@Html.TextBoxFor( x => x.Setup.BlogName, new { @class = "full-width", placeholder = "Write here the blog name" } )
-					<span class="check-error"></span>
+					@*<span class="check-error"></span>*@
 					@Html.ValidationMessageFor(x => x.Setup.BlogName)
 				</p>
 
 				<p class="required relative">
 					@Html.LabelFor(x => x.Setup.AdminUsername,"Username")
 					@Html.TextBoxFor( x => x.Setup.AdminUsername, new { @class = "full-width", placeholder = "Write here the username" } )
-					<span class="check-error"></span>
 					@Html.ValidationMessageFor(x => x.Setup.AdminUsername)
 				</p>
 
 				<p class="required relative">
 					@Html.LabelFor(x => x.Setup.AdminPassword,"Password")
 					@Html.PasswordFor(x => x.Setup.AdminPassword, new { @class = "full-width", placeholder = "Write here the password of the user" })
-					<span class="check-error"></span>
 					@Html.ValidationMessageFor(x => x.Setup.AdminPassword)
 				</p>
 
 				<p class="required relative">
 					@Html.LabelFor(x => x.Setup.AdminPasswordConfirm,"Confirm Password")
 					@Html.PasswordFor( x => x.Setup.AdminPasswordConfirm, new { @class = "full-width", placeholder = "Write againt the password of the user" } )
-					<span class="check-error"></span>
 					@Html.ValidationMessageFor(x => x.Setup.AdminPasswordConfirm)
 				</p>
 
 				<p class="required relative">
 					@Html.LabelFor(x => x.Setup.Email,"Email")
 					@Html.TextBoxFor(x => x.Setup.Email, new { @class = "full-width", placeholder = "info@mysite.com" })
-					<span class="check-error"></span>
 					@Html.ValidationMessageFor(x => x.Setup.Email)
 				</p>
 
 				<p class="required relative">
 					@Html.LabelFor(x => x.Setup.ConfirmEmail,"Confirm Email")
 					@Html.TextBoxFor( x => x.Setup.ConfirmEmail, new { @class = "full-width", placeholder = "info@mysite.com" } )
-					<span class="check-error"></span>
 					@Html.ValidationMessageFor(x => x.Setup.ConfirmEmail)
 				</p>
 				
 				<p class="required relative">
-					@Html.LabelFor(x => x.Setup.SiteDomain,"Confirm Email")
+					@Html.LabelFor(x => x.Setup.SiteDomain,"Site Domain")
 					@Html.TextBoxFor( x => x.Setup.SiteDomain, new { @class = "full-width", placeholder = "Write here the domain of the site (ex: http://tostring.it)" } )
-					<span class="check-error"></span>
 					@Html.ValidationMessageFor(x => x.Setup.SiteDomain)
 				</p>
 

@@ -19,6 +19,8 @@ namespace Dexter.Data.Raven.Services
 	using System.Collections.Generic;
 	using System.Linq;
 
+	using global::AutoMapper;
+
 	using Common.Logging;
 
 	using Dexter.Data.Exceptions;
@@ -30,6 +32,7 @@ namespace Dexter.Data.Raven.Services
 	using Dexter.Entities.Result;
 
 	using global::Raven.Client;
+
 	using global::Raven.Client.Linq;
 
 	public class PageDataService : ServiceBase, IPageDataService

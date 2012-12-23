@@ -1,10 +1,10 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			Installer.cs
+// File:			AutoMapperConfiguration.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/11/02
+// Created:		2012/12/23
 // Last edit:	2012/12/23
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
@@ -14,30 +14,20 @@
 
 #endregion
 
-namespace Dexter.Host.App_Start
+namespace Dexter.Host.App_Start.Automapper
 {
-	using System.Web.Mvc;
+	using AutoMapper;
 
-	using Dexter.Dependency;
-	using Dexter.Dependency.Installation;
-	using Dexter.Host.App_Start.Automapper;
+	using Dexter.Entities;
+	using Dexter.Host.Areas.Dxt_Setup.Models;
 
-	public class Installer : ILayerInstaller
+	public class AutoMapperConfiguration
 	{
 		#region Public Methods and Operators
 
-		public void ApplicationStarted(IDexterContainer container)
+		public static void Configure()
 		{
-		}
-
-		public void ServiceRegistration(IDexterContainer container)
-		{
-			container.RegisterComponentsByBaseClass<Controller>(this.GetType().Assembly, LifeCycle.Transient);
-		}
-
-		public void ServiceRegistrationComplete(IDexterContainer container)
-		{
-			AutoMapperConfiguration.Configure();
+			Mapper.CreateMap<SetupBinder, Setup>();
 		}
 
 		#endregion

@@ -20,14 +20,30 @@ namespace Dexter.Web.Core.Routing
 	using System.Web.Mvc;
 	using System.Web.Routing;
 
+	using Dexter.Services;
+	using Dexter.Web.Core.Routing.Routes;
+
 	public class RoutingService : IRoutingService
 	{
+		private readonly ISetupService setupService;
+
+		public RoutingService(ISetupService setupService)
+		{
+			this.setupService = setupService;
+		}
+
 		#region Public Methods and Operators
 
 		public void RegisterRoutes()
 		{
 			RouteCollection routes = RouteTable.Routes;
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+			if (!setupService.IsInstalled)
+			{
+				routes.Add(new SetupRoute());
+				return;
+			}
 
 			routes.MapRoute(
 				"Default", 
@@ -53,6 +69,10 @@ namespace Dexter.Web.Core.Routing
 
 		public void UpdateRoutes()
 		{
+			RouteCollection routes = RouteTable.Routes;
+			routes.Clear();
+
+			this.RegisterRoutes();
 		}
 
 		#endregion

@@ -5,12 +5,13 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/27
-// Last edit:	2012/11/01
+// Last edit:	2012/12/23
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Dependency.Castle.Container
@@ -337,40 +338,40 @@ namespace Dexter.Dependency.Castle.Container
 			}
 		}
 
-		///<summary>
+		/// <summary>
 		///	Retrieve the instance for the specified <c>type</c>.
-		///</summary>
-		///<remarks>
+		/// </summary>
+		/// <remarks>
 		///	If there isn't components for the specified type, the container will return null.
-		///</remarks>
-		///<param name="type"> The type. </param>
-		///<returns> The registered instance or null if the instance will not fund. </returns>
+		/// </remarks>
+		/// <param name="type"> The type. </param>
+		/// <returns> The registered instance or null if the instance will not fund. </returns>
 		public object TryResolve(Type type)
 		{
 			return this.Container.Kernel.HasComponent(type) ? this.Container.Resolve(type) : null;
 		}
 
-		///<summary>
+		/// <summary>
 		///	Retrieve the instance for the specified <c>type {T}</c>.
-		///</summary>
-		///<remarks>
+		/// </summary>
+		/// <remarks>
 		///	If there isn't components for the specified type, the container will return null.
-		///</remarks>
-		///<typeparam name="T"> The type of the registered instance. </typeparam>
-		///<returns> The registered instance or null if the instance will not fund. </returns>
+		/// </remarks>
+		/// <typeparam name="T"> The type of the registered instance. </typeparam>
+		/// <returns> The registered instance or null if the instance will not fund. </returns>
 		public T TryResolve<T>()
 		{
 			return this.HasComponent<T>() ? this.Container.Resolve<T>() : default(T);
 		}
 
-		///<summary>
+		/// <summary>
 		///	Retrieve all registered instances for the specified <c>type</c>.
-		///</summary>
-		///<remarks>
+		/// </summary>
+		/// <remarks>
 		///	If there isn't components for the specified type, the container will return null.
-		///</remarks>
-		///<typeparam name="T"> The registered type. </typeparam>
-		///<returns> Null if there aren't registered instances for the specified <c>type</c> . Otherwise an array of the generic type <c>T</c> . </returns>
+		/// </remarks>
+		/// <typeparam name="T"> The registered type. </typeparam>
+		/// <returns> Null if there aren't registered instances for the specified <c>type</c> . Otherwise an array of the generic type <c>T</c> . </returns>
 		public T[] TryResolveAll<T>()
 		{
 			return this.Container.ResolveAll<T>();
@@ -378,8 +379,7 @@ namespace Dexter.Dependency.Castle.Container
 
 		/// <summary>
 		/// 	Retrieve all registered instances for the specified
-		/// 	<param name="type" />
-		/// 	.
+		/// 	<param name="type" />.
 		/// </summary>
 		/// <returns> Null if there aren't registered instances for the specified <c>type</c> . Otherwise an array of <c>object</c> . </returns>
 		public object[] TryResolveAll(Type type)

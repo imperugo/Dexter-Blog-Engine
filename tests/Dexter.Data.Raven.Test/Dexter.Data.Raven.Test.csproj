@@ -36,8 +36,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\src\packages\RavenDB.Database.2.0.2161-Unstable\lib\net40\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
-    <Reference Include="Common.Logging">
-      <HintPath>..\..\src\packages\Common.Logging.2.1.1\lib\net40\Common.Logging.dll</HintPath>
+    <Reference Include="Common.Logging, Version=2.1.2.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\src\packages\Common.Logging.2.1.2\lib\net40\Common.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Esent.Interop, Version=1.7.0.0, Culture=neutral, PublicKeyToken=8dd49bbdae3f61af, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -145,6 +146,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Dexter.Automapper.Extensions\Dexter.Automapper.Extensions.csproj">
+      <Project>{8CD3FCF5-E770-4628-BCF3-97308132015E}</Project>
+      <Name>Dexter.Automapper.Extensions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Dexter.Data.Raven\Dexter.Data.Raven.csproj">
       <Project>{c8a68591-9dff-4640-bdd5-e00d97b9848c}</Project>
       <Name>Dexter.Data.Raven</Name>

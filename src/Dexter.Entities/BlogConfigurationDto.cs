@@ -5,21 +5,41 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/28
-// Last edit:	2012/11/01
+// Last edit:	2012/12/23
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Entities
 {
+	using System;
+
 	public class BlogConfigurationDto
 	{
+		#region Constructors and Destructors
+
+		public BlogConfigurationDto(string name, Uri siteDomain)
+			: this()
+		{
+			this.Name = name;
+			this.SiteDomain = siteDomain;
+			this.SeoConfiguration = new SeoConfigurationDto(name);
+			this.CommentSettings = new CommentSettingsDto();
+		}
+
+		public BlogConfigurationDto()
+		{
+		}
+
+		#endregion
+
 		#region Public Properties
 
-		public Tracking Tracking { get; set; }
+		public CommentSettingsDto CommentSettings { get; set; }
 
 		public string DefaultDomain { get; set; }
 
@@ -29,22 +49,51 @@ namespace Dexter.Entities
 
 		public bool EnableHttps { get; set; }
 
+		public int Id { get; set; }
+
+		public string Name { get; set; }
+
 		public SeoConfigurationDto SeoConfiguration { get; set; }
 
-		public CommentSettingsDto CommentSettings { get; set; }
+		public Uri SiteDomain { get; set; }
+
+		public Tracking Tracking { get; set; }
 
 		#endregion
 	}
 
 	public class CommentSettingsDto
 	{
-		public int NumberOfDayBeforeCloseComments { get; set; }
+		#region Constructors and Destructors
+
+		public CommentSettingsDto()
+		{
+			this.EnablePremoderation = false;
+		}
+
+		#endregion
+
+		#region Public Properties
 
 		public bool EnablePremoderation { get; set; }
+
+		public int? NumberOfDayBeforeCloseComments { get; set; }
+
+		#endregion
 	}
 
 	public class SeoConfigurationDto
 	{
+		#region Constructors and Destructors
+
+		public SeoConfigurationDto(string blogName)
+		{
+			this.AllowIndicization = true;
+			this.DefaultTitle = string.Format("{0} | ", blogName);
+		}
+
+		#endregion
+
 		#region Public Properties
 
 		public bool AllowIndicization { get; set; }
@@ -78,6 +127,19 @@ namespace Dexter.Entities
 
 	public class Tracking
 	{
+		#region Constructors and Destructors
+
+		public Tracking()
+		{
+			this.EnablePingBackReceive = true;
+			this.EnablePingBackSend = true;
+			this.EnableReferrerTracking = true;
+			this.EnableTrackBackReceive = true;
+			this.EnableTrackBackSend = true;
+		}
+
+		#endregion
+
 		#region Public Properties
 
 		/// <summary>

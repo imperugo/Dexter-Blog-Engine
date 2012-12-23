@@ -23,25 +23,33 @@ namespace Dexter.Host.Areas.Dxt_Setup.Models
 		#region Public Properties
 
 		[Required]
+		[Display(Name = "Password")]
 		public string AdminPassword { get; set; }
 
 		[Compare("AdminPassword")]
+		[Display(Name = "Confirm Password")]
 		public string AdminPasswordConfirm { get; set; }
 
 		[Required]
+		[Display(Name = "Username")]
 		public string AdminUsername { get; set; }
 
 		[Required]
 		[StringLength(100)]
+		[Display(Name = "Blog name")]
 		public string BlogName { get; set; }
 
 		[Compare("Email")]
+		[Display(Name = "Confirm email")]
 		public string ConfirmEmail { get; set; }
 
 		[Required]
+		[Display(Name = "Email")]
 		public string Email { get; set; }
 
+		[Url]
 		[Required]
+		[Display(Name = "Site Domain")]
 		public string SiteDomain { get; set; }
 
 		#endregion

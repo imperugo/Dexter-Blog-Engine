@@ -4,13 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5FB1AED5-D55E-43CC-A3E0-5E788BD72144}</ProjectGuid>
+    <ProjectGuid>{8CD3FCF5-E770-4628-BCF3-97308132015E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Dexter.Entities</RootNamespace>
-    <AssemblyName>Dexter.Entities</AssemblyName>
+    <RootNamespace>Dexter.Automapper.Extensions</RootNamespace>
+    <AssemblyName>Dexter.Automapper.Extensions</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,40 +32,35 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.2.2.0\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\doc\Dexter.Build.cs">
-      <Link>Properties\Dexter.Build.cs</Link>
-    </Compile>
-    <Compile Include="CategoryDto.cs" />
-    <Compile Include="CommentDto.cs" />
-    <Compile Include="BlogConfigurationDto.cs" />
-    <Compile Include="CommentStatus.cs" />
-    <Compile Include="ItemType.cs" />
-    <Compile Include="Setup.cs" />
-    <Compile Include="TrackbackDto.cs" />
-    <Compile Include="TrackbackStatus.cs" />
-    <Compile Include="Exceptions\InvalidItemSlugException.cs" />
-    <Compile Include="Filters\CommentQueryFilter.cs" />
-    <Compile Include="ItemBaseInfo.cs" />
-    <Compile Include="ItemDto.cs" />
-    <Compile Include="MonthDto.cs" />
-    <Compile Include="PageDto.cs" />
-    <Compile Include="PostDto.cs" />
-    <Compile Include="Filters\ItemQueryFilter.cs" />
-    <Compile Include="ItemStatus.cs" />
+    <Compile Include="Extensions\AutoMapperExtensions.cs" />
+    <Compile Include="Installer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Result\EmptyPagedResult.cs" />
-    <Compile Include="Result\IPagedResult %28generic%29.cs" />
-    <Compile Include="Result\IPagedResult.cs" />
-    <Compile Include="Result\PagedResult.cs" />
-    <Compile Include="TagDto.cs" />
+    <Compile Include="Resolvers\MailAddressTypeConverter.cs" />
+    <Compile Include="Resolvers\DateTimeTypeConverter.cs" />
+    <Compile Include="Resolvers\UriTypeConverter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dexter.Dependency\Dexter.Dependency.csproj">
+      <Project>{07ff041c-fc20-49a3-8bc4-a38e7f72abaa}</Project>
+      <Name>Dexter.Dependency</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

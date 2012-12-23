@@ -5,19 +5,19 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/28
-// Last edit:	2012/11/01
+// Last edit:	2012/12/23
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Services.Implmentation
 {
 	using System;
 	using System.Threading.Tasks;
-	using System.Web;
 
 	using Dexter.Caching;
 	using Dexter.Data;
@@ -27,10 +27,9 @@ namespace Dexter.Services.Implmentation
 	{
 		#region Fields
 
-		private readonly IConfigurationDataService configurationDataService;
-
 		private readonly ICacheProvider cacheProvider;
 
+		private readonly IConfigurationDataService configurationDataService;
 
 		#endregion
 
@@ -53,17 +52,6 @@ namespace Dexter.Services.Implmentation
 			if (result == null)
 			{
 				result = this.configurationDataService.GetConfiguration();
-
-				if (result == null)
-				{
-					result = new BlogConfigurationDto()
-						         {
-							         DefaultDomain = HttpContext.Current.Request.Url.Host,
-							         DefaultHttpsPort = 443,
-							         DefaultPort = HttpContext.Current.Request.Url.Port,
-							         EnableHttps = false,
-						         };
-				}
 
 				this.cacheProvider.Put("dexter.blog.configurationDto", result, TimeSpan.FromHours(3));
 			}

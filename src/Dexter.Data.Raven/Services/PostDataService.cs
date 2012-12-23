@@ -5,7 +5,7 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/02
-// Last edit:	2012/11/03
+// Last edit:	2012/12/23
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -19,6 +19,8 @@ namespace Dexter.Data.Raven.Services
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+
+	using global::AutoMapper;
 
 	using Common.Logging;
 
@@ -74,10 +76,10 @@ namespace Dexter.Data.Raven.Services
 			DateTime now = DateTime.Now;
 
 			List<MonthDto> dates = this.Session.Query<MonthDto, MonthOfPublishedPostsWithCountIndex>()
-				.OrderByDescending(x => x.Year)
-				.ThenByDescending(x => x.Month)
-				.Where(x => (x.Year < now.Year || x.Year == now.Year) && x.Month <= now.Month)
-				.ToList();
+			                           .OrderByDescending(x => x.Year)
+			                           .ThenByDescending(x => x.Month)
+			                           .Where(x => (x.Year < now.Year || x.Year == now.Year) && x.Month <= now.Month)
+			                           .ToList();
 
 			return dates;
 		}
@@ -90,10 +92,10 @@ namespace Dexter.Data.Raven.Services
 			}
 
 			Post post = this.Session
-				.Include<Post>(x => x.CommentsId)
-				.Include<Post>(x => x.TrackbacksId)
-				.Load(id);
-				
+			                .Include<Post>(x => x.CommentsId)
+			                .Include<Post>(x => x.TrackbacksId)
+			                .Load(id);
+
 			if (post == null)
 			{
 				throw new ItemNotFoundException("id");
@@ -133,11 +135,11 @@ namespace Dexter.Data.Raven.Services
 			RavenQueryStatistics stats;
 
 			List<Post> result = this.Session.Query<Post>()
-				.ApplyFilterItem(filters)
-				.OrderByDescending(post => post.PublishAt)
-				.Statistics(out stats)
-				.Paging(pageIndex, pageSize)
-				.ToList();
+			                        .ApplyFilterItem(filters)
+			                        .OrderByDescending(post => post.PublishAt)
+			                        .Statistics(out stats)
+			                        .Paging(pageIndex, pageSize)
+			                        .ToList();
 
 			List<PostDto> posts = result.MapTo<PostDto>();
 
@@ -179,8 +181,8 @@ namespace Dexter.Data.Raven.Services
 			RavenQueryStatistics stats;
 
 			IRavenQueryable<Post> query = this.Session.Query<Post>()
-				.Where(post => post.PublishAt.Year == year)
-				.ApplyFilterItem(filters);
+			                                  .Where(post => post.PublishAt.Year == year)
+			                                  .ApplyFilterItem(filters);
 
 			if (month.HasValue)
 			{
@@ -223,12 +225,12 @@ namespace Dexter.Data.Raven.Services
 			RavenQueryStatistics stats;
 
 			List<Post> result = this.Session.Query<Post>()
-				.ApplyFilterItem(filters)
-				.Statistics(out stats)
-				.Where(post => post.Tags.Any(postTag => postTag == tag))
-				.OrderByDescending(post => post.PublishAt)
-				.Paging(pageIndex, pageSize)
-				.ToList();
+			                        .ApplyFilterItem(filters)
+			                        .Statistics(out stats)
+			                        .Where(post => post.Tags.Any(postTag => postTag == tag))
+			                        .OrderByDescending(post => post.PublishAt)
+			                        .Paging(pageIndex, pageSize)
+			                        .ToList();
 
 			List<PostDto> posts = result.MapTo<PostDto>();
 
@@ -248,9 +250,9 @@ namespace Dexter.Data.Raven.Services
 			}
 
 			return this.Session.Query<TagDto, TagsForPublishedPostsWithCountIndex>()
-				.OrderBy(x => x.Count)
-				.Take(numberOfTags)
-				.ToList();
+			           .OrderBy(x => x.Count)
+			           .Take(numberOfTags)
+			           .ToList();
 		}
 
 		public void SaveOrUpdate(PostDto item)
@@ -315,25 +317,25 @@ namespace Dexter.Data.Raven.Services
 				throw new ArgumentException("The Id must be greater than 0", "itemId");
 			}
 
-			var post = this.Session
-									.Include<Post>(x => x.TrackbacksId)
-									.Load<Post>(itemId);
+			Post post = this.Session
+			                .Include<Post>(x => x.TrackbacksId)
+			                .Load<Post>(itemId);
 
 			if (post == null)
 			{
 				throw new ItemNotFoundException("itemId");
 			}
 
-			var trackbacks = this.Session.Load<ItemTrackbacks>(post.TrackbacksId) 
-									?? new ItemTrackbacks
-										   {
-											   Item = new ItemReference
-											   {
-												   Id = post.Id,
-												   Status = post.Status,
-												   ItemPublishedAt = post.PublishAt
-											   }
-										   };
+			ItemTrackbacks trackbacks = this.Session.Load<ItemTrackbacks>(post.TrackbacksId)
+			                            ?? new ItemTrackbacks
+				                               {
+					                               Item = new ItemReference
+						                                      {
+							                                      Id = post.Id, 
+							                                      Status = post.Status, 
+							                                      ItemPublishedAt = post.PublishAt
+						                                      }
+				                               };
 
 			trackbacks.AddTrackback(trackBack.MapTo<Trackback>(), trackBack.Status);
 
@@ -360,10 +362,10 @@ namespace Dexter.Data.Raven.Services
 			}
 
 			Post post = this.Session.Query<Post>()
-				.Where(x => x.Slug == slug)
-				.Include(x => x.CommentsId)
-				.Include(x => x.TrackbacksId)
-				.FirstOrDefault();
+			                .Where(x => x.Slug == slug)
+			                .Include(x => x.CommentsId)
+			                .Include(x => x.TrackbacksId)
+			                .FirstOrDefault();
 
 			return post;
 		}

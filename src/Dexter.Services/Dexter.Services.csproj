@@ -47,6 +47,7 @@
     <Compile Include="Events\GenericEventArgs.cs" />
     <Compile Include="IConfigurationService.cs" />
     <Compile Include="IPostService.cs" />
+    <Compile Include="ISetupService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

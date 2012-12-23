@@ -45,9 +45,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WebGrease.1.3.0\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Common.Logging, Version=2.1.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+    <Reference Include="AutoMapper, Version=2.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Common.Logging.2.1.1\lib\net40\Common.Logging.dll</HintPath>
+      <HintPath>..\..\tests\Dexter.Data.Raven.Test\bin\Debug\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging, Version=2.1.2.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Common.Logging.2.1.2\lib\net40\Common.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Common.Logging.Log4Net">
       <HintPath>..\packages\Common.Logging.Log4Net.2.0.1\lib\net20\Common.Logging.Log4Net.dll</HintPath>
@@ -131,7 +135,7 @@
     <Compile Include="..\..\doc\Dexter.Build.cs">
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
-    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\Automapper\AutoMapperConfiguration.cs" />
     <Compile Include="App_Start\Installer.cs" />
     <Compile Include="Areas\Dxt_Admin\Dxt_AdminAreaRegistration.cs" />
     <Compile Include="Areas\Dxt_Setup\Controllers\HomeController.cs" />
@@ -144,7 +148,6 @@
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Controllers\WidgetController.cs" />
-    <Compile Include="Extensions\AdminControlExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1050,6 +1053,12 @@
     <Content Include="js\Validation\jquery.validate.custom-methods.js" />
     <Content Include="js\Validation\jquery.validate.min.js" />
     <Content Include="js\Validation\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Styles\Global\CommonStyles.css">
+      <DependentUpon>CommonStyles.css.bundle</DependentUpon>
+    </Content>
+    <Content Include="Styles\Global\CommonStyles.min.css">
+      <DependentUpon>CommonStyles.css.bundle</DependentUpon>
+    </Content>
     <Content Include="Styles\Specialized\960.gs.css" />
     <Content Include="Styles\Specialized\960.gs.fluid.css" />
     <Content Include="Styles\Specialized\block-lists.css" />
@@ -1099,6 +1108,10 @@
     <Content Include="App_Data\Localization\en-US\Core.po" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dexter.Automapper.Extensions\Dexter.Automapper.Extensions.csproj">
+      <Project>{8cd3fcf5-e770-4628-bcf3-97308132015e}</Project>
+      <Name>Dexter.Automapper.Extensions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dexter.Caching.InProc\Dexter.Caching.InProc.csproj">
       <Project>{506df938-59bb-44bf-bbc7-1faa87e7c670}</Project>
       <Name>Dexter.Caching.InProc</Name>
@@ -1161,11 +1174,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Dxt_Setup\Views\Web.config" />
+    <Content Include="Areas\Dxt_Setup\Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Dxt_Setup\Views\Home\Index.cshtml" />
     <None Include="Styles\GlobalStylesheets.css.bundle" />
+    <None Include="Styles\Global\CommonStyles.css.bundle" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
