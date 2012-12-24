@@ -5,12 +5,12 @@ html {
 }
 .login-bg,
 .wizard-bg {
-	background: url(../images/bg.png) no-repeat center -200px;
+	background: url(../../images/bg.png) no-repeat center -200px;
 	min-height: 100%;
 }
 .error-bg,
 .code-page {
-	background: url(../images/old-browsers-bg/login-radial-bg.png) no-repeat center center;
+	background: url(../../images/old-browsers-bg/login-radial-bg.png) no-repeat center center;
 	-webkit-background-size: 100% 100%;
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
@@ -149,7 +149,7 @@ html {
 	
 	.login-bg,
 	.wizard-bg {
-		background: #70828f url(../images/bg-mobile.png) no-repeat center -200px;
+		background: #70828f url(../../images/bg-mobile.png) no-repeat center -200px;
 		}
 		.login-bg,
 		.error-bg {
@@ -171,7 +171,7 @@ html {
 			}
 	.error-bg,
 	.code-page {
-		background: #70828f url(../images/old-browsers-bg/login-radial-bg-mobile.png) no-repeat center center;
+		background: #70828f url(../../images/old-browsers-bg/login-radial-bg-mobile.png) no-repeat center center;
 		background: -moz-radial-gradient(center, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0)), #70828f;
 		background: -webkit-gradient(radial, 50% 50%, 10, 50% 50%, 240, from(rgba(255, 255, 255, 0.8)), to(rgba(255, 255, 255, 0))), #70828f;
 	}

@@ -25,7 +25,7 @@ namespace Dexter.Host.Areas.Dxt_Admin
 		{
 			get
 			{
-				return "Dxt-Admin";
+				return "Dxt_Admin";
 			}
 		}
 
@@ -35,11 +35,15 @@ namespace Dexter.Host.Areas.Dxt_Admin
 
 		public override void RegisterArea(AreaRegistrationContext context)
 		{
-			context.MapRoute("Dxt-Admin_default", "Dxt-Admin/{controller}/{action}/{id}", new
-				                                                                              {
-					                                                                              action = "Index", 
-					                                                                              id = UrlParameter.Optional
-				                                                                              });
+			context.MapRoute(
+				"Dxt_Admin_default",
+				"Dxt-Admin/{controller}/{action}/{id}",
+				new
+					{
+						action = "Index",
+						id = UrlParameter.Optional
+					},
+				new[] { "Dexter.Host.Areas.Dxt_Admin.Controllers" });
 		}
 
 		#endregion

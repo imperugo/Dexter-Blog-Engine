@@ -43,7 +43,7 @@ namespace Dexter.Web.Core.Routing.Routes
 				return null;
 			}
 
-			response.Redirect("/Dxt_Setup/Home/Index");
+			response.Redirect("/Dxt-Setup/Home/Index");
 
 			return null;
 		}

@@ -234,14 +234,14 @@ hr.last-child {
 		border: 1px solid #cccccc;
 	}
 .infos {
-	background-image: url(../images/icons/web-app/48/Info.png);
+	background-image: url(../../images/icons/web-app/48/Info.png);
 	background-repeat: no-repeat;
 	padding-left: 5em;
 	margin-bottom: 1em;
 	min-height: 4em;
 }
 .mini-infos {
-	background-image: url(../images/icons/web-app/24/Info.png);
+	background-image: url(../../images/icons/web-app/24/Info.png);
 	background-repeat: no-repeat;
 	padding: 0.167em 0 0.167em 2.5em;
 	margin-bottom: 1em;
@@ -325,7 +325,7 @@ hr.last-child {
 		border-radius: 0.333em;
 	}
 .dark-grey-gradient {
-	background: #666666 url(../images/old-browsers-bg/dark-grey-gradient-bg.png) repeat-x top;
+	background: #666666 url(../../images/old-browsers-bg/dark-grey-gradient-bg.png) repeat-x top;
 	-webkit-background-size: 100% 100%;
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
@@ -348,7 +348,7 @@ hr.last-child {
 	color: white;
 }
 .lite-grey-gradient {
-	background: white url(../images/old-browsers-bg/lite-grey-gradient-bg.png) repeat-x top;
+	background: white url(../../images/old-browsers-bg/lite-grey-gradient-bg.png) repeat-x top;
 	-webkit-background-size: 100% 100%;
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
@@ -382,7 +382,7 @@ article h1 {
 	font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Sans", Arial, Helvetica, sans-serif;
 	border: 1px solid;
 	border-color: #50a3c8 #297cb4 #083f6f;
-	background: #0c5fa5 url(../images/old-browsers-bg/title-bg.png) repeat-x top;
+	background: #0c5fa5 url(../../images/old-browsers-bg/title-bg.png) repeat-x top;
 	-webkit-background-size: 100% 100%;
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
@@ -423,7 +423,7 @@ article h1 {
 	.red .block-content h1,
 	.red .block-content .h1 {
 		border-color: #bf3636 #5d0000 #0a0000;
-		background: #790000 url(../images/old-browsers-bg/title-red-bg.png) repeat-x top;
+		background: #790000 url(../../images/old-browsers-bg/title-red-bg.png) repeat-x top;
 		background: -moz-linear-gradient(
 			top,
 			white,
@@ -473,7 +473,7 @@ article h1 {
 	}
 	.button {
 		color: #666666;
-		background: #dfdfdf url(../images/old-browsers-bg/button-bg.png) repeat-x top;
+		background: #dfdfdf url(../../images/old-browsers-bg/button-bg.png) repeat-x top;
 		-webkit-background-size: 100% 100%;
 		-moz-background-size: 100% 100%;
 		-o-background-size: 100% 100%;
@@ -493,7 +493,7 @@ article h1 {
 	.button.red,
 	.red .button {
 		color: white;
-		background: #790000 url(../images/old-browsers-bg/button-red-bg.png) repeat-x top;
+		background: #790000 url(../../images/old-browsers-bg/button-red-bg.png) repeat-x top;
 		background: -moz-linear-gradient(
 			top,
 			#ca3535,
@@ -513,7 +513,7 @@ article h1 {
 	a.button:hover,
 	.mini-menu > li > a:hover {
 		color: #115577;
-		background: #98d2f3 url(../images/old-browsers-bg/button-hover-bg.png) repeat-x top;
+		background: #98d2f3 url(../../images/old-browsers-bg/button-hover-bg.png) repeat-x top;
 		-webkit-background-size: 100% 100%;
 		-moz-background-size: 100% 100%;
 		-o-background-size: 100% 100%;
@@ -533,7 +533,7 @@ article h1 {
 	a.button.red:hover,
 	.red a.button:hover {
 		color: white;
-		background: #9d0404 url(../images/old-browsers-bg/button-red-hover-bg.png) repeat-x top;
+		background: #9d0404 url(../../images/old-browsers-bg/button-red-hover-bg.png) repeat-x top;
 		background: -moz-linear-gradient(
 			top,
 			#fe6565,
@@ -550,7 +550,7 @@ article h1 {
 	.legend,
 	.mini-menu {
 		color: #666666;
-		background: #e7e7e7 url(../images/old-browsers-bg/legend-bg.png) repeat-x top;
+		background: #e7e7e7 url(../../images/old-browsers-bg/legend-bg.png) repeat-x top;
 		-webkit-background-size: 100% 100%;
 		-moz-background-size: 100% 100%;
 		-o-background-size: 100% 100%;
@@ -581,7 +581,7 @@ button,
 	display: inline-block;
 	border: 1px solid;
 	border-color: #50a3c8 #297cb4 #083f6f;
-	background: #0c5fa5 url(../images/old-browsers-bg/button-element-bg.png) repeat-x left top;
+	background: #0c5fa5 url(../../images/old-browsers-bg/button-element-bg.png) repeat-x left top;
 	-webkit-background-size: 100% 100%;
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
@@ -633,7 +633,7 @@ button,
 	button:hover,
 	.big-button:hover {
 		border-color: #1eafdc #1193d5 #035592;
-		background: #057fdb url(../images/old-browsers-bg/button-element-hover-bg.png) repeat-x left top;
+		background: #057fdb url(../../images/old-browsers-bg/button-element-hover-bg.png) repeat-x left top;
 		background: -moz-linear-gradient(
 			top,
 			white,
@@ -651,7 +651,7 @@ button,
 	button:active,
 	.big-button:active {
 		border-color: #5b848b #b2def1 #b2def1 #68a6ba;
-		background: #3dbfed url(../images/old-browsers-bg/button-element-active-bg.png) repeat-x top;
+		background: #3dbfed url(../../images/old-browsers-bg/button-element-active-bg.png) repeat-x top;
 		background: -moz-linear-gradient(
 			top,
 			#89e7f9,
@@ -674,7 +674,7 @@ button,
 	.red .big-button {
 		color: white;
 		border-color: #bf3636 #5d0000 #0a0000;
-		background: #790000 url(../images/old-browsers-bg/button-element-red-bg.png) repeat-x top;
+		background: #790000 url(../../images/old-browsers-bg/button-element-red-bg.png) repeat-x top;
 		background: -moz-linear-gradient(
 			top,
 			white,
@@ -694,7 +694,7 @@ button,
 		.big-button.red:hover,
 		.red .big-button:hover {
 			border-color: #c24949 #9d3d3d #590909;
-			background: #9d0404 url(../images/old-browsers-bg/button-element-red-hover-bg.png) repeat-x top;
+			background: #9d0404 url(../../images/old-browsers-bg/button-element-red-hover-bg.png) repeat-x top;
 			background: -moz-linear-gradient(
 				top,
 				white,
@@ -714,7 +714,7 @@ button,
 		.big-button.red:active,
 		.red .big-button:active {
 			border-color: #7c5656 #f7cbcb #f7cbcb #a15151;
-			background: #ff5252 url(../images/old-browsers-bg/button-element-red-active-bg.png) repeat-x top;
+			background: #ff5252 url(../../images/old-browsers-bg/button-element-red-active-bg.png) repeat-x top;
 			background: -moz-linear-gradient(
 				top,
 				#ff9d9d,
@@ -734,7 +734,7 @@ button,
 	.big-button.disabled:hover {
 		color: #bfbfbf;
 		border-color: #e9f2f6 #c4c3c3 #a2a2a2 #e3e2e2;
-		background: #c8c8c8 url(../images/old-browsers-bg/button-element-disabled-bg.png) repeat-x top;
+		background: #c8c8c8 url(../../images/old-browsers-bg/button-element-disabled-bg.png) repeat-x top;
 		background: -moz-linear-gradient(
 			top,
 			#f0f2f2,
@@ -759,7 +759,7 @@ button,
 	button.disabled:hover {
 		color: #bfbfbf;
 		border-color: #e9f2f6 #c4c3c3 #a2a2a2 #e3e2e2;
-		background: #c8c8c8 url(../images/old-browsers-bg/button-element-disabled-bg.png) repeat-x top;
+		background: #c8c8c8 url(../../images/old-browsers-bg/button-element-disabled-bg.png) repeat-x top;
 		cursor: auto;
 	}
 	
@@ -767,7 +767,7 @@ button,
 	.big-button.grey {
 		color: white;
 		border-color: #a1a7ae #909498 #6b7076;
-		background: #9fa7b0 url(../images/old-browsers-bg/button-element-grey-bg.png) repeat-x top;
+		background: #9fa7b0 url(../../images/old-browsers-bg/button-element-grey-bg.png) repeat-x top;
 		background: -moz-linear-gradient(
 			top,
 			white,
@@ -791,7 +791,7 @@ button,
 		button.grey:hover,
 		.big-button.grey:hover {
 			border-color: #a1a7b0 #939798 #6e7275;
-			background: #b1b5ba url(../images/old-browsers-bg/button-element-grey-hover-bg.png) repeat-x top;
+			background: #b1b5ba url(../../images/old-browsers-bg/button-element-grey-hover-bg.png) repeat-x top;
 			background: -moz-linear-gradient(
 				top,
 				white,
@@ -809,7 +809,7 @@ button,
 		button.grey:active
 		.big-button.grey:active {
 			border-color: #666666 #ffffff #ffffff #979898;
-			background: #dddddd url(../images/old-browsers-bg/button-element-grey-active-bg.png) repeat-x top;
+			background: #dddddd url(../../images/old-browsers-bg/button-element-grey-active-bg.png) repeat-x top;
 			background: -moz-linear-gradient(
 				top,
 				#f1f1f1,
@@ -858,7 +858,7 @@ section {
 	}
 	.block-content.dark-bg {
 		border-color: #aaa #333 #000 #666;
-		background: #555 url(../images/old-browsers-bg/content-dark-bg.png) repeat-x top;
+		background: #555 url(../../images/old-browsers-bg/content-dark-bg.png) repeat-x top;
 		-webkit-background-size: 100% 100%;
 		-moz-background-size: 100% 100%;
 		-o-background-size: 100% 100%;
@@ -880,7 +880,7 @@ section {
 	padding: 0.833em;
 	border: 1px solid white;
 	border-color: rgba(255, 255, 255, 0.75);
-	background: url(../images/old-browsers-bg/white20.png);
+	background: url(../../images/old-browsers-bg/white20.png);
 	background: rgba(255, 255, 255, 0.2);
 	-moz-border-radius: 0.8em;
 	-webkit-border-radius: 0.8em;
@@ -975,7 +975,7 @@ section {
 	line-height: 3em;
 	border-top: 1px solid #9bd2ee;
 	border-bottom: 1px solid #b5b3b4;
-	background: #0c5fa3 url(../images/old-browsers-bg/block-header-bg.png) repeat-x top;
+	background: #0c5fa3 url(../../images/old-browsers-bg/block-header-bg.png) repeat-x top;
 	-webkit-background-size: 100% 100%;
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
@@ -1012,7 +1012,7 @@ section {
 	.block-header.red,
 	.red .block-header {
 		border-top-color: #e46f6f;
-		background: #790000 url(../images/old-browsers-bg/block-header-red-bg.png) repeat-x top;
+		background: #790000 url(../../images/old-browsers-bg/block-header-red-bg.png) repeat-x top;
 		background: -moz-linear-gradient(
 			top,
 			#ca3535,
@@ -1030,7 +1030,7 @@ section {
 .block-controls {
 	text-align: right;
 	border-bottom: 1px solid #999999;
-	background: white url(../images/old-browsers-bg/block-controls-bg.png) repeat-x bottom;
+	background: white url(../../images/old-browsers-bg/block-controls-bg.png) repeat-x bottom;
 	-webkit-background-size: 100% 100%;
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
@@ -1093,7 +1093,7 @@ section {
 				height: 4em;
 				margin: -1em 0.25em -1em 0.75em;
 				border: none;
-				background: url(../images/controls-bt-sep.png) no-repeat bottom;
+				background: url(../../images/controls-bt-sep.png) no-repeat bottom;
 				-webkit-background-size: 100% 100%;
 				-moz-background-size: 100% 100%;
 				-o-background-size: 100% 100%;
@@ -1121,7 +1121,7 @@ section {
 				-webkit-border-radius: 0.5em;
 				-webkit-background-clip: padding-box;
 				border-radius: 0.5em;
-				background: #e7e7e7 url(../images/old-browsers-bg/controls-bt-bg.png) repeat-x top;
+				background: #e7e7e7 url(../../images/old-browsers-bg/controls-bt-bg.png) repeat-x top;
 				-webkit-background-size: 100% 100%;
 				-moz-background-size: 100% 100%;
 				-o-background-size: 100% 100%;
@@ -1222,16 +1222,16 @@ section {
 						background-position: center;
 					}
 					div.controls-buttons > div .control-first {
-						background-image: url(../images/icons/fugue/control-double-180.png);
+						background-image: url(../../images/icons/fugue/control-double-180.png);
 					}
 					div.controls-buttons > div .control-prev {
-						background-image: url(../images/icons/fugue/control-180.png);
+						background-image: url(../../images/icons/fugue/control-180.png);
 					}
 					div.controls-buttons > div .control-next {
-						background-image: url(../images/icons/fugue/control.png);
+						background-image: url(../../images/icons/fugue/control.png);
 					}
 					div.controls-buttons > div .control-last {
-						background-image: url(../images/icons/fugue/control-double.png);
+						background-image: url(../../images/icons/fugue/control-double.png);
 					}
 					
 				/* IE class */
@@ -1249,7 +1249,7 @@ section {
 				div.controls-buttons > a:hover,
 				div.controls-buttons > .current {
 					border-color: #1eafdc #1193d5 #035592;
-					background: #057fdb url(../images/old-browsers-bg/block-control-hover-bg.png) repeat-x;
+					background: #057fdb url(../../images/old-browsers-bg/block-control-hover-bg.png) repeat-x;
 					background: -moz-linear-gradient(
 						top,
 						white,
@@ -1276,7 +1276,7 @@ section {
 					
 					div.controls-buttons > div.sub-hover:hover {
 						border: 1px solid white;
-						background: #e7e7e7 url(../images/old-browsers-bg/controls-bt-bg.png) repeat-x top;
+						background: #e7e7e7 url(../../images/old-browsers-bg/controls-bt-bg.png) repeat-x top;
 						background: -moz-linear-gradient(
 							top,
 							#f8f8f8,
@@ -1370,7 +1370,7 @@ section {
 		float: right;
 		margin: -1em;
 		padding-left: 1px;
-		background: url(../images/controls-tabs-bg.png) no-repeat -48px 0;
+		background: url(../../images/controls-tabs-bg.png) no-repeat -48px 0;
 		}
 		ul.controls-tabs li {
 			height: 48px;
@@ -1387,7 +1387,7 @@ section {
 			ul.controls-tabs li a {
 				display: block;
 				height: 100%;
-				background: url(../images/controls-tabs-bg.png) no-repeat;
+				background: url(../../images/controls-tabs-bg.png) no-repeat;
 				line-height: 48px;
 				text-align: center;
 				text-decoration: none;
@@ -1410,7 +1410,7 @@ section {
 
 /***************** Block footer *****************/
 .block-footer {
-	background: #bfbfbf url(../images/old-browsers-bg/block-footer-bg.png) repeat-x top;
+	background: #bfbfbf url(../../images/old-browsers-bg/block-footer-bg.png) repeat-x top;
 	-webkit-background-size: 100% 100%;
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
@@ -1464,7 +1464,7 @@ section {
 		height: 3em;
 		vertical-align: -0.667em;
 		margin: -0.5em 0.25em;
-		background: url(../images/controls-bt-sep.png) no-repeat bottom;
+		background: url(../../images/controls-bt-sep.png) no-repeat bottom;
 		-webkit-background-size: 100% 100%;
 		-moz-background-size: 100% 100%;
 		-o-background-size: 100% 100%;
@@ -1476,7 +1476,7 @@ section {
 	display: inline-block;
 	width: 70px;
 	height: 30px;
-	background: url(../images/switch-bg.png) no-repeat 0 -34px;
+	background: url(../../images/switch-bg.png) no-repeat 0 -34px;
 	vertical-align: middle;
 	cursor: pointer;
 	}
@@ -1498,7 +1498,7 @@ section {
 	display: inline-block;
 	width: 40px;
 	height: 20px;
-	background: url(../images/mini-switch-bg.png) no-repeat 0 -24px;
+	background: url(../../images/mini-switch-bg.png) no-repeat 0 -24px;
 	vertical-align: middle;
 	cursor: pointer;
 	}
@@ -1655,7 +1655,7 @@ section {
 	.message li,
 	div.message,
 	p.message {
-		background-image: url(../images/icons/fugue/information-ocre.png);
+		background-image: url(../../images/icons/fugue/information-ocre.png);
 		color: #576a73;
 		}
 		.message li strong,
@@ -1666,7 +1666,7 @@ section {
 	.message.warning li,
 	div.message.warning,
 	p.message.warning {
-		background-image: url(../images/icons/fugue/balloon.png);
+		background-image: url(../../images/icons/fugue/balloon.png);
 		color: #56563e;
 		}
 		.message.warning li strong,
@@ -1677,7 +1677,7 @@ section {
 	.message.error li,
 	div.message.error,
 	p.message.error {
-		background-image: url(../images/icons/fugue/cross-circle.png);
+		background-image: url(../../images/icons/fugue/cross-circle.png);
 		color: #563f3e;
 		}
 		.message.error li strong,
@@ -1688,7 +1688,7 @@ section {
 	.message.success li,
 	div.message.success,
 	p.message.success {
-		background-image: url(../images/icons/fugue/tick-circle.png);
+		background-image: url(../../images/icons/fugue/tick-circle.png);
 		color: #194a19;
 		}
 		.message.success li strong,
@@ -1698,7 +1698,7 @@ section {
 	.message.loading li,
 	div.message.loading,
 	p.message.loading {
-		background-image: url(../images/info-loader.gif);
+		background-image: url(../../images/info-loader.gif);
 		color: #1e5774;
 		}
 		.message.loading li {
@@ -1728,7 +1728,7 @@ ul.message li.close-bt {
 	height: 1em;
 	padding: 0;
 	margin: 0;
-	background: url(../images/icons/fugue/cross-small.png) no-repeat center center;
+	background: url(../../images/icons/fugue/cross-small.png) no-repeat center center;
 	cursor: pointer;
 	-moz-border-radius: 0.333em;
 	-webkit-border-radius: 0.333em;
@@ -1825,7 +1825,7 @@ ul.side-tabs li > a,
 ul.tabs li > span,
 ul.side-tabs li > span {
 	display: block;
-	background: #eeeeee url(../images/old-browsers-bg/tabs-bg.png) repeat-x top;
+	background: #eeeeee url(../../images/old-browsers-bg/tabs-bg.png) repeat-x top;
 	-webkit-background-size: 100% 100%;
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
@@ -1956,7 +1956,7 @@ ul.side-tabs {
 	margin-bottom: 1.667em;
 	padding: 0.583em 0 0 0.5em;
 	height: 1.833em;
-	background: #dbdbdb url(../images/old-browsers-bg/mini-tabs-bg.png) repeat-x top;
+	background: #dbdbdb url(../../images/old-browsers-bg/mini-tabs-bg.png) repeat-x top;
 	-webkit-background-size: 100% 100%;
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
@@ -2002,7 +2002,7 @@ ul.side-tabs {
 			-webkit-border-top-left-radius: 0.25em;
 			-webkit-border-top-right-radius: 0.25em;
 			border-radius: 0.25em 0.25em 0 0;
-			background: #dddddd url(../images/old-browsers-bg/mini-tabs-tab-bg.png) repeat-x top;
+			background: #dddddd url(../../images/old-browsers-bg/mini-tabs-tab-bg.png) repeat-x top;
 			-webkit-background-size: 100% 100%;
 			-moz-background-size: 100% 100%;
 			-o-background-size: 100% 100%;
@@ -2144,7 +2144,7 @@ ul.side-tabs {
 
 /***************** Loading tab ******************/
 .loading-tab {
-	background: #8e8e8e url(../images/old-browsers-bg/loading-tab-bg.png) repeat-x top;
+	background: #8e8e8e url(../../images/old-browsers-bg/loading-tab-bg.png) repeat-x top;
 	-webkit-background-size: 100% 100%;
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
@@ -2209,7 +2209,7 @@ ul.side-tabs {
 	margin: 0;
 	width: 100%;
 	height: 100%;
-	background: url(../images/old-browsers-bg/black50.png);
+	background: url(../../images/old-browsers-bg/black50.png);
 	background: rgba(0, 0, 0, 0.5);
 	overflow: hidden;
 	}
@@ -2225,7 +2225,7 @@ ul.side-tabs {
 		line-height: 1.25em;
 		text-align: center;
 		color: white;
-		background: black url(../images/mask-loader.gif) no-repeat center 17px;
+		background: black url(../../images/mask-loader.gif) no-repeat center 17px;
 		-moz-border-radius: 0.5em;
 		-webkit-border-radius: 0.5em;
 		-webkit-background-clip: padding-box;
@@ -2235,7 +2235,7 @@ ul.side-tabs {
 		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 	}
 	.loading-mask span.error {
-		background-image: url(../images/icons/web-app/32/Delete.png);
+		background-image: url(../../images/icons/web-app/32/Delete.png);
 		color: red;
 		cursor: pointer;
 	}
@@ -2261,7 +2261,7 @@ ul.side-tabs {
 	border: 1px solid #808080;
 	min-width: auto;
 	text-transform: none;
-	background: #a5a5a5 url(../images/old-browsers-bg/progress-bar-bg.png) repeat-x top;
+	background: #a5a5a5 url(../../images/old-browsers-bg/progress-bar-bg.png) repeat-x top;
 	-webkit-background-size: 100% 100%;
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
@@ -2344,7 +2344,7 @@ ul.side-tabs {
 		-moz-box-shadow: 0 0 1px black;
 		-webkit-box-shadow: 0 0 1px black;
 		box-shadow: 0 0 1px black;
-		background: #4398c9 url(../images/old-browsers-bg/planning-bar-blue-bg.png) repeat-x top;
+		background: #4398c9 url(../../images/old-browsers-bg/planning-bar-blue-bg.png) repeat-x top;
 		-webkit-background-size: 100% 100%;
 		-moz-background-size: 100% 100%;
 		-o-background-size: 100% 100%;
@@ -2367,18 +2367,18 @@ ul.side-tabs {
 		}
 		.progress-bar > span.with-stripes,
 		.progress-bar > span.blue.with-stripes {
-			background: #3399cc url(../images/loading-stripes.gif);
+			background: #3399cc url(../../images/loading-stripes.gif);
 			background-size: auto;
 			-moz-background-size: auto;
 			-webkit-background-size: auto;
-			background: url(../images/loading-stripes.png), -moz-linear-gradient(
+			background: url(../../images/loading-stripes.png), -moz-linear-gradient(
 				top,
 				#b0cde5,
 				#6ec3e3 15%,
 				#0e62a8 73%,
 				#4398c9
 			);
-			background: url(../images/loading-stripes.gif), -webkit-gradient(
+			background: url(../../images/loading-stripes.gif), -webkit-gradient(
 				linear,
 				left top, left bottom,
 				from(#b0cde5),
@@ -2389,7 +2389,7 @@ ul.side-tabs {
 		}
 	.progress-bar > span.green {
 		border-color: #15a80e;
-		background: #56c943 url(../images/old-browsers-bg/planning-bar-green-bg.png) repeat-x top;
+		background: #56c943 url(../../images/old-browsers-bg/planning-bar-green-bg.png) repeat-x top;
 		background: -moz-linear-gradient(
 			top,
 			#b3e6b1,
@@ -2407,18 +2407,18 @@ ul.side-tabs {
 		);
 		}
 		.progress-bar > span.green.with-stripes {
-			background: #33cc33 url(../images/loading-stripes.gif);
+			background: #33cc33 url(../../images/loading-stripes.gif);
 			background-size: auto;
 			-moz-background-size: auto;
 			-webkit-background-size: auto;
-			background: url(../images/loading-stripes.png), -moz-linear-gradient(
+			background: url(../../images/loading-stripes.png), -moz-linear-gradient(
 				top,
 				#b3e6b1,
 				#8ae46f 15%,
 				#15a80e 73%,
 				#56c943
 			);
-			background: url(../images/loading-stripes.gif), -webkit-gradient(
+			background: url(../../images/loading-stripes.gif), -webkit-gradient(
 				linear,
 				left top, left bottom,
 				from(#b3e6b1),
@@ -2429,7 +2429,7 @@ ul.side-tabs {
 		}
 	.progress-bar > span.orange {
 		border-color: #a8750e;
-		background: #c99c43 url(../images/old-browsers-bg/planning-bar-orange-bg.png) repeat-x top;
+		background: #c99c43 url(../../images/old-browsers-bg/planning-bar-orange-bg.png) repeat-x top;
 		background: -moz-linear-gradient(
 			top,
 			#e6d4b1,
@@ -2447,18 +2447,18 @@ ul.side-tabs {
 		);
 		}
 		.progress-bar > span.orange.with-stripes {
-			background: #ff9900 url(../images/loading-stripes.gif);
+			background: #ff9900 url(../../images/loading-stripes.gif);
 			background-size: auto;
 			-moz-background-size: auto;
 			-webkit-background-size: auto;
-			background: url(../images/loading-stripes.png), -moz-linear-gradient(
+			background: url(../../images/loading-stripes.png), -moz-linear-gradient(
 				top,
 				#e6d4b1,
 				#e4bd6f 15%,
 				#a8750e 73%,
 				#c99c43
 			);
-			background: url(../images/loading-stripes.gif), -webkit-gradient(
+			background: url(../../images/loading-stripes.gif), -webkit-gradient(
 				linear,
 				left top, left bottom,
 				from(#e6d4b1),
@@ -2469,7 +2469,7 @@ ul.side-tabs {
 		}
 	.progress-bar > span.purple {
 		border-color: #a10ea8;
-		background: #b543c9 url(../images/old-browsers-bg/planning-bar-purple-bg.png) repeat-x top;
+		background: #b543c9 url(../../images/old-browsers-bg/planning-bar-purple-bg.png) repeat-x top;
 		background: -moz-linear-gradient(
 			top,
 			#e3b1e6,
@@ -2487,18 +2487,18 @@ ul.side-tabs {
 		);
 		}
 		.progress-bar > span.purple.with-stripes {
-			background: #9933cc url(../images/loading-stripes.gif);
+			background: #9933cc url(../../images/loading-stripes.gif);
 			background-size: auto;
 			-moz-background-size: auto;
 			-webkit-background-size: auto;
-			background: url(../images/loading-stripes.png), -moz-linear-gradient(
+			background: url(../../images/loading-stripes.png), -moz-linear-gradient(
 				top,
 				#e3b1e6,
 				#c86fe4 15%,
 				#a10ea8 73%,
 				#b543c9
 			);
-			background: url(../images/loading-stripes.gif), -webkit-gradient(
+			background: url(../../images/loading-stripes.gif), -webkit-gradient(
 				linear,
 				left top, left bottom,
 				from(#e3b1e6),
@@ -5140,12 +5140,12 @@ html {
 }
 .login-bg,
 .wizard-bg {
-	background: url(../images/bg.png) no-repeat center -200px;
+	background: url(../../images/bg.png) no-repeat center -200px;
 	min-height: 100%;
 }
 .error-bg,
 .code-page {
-	background: url(../images/old-browsers-bg/login-radial-bg.png) no-repeat center center;
+	background: url(../../images/old-browsers-bg/login-radial-bg.png) no-repeat center center;
 	-webkit-background-size: 100% 100%;
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
@@ -5284,7 +5284,7 @@ html {
 	
 	.login-bg,
 	.wizard-bg {
-		background: #70828f url(../images/bg-mobile.png) no-repeat center -200px;
+		background: #70828f url(../../images/bg-mobile.png) no-repeat center -200px;
 		}
 		.login-bg,
 		.error-bg {
@@ -5306,7 +5306,7 @@ html {
 			}
 	.error-bg,
 	.code-page {
-		background: #70828f url(../images/old-browsers-bg/login-radial-bg-mobile.png) no-repeat center center;
+		background: #70828f url(../../images/old-browsers-bg/login-radial-bg-mobile.png) no-repeat center center;
 		background: -moz-radial-gradient(center, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0)), #70828f;
 		background: -webkit-gradient(radial, 50% 50%, 10, 50% 50%, 240, from(rgba(255, 255, 255, 0.8)), to(rgba(255, 255, 255, 0))), #70828f;
 	}

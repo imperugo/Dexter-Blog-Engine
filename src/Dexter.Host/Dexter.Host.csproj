@@ -137,7 +137,13 @@
     </Compile>
     <Compile Include="App_Start\Automapper\AutoMapperConfiguration.cs" />
     <Compile Include="App_Start\Installer.cs" />
+    <Compile Include="Areas\Dxt_Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Dxt_Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Dxt_Admin\Dxt_AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Dxt_Admin\Models\Home\FastPostBinder.cs" />
+    <Compile Include="Areas\Dxt_Admin\Models\Home\IndexViewModel.cs" />
+    <Compile Include="Areas\Dxt_Admin\Models\Login\CredentialLoginBinder.cs" />
+    <Compile Include="Areas\Dxt_Admin\Models\Login\IndexViewModel.cs" />
     <Compile Include="Areas\Dxt_Setup\Controllers\HomeController.cs" />
     <Compile Include="Areas\Dxt_Setup\Dxt_SetupAreaRegistration.cs" />
     <Compile Include="Areas\Dxt_Setup\Models\Home\IndexViewModel.cs" />
@@ -1093,9 +1099,6 @@
     <Folder Include="App_Data\Plugins\" />
     <Folder Include="App_Data\Setup\" />
     <Folder Include="App_Data\Temp\" />
-    <Folder Include="Areas\Dxt_Admin\Controllers\" />
-    <Folder Include="Areas\Dxt_Admin\Models\" />
-    <Folder Include="Areas\Dxt_Admin\Views\Shared\" />
     <Folder Include="Areas\Dxt_Setup\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
@@ -1180,6 +1183,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Dxt_Setup\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Dxt_Admin\Views\Shared\_layout.cshtml" />
+    <Content Include="Areas\Dxt_Admin\Views\Login\Index.cshtml" />
     <None Include="Styles\GlobalStylesheets.css.bundle" />
     <None Include="Styles\Global\CommonStyles.css.bundle" />
   </ItemGroup>

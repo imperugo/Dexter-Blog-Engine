@@ -1,0 +1,37 @@
+﻿@model Dexter.Web.Core.Models.DexterModelBase
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<title>Dexter Administration</title>
+	<meta charset="utf-8">
+	
+	<!-- Global stylesheets -->
+	<link href="~/Styles/Global/CommonStyles.min.css" rel="stylesheet" />
+	
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico">
+	<link rel="icon" type="image/png" href="~/favicon-large.png">
+	
+	<!-- Generic libs -->
+	<script type="text/javascript" src="~/js/html5.js"></script><!-- this has to be loaded before anything else -->
+	<script type="text/javascript" src="~/js/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="~/js/old-browsers.js"></script><!-- remove if you do not need older browsers detection -->
+	
+	<script type="text/javascript" src="~/js/Validation/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="~/js/Validation/jquery.validate.unobtrusive.min.js"></script>
+	
+	<!-- Template core functions -->
+	<script type="text/javascript" src="~/js/common.js"></script>
+	<script type="text/javascript" src="~/js/standard.js"></script>
+	<!--[if lte IE 8]><script type="text/javascript" src="~/js/standard.ie.js"></script><![endif]-->
+	<script type="text/javascript" src="~/js/jquery.tip.js"></script>
+	
+	@RenderSection( "header", false )
+</head>
+	@this.RenderBody()
+</html>

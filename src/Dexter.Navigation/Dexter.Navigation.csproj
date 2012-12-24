@@ -80,6 +80,7 @@
     <Compile Include="Contracts\IUrlBuilder.cs" />
     <Compile Include="Concretes\PostUrlBuilder.cs" />
     <Compile Include="Extensions\NavigationExtensions.cs" />
+    <Compile Include="Helpers\UrlBuilderBase.cs" />
     <Compile Include="Helpers\SiteUrl.cs" />
     <Compile Include="Installer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

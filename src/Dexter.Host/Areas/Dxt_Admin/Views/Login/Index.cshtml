@@ -1,0 +1,82 @@
+﻿@model Dexter.Host.Areas.Dxt_Admin.Models.Login.IndexViewModel
+
+@{
+	Layout = "~/Areas/Dxt_Admin/Views/Shared/_layout.cshtml";
+}
+
+<!-- the 'special-page' class is only an identifier for scripts -->
+<body class="special-page login-bg dark">
+	<!-- The template uses conditional comments to add wrappers div for ie8 and ie7 - just add .ie, .ie7 or .ie6 prefix to your css selectors when needed -->
+	<!--[if lt IE 9]><div class="ie"><![endif]-->
+	<!--[if lt IE 8]><div class="ie7"><![endif]-->
+
+	<section id="message">
+		<div class="block-border">
+			<div class="block-content no-title dark-bg">
+				<p class="mini-infos">The request area is <b>reserved to registered users</b>.</p>
+			</div>
+		</div>
+	</section>
+
+	<section id="login-block">
+		<div class="block-border">
+			<div class="block-content">
+
+				<!--
+					IE7 compatibility: if you want to remove the <h1>, add style="zoom:1" to the above .block-content div
+				-->
+				<h1>Admin</h1>
+				<div class="block-header">Please login</div>
+
+				@if (!ViewData.ModelState.IsValid)
+				{
+					<p class="message error no-margin">
+						Wrong user/password, please try again
+					</p>	
+				}
+
+				<form class="form with-margin" name="login-form" id="login-form" method="post" action="#">
+					@Html.AntiForgeryToken()
+
+					<input type="hidden" name="a" id="a" value="send">
+					<p class="inline-small-label">
+						<label for="Credential_Username">
+							<span class="big">User name</span>
+						</label>
+						@Html.TextBoxFor( x => x.Credential.Username, new { @class = "full-width", placeholder = "username" } )
+					</p>
+
+					<p class="inline-small-label">
+						<label for="Credential_Password">
+							<span class="big">Password</span>
+						</label>
+						@Html.PasswordFor(x => x.Credential.Password, new { @class = "full-width", placeholder="password" })
+					</p>
+
+					<button type="submit" class="float-right">Login</button>
+					<p class="input-height">
+						@Html.CheckBoxFor(x => x.Credential.KeepLogged, new { @class = "mini-switch" })
+						<label for="keep-logged" class="inline">Keep me logged in</label>
+					</p>
+				</form>
+
+				@*
+				<form class="form" id="password-recovery" method="post" action="">
+					<fieldset class="grey-bg no-margin collapse">
+						<legend><a href="#">Lost password?</a></legend>
+						<p class="input-with-button">
+							<label for="recovery-mail">Enter your e-mail address</label>
+							<input type="text" name="recovery-mail" id="recovery-mail" value="" />
+							<button type="button">Send</button>
+						</p>
+					</fieldset>
+				</form>
+				*@
+			</div>
+		</div>
+	</section>
+
+
+	<!--[if lt IE 8]></div><![endif]-->
+	<!--[if lt IE 9]></div><![endif]-->
+</body>

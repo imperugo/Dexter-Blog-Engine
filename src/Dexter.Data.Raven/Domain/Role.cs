@@ -1,11 +1,11 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			PostUrlBuilder.cs
+// File:			Role.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/12/01
-// Last edit:	2012/12/01
+// Created:		2012/12/23
+// Last edit:	2012/12/23
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -14,17 +14,22 @@
 
 #endregion
 
-namespace Dexter.Navigation.Concretes
+namespace Dexter.Data.Raven.Domain
 {
-	using Dexter.Entities;
-	using Dexter.Navigation.Contracts;
-	using Dexter.Navigation.Helpers;
+	using System;
 
-	public class PostUrlBuilder : IPostUrlBuilder
+	public class Role : EntityBase<string>
 	{
-		public SiteUrl Permalink(ItemDto item)
-		{
-			throw new System.NotImplementedException();
-		}
+		#region Public Properties
+
+		public string ApplicationName { get; set; }
+
+		public string Description { get; set; }
+
+		public Guid RoleId { get; set; }
+
+		public string RoleName { get; set; }
+
+		#endregion
 	}
 }

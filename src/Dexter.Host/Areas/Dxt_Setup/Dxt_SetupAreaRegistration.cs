@@ -38,7 +38,7 @@ namespace Dexter.Host.Areas.Dxt_Setup
 		{
 			context.MapRoute(
 				"Dxt_Setup_default", 
-				"Dxt_Setup/{controller}/{action}/{id}", 
+				"Dxt-Setup/{controller}/{action}/{id}", 
 				new
 					{
 						action = "Index", 

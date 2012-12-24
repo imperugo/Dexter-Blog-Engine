@@ -15,7 +15,12 @@
 
 namespace Dexter.Navigation.Contracts
 {
+	using Dexter.Navigation.Helpers;
+
 	public interface IAdminUrlBuilder
 	{
+		SiteUrl Home();
+
+		SiteUrl Login();
 	}
 }
