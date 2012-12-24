@@ -5,29 +5,22 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/01
-// Last edit:	2012/11/11
+// Last edit:	2012/12/24
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Web.Core.Controllers.Web
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Threading.Tasks;
 	using System.Web.Mvc;
 
 	using Common.Logging;
 
 	using Dexter.Entities;
-	using Dexter.Entities.Filters;
-	using Dexter.Entities.Result;
 	using Dexter.Services;
-	using Dexter.Web.Core.Models;
 
 	public class DexterControllerBase : AsyncController
 	{

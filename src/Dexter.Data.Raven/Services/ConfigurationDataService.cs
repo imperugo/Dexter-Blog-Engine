@@ -11,7 +11,6 @@
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Data.Raven.Services
@@ -20,8 +19,6 @@ namespace Dexter.Data.Raven.Services
 
 	using Dexter.Data.Raven.Session;
 	using Dexter.Entities;
-
-	using global::Raven.Client;
 
 	public class ConfigurationDataService : ServiceBase, IConfigurationDataService
 	{

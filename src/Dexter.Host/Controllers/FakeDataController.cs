@@ -5,13 +5,12 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/02
-// Last edit:	2012/11/02
+// Last edit:	2012/12/24
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Host.Controllers
@@ -28,12 +27,16 @@ namespace Dexter.Host.Controllers
 
 	public class FakeDataController : DexterControllerBase
 	{
-		#region Public Methods and Operators
+		#region Constructors and Destructors
 
 		public FakeDataController(ILog logger, IConfigurationService configurationService, IPostService postService, ICommentService commentService)
 			: base(logger, configurationService, postService, commentService)
 		{
 		}
+
+		#endregion
+
+		#region Public Methods and Operators
 
 		public ActionResult Index()
 		{
@@ -44,9 +47,9 @@ namespace Dexter.Host.Controllers
 			item.PublishAt = DateTime.Today;
 			item.Slug = "PostSlug";
 			item.Status = ItemStatus.Published;
-			item.Tags = new Collection<string>()
+			item.Tags = new Collection<string>
 				            {
-					            "tag1",
+					            "tag1", 
 					            "tag2"
 				            };
 

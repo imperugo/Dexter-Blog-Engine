@@ -5,13 +5,12 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/01
-// Last edit:	2012/11/01
+// Last edit:	2012/12/24
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Web.Core.Models
@@ -26,7 +25,7 @@ namespace Dexter.Web.Core.Models
 	{
 		#region Fields
 
-		private readonly IDictionary<String, object> customProperties = new Dictionary<String, object>();
+		private readonly IDictionary<string, object> customProperties = new Dictionary<string, object>();
 
 		private readonly object lockObject = new object();
 
@@ -57,6 +56,7 @@ namespace Dexter.Web.Core.Models
 
 				return this.copyRight;
 			}
+
 			set
 			{
 				this.copyRight = value;
@@ -74,6 +74,7 @@ namespace Dexter.Web.Core.Models
 
 				return this.description;
 			}
+
 			set
 			{
 				this.description = value;
@@ -91,6 +92,7 @@ namespace Dexter.Web.Core.Models
 
 				return this.keywords;
 			}
+
 			set
 			{
 				this.keywords = value;
@@ -108,6 +110,7 @@ namespace Dexter.Web.Core.Models
 
 				return this.title;
 			}
+
 			set
 			{
 				this.title = value;
@@ -139,6 +142,7 @@ namespace Dexter.Web.Core.Models
 					         : null;
 				this.customProperties.Add(binder.Name, result);
 			}
+
 			return true;
 		}
 

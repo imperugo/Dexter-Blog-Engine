@@ -5,13 +5,12 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/11
-// Last edit:	2012/11/11
+// Last edit:	2012/12/24
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Web.Core.ViewEngine
@@ -38,10 +37,6 @@ namespace Dexter.Web.Core.ViewEngine
 		#region Static Fields
 
 		private static readonly string[] EmptyLocations = new string[0];
-
-		#endregion
-
-		#region Fields
 
 		#endregion
 
@@ -72,7 +67,8 @@ namespace Dexter.Web.Core.ViewEngine
 			{
 				throw new ArgumentNullException("controllerContext");
 			}
-			if (String.IsNullOrEmpty(viewName))
+
+			if (string.IsNullOrEmpty(viewName))
 			{
 				throw new ArgumentException("viewName");
 			}
@@ -84,7 +80,7 @@ namespace Dexter.Web.Core.ViewEngine
 			string viewPath = this.GetPath(controllerContext, this.ViewLocationFormats, viewName, controllerName, CacheKeyPrefixView, useCache, out viewLocationsSearched);
 			string masterPath = this.GetPath(controllerContext, this.MasterLocationFormats, masterName, controllerName, CacheKeyPrefixMaster, useCache, out masterLocationsSearched);
 
-			if (String.IsNullOrEmpty(viewPath) || (String.IsNullOrEmpty(masterPath) && !String.IsNullOrEmpty(masterName)))
+			if (string.IsNullOrEmpty(viewPath) || (string.IsNullOrEmpty(masterPath) && !string.IsNullOrEmpty(masterName)))
 			{
 				return new ViewEngineResult(viewLocationsSearched.Union(masterLocationsSearched));
 			}
@@ -99,12 +95,12 @@ namespace Dexter.Web.Core.ViewEngine
 		private static bool IsSpecificPath(string name)
 		{
 			char c = name[0];
-			return (c == '~' || c == '/');
+			return c == '~' || c == '/';
 		}
 
 		private string CreateCacheKey(string prefix, string name, string controllerName)
 		{
-			return String.Format(CultureInfo.InvariantCulture, CacheKeyFormat, 
+			return string.Format(CultureInfo.InvariantCulture, CacheKeyFormat, 
 				this.GetType().AssemblyQualifiedName, prefix, name, controllerName);
 		}
 
@@ -112,9 +108,9 @@ namespace Dexter.Web.Core.ViewEngine
 		{
 			searchedLocations = EmptyLocations;
 
-			if (String.IsNullOrEmpty(name))
+			if (string.IsNullOrEmpty(name))
 			{
-				return String.Empty;
+				return string.Empty;
 			}
 
 			if (locations == null || locations.Length == 0)
@@ -123,7 +119,7 @@ namespace Dexter.Web.Core.ViewEngine
 			}
 
 			bool nameRepresentsPath = IsSpecificPath(name);
-			string cacheKey = this.CreateCacheKey(cacheKeyPrefix, name, (nameRepresentsPath) ? String.Empty : controllerName);
+			string cacheKey = this.CreateCacheKey(cacheKeyPrefix, name, nameRepresentsPath ? string.Empty : controllerName);
 
 			if (useCache)
 			{
@@ -134,20 +130,20 @@ namespace Dexter.Web.Core.ViewEngine
 				}
 			}
 
-			return (nameRepresentsPath) ?
-				                            this.GetPathFromSpecificName(controllerContext, name, cacheKey, ref searchedLocations) :
-					                                                                                                                   this.GetPathFromGeneralName(controllerContext, locations, name, controllerName, cacheKey, ref searchedLocations);
+			return nameRepresentsPath ?
+				       this.GetPathFromSpecificName(controllerContext, name, cacheKey, ref searchedLocations) :
+				       this.GetPathFromGeneralName(controllerContext, locations, name, controllerName, cacheKey, ref searchedLocations);
 		}
 
 		private string GetPathFromGeneralName(ControllerContext controllerContext, string[] locations, string name, string controllerName, string cacheKey, ref string[] searchedLocations)
 		{
-			string result = String.Empty;
+			string result = string.Empty;
 			searchedLocations = new string[locations.Length];
 			string language = controllerContext.RouteData.Values["lang"].ToString();
 
 			for (int i = 0; i < locations.Length; i++)
 			{
-				string virtualPath = String.Format(CultureInfo.InvariantCulture, locations[i], name, controllerName, language);
+				string virtualPath = string.Format(CultureInfo.InvariantCulture, locations[i], name, controllerName, language);
 
 				if (this.FileExists(controllerContext, virtualPath))
 				{
@@ -169,7 +165,7 @@ namespace Dexter.Web.Core.ViewEngine
 
 			if (!this.FileExists(controllerContext, name))
 			{
-				result = String.Empty;
+				result = string.Empty;
 				searchedLocations = new[] { name };
 			}
 

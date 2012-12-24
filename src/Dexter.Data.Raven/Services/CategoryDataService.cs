@@ -5,13 +5,12 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/12/01
-// Last edit:	2012/12/23
+// Last edit:	2012/12/24
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Data.Raven.Services
@@ -50,28 +49,27 @@ namespace Dexter.Data.Raven.Services
 
 		#endregion
 
-		//public List<CategoryDto> MakeTreeFromFlatList(IList<CategoryDto> flatList)
-		//{
-		//	var dic = flatList.ToDictionary(n => n.Id, n => n);
+		// public List<CategoryDto> MakeTreeFromFlatList(IList<CategoryDto> flatList)
+		// {
+		// 	var dic = flatList.ToDictionary(n => n.Id, n => n);
 
-		//	var rootNodes = new List<CategoryDto>();
+		// 	var rootNodes = new List<CategoryDto>();
 
-		//	foreach (CategoryDto node in flatList)
-		//	{
-		//		if (node.ParentId != null)
-		//		{
-		//			CategoryDto parent = dic[node.Parent.Id].MapTo<CategoryDto>();
-		//			node.Parent = parent;
-		//			parent.Categories.Add(node);
-		//		}
-		//		else
-		//		{
-		//			rootNodes.Add(node);
-		//		}
-		//	}
-		//	return rootNodes;
-		//}
-
+		// 	foreach (CategoryDto node in flatList)
+		// 	{
+		// 		if (node.ParentId != null)
+		// 		{
+		// 			CategoryDto parent = dic[node.Parent.Id].MapTo<CategoryDto>();
+		// 			node.Parent = parent;
+		// 			parent.Categories.Add(node);
+		// 		}
+		// 		else
+		// 		{
+		// 			rootNodes.Add(node);
+		// 		}
+		// 	}
+		// 	return rootNodes;
+		// }
 		#region Public Methods and Operators
 
 		public void DeleteCategory(string id, string newCategoryId)
@@ -124,8 +122,7 @@ namespace Dexter.Data.Raven.Services
 
 		public IList<CategoryDto> GetCategoriesStructure()
 		{
-			//TODO:http://ayende.com/blog/4801/leaving-the-relational-mindset-ravendbs-trees
-
+			// TODO:http://ayende.com/blog/4801/leaving-the-relational-mindset-ravendbs-trees
 			List<Category> cats = this.Session
 			                          .Query<Category>()
 			                          .Include(x => x.ParentId)

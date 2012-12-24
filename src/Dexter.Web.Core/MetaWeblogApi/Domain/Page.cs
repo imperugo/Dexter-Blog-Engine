@@ -5,13 +5,12 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/11
-// Last edit:	2012/11/11
+// Last edit:	2012/12/24
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Web.Core.MetaWeblogApi.Domain
@@ -77,12 +76,11 @@ namespace Dexter.Web.Core.MetaWeblogApi.Domain
 
 		// it should have been 'int', but WLW complaining
 
-		//array custom_fields
-		//struct
-		//string id
-		//string key
-		//string value
-
+		// array custom_fields
+		// struct
+		// string id
+		// string key
+		// string value
 		public string wp_page_template;
 
 		public string wp_password;

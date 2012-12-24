@@ -5,19 +5,16 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/12/23
-// Last edit:	2012/12/23
+// Last edit:	2012/12/24
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Services.Implmentation
 {
-	using System.Web.Security;
-
 	using Dexter.Data;
 	using Dexter.Entities;
 
@@ -60,10 +57,10 @@ namespace Dexter.Services.Implmentation
 
 			this.configurationDataService.SaveConfiguration(configuration);
 
-			//Membership.CreateUser(item.AdminUsername, item.AdminPassword, item.Email.Address);
-			//Roles.CreateRole("Administrator");
+			// Membership.CreateUser(item.AdminUsername, item.AdminPassword, item.Email.Address);
+			// Roles.CreateRole("Administrator");
 
-			//Roles.AddUserToRole(item.AdminUsername, "Administrator");
+			// Roles.AddUserToRole(item.AdminUsername, "Administrator");
 		}
 
 		#endregion

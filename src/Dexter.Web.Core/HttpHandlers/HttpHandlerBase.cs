@@ -5,13 +5,12 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/11
-// Last edit:	2012/11/11
+// Last edit:	2012/12/24
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Web.Core.HttpHandlers
@@ -58,7 +57,7 @@ namespace Dexter.Web.Core.HttpHandlers
 		/// <param name = "context">An <see cref = "T:System.Web.HttpContext" /> object that provides references to the intrinsic server objects (for example, Request, Response, Session, and Server) used to service HTTP requests.</param>
 		public void ProcessRequest(HttpContext context)
 		{
-			wrapper = new HttpContextWrapper(context);
+			this.wrapper = new HttpContextWrapper(context);
 
 			this.ProcessRequest(this.wrapper);
 		}
@@ -90,7 +89,7 @@ namespace Dexter.Web.Core.HttpHandlers
 			this.wrapper.Response.Cache.SetETag(etag);
 			this.wrapper.Response.Cache.SetCacheability(HttpCacheability.Public);
 
-			if (String.CompareOrdinal(incomingEtag, etag) == 0)
+			if (string.CompareOrdinal(incomingEtag, etag) == 0)
 			{
 				this.wrapper.Response.Clear();
 				this.wrapper.Response.StatusCode = (int)HttpStatusCode.NotModified;

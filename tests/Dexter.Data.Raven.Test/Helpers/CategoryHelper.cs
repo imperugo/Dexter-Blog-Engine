@@ -5,7 +5,7 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/12/01
-// Last edit:	2012/12/01
+// Last edit:	2012/12/24
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -23,15 +23,19 @@ namespace Dexter.Data.Raven.Test.Helpers
 
 	internal static class CategoryHelper
 	{
+		#region Public Methods and Operators
+
 		public static IList<Category> GetCategories(int numberOfDocument)
 		{
 			return Builder<Category>.CreateListOfSize(numberOfDocument)
-							.All()
-							.With(x => x.Id = null)
-							.With(x => x.ParentId = null)
-							.With(x => x.ChildrenIds = null)
-							.With(x => x.IsDefault = false)
-							.Build();
+			                        .All()
+			                        .With(x => x.Id = null)
+			                        .With(x => x.ParentId = null)
+			                        .With(x => x.ChildrenIds = null)
+			                        .With(x => x.IsDefault = false)
+			                        .Build();
 		}
+
+		#endregion
 	}
 }

@@ -5,13 +5,12 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/02
-// Last edit:	2012/11/02
+// Last edit:	2012/12/24
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace System
@@ -20,7 +19,6 @@ namespace System
 
 	using System.IO;
 	using System.Linq;
-	using System.Security.Cryptography;
 	using System.Text;
 	using System.Text.RegularExpressions;
 
@@ -39,9 +37,9 @@ namespace System
 		/// <param name = "value">The value.</param>
 		/// <param name = "valueToAppend">The value to append.</param>
 		/// <returns></returns>
-		public static string Append(this String value, string valueToAppend)
+		public static string Append(this string value, string valueToAppend)
 		{
-			if (String.IsNullOrEmpty(value))
+			if (string.IsNullOrEmpty(value))
 			{
 				return valueToAppend;
 			}
@@ -60,7 +58,7 @@ namespace System
 		/// <param name = "value">The value.</param>
 		/// <param name = "valuesToAppend">The values to append.</param>
 		/// <returns></returns>
-		public static string Append(this String value, params object[] valuesToAppend)
+		public static string Append(this string value, params object[] valuesToAppend)
 		{
 			if (value == null && (valuesToAppend == null || valuesToAppend.Length == 0))
 			{
@@ -89,14 +87,14 @@ namespace System
 		/// <returns></returns>
 		public static string Capitalize(this string value)
 		{
-			if (String.IsNullOrEmpty(value))
+			if (string.IsNullOrEmpty(value))
 			{
 				return value;
 			}
 
-			return (value.Substring(0, 1).ToUpper() + ((value.Length > 1)
+			return value.Substring(0, 1).ToUpper() + ((value.Length > 1)
 				                                           ? value.Substring(1)
-				                                           : string.Empty));
+				                                           : string.Empty);
 		}
 
 		/// <summary>
@@ -106,8 +104,8 @@ namespace System
 		/// <returns></returns>
 		public static string CleanHtmlText(this string text)
 		{
-			text = Regex.Replace(text, "<[^>]*>", String.Empty);
-			text = Regex.Replace(text, "<script[^>]*>", String.Empty, RegexOptions.IgnoreCase);
+			text = Regex.Replace(text, "<[^>]*>", string.Empty);
+			text = Regex.Replace(text, "<script[^>]*>", string.Empty, RegexOptions.IgnoreCase);
 			text = Regex.Replace(text, "javascript:", string.Empty, RegexOptions.IgnoreCase);
 
 			return text;
@@ -161,7 +159,7 @@ namespace System
 		/// <remarks>
 		/// 	The default IsLike is performed using a case insensitive search.
 		/// </remarks>
-		public static Boolean IsLike(this String value, String pattern)
+		public static bool IsLike(this string value, string pattern)
 		{
 			return IsLike(value, pattern, true);
 		}
@@ -178,7 +176,7 @@ namespace System
 		/// <remarks>
 		/// 	The default IsLike is performed using a case insensitive search.
 		/// </remarks>
-		public static Boolean IsLike(this String value, params String[] patterns)
+		public static bool IsLike(this string value, params string[] patterns)
 		{
 			return patterns.Any(value.IsLike);
 		}
@@ -192,7 +190,7 @@ namespace System
 		/// <returns>
 		/// 	<c>True</c> in case of successful match, otherwise <c>false</c>.
 		/// </returns>
-		public static Boolean IsLike(this String value, String pattern, Boolean ignoreCase)
+		public static bool IsLike(this string value, string pattern, bool ignoreCase)
 		{
 			/*
 			 * Se nella stringa ci sono delle '\' dobbiamo 
@@ -224,7 +222,7 @@ namespace System
 			 * l'inizio e la fine della stringa altrimenti
 			 * ad es. Beatrice matcha con B*r 
 			 */
-			pattern = String.Concat("\\A", pattern, "\\z");
+			pattern = string.Concat("\\A", pattern, "\\z");
 
 			RegexOptions options = RegexOptions.None;
 			if (ignoreCase)
@@ -244,9 +242,9 @@ namespace System
 		/// <returns>
 		/// 	<c>true</c> if the specified string is null or empty; otherwise, <c>false</c>.
 		/// </returns>
-		public static Boolean IsNullOrEmpty(this String value)
+		public static bool IsNullOrEmpty(this string value)
 		{
-			return String.IsNullOrEmpty(value);
+			return string.IsNullOrEmpty(value);
 		}
 
 		/// <summary>
@@ -254,14 +252,14 @@ namespace System
 		/// </summary>
 		/// <param name = "value">The string to analyze.</param>
 		/// <returns><c>true</c> if the given string represents a number; otherwise <c>false</c>.</returns>
-		public static Boolean IsNumber(this String value)
+		public static bool IsNumber(this string value)
 		{
-			if (String.IsNullOrEmpty(value))
+			if (string.IsNullOrEmpty(value))
 			{
 				return false;
 			}
 
-			return value.All(Char.IsNumber);
+			return value.All(char.IsNumber);
 		}
 
 		/// <summary>
@@ -302,10 +300,11 @@ namespace System
 		/// <returns></returns>
 		public static string MakeValidFileName(this string name)
 		{
-			if (String.IsNullOrEmpty(name))
+			if (string.IsNullOrEmpty(name))
 			{
 				throw new ArgumentOutOfRangeException("name", "MakeValidFileName does not work with null string");
 			}
+
 			string invalidChars = Regex.Escape(new string(Path.GetInvalidFileNameChars()));
 			string invalidReStr = string.Format(@"[{0}]", invalidChars);
 			return Regex.Replace(name, invalidReStr, "_");
@@ -318,7 +317,7 @@ namespace System
 		/// <returns></returns>
 		public static string RemoveHtmlComment(this string text)
 		{
-			return Regex.Replace(text, @"<!--((?!-->).|\r|\n)*-->", String.Empty);
+			return Regex.Replace(text, @"<!--((?!-->).|\r|\n)*-->", string.Empty);
 		}
 
 		/// <summary>

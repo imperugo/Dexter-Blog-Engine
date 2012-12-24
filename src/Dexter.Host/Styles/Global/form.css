@@ -1,551 +1,532 @@
 /************** Forms & pseudo-form **************/
 .form fieldset,
 .fieldset {
-	border: 1px solid #d9d9d9;
-	padding: 1em 1.667em 1.667em 1.667em;
 	-moz-border-radius: 0.25em;
-	-webkit-border-radius: 0.25em;
 	-webkit-background-clip: padding-box;
+	-webkit-border-radius: 0.25em;
+	border: 1px solid #d9d9d9;
 	border-radius: 0.25em;
 	margin-bottom: 1.667em;
-	}
+	padding: 1em 1.667em 1.667em 1.667em;
+}
 	/* IE class */
-	.ie7 .block-content .form fieldset.no-margin,
-	.ie7 .form.block-content fieldset.no-margin,
-	.ie7 .form .block-content fieldset.no-margin {
-		display: block;
-		width: 100%;
-	}
-	.fieldset {
-		position: relative;
-		z-index: 89;
-		padding-top: 1.667em;
-	}
-	.with-legend {
-		margin-top: 1em;
-	}
+
+.ie7 .block-content .form fieldset.no-margin,
+.ie7 .form.block-content fieldset.no-margin,
+.ie7 .form .block-content fieldset.no-margin {
+	display: block;
+	width: 100%;
+}
+
+.fieldset {
+	padding-top: 1.667em;
+	position: relative;
+	z-index: 89;
+}
+
+.with-legend { margin-top: 1em; }
 	/* IE class */
-	.ie .form fieldset {
-		padding-top: 0;
-	}
-	.form legend,
-	.legend {
-		margin-left: -0.833em;
-		}
-		.legend {
-			position: absolute;
-			left: 1.667em;
-			top: -1.083em;
-		}
+
+.ie .form fieldset { padding-top: 0; }
+
+.form legend,
+.legend { margin-left: -0.833em; }
+
+.legend {
+	left: 1.667em;
+	position: absolute;
+	top: -1.083em;
+}
 		/* IE class */
-		.ie .form legend {
-			margin-bottom: 1em;
-			margin-top: -1em;
-			}
-			.ie .form .fieldset-with-legend {
-				margin-top: 2em;
-			}
-			.ie .form .fieldset-with-legend-first-child {
-				margin-top: 1em;
-			}
-		.form legend a,
-		.legend a {
-			display: block;
-			margin: -0.25em -0.333em -0.333em -0.5em;
-			padding: 0.25em 20px 0.333em 0.5em;
-			color: #666;
-			background: url(../../images/icons/fugue/chevron-off.png) no-repeat right 60%;
-			}
-			.form legend a:hover,
-			.legend a:hover {
-				color: #3399cc;
-				background-image: url(../../images/icons/fugue/chevron.png);
-			}
-	
-	.form fieldset.collapsed,
-	.fieldset.collapsed {
-		border: none;
-		padding: 0;
-		background: none;
-		}
-		.form fieldset.no-margin.collapsed,
-		.fieldset.no-margin.collapsed {
-			padding-left: 1.667em;
-		}
-		.form fieldset.no-margin.collapsed:last-child,
-		.fieldset.no-margin.collapsed:last-child {
-			padding-bottom: 1.667em;
-		}
+
+.ie .form legend {
+	margin-bottom: 1em;
+	margin-top: -1em;
+}
+
+.ie .form .fieldset-with-legend { margin-top: 2em; }
+
+.ie .form .fieldset-with-legend-first-child { margin-top: 1em; }
+
+.form legend a,
+.legend a {
+	background: url(../../images/icons/fugue/chevron-off.png) no-repeat right 60%;
+	color: #666;
+	display: block;
+	margin: -0.25em -0.333em -0.333em -0.5em;
+	padding: 0.25em 20px 0.333em 0.5em;
+}
+
+.form legend a:hover,
+.legend a:hover {
+	background-image: url(../../images/icons/fugue/chevron.png);
+	color: #3399cc;
+}
+
+.form fieldset.collapsed,
+.fieldset.collapsed {
+	background: none;
+	border: none;
+	padding: 0;
+}
+
+.form fieldset.no-margin.collapsed,
+.fieldset.no-margin.collapsed { padding-left: 1.667em; }
+
+.form fieldset.no-margin.collapsed:last-child,
+.fieldset.no-margin.collapsed:last-child { padding-bottom: 1.667em; }
 		/* IE class */
-		.form fieldset.no-margin.collapsed.last-child,
-		.fieldset.no-margin.collapsed.last-child {
-			padding-bottom: 0.667em;
-		}
-		.form fieldset.collapsed > *,
-		.fieldset.collapsed > * {
-			display: none;
-			}
-			.form fieldset.collapsed legend,
-			.fieldset.collapsed .legend {
-				display: block;
-				margin-left: 0;
-				}
-				.ie7 .form fieldset.collapsed legend,
-				.ie7 .fieldset.collapsed .legend {
-					display: inline-block;
-				}
-				.form fieldset.collapsed legend a,
-				.fieldset.collapsed .legend a {
-					background-image: url(../../images/icons/fugue/chevron-expand-off.png);
-					}
-					.form fieldset.collapsed legend a:hover,
-					.fieldset.collapsed .legend a:hover {
-						background-image: url(../../images/icons/fugue/chevron-expand.png);
-					}
-		
-		fieldset legend .show-expanded, .fieldset .legend .show-expanded { display: inline; }
-		fieldset legend .show-collapsed, .fieldset .legend .show-collapsed { display: none; }
-		fieldset.collapsed legend .show-expanded, .fieldset.collapsed .legend .show-expanded { display: none; }
-		fieldset.collapsed legend .show-collapsed, .fieldset.collapsed .legend .show-collapsed { display: inline; }
-	
-	.block-content .form fieldset.no-margin,
-	.block-content.form fieldset.no-margin,
-	.form .block-content fieldset.no-margin,
-	.block-content .fieldset.no-margin {
-		border-color: #999999;
-		border-width: 1px 0 1px 0;
-		-moz-border-radius: 0;
-		-webkit-border-radius: 0;
-		-webkit-background-clip: padding-box;
-		border-radius: 0;
-		}
-		.form fieldset.no-margin legend,
-		.fieldset.no-margin .legend {
-			margin-left: 0;
-		}
+
+.form fieldset.no-margin.collapsed.last-child,
+.fieldset.no-margin.collapsed.last-child { padding-bottom: 0.667em; }
+
+.form fieldset.collapsed > *,
+.fieldset.collapsed > * { display: none; }
+
+.form fieldset.collapsed legend,
+.fieldset.collapsed .legend {
+	display: block;
+	margin-left: 0;
+}
+
+.ie7 .form fieldset.collapsed legend,
+.ie7 .fieldset.collapsed .legend { display: inline-block; }
+
+.form fieldset.collapsed legend a,
+.fieldset.collapsed .legend a { background-image: url(../../images/icons/fugue/chevron-expand-off.png); }
+
+.form fieldset.collapsed legend a:hover,
+.fieldset.collapsed .legend a:hover { background-image: url(../../images/icons/fugue/chevron-expand.png); }
+
+fieldset legend .show-expanded, .fieldset .legend .show-expanded { display: inline; }
+
+fieldset legend .show-collapsed, .fieldset .legend .show-collapsed { display: none; }
+
+fieldset.collapsed legend .show-expanded, .fieldset.collapsed .legend .show-expanded { display: none; }
+
+fieldset.collapsed legend .show-collapsed, .fieldset.collapsed .legend .show-collapsed { display: inline; }
+
+.block-content .form fieldset.no-margin,
+.block-content.form fieldset.no-margin,
+.form .block-content fieldset.no-margin,
+.block-content .fieldset.no-margin {
+	-moz-border-radius: 0;
+	-webkit-background-clip: padding-box;
+	-webkit-border-radius: 0;
+	border-color: #999999;
+	border-radius: 0;
+	border-width: 1px 0 1px 0;
+}
+
+.form fieldset.no-margin legend,
+.fieldset.no-margin .legend { margin-left: 0; }
 		/* IE class */
-		.ie7 .form fieldset.no-margin legend {
-			margin-left: -0.667em;
-		}
-	
-	.form fieldset:last-child,
-	.fieldset:last-child {
-		margin-bottom: 0;
-	}
+
+.ie7 .form fieldset.no-margin legend { margin-left: -0.667em; }
+
+.form fieldset:last-child,
+.fieldset:last-child { margin-bottom: 0; }
 	/* IE class */
-	.form fieldset.last-child,
-	.fieldset.last-child {
-		margin-bottom: 0;
-	}
-	.block-content .form fieldset.no-margin:last-child,
-	.block-content.form fieldset.no-margin:last-child,
-	.form .block-content fieldset.no-margin:last-child,
-	section .fieldset.no-margin:last-child {
-		border-bottom: 0;
-		-moz-border-radius: 0 0 0.167em 0.167em;
-		-webkit-border-bottom-left-radius: 0.167em;
-		-webkit-border-bottom-right-radius: 0.167em;
-		border-radius: 0 0 0.167em 0.167em;
-	}
+
+.form fieldset.last-child,
+.fieldset.last-child { margin-bottom: 0; }
+
+.block-content .form fieldset.no-margin:last-child,
+.block-content.form fieldset.no-margin:last-child,
+.form .block-content fieldset.no-margin:last-child,
+section .fieldset.no-margin:last-child {
+	-moz-border-radius: 0 0 0.167em 0.167em;
+	-webkit-border-bottom-left-radius: 0.167em;
+	-webkit-border-bottom-right-radius: 0.167em;
+	border-bottom: 0;
+	border-radius: 0 0 0.167em 0.167em;
+}
 	/* IE class */
-	.block-content .form fieldset.no-margin.last-child,
-	.block-content.form fieldset.no-margin.last-child,
-	.form .block-content fieldset.no-margin.last-child,
-	.fieldset.no-margin.last-child {
-		border-bottom: 0;
-	}
-	
-	.form label,
-	.form .label {
-		color: #808080;
-		font-weight: bold;
-		display: block;
-		margin-bottom: 0.5em;
-		}
-		.form label.light,
-		.form .label.light {
-			font-weight: normal;
-			color: #777;
-		}
-		.form label.inline,
-		.form .label.inline {
-			display: inline;
-			float: none;
-			margin: 0;
-			font-weight: normal;
-		}
-		.form .required label,
-		.form .required .label,
-		.form label.required,
-		.form .label.required,
-		.form label.inline.required,
-		.form .label.inline.required {
-			color: black;
-		}
-		.form .required label:before,
-		.form .required .label:before,
-		.form label.required:before,
-		.form .label.required:before {
-			color: red;
-			content: "* ";
-		}
+
+.block-content .form fieldset.no-margin.last-child,
+.block-content.form fieldset.no-margin.last-child,
+.form .block-content fieldset.no-margin.last-child,
+.fieldset.no-margin.last-child { border-bottom: 0; }
+
+.form label,
+.form .label {
+	color: #808080;
+	display: block;
+	font-weight: bold;
+	margin-bottom: 0.5em;
+}
+
+.form label.light,
+.form .label.light {
+	color: #777;
+	font-weight: normal;
+}
+
+.form label.inline,
+.form .label.inline {
+	display: inline;
+	float: none;
+	font-weight: normal;
+	margin: 0;
+}
+
+.form .required label,
+.form .required .label,
+.form label.required,
+.form .label.required,
+.form label.inline.required,
+.form .label.inline.required { color: black; }
+
+.form .required label:before,
+.form .required .label:before,
+.form label.required:before,
+.form .label.required:before {
+	color: red;
+	content: "* ";
+}
 		/** IE class **/
-		.form .required-label-before {
-			color: red;
-		}
-	
-	p.inline-label,
-	.inline-label p {
-		padding-left: 20em;
-	}
-	p.inline-mini-label,
-	.inline-mini-label p {
-		padding-left: 5em;
-	}
-	p.inline-small-label,
-	.inline-small-label p {
-		padding-left: 11em;
-	}
-	p.inline-medium-label,
-	.inline-medium-label p {
-		padding-left: 15em;
-		}
-		.inline-label label,
-		.inline-label .label,
-		.inline-mini-label label,
-		.inline-mini-label .label,
-		.inline-small-label label,
-		.inline-small-label .label,
-		.inline-medium-label label,
-		.inline-medium-label .label {
-			display: block;
-			float: left;
-			color: #333333;
-			padding: 0.667em 0 0.583em;
-			}
-			.inline-label label,
-			.inline-label .label {
-				width: 19em;
-				margin-left: -20em;
-			}
-			.inline-mini-label label,
-			.inline-mini-label .label {
-				width: 4em;
-				margin-left: -5em;
-			}
-			.inline-small-label label,
-			.inline-small-label .label {
-				width: 10em;
-				margin-left: -11em;
-			}
-			.inline-medium-label label,
-			.inline-medium-label .label {
-				width: 14em;
-				margin-left: -15em;
-			}
+
+.form .required-label-before { color: red; }
+
+p.inline-label,
+.inline-label p { padding-left: 20em; }
+
+p.inline-mini-label,
+.inline-mini-label p { padding-left: 5em; }
+
+p.inline-small-label,
+.inline-small-label p { padding-left: 11em; }
+
+p.inline-medium-label,
+.inline-medium-label p { padding-left: 15em; }
+
+.inline-label label,
+.inline-label .label,
+.inline-mini-label label,
+.inline-mini-label .label,
+.inline-small-label label,
+.inline-small-label .label,
+.inline-medium-label label,
+.inline-medium-label .label {
+	color: #333333;
+	display: block;
+	float: left;
+	padding: 0.667em 0 0.583em;
+}
+
+.inline-label label,
+.inline-label .label {
+	margin-left: -20em;
+	width: 19em;
+}
+
+.inline-mini-label label,
+.inline-mini-label .label {
+	margin-left: -5em;
+	width: 4em;
+}
+
+.inline-small-label label,
+.inline-small-label .label {
+	margin-left: -11em;
+	width: 10em;
+}
+
+.inline-medium-label label,
+.inline-medium-label .label {
+	margin-left: -15em;
+	width: 14em;
+}
 	
 	/** IE class **/
-	.form input[type=text],
-	.form input[type=password],
-	.form .input-type-text {
-		font-size: 1em;
-		line-height: 1em;
-		color: #333333;
-		padding: 0.5em;
-		border: 1px solid #89bad3;
-		background: white url(../../images/old-browsers-bg/input-bg.png) repeat-x top;
-		background: -moz-linear-gradient(
-			top,
-			#d4d4d4,
-			#ebebeb 3px,
-			white 27px
-		), white;
-		background: -webkit-gradient(
-			linear,
-			left 0px, left 27px,
-			from(#d4d4d4),
-			to(white),
-			color-stop(0.12, #ebebeb)
-		), white;
-		-moz-border-radius: 0.417em;
-		-webkit-border-radius: 0.417em;
-		-webkit-background-clip: padding-box;
-		border-radius: 0.417em;
-		}
-		.form input[type=text],
-		.form input[type=password] {
-			padding-bottom: 0.583em;
-		}
-		.form input[type=text]:focus,
-		.form input[type=password]:focus,
-		.form .input-type-text:focus,
-		.form select:focus,
-		.form textarea:focus {
-			border-color: #3399cc;
-		}
+
+.form input[type=text],
+.form input[type=password],
+.form .input-type-text {
+	-moz-border-radius: 0.417em;
+	-webkit-background-clip: padding-box;
+	-webkit-border-radius: 0.417em;
+	background: white url(../../images/old-browsers-bg/input-bg.png) repeat-x top;
+	background: -moz-linear-gradient(
+	                                top,
+	                                #d4d4d4,
+	                                #ebebeb 3px,
+	                                white 27px
+), white;
+	background: white url(../../images/old-browsers-bg/input-bg.png) repeat-x top;
+	border: 1px solid #89bad3;
+	border-radius: 0.417em;
+	color: #333333;
+	font-size: 1em;
+	line-height: 1em;
+	padding: 0.5em;
+}
+
+.form input[type=text],
+.form input[type=password] { padding-bottom: 0.583em; }
+
+.form input[type=text]:focus,
+.form input[type=password]:focus,
+.form .input-type-text:focus,
+.form select:focus,
+.form textarea:focus { border-color: #3399cc; }
 		/** IE selector **/
-		.form .input-focus {
-			border-color: #3399cc;
-		}
-		.form span.input-type-text {
-			display: inline-block;
-		}
+
+.form .input-focus { border-color: #3399cc; }
+
+.form span.input-type-text { display: inline-block; }
 		/** IE class **/
-		.ie7 .form p.input-type-text {
-			display: inline-block;
-		}
-		.form .input-type-text input[type=text],
-		.form .input-type-text input[type=password] {
-			padding: 0;
-			border: none;
-			background: none;
-			-moz-border-radius: 0;
-			-webkit-border-radius: 0;
-			-webkit-background-clip: padding-box;
-			border-radius: 0;
-			margin: 0 0 1px 0;
-		}
+
+.ie7 .form p.input-type-text { display: inline-block; }
+
+.form .input-type-text input[type=text],
+.form .input-type-text input[type=password] {
+	-moz-border-radius: 0;
+	-webkit-background-clip: padding-box;
+	-webkit-border-radius: 0;
+	background: none;
+	border: none;
+	border-radius: 0;
+	margin: 0 0 1px 0;
+	padding: 0;
+}
 		/** IE class **/
-		.ie7 .form .input-type-text input[type=text] {
-			float: left;
-		}
-		.form .input-type-text img {
-			margin: 0 0 -3px 0.2em;
-		}
-	
-	.form select,
-	.form textarea {
-		color: #333333;
-		font-size: 1em;
-		padding: 0.417em;
-		border: 1px solid #89bad3;
-		-moz-border-radius: 0.417em;
-		-webkit-border-radius: 0.417em;
-		-webkit-background-clip: padding-box;
-		border-radius: 0.417em;
-		}
-		.form textarea {
-			background: white url(../../images/old-browsers-bg/input-bg.png) repeat-x top;
-			background: -moz-linear-gradient(
-				top,
-				#d4d4d4,
-				#ebebeb 3px,
-				white 27px
-			), white;
-			background: -webkit-gradient(
-				linear,
-				left 0px, left 27px,
-				from(#d4d4d4),
-				to(white),
-				color-stop(0.12, #ebebeb)
-			), white;
-		}
-		.form select {
-			font-size: 1.083em;
-			padding: 0.385em;
-		}
-	
-	.form input[type=text].small,
-	.form input[type=password].small,
-	.form select.small,
-	.form textarea.small {
-		font-size: 1em;
-		padding: 0.167em;
-		-moz-border-radius: 0.25em;
-		-webkit-border-radius: 0.25em;
-		-webkit-background-clip: padding-box;
-		border-radius: 0.25em;
-		}
-		.form input[type=text].small,
-		.form input[type=password].small {
-			padding: 0.25em;
-		}
-	.form input[type=text].smaller,
-	.form input[type=password].smaller,
-	.form select.smaller,
-	.form textarea.smaller {
-		font-size: 1em;
-		padding: 0;
-		-moz-border-radius: 0;
-		-webkit-border-radius: 0;
-		-webkit-background-clip: padding-box;
-		border-radius: 0;
-	}
-	.form input[type=text].big,
-	.form input[type=password].big,
-	.form select.big,
-	.form textarea.big {
-		font-size: 1.5em;
-	}
-	.form input[type=text].bigger,
-	.form input[type=password].bigger,
-	.form select.bigger,
-	.form textarea.bigger {
-		font-size: 2.5em;
-	}
-	
-	.form input[type=radio],
-	.form input[type=checkbox] {
-		vertical-align: -9%;
-		margin: 0;
-		padding: 0;
-		}
+
+.ie7 .form .input-type-text input[type=text] { float: left; }
+
+.form .input-type-text img { margin: 0 0 -3px 0.2em; }
+
+.form select,
+.form textarea {
+	-moz-border-radius: 0.417em;
+	-webkit-background-clip: padding-box;
+	-webkit-border-radius: 0.417em;
+	border: 1px solid #89bad3;
+	border-radius: 0.417em;
+	color: #333333;
+	font-size: 1em;
+	padding: 0.417em;
+}
+
+.form textarea {
+	background: white url(../../images/old-browsers-bg/input-bg.png) repeat-x top;
+	background: -moz-linear-gradient(
+	                                top,
+	                                #d4d4d4,
+	                                #ebebeb 3px,
+	                                white 27px
+), white;
+	background: -webkit-gradient(
+	                            linear,
+	                            left 0px, left 27px,
+	                            from(#d4d4d4),
+	                            to(white),
+	                            color-stop(0.12, #ebebeb)
+), white;
+}
+
+.form select {
+	font-size: 1.083em;
+	padding: 0.385em;
+}
+
+.form input[type=text].small,
+.form input[type=password].small,
+.form select.small,
+.form textarea.small {
+	-moz-border-radius: 0.25em;
+	-webkit-background-clip: padding-box;
+	-webkit-border-radius: 0.25em;
+	border-radius: 0.25em;
+	font-size: 1em;
+	padding: 0.167em;
+}
+
+.form input[type=text].small,
+.form input[type=password].small { padding: 0.25em; }
+
+.form input[type=text].smaller,
+.form input[type=password].smaller,
+.form select.smaller,
+.form textarea.smaller {
+	-moz-border-radius: 0;
+	-webkit-background-clip: padding-box;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	font-size: 1em;
+	padding: 0;
+}
+
+.form input[type=text].big,
+.form input[type=password].big,
+.form select.big,
+.form textarea.big { font-size: 1.5em; }
+
+.form input[type=text].bigger,
+.form input[type=password].bigger,
+.form select.bigger,
+.form textarea.bigger { font-size: 2.5em; }
+
+.form input[type=radio],
+.form input[type=checkbox] {
+	margin: 0;
+	padding: 0;
+	vertical-align: -9%;
+}
 		/** IE class **/
-		.form .input-type-check {
-			vertical-align: -7%;
-		}
-		.form input[type=radio] + label,
-		.form input[type=checkbox] + label {
-			color: #333333;
-			font-weight: normal;
-			display: inline;
-			margin-bottom: 0;
-			padding-right: 0.5em;
-		}
+
+.form .input-type-check { vertical-align: -7%; }
+
+.form input[type=radio] + label,
+.form input[type=checkbox] + label {
+	color: #333333;
+	display: inline;
+	font-weight: normal;
+	margin-bottom: 0;
+	padding-right: 0.5em;
+}
 		/** IE class **/
-		.form .input-type-check-label {
-			color: #333333;
-			font-weight: normal;
-			display: inline;
-			margin-bottom: 0;
-			padding-right: 0.5em;
-		}
-		.form input[type=radio] + label:last-child,
-		.form input[type=checkbox] + label:last-child {
-			padding-right: 0;
-		}
+
+.form .input-type-check-label {
+	color: #333333;
+	display: inline;
+	font-weight: normal;
+	margin-bottom: 0;
+	padding-right: 0.5em;
+}
+
+.form input[type=radio] + label:last-child,
+.form input[type=checkbox] + label:last-child { padding-right: 0; }
 		/** IE class **/
-		.form .input-type-check-label-last-child {
-			padding-right: 0;
-		}
-	
-	.checkable-list {
-		padding-top: 0.333em;
-		line-height: 1.25em;
-		}
-		.checkable-list li {
-			padding: 0 0 0.75em 1.25em;
-			}
-			.checkable-list li:last-child {
-				padding-bottom: 0;
-			}
+
+.form .input-type-check-label-last-child { padding-right: 0; }
+
+.checkable-list {
+	line-height: 1.25em;
+	padding-top: 0.333em;
+}
+
+.checkable-list li { padding: 0 0 0.75em 1.25em; }
+
+.checkable-list li:last-child { padding-bottom: 0; }
 			/** IE class **/
-			.checkable-list li.last-child {
-				padding-bottom: 0;
-			}
-			.checkable-list li input[type=radio],
-			.checkable-list li input[type=checkbox] {
-				float: left;
-				vertical-align: baseline;
-				margin: 1px 0 0 -1.167em;
-			}
+
+.checkable-list li.last-child { padding-bottom: 0; }
+
+.checkable-list li input[type=radio],
+.checkable-list li input[type=checkbox] {
+	float: left;
+	margin: 1px 0 0 -1.167em;
+	vertical-align: baseline;
+}
 			/** IE class **/
-			.ie .checkable-list li input[type=radio],
-			.ie .checkable-list li input[type=checkbox] {
-				margin: -3px 0 0 -1.25em;
-			}
-			.checkable-list li .input-type-radio,
-			.checkable-list li .input-type-checkbox {
-				float: left;
-				margin: -3px 0 0 -1.25em;
-			}
-	
-	.full-width {
-		-moz-box-sizing: border-box;
-		-ms-box-sizing: border-box;
-		-webkit-box-sizing: border-box;
-		box-sizing: border-box;
-		width: 100%;
-		}
-		.ie7 .full-width {
-			width: 93%;
-		}
-		.ie7 select.full-width {
-			width: 100%;
-		}
-	.input-with-button input[type=text] {
-		width: 65%;
-		margin-right: 3%;
-	}
+
+.ie .checkable-list li input[type=radio],
+.ie .checkable-list li input[type=checkbox] { margin: -3px 0 0 -1.25em; }
+
+.checkable-list li .input-type-radio,
+.checkable-list li .input-type-checkbox {
+	float: left;
+	margin: -3px 0 0 -1.25em;
+}
+
+.full-width {
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
+}
+
+.ie7 .full-width { width: 93%; }
+
+.ie7 select.full-width { width: 100%; }
+
+.input-with-button input[type=text] {
+	margin-right: 3%;
+	width: 65%;
+}
 	/** IE class **/
-	.input-with-button .input-type-text {
-		width: 65%;
-		margin-right: 3%;
-	}
-	.input-with-button select {
-		width: 70%;
-		margin-right: 3%;
-	}
-	.input-with-button button {
-		width: 25%;
-	}
-	
-	.input-height {
-		display: block;
-		line-height: 1em;
-		padding: 0.583em 0 0.75em;
-		border: 1px solid transparent;
-		}
-		.input-height.grey-bg {
-			background: #cccccc;
-			border: 1px solid #cccccc;
-			-moz-border-radius: 0.25em;
-			-webkit-border-radius: 0.25em;
-			-webkit-background-clip: padding-box;
-			border-radius: 0.25em;
-			padding-left: 0.75em;
-			padding-right: 0.75em;
-		}
-		p.input-height,
-		p.input-height.grey-bg {
-			line-height: 1.25em;
-			padding-top: 0.5em;
-			padding-bottom: 0.583em;
-		}
-	
-	.one-line-input {
-		text-align: right;
-		}
-		.one-line-input label {
-			float: left;
-			margin: 0.2em 0 0 0;
-		}
-	
-	.form input[type=text].input-validation-error,
-	.form input[type=password].input-validation-error,
-	.form .input-type-text.input-validation-error {
-		border-color: #CC0000;
-	}
-	
-	.check-ok,
-	.check-error,
-	.check-warning {
-		display: block;
-		position: absolute;
-		z-index: 89;
-		width: 16px;
-		height: 16px;
-		right: -8px;
-		top: -8px;
-		}
-		.check-ok { background: url(../../images/icons/fugue/tick-circle-blue.png) no-repeat; }
-		.check-error { background: url(../../images/icons/fugue/cross-circle.png) no-repeat; }
-		.check-warning { background: url(../../images/icons/fugue/exclamation-diamond.png) no-repeat; }
-		
-		span.relative > input + .check-ok,
-		span.relative > select + .check-ok,
-		span.relative > input + .check-error,
-		span.relative > select + .check-error,
-		span.relative > input + .check-warning,
-		span.relative > select + .check-warning {
-			margin-top: -0.667em;
-			right: -4px;
-			}
-			p span.relative > input + .check-ok,
-			p span.relative > select + .check-ok,
-			p span.relative > input + .check-error,
-			p span.relative > select + .check-error,
-			p span.relative > input + .check-warning,
-			p span.relative > select + .check-warning {
-				margin-top: -0.583em;
-			}
+
+.input-with-button .input-type-text {
+	margin-right: 3%;
+	width: 65%;
+}
+
+.input-with-button select {
+	margin-right: 3%;
+	width: 70%;
+}
+
+.input-with-button button { width: 25%; }
+
+.input-height {
+	border: 1px solid transparent;
+	display: block;
+	line-height: 1em;
+	padding: 0.583em 0 0.75em;
+}
+
+.input-height.grey-bg {
+	-moz-border-radius: 0.25em;
+	-webkit-background-clip: padding-box;
+	-webkit-border-radius: 0.25em;
+	background: #cccccc;
+	border: 1px solid #cccccc;
+	border-radius: 0.25em;
+	padding-left: 0.75em;
+	padding-right: 0.75em;
+}
+
+p.input-height,
+p.input-height.grey-bg {
+	line-height: 1.25em;
+	padding-bottom: 0.583em;
+	padding-top: 0.5em;
+}
+
+.one-line-input { text-align: right; }
+
+.one-line-input label {
+	float: left;
+	margin: 0.2em 0 0 0;
+}
+
+.form input[type=text].input-validation-error,
+.form input[type=password].input-validation-error,
+.form .input-type-text.input-validation-error { border-color: #CC0000; }
+
+.check-ok,
+.check-error,
+.check-warning {
+	display: block;
+	height: 16px;
+	position: absolute;
+	right: -8px;
+	top: -8px;
+	width: 16px;
+	z-index: 89;
+}
+
+.check-ok { background: url(../../images/icons/fugue/tick-circle-blue.png) no-repeat; }
+
+.check-error { background: url(../../images/icons/fugue/cross-circle.png) no-repeat; }
+
+.check-warning { background: url(../../images/icons/fugue/exclamation-diamond.png) no-repeat; }
+
+span.relative > input + .check-ok,
+span.relative > select + .check-ok,
+span.relative > input + .check-error,
+span.relative > select + .check-error,
+span.relative > input + .check-warning,
+span.relative > select + .check-warning {
+	margin-top: -0.667em;
+	right: -4px;
+}
+
+p span.relative > input + .check-ok,
+p span.relative > select + .check-ok,
+p span.relative > input + .check-error,
+p span.relative > select + .check-error,
+p span.relative > input + .check-warning,
+p span.relative > select + .check-warning { margin-top: -0.583em; }

@@ -5,13 +5,12 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/01
-// Last edit:	2012/11/02
+// Last edit:	2012/12/24
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Web.Core.Routing
@@ -25,12 +24,20 @@ namespace Dexter.Web.Core.Routing
 
 	public class RoutingService : IRoutingService
 	{
+		#region Fields
+
 		private readonly ISetupService setupService;
+
+		#endregion
+
+		#region Constructors and Destructors
 
 		public RoutingService(ISetupService setupService)
 		{
 			this.setupService = setupService;
 		}
+
+		#endregion
 
 		#region Public Methods and Operators
 
@@ -39,7 +46,7 @@ namespace Dexter.Web.Core.Routing
 			RouteCollection routes = RouteTable.Routes;
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-			if (!setupService.IsInstalled)
+			if (!this.setupService.IsInstalled)
 			{
 				routes.Add(new SetupRoute());
 				return;
@@ -49,22 +56,22 @@ namespace Dexter.Web.Core.Routing
 				"Default", 
 				"{controller}/{action}/{id}", 
 				new
-					          {
-						          controller = "Home", 
-						          action = "Index", 
-						          id = UrlParameter.Optional
-					          },
+					{
+						controller = "Home", 
+						action = "Index", 
+						id = UrlParameter.Optional
+					}, 
 				new[] { "Dexter.Host.Controllers" });
 
 			HttpConfiguration webApiConfiguration = GlobalConfiguration.Configuration;
 
 			webApiConfiguration.Routes.MapHttpRoute(
-				"DefaultApi",
-				"api/{controller}/{id}",
+				"DefaultApi", 
+				"api/{controller}/{id}", 
 				new
-					          {
-						          id = RouteParameter.Optional
-					          });
+					{
+						id = RouteParameter.Optional
+					});
 		}
 
 		public void UpdateRoutes()

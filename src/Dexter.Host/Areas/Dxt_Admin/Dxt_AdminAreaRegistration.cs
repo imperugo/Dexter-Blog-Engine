@@ -5,7 +5,7 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/27
-// Last edit:	2012/11/01
+// Last edit:	2012/12/24
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -36,13 +36,13 @@ namespace Dexter.Host.Areas.Dxt_Admin
 		public override void RegisterArea(AreaRegistrationContext context)
 		{
 			context.MapRoute(
-				"Dxt_Admin_default",
-				"Dxt-Admin/{controller}/{action}/{id}",
+				"Dxt_Admin_default", 
+				"Dxt-Admin/{controller}/{action}/{id}", 
 				new
 					{
-						action = "Index",
+						action = "Index", 
 						id = UrlParameter.Optional
-					},
+					}, 
 				new[] { "Dexter.Host.Areas.Dxt_Admin.Controllers" });
 		}
 

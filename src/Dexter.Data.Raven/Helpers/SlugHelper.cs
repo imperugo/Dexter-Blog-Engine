@@ -5,13 +5,12 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/02
-// Last edit:	2012/11/02
+// Last edit:	2012/12/24
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Data.Raven.Helpers
@@ -27,7 +26,7 @@ namespace Dexter.Data.Raven.Helpers
 
 	internal static class SlugHelper
 	{
-		#region Methods
+		#region Public Methods and Operators
 
 		public static string GenerateSlug(Item item, Func<string, Item> getbyslug)
 		{
@@ -100,6 +99,10 @@ namespace Dexter.Data.Raven.Helpers
 			return entryName;
 		}
 
+		#endregion
+
+		#region Methods
+
 		private static string RemoveDoubleCharacter(string text, char character)
 		{
 			if (text == null)
@@ -123,7 +126,8 @@ namespace Dexter.Data.Raven.Helpers
 					newString[i] = c;
 					i++;
 				}
-				lastCharIsOurChar = (c == character);
+
+				lastCharIsOurChar = c == character;
 			}
 
 			return new string(newString, 0, i);
@@ -142,6 +146,7 @@ namespace Dexter.Data.Raven.Helpers
 					cleansedText.Append(match.Value);
 				}
 			}
+
 			return cleansedText.ToString();
 		}
 

@@ -137,9 +137,15 @@
     </Compile>
     <Compile Include="App_Start\Automapper\AutoMapperConfiguration.cs" />
     <Compile Include="App_Start\Installer.cs" />
+    <Compile Include="Areas\Dxt_Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Dxt_Admin\Controllers\PostController.cs" />
     <Compile Include="Areas\Dxt_Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Dxt_Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Dxt_Admin\Controllers\PageController.cs" />
     <Compile Include="Areas\Dxt_Admin\Dxt_AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Dxt_Admin\Models\Category\IndexViewModel.cs" />
+    <Compile Include="Areas\Dxt_Admin\Models\Post\IndexViewModel.cs" />
+    <Compile Include="Areas\Dxt_Admin\Models\Page\IndexViewModel.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Home\FastPostBinder.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Home\IndexViewModel.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Login\CredentialLoginBinder.cs" />

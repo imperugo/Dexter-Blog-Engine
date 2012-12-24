@@ -11,7 +11,6 @@
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Host.Areas.Dxt_Admin.Models.Login
@@ -20,6 +19,10 @@ namespace Dexter.Host.Areas.Dxt_Admin.Models.Login
 
 	public class IndexViewModel : DexterModelBase
 	{
+		#region Public Properties
+
 		public CredentialLoginBinder Credential { get; set; }
+
+		#endregion
 	}
 }

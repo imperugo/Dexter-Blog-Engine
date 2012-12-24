@@ -5,19 +5,17 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/11
-// Last edit:	2012/12/01
+// Last edit:	2012/12/24
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Host.Controllers
 {
 	using System;
-	using System.Net.Http;
 	using System.Threading.Tasks;
 	using System.Web.Mvc;
 
@@ -91,18 +89,18 @@ namespace Dexter.Host.Controllers
 			{
 				await this.trackbackService.SaveOrUpdateAsync(trackBackDto, itemType);
 
-				HttpContext.Response.Write("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?><response><error>0</error></response>");
-				HttpContext.Response.End();
+				this.HttpContext.Response.Write("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?><response><error>0</error></response>");
+				this.HttpContext.Response.End();
 			}
 			catch (DuplicateTrackbackException)
 			{
-				HttpContext.Response.Write("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?><response><error>Trackback already registered</error></response>");
-				HttpContext.Response.End();
+				this.HttpContext.Response.Write("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?><response><error>Trackback already registered</error></response>");
+				this.HttpContext.Response.End();
 			}
 			catch (SpamException)
 			{
-				HttpContext.Response.Write("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?><response><error>The source page does not contain the link</error></response>");
-				HttpContext.Response.End();
+				this.HttpContext.Response.Write("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?><response><error>The source page does not contain the link</error></response>");
+				this.HttpContext.Response.End();
 			}
 
 			return this.HttpNotFound();

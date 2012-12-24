@@ -5,7 +5,7 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/27
-// Last edit:	2012/11/01
+// Last edit:	2012/12/24
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -16,7 +16,6 @@
 namespace Dexter.Data.Raven.Domain
 {
 	using System;
-	using System.Collections.Generic;
 
 	using Dexter.Entities;
 
@@ -27,8 +26,6 @@ namespace Dexter.Data.Raven.Domain
 		public bool AllowComments { get; set; }
 
 		public string CommentsId { get; set; }
-		
-		public string TrackbacksId { get; set; }
 
 		public string Content { get; set; }
 
@@ -45,6 +42,8 @@ namespace Dexter.Data.Raven.Domain
 		public int TotalComments { get; set; }
 
 		public int TotalTrackback { get; set; }
+
+		public string TrackbacksId { get; set; }
 
 		#endregion
 	}

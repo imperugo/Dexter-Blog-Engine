@@ -10,38 +10,36 @@
 jQuery.validator.unobtrusive.adapters.addMinMax('checkbox-range', 'minCheckboxes', 'maxCheckboxes', 'minMaxCheckboxes');
 
 // create a reusable function to count the number of checked checkboxes
-jQuery.validator.countCheckboxRangeGroup = function (element) {
+jQuery.validator.countCheckboxRangeGroup = function(element) {
 	var $selectedItems = jQuery('input[data-checkbox-range-group="' + $(element).data('checkbox-range-group') + '"]:checked'),
-        selectedCheckboxes = jQuery.map($selectedItems, function (n,i) { return n.value; });
+	    selectedCheckboxes = jQuery.map($selectedItems, function(n, i) { return n.value; });
 
-    return selectedCheckboxes.length;
+	return selectedCheckboxes.length;
 };
 
 // min validator
-jQuery.validator.addMethod('minCheckboxes', function (value, element, params) {
+jQuery.validator.addMethod('minCheckboxes', function(value, element, params) {
 
-    var selectedCheckboxes = jQuery.validator.countCheckboxRangeGroup(element);
+	var selectedCheckboxes = jQuery.validator.countCheckboxRangeGroup(element);
 
-    return (selectedCheckboxes >= parseInt(params, 10));
+	return (selectedCheckboxes >= parseInt(params, 10));
 
 }, '');
 
 // max validator
-jQuery.validator.addMethod('maxCheckboxes', function (value, element, params) {
+jQuery.validator.addMethod('maxCheckboxes', function(value, element, params) {
 
-   var selectedCheckboxes = jQuery.validator.countCheckboxRangeGroup(element);
+	var selectedCheckboxes = jQuery.validator.countCheckboxRangeGroup(element);
 
-    return (selectedCheckboxes <= params);
+	return (selectedCheckboxes <= params);
 
 }, '');
 
 // min max validator
-jQuery.validator.addMethod('minMaxCheckboxes', function (value, element, params) {
+jQuery.validator.addMethod('minMaxCheckboxes', function(value, element, params) {
 
-   var selectedCheckboxes = jQuery.validator.countCheckboxRangeGroup(element);
+	var selectedCheckboxes = jQuery.validator.countCheckboxRangeGroup(element);
 
-    return (selectedCheckboxes >= parseInt(params[0], 10) && selectedCheckboxes <= parseInt(params[1], 10));
+	return (selectedCheckboxes >= parseInt(params[0], 10) && selectedCheckboxes <= parseInt(params[1], 10));
 
 }, '');
-
-

@@ -4,8 +4,8 @@
 // File:			PageDataService.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/11/01
-// Last edit:	2012/11/01
+// Created:		2012/11/02
+// Last edit:	2012/12/24
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -68,8 +68,8 @@ namespace Dexter.Data.Raven.Services
 			}
 
 			Page page = this.Session
-				.Include<Page>(x => x.CommentsId)
-				.Load(id);
+			                .Include<Page>(x => x.CommentsId)
+			                .Load(id);
 
 			if (page == null)
 			{
@@ -94,9 +94,9 @@ namespace Dexter.Data.Raven.Services
 			}
 
 			Page page = this.Session.Query<Page>()
-				.Where(x => x.Slug == slug)
-				.Include(x => x.CommentsId)
-				.FirstOrDefault();
+			                .Where(x => x.Slug == slug)
+			                .Include(x => x.CommentsId)
+			                .FirstOrDefault();
 
 			if (page == null)
 			{
@@ -123,11 +123,11 @@ namespace Dexter.Data.Raven.Services
 			RavenQueryStatistics stats;
 
 			List<Page> result = this.Session.Query<Page>()
-				.ApplyFilterItem(filter)
-				.OrderByDescending(post => post.PublishAt)
-				.Statistics(out stats)
-				.Paging(pageIndex, pageSize)
-				.ToList();
+			                        .ApplyFilterItem(filter)
+			                        .OrderByDescending(post => post.PublishAt)
+			                        .Statistics(out stats)
+			                        .Paging(pageIndex, pageSize)
+			                        .ToList();
 
 			List<PageDto> posts = result.MapTo<PageDto>();
 

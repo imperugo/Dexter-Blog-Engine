@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * jQuery Validation Plugin 1.11.0pre
  *
  * http://bassistance.de/jquery-plugins/jquery-plugin-validation/
@@ -16,9 +16,10 @@
 	function stripHtml(value) {
 		// remove html tags and space chars
 		return value.replace(/<.[^<>]*?>/g, ' ').replace(/&nbsp;|&#160;/gi, ' ')
-		// remove punctuation
-		.replace(/[.(),;:!?%#$'"_+=\/\-]*/g,'');
+			// remove punctuation
+			.replace(/[.(),;:!?%#$'"_+=\/\-]*/g, '');
 	}
+
 	jQuery.validator.addMethod("maxWords", function(value, element, params) {
 		return this.optional(element) || stripHtml(value).match(/\b\w+\b/g).length <= params;
 	}, jQuery.validator.format("Please enter {0} words or less."));
@@ -80,13 +81,13 @@ jQuery.validator.addMethod("vinUS", function(v) {
 		return false;
 	}
 	var i, n, d, f, cd, cdv;
-	var LL = ["A","B","C","D","E","F","G","H","J","K","L","M","N","P","R","S","T","U","V","W","X","Y","Z"];
-	var VL = [1,2,3,4,5,6,7,8,1,2,3,4,5,7,9,2,3,4,5,6,7,8,9];
-	var FL = [8,7,6,5,4,3,2,10,0,9,8,7,6,5,4,3,2];
+	var LL = ["A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L", "M", "N", "P", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	var VL = [1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 7, 9, 2, 3, 4, 5, 6, 7, 8, 9];
+	var FL = [8, 7, 6, 5, 4, 3, 2, 10, 0, 9, 8, 7, 6, 5, 4, 3, 2];
 	var rs = 0;
-	for(i = 0; i < 17; i++){
+	for (i = 0; i < 17; i++) {
 		f = FL[i];
-		d = v.slice(i,i+1);
+		d = v.slice(i, i + 1);
 		if (i === 8) {
 			cdv = d;
 		}
@@ -138,13 +139,13 @@ jQuery.validator.addMethod("vinUS", function(v) {
 jQuery.validator.addMethod("dateITA", function(value, element) {
 	var check = false;
 	var re = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
-	if( re.test(value)) {
+	if (re.test(value)) {
 		var adata = value.split('/');
-		var gg = parseInt(adata[0],10);
-		var mm = parseInt(adata[1],10);
-		var aaaa = parseInt(adata[2],10);
-		var xdata = new Date(aaaa,mm-1,gg);
-		if ( ( xdata.getFullYear() === aaaa ) && ( xdata.getMonth() === mm - 1 ) && ( xdata.getDate() === gg ) ){
+		var gg = parseInt(adata[0], 10);
+		var mm = parseInt(adata[1], 10);
+		var aaaa = parseInt(adata[2], 10);
+		var xdata = new Date(aaaa, mm - 1, gg);
+		if ((xdata.getFullYear() === aaaa) && (xdata.getMonth() === mm - 1) && (xdata.getDate() === gg)) {
 			check = true;
 		} else {
 			check = false;
@@ -189,20 +190,20 @@ jQuery.validator.addMethod("phoneUS", function(phone_number, element) {
 }, "Please specify a valid phone number");
 
 jQuery.validator.addMethod('phoneUK', function(phone_number, element) {
-	phone_number = phone_number.replace(/\(|\)|\s+|-/g,'');
+	phone_number = phone_number.replace(/\(|\)|\s+|-/g, '');
 	return this.optional(element) || phone_number.length > 9 &&
 		phone_number.match(/^(?:(?:(?:00\s?|\+)44\s?)|(?:\(?0))(?:(?:\d{5}\)?\s?\d{4,5})|(?:\d{4}\)?\s?(?:\d{5}|\d{3}\s?\d{3}))|(?:\d{3}\)?\s?\d{3}\s?\d{3,4})|(?:\d{2}\)?\s?\d{4}\s?\d{4}))$/);
 }, 'Please specify a valid phone number');
 
 jQuery.validator.addMethod('mobileUK', function(phone_number, element) {
-	phone_number = phone_number.replace(/\s+|-/g,'');
+	phone_number = phone_number.replace(/\s+|-/g, '');
 	return this.optional(element) || phone_number.length > 9 &&
 		phone_number.match(/^(?:(?:(?:00\s?|\+)44\s?|0)7(?:[45789]\d{2}|624)\s?\d{3}\s?\d{3})$/);
 }, 'Please specify a valid mobile number');
 
 //Matches UK landline + mobile, accepting only 01-3 for landline or 07 for mobile to exclude many premium numbers
 jQuery.validator.addMethod('phonesUK', function(phone_number, element) {
-	phone_number = phone_number.replace(/\s+|-/g,'');
+	phone_number = phone_number.replace(/\s+|-/g, '');
 	return this.optional(element) || phone_number.length > 9 &&
 		phone_number.match(/^(?:(?:(?:00\s?|\+)44\s?|0)(?:1\d{8,9}|[23]\d{9}|7(?:[45789]\d{8}|624\d{6})))$/);
 }, 'Please specify a valid uk phone number');
@@ -215,7 +216,7 @@ jQuery.validator.addMethod('phonesUK', function(phone_number, element) {
 
 //Matches UK postcode. based on http://snipplr.com/view/3152/postcode-validation/
 jQuery.validator.addMethod('postcodeUK', function(postcode, element) {
-	postcode = (postcode.toUpperCase()).replace(/\s+/g,'');
+	postcode = (postcode.toUpperCase()).replace(/\s+/g, '');
 	return this.optional(element) || postcode.match(/^([^QZ][^IJZ]{0,1}\d{1,2})(\d[^CIKMOV]{2})$/) || postcode.match(/^([^QV]\d[ABCDEFGHJKSTUW])(\d[^CIKMOV]{2})$/) || postcode.match(/^([^QV][^IJZ]\d[ABEHMNPRVWXY])(\d[^CIKMOV]{2})$/) || postcode.match(/^(GIR)(0AA)$/) || postcode.match(/^(BFPO)(\d{1,4})$/) || postcode.match(/^(BFPO)(C\/O\d{1,3})$/);
 }, 'Please specify a valid postcode');
 
@@ -356,7 +357,7 @@ jQuery.validator.addMethod("require_from_group", function(value, element, option
 		return validator.elementValue(this);
 	}).length >= options[0];
 
-	if(!$(element).data('being_validated')) {
+	if (!$(element).data('being_validated')) {
 		var fields = $(selector, element.form);
 		fields.data('being_validated', true);
 		fields.valid();
@@ -392,7 +393,7 @@ jQuery.validator.addMethod("skip_or_fill_minimum", function(value, element, opti
 	}).length;
 	var valid = numberFilled >= numberRequired || numberFilled === 0;
 
-	if(!$(element).data('being_validated')) {
+	if (!$(element).data('being_validated')) {
 		var fields = $(selector, element.form);
 		fields.data('being_validated', true);
 		fields.valid();
@@ -405,25 +406,25 @@ jQuery.validator.addMethod("skip_or_fill_minimum", function(value, element, opti
 jQuery.validator.addMethod("accept", function(value, element, param) {
 	// Split mime on commas incase we have multiple types we can accept
 	var typeParam = typeof param === "string" ? param.replace(/,/g, '|') : "image/*",
-	optionalValue = this.optional(element),
-	i, file;
+	    optionalValue = this.optional(element),
+	    i, file;
 
 	// Element is optional
-	if(optionalValue) {
+	if (optionalValue) {
 		return optionalValue;
 	}
 
-	if($(element).attr("type") === "file") {
+	if ($(element).attr("type") === "file") {
 		// If we are using a wildcard, make it regex friendly
 		typeParam = typeParam.replace("*", ".*");
 
 		// Check if the element has a FileList before checking each file
-		if(element.files && element.files.length) {
-			for(i = 0; i < element.files.length; i++) {
+		if (element.files && element.files.length) {
+			for (i = 0; i < element.files.length; i++) {
 				file = element.files[i];
 
 				// Grab the mimtype from the loaded file, verify it matches
-				if(!file.type.match(new RegExp( ".?(" + typeParam + ")$", "i"))) {
+				if (!file.type.match(new RegExp(".?(" + typeParam + ")$", "i"))) {
 					return false;
 				}
 			}

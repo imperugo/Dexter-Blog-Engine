@@ -5,13 +5,12 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/02
-// Last edit:	2012/11/02
+// Last edit:	2012/12/24
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Async.Async
@@ -27,13 +26,13 @@ namespace Dexter.Async.Async
 		#region Static Fields
 
 		[ThreadStatic]
-		private static Dictionary<String, Object> customTls;
+		private static Dictionary<string, object> customTls;
 
 		#endregion
 
 		#region Properties
 
-		private static Dictionary<String, Object> CustomTls
+		private static Dictionary<string, object> CustomTls
 		{
 			get
 			{
@@ -53,13 +52,15 @@ namespace Dexter.Async.Async
 		{
 			get
 			{
-				Object retvalue;
+				object retvalue;
 				if (!CustomTls.TryGetValue(key, out retvalue))
 				{
 					return null;
 				}
+
 				return retvalue;
 			}
+
 			set
 			{
 				CustomTls[key] = value;

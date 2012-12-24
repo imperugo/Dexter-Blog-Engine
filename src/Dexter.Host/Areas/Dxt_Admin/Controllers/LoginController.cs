@@ -11,7 +11,6 @@
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Host.Areas.Dxt_Admin.Controllers
@@ -21,6 +20,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 
 	using Common.Logging;
 
+	using Dexter.Extensions.Logging;
 	using Dexter.Host.Areas.Dxt_Admin.Models.Login;
 	using Dexter.Navigation.Contracts;
 	using Dexter.Services;
@@ -28,7 +28,11 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 
 	public class LoginController : DexterControllerBase
 	{
+		#region Fields
+
 		private readonly IUrlBuilder urlBuilder;
+
+		#endregion
 
 		#region Constructors and Destructors
 
@@ -54,7 +58,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 		[AcceptVerbs(HttpVerbs.Post)]
 		public ActionResult Index(CredentialLoginBinder credential)
 		{
-			if (!ModelState.IsValid)
+			if (!this.ModelState.IsValid)
 			{
 				IndexViewModel model = new IndexViewModel();
 				model.Credential = credential;
@@ -73,6 +77,8 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 			}
 
 			FormsAuthentication.SetAuthCookie(credential.Username, true);
+
+			this.Logger.InfoFormatAsync("User '{0}' is logged in.", credential.Username);
 
 			return this.urlBuilder.Admin.Home().Redirect();
 		}

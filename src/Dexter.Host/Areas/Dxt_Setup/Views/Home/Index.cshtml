@@ -2,112 +2,141 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+	<head>
 
-	<title>Dexter Setup Page</title>
-	<meta charset="utf-8">
-	<link href="~/Styles/Global/CommonStyles.min.css" rel="stylesheet" />
+		<title>Dexter Setup Page</title>
+		<meta charset="utf-8">
+		<link href="~/Styles/Global/CommonStyles.min.css" rel="stylesheet" />
 	
-	<!-- Custom styles -->
-	<link href="~/Styles/Specialized/wizard.css" rel="stylesheet" />
+		<!-- Custom styles -->
+		<link href="~/Styles/Specialized/wizard.css" rel="stylesheet" />
 	
-	<!-- Favicon -->
-	<link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico">
-	<link rel="icon" type="image/png" href="~/favicon-large.png">
+		<!-- Favicon -->
+		<link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico">
+		<link rel="icon" type="image/png" href="~/favicon-large.png">
 	
-	<!-- Generic libs -->
-	<script type="text/javascript" src="~/js/html5.js"></script><!-- this has to be loaded before anything else -->
-	<script type="text/javascript" src="~/js/jquery-1.4.2.min.js"></script>
-	<script type="text/javascript" src="~/js/old-browsers.js"></script><!-- remove if you do not need older browsers detection -->
+		<!-- Generic libs -->
+		<script type="text/javascript" src="~/js/html5.js"> </script><!-- this has to be loaded before anything else -->
+		<script type="text/javascript" src="~/js/jquery-1.4.2.min.js"> </script>
+		<script type="text/javascript" src="~/js/old-browsers.js"> </script><!-- remove if you do not need older browsers detection -->
 	
-	<script type="text/javascript" src="~/js/Validation/jquery.validate.min.js"></script>
-	<script type="text/javascript" src="~/js/Validation/jquery.validate.unobtrusive.min.js"></script>
+		<script type="text/javascript" src="~/js/Validation/jquery.validate.min.js"> </script>
+		<script type="text/javascript" src="~/js/Validation/jquery.validate.unobtrusive.min.js"> </script>
 	
-	<!-- Template core functions -->
-	<script type="text/javascript" src="~/js/common.js"></script>
-	<script type="text/javascript" src="~/js/standard.js"></script>
-	<!--[if lte IE 8]><script type="text/javascript" src="~/js/standard.ie.js"></script><![endif]-->
+		<!-- Template core functions -->
+		<script type="text/javascript" src="~/js/common.js"> </script>
+		<script type="text/javascript" src="~/js/standard.js"> </script>
+		<!--[if lte IE 8]><script type="text/javascript" src="~/js/standard.ie.js"> </script><![endif]-->
 	
-</head>
+	</head>
 
-<!-- the 'special-page' class is only an identifier for scripts -->
-<body class="special-page wizard-bg">
-<!-- The template uses conditional comments to add wrappers div for ie8 and ie7 - just add .ie, .ie7 or .ie6 prefix to your css selectors when needed -->
-<!--[if lt IE 9]><div class="ie"><![endif]-->
-<!--[if lt IE 8]><div class="ie7"><![endif]-->
+	<!-- the 'special-page' class is only an identifier for scripts -->
+	<body class="special-page wizard-bg">
+		<!-- The template uses conditional comments to add wrappers div for ie8 and ie7 - just add .ie, .ie7 or .ie6 prefix to your css selectors when needed -->
+		<!--[if lt IE 9]><div class="ie"><![endif]-->
+		<!--[if lt IE 8]><div class="ie7"><![endif]-->
 	
-	<section>
-		<div class="block-border">
-			<form class="block-content form inline-medium-label" name="login-form" id="login-form" method="post" action="#">
+		<section>
+			<div class="block-border">
+				<form class="block-content form inline-medium-label" name="login-form" id="login-form" method="post" action="#">
 				
-				<h1>Dexter Setup</h1>
+					<h1>Dexter Setup</h1>
 			
-				<ol class="wizard-steps no-margin"></ol>
+					<ol class="wizard-steps no-margin"></ol>
 			
-				@if (!ViewData.ModelState.IsValid) {
-					<p>
-						<ul class="message error no-margin">
-							@Html.ValidationSummary()
-						</ul>	
+					@if (!this.ViewData.ModelState.IsValid)
+					{
+						<p>
+							<ul class="message error no-margin">
+								@this.Html.ValidationSummary()
+							</ul>	
+						</p>
+					}
+
+					<small>Setup wizard</small>
+					<h2 class="bigger">Basic info</h2>
+			
+					<p class="required relative">
+						@this.Html.LabelFor(x => x.Setup.BlogName, "Blog name")
+						@this.Html.TextBoxFor(x => x.Setup.BlogName, new
+							                                             {
+								                                             @class = "full-width", 
+								                                             placeholder = "Write here the blog name"
+							                                             })
+						@*<span class="check-error"></span>*@
+						@this.Html.ValidationMessageFor(x => x.Setup.BlogName)
 					</p>
-				}
 
-				<small>Setup wizard</small>
-				<h2 class="bigger">Basic info</h2>
-			
-				<p class="required relative">
-					@Html.LabelFor(x => x.Setup.BlogName,"Blog name")
-					@Html.TextBoxFor( x => x.Setup.BlogName, new { @class = "full-width", placeholder = "Write here the blog name" } )
-					@*<span class="check-error"></span>*@
-					@Html.ValidationMessageFor(x => x.Setup.BlogName)
-				</p>
+					<p class="required relative">
+						@this.Html.LabelFor(x => x.Setup.AdminUsername, "Username")
+						@this.Html.TextBoxFor(x => x.Setup.AdminUsername, new
+							                                                  {
+								                                                  @class = "full-width", 
+								                                                  placeholder = "Write here the username"
+							                                                  })
+						@this.Html.ValidationMessageFor(x => x.Setup.AdminUsername)
+					</p>
 
-				<p class="required relative">
-					@Html.LabelFor(x => x.Setup.AdminUsername,"Username")
-					@Html.TextBoxFor( x => x.Setup.AdminUsername, new { @class = "full-width", placeholder = "Write here the username" } )
-					@Html.ValidationMessageFor(x => x.Setup.AdminUsername)
-				</p>
+					<p class="required relative">
+						@this.Html.LabelFor(x => x.Setup.AdminPassword, "Password")
+						@this.Html.PasswordFor(x => x.Setup.AdminPassword, new
+							                                                   {
+								                                                   @class = "full-width", 
+								                                                   placeholder = "Write here the password of the user"
+							                                                   })
+						@this.Html.ValidationMessageFor(x => x.Setup.AdminPassword)
+					</p>
 
-				<p class="required relative">
-					@Html.LabelFor(x => x.Setup.AdminPassword,"Password")
-					@Html.PasswordFor(x => x.Setup.AdminPassword, new { @class = "full-width", placeholder = "Write here the password of the user" })
-					@Html.ValidationMessageFor(x => x.Setup.AdminPassword)
-				</p>
+					<p class="required relative">
+						@this.Html.LabelFor(x => x.Setup.AdminPasswordConfirm, "Confirm Password")
+						@this.Html.PasswordFor(x => x.Setup.AdminPasswordConfirm, new
+							                                                          {
+								                                                          @class = "full-width", 
+								                                                          placeholder = "Write againt the password of the user"
+							                                                          })
+						@this.Html.ValidationMessageFor(x => x.Setup.AdminPasswordConfirm)
+					</p>
 
-				<p class="required relative">
-					@Html.LabelFor(x => x.Setup.AdminPasswordConfirm,"Confirm Password")
-					@Html.PasswordFor( x => x.Setup.AdminPasswordConfirm, new { @class = "full-width", placeholder = "Write againt the password of the user" } )
-					@Html.ValidationMessageFor(x => x.Setup.AdminPasswordConfirm)
-				</p>
+					<p class="required relative">
+						@this.Html.LabelFor(x => x.Setup.Email, "Email")
+						@this.Html.TextBoxFor(x => x.Setup.Email, new
+							                                          {
+								                                          @class = "full-width", 
+								                                          placeholder = "info@mysite.com"
+							                                          })
+						@this.Html.ValidationMessageFor(x => x.Setup.Email)
+					</p>
 
-				<p class="required relative">
-					@Html.LabelFor(x => x.Setup.Email,"Email")
-					@Html.TextBoxFor(x => x.Setup.Email, new { @class = "full-width", placeholder = "info@mysite.com" })
-					@Html.ValidationMessageFor(x => x.Setup.Email)
-				</p>
-
-				<p class="required relative">
-					@Html.LabelFor(x => x.Setup.ConfirmEmail,"Confirm Email")
-					@Html.TextBoxFor( x => x.Setup.ConfirmEmail, new { @class = "full-width", placeholder = "info@mysite.com" } )
-					@Html.ValidationMessageFor(x => x.Setup.ConfirmEmail)
-				</p>
+					<p class="required relative">
+						@this.Html.LabelFor(x => x.Setup.ConfirmEmail, "Confirm Email")
+						@this.Html.TextBoxFor(x => x.Setup.ConfirmEmail, new
+							                                                 {
+								                                                 @class = "full-width", 
+								                                                 placeholder = "info@mysite.com"
+							                                                 })
+						@this.Html.ValidationMessageFor(x => x.Setup.ConfirmEmail)
+					</p>
 				
-				<p class="required relative">
-					@Html.LabelFor(x => x.Setup.SiteDomain,"Site Domain")
-					@Html.TextBoxFor( x => x.Setup.SiteDomain, new { @class = "full-width", placeholder = "Write here the domain of the site (ex: http://tostring.it)" } )
-					@Html.ValidationMessageFor(x => x.Setup.SiteDomain)
-				</p>
+					<p class="required relative">
+						@this.Html.LabelFor(x => x.Setup.SiteDomain, "Site Domain")
+						@this.Html.TextBoxFor(x => x.Setup.SiteDomain, new
+							                                               {
+								                                               @class = "full-width", 
+								                                               placeholder = "Write here the domain of the site (ex: http://tostring.it)"
+							                                               })
+						@this.Html.ValidationMessageFor(x => x.Setup.SiteDomain)
+					</p>
 
-				<p style="text-align:right;">
-					<button type="submit">Save</button>
-					<button type="button" class="grey">Need help?</button>
-				</p>
-			</form>
+					<p style="text-align: right;">
+						<button type="submit">Save</button>
+						<button type="button" class="grey">Need help?</button>
+					</p>
+				</form>
 
-		</div>
-	</section>
+			</div>
+		</section>
 
-<!--[if lt IE 8]></div><![endif]-->
-<!--[if lt IE 9]></div><![endif]-->
-</body>
+		<!--[if lt IE 8]></div><![endif]-->
+		<!--[if lt IE 9]></div><![endif]-->
+	</body>
 </html>

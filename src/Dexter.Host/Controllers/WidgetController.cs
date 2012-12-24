@@ -5,13 +5,12 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/12/01
-// Last edit:	2012/12/01
+// Last edit:	2012/12/24
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Host.Controllers
@@ -73,6 +72,17 @@ namespace Dexter.Host.Controllers
 		}
 
 		[ChildActionOnly]
+		public async Task<ActionResult> RecentComments(int maxNumberOfComments)
+		{
+			IList<CommentDto> comments = await this.CommentService.GetRecentCommentsAsync(maxNumberOfComments);
+
+			return this.View(new RecentCommentsViewModel
+				                 {
+					                 Comments = comments
+				                 });
+		}
+
+		[ChildActionOnly]
 		public async Task<ActionResult> TopTags(int maxNumberOfTags)
 		{
 			IList<TagDto> topTags = await this.PostService.GetTopTagsForPublishedPostsAsync(maxNumberOfTags);
@@ -80,17 +90,6 @@ namespace Dexter.Host.Controllers
 			return this.View(new TopTagsViewModel
 				                 {
 					                 Tags = topTags
-				                 });
-		}
-
-		[ChildActionOnly]
-		public async Task<ActionResult> RecentComments(int maxNumberOfComments)
-		{
-			var comments = await this.CommentService.GetRecentCommentsAsync(maxNumberOfComments);
-
-			return this.View(new RecentCommentsViewModel()
-				                 {
-					                 Comments = comments
 				                 });
 		}
 
