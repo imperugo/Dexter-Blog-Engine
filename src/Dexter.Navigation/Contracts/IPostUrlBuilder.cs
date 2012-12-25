@@ -22,7 +22,13 @@ namespace Dexter.Navigation.Contracts
 	{
 		#region Public Methods and Operators
 
+		SiteUrl Edit(ItemDto item);
+
+		SiteUrl Delete(ItemDto item);
+
 		SiteUrl Permalink(ItemDto item);
+
+		SiteUrl ArchivePosts(int month, int year);
 
 		#endregion
 	}

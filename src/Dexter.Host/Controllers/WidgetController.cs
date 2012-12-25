@@ -93,6 +93,17 @@ namespace Dexter.Host.Controllers
 				                 });
 		}
 
+		[ChildActionOnly]
+		public async Task<ActionResult> PostComment(int itemId)
+		{
+			var comments = await this.CommentService.GetCommentForSpecificItemAsync(itemId);
+
+			return this.View(new ItemCommentViewModel()
+				                 {
+					                 Comments = comments
+				                 });
+		}
+
 		#endregion
 	}
 }

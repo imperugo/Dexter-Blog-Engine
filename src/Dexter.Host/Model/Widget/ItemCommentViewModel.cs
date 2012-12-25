@@ -1,43 +1,30 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			IUrlBuilder.cs
+// File:			ItemCommentViewModel.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/10/28
+// Created:		2012/12/24
 // Last edit:	2012/12/24
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
-namespace Dexter.Navigation.Contracts
+namespace Dexter.Host.Model.Widget
 {
-	using System.Web;
+	using System.Collections.Generic;
 
-	using Dexter.Navigation.Helpers;
+	using Dexter.Entities;
 
-	public interface IUrlBuilder
+	public class ItemCommentViewModel
 	{
 		#region Public Properties
 
-		IAdminUrlBuilder Admin { get; }
-
-		SiteUrl Home { get; }
-
-		IPostUrlBuilder Post { get; }
-
-		IPageUrlBuilder Page { get; }
-
-		#endregion
-
-		#region Public Methods and Operators
-
-		SiteUrl CurrentUrl(HttpContextWrapper request);
-
-		SiteUrl PingbackUrl();
+		public IList<CommentDto> Comments { get; set; }
 
 		#endregion
 	}

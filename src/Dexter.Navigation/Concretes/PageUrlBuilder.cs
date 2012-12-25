@@ -1,10 +1,10 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			PostUrlBuilder.cs
+// File:			PageUrlBuilder.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/12/01
+// Created:		2012/12/24
 // Last edit:	2012/12/24
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
@@ -23,11 +23,11 @@ namespace Dexter.Navigation.Concretes
 	using Dexter.Navigation.Helpers;
 	using Dexter.Services;
 
-	public class PostUrlBuilder : UrlBuilderBase, IPostUrlBuilder
+	public class PageUrlBuilder : UrlBuilderBase, IPageUrlBuilder
 	{
 		#region Constructors and Destructors
 
-		public PostUrlBuilder(IConfigurationService configurationService)
+		public PageUrlBuilder(IConfigurationService configurationService)
 			: base(configurationService)
 		{
 		}
@@ -35,17 +35,6 @@ namespace Dexter.Navigation.Concretes
 		#endregion
 
 		#region Public Methods and Operators
-
-		public SiteUrl ArchivePosts(int month, int year)
-		{
-			string[] segments = new[]
-				                    {
-					                    year.ToString(CultureInfo.InvariantCulture), 
-					                    month.ToString(CultureInfo.InvariantCulture)
-				                    };
-
-			return new SiteUrl(this.Domain, this.HttpPort, false, null, "Blog", "Archive", segments, null);
-		}
 
 		public SiteUrl Delete(ItemDto item)
 		{
@@ -57,7 +46,7 @@ namespace Dexter.Navigation.Concretes
 					                    item.Slug
 				                    };
 
-			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Post", "Detele", segments, null);
+			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Page", "Detele", segments, null);
 		}
 
 		public SiteUrl Edit(ItemDto item)
@@ -70,20 +59,12 @@ namespace Dexter.Navigation.Concretes
 					                    item.Slug
 				                    };
 
-			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Post", "Manage", segments, null);
+			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Page", "Manage", segments, null);
 		}
 
 		public SiteUrl Permalink(ItemDto item)
 		{
-			string[] segments = new[]
-				                    {
-					                    item.PublishAt.Date.Year.ToString(CultureInfo.InvariantCulture), 
-					                    item.PublishAt.Date.Month.ToString(CultureInfo.InvariantCulture), 
-					                    item.PublishAt.Date.Day.ToString(CultureInfo.InvariantCulture), 
-					                    item.Slug
-				                    };
-
-			return new SiteUrl(this.Domain, this.HttpPort, false, null, "Blog", "Post", segments, null);
+			return new SiteUrl(this.Domain, this.HttpPort, false, null, "Blog", "Page", new[] { item.Slug }, null);
 		}
 
 		#endregion

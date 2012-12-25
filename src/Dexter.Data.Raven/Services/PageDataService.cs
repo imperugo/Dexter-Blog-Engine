@@ -123,9 +123,9 @@ namespace Dexter.Data.Raven.Services
 			RavenQueryStatistics stats;
 
 			List<Page> result = this.Session.Query<Page>()
+			                        .Statistics(out stats)
 			                        .ApplyFilterItem(filter)
 			                        .OrderByDescending(post => post.PublishAt)
-			                        .Statistics(out stats)
 			                        .Paging(pageIndex, pageSize)
 			                        .ToList();
 

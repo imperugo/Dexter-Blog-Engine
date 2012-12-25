@@ -36,11 +36,12 @@ namespace Dexter.Navigation.Concretes
 
 		#region Constructors and Destructors
 
-		public UrlBuilder(ILog logger, IAdminUrlBuilder adminUrlBuilder, IConfigurationService configurationService, IPostUrlBuilder postUrlBuilder)
+		public UrlBuilder(ILog logger, IAdminUrlBuilder adminUrlBuilder, IConfigurationService configurationService, IPostUrlBuilder postUrlBuilder, IPageUrlBuilder pageUrlBuilder)
 		{
 			this.logger = logger;
 			this.Admin = adminUrlBuilder;
 			this.Post = postUrlBuilder;
+			this.Page = pageUrlBuilder;
 			this.configurationService = configurationService;
 		}
 
@@ -56,11 +57,13 @@ namespace Dexter.Navigation.Concretes
 			{
 				BlogConfigurationDto conf = this.configurationService.GetConfiguration();
 
-				return new SiteUrl(conf.DefaultDomain, conf.DefaultHttpsPort, false, null, "Home", "Index", null);
+				return new SiteUrl(conf.DefaultDomain, conf.DefaultHttpsPort, false, null, "Home", "Index", null, null);
 			}
 		}
 
-		public IPostUrlBuilder Post { get; set; }
+		public IPostUrlBuilder Post { get; private set; }
+
+		public IPageUrlBuilder Page { get; private set; }
 
 		#endregion
 
@@ -70,12 +73,12 @@ namespace Dexter.Navigation.Concretes
 		{
 			string area = request.Request.RequestContext.RouteData.Values["area"] != null ? request.Request.RequestContext.RouteData.Values["area"].ToString() : null;
 
-			return new SiteUrl(request.Request.Url.Host, request.Request.Url.Port, request.Request.IsSecureConnection, area, request.Request.RequestContext.RouteData.Values["controller"].ToString(), request.Request.RequestContext.RouteData.Values["action"].ToString(), null);
+			return new SiteUrl(request.Request.Url.Host, request.Request.Url.Port, request.Request.IsSecureConnection, area, request.Request.RequestContext.RouteData.Values["controller"].ToString(), request.Request.RequestContext.RouteData.Values["action"].ToString(), null, null);
 		}
 
 		public SiteUrl PingbackUrl()
 		{
-			return new SiteUrl(this.Home.Domain, this.Home.Port, this.Home.IsSecureConnection, this.Home.Area, "Services", "Pingback", null);
+			return new SiteUrl(this.Home.Domain, this.Home.Port, this.Home.IsSecureConnection, this.Home.Area, "Services", "Pingback", null,null);
 		}
 
 		#endregion

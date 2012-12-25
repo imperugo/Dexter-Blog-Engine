@@ -162,6 +162,10 @@
       <Project>{5FB1AED5-D55E-43CC-A3E0-5E788BD72144}</Project>
       <Name>Dexter.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\Dexter.Extensions\Dexter.Extensions.csproj">
+      <Project>{408d067c-933b-4987-b76f-481708f08470}</Project>
+      <Name>Dexter.Extensions</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

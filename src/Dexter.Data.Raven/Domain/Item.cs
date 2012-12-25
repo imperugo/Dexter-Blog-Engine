@@ -27,6 +27,8 @@ namespace Dexter.Data.Raven.Domain
 
 		public string CommentsId { get; set; }
 
+		public string SearchContent { get; set; }
+
 		public string Content { get; set; }
 
 		public string Excerpt { get; set; }

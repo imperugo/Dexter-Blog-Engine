@@ -44,33 +44,6 @@ namespace Dexter.Host.Controllers
 
 		[PingBack]
 		[AcceptVerbs(HttpVerbs.Get | HttpVerbs.Head)]
-		public async Task<ActionResult> Archive(int? year, int? month, int page = 1)
-		{
-			if (year == null || month == null)
-			{
-				this.Logger.WarnFormat("Possible wrong link : {0} - The referref is {1}", this.HttpContext.Request.Url, this.HttpContext.Request.UrlReferrer);
-
-				return this.HttpNotFound();
-			}
-
-			if (year < 1900 || month < 1)
-			{
-				return this.HttpNotFound();
-			}
-
-			ArchiveViewModel model = new ArchiveViewModel();
-
-			Task<IPagedResult<PostDto>> postsTask = this.PostService.GetPostsByDateAsync(page, 10, year.Value, month, null, null);
-
-			await Task.WhenAll(postsTask);
-
-			model.Posts = postsTask.Result;
-
-			return this.View(model);
-		}
-
-		[PingBack]
-		[AcceptVerbs(HttpVerbs.Get | HttpVerbs.Head)]
 		public async Task<ActionResult> Index(int page = 1)
 		{
 			IndexViewModel model = new IndexViewModel();

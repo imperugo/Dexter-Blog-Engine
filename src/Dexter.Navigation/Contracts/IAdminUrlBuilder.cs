@@ -15,6 +15,7 @@
 
 namespace Dexter.Navigation.Contracts
 {
+	using Dexter.Entities;
 	using Dexter.Navigation.Helpers;
 
 	public interface IAdminUrlBuilder
@@ -24,6 +25,14 @@ namespace Dexter.Navigation.Contracts
 		SiteUrl Home();
 
 		SiteUrl Login();
+
+		SiteUrl EditPost(ItemDto item);
+
+		SiteUrl DeletePost(ItemDto item);
+
+		SiteUrl EditPage(ItemDto item);
+
+		SiteUrl DeletePage(ItemDto item);
 
 		#endregion
 	}

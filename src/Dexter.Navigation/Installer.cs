@@ -11,6 +11,7 @@
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Navigation
@@ -29,6 +30,7 @@ namespace Dexter.Navigation
 			container.Register<IUrlBuilder, UrlBuilder>(LifeCycle.Singleton);
 			container.Register<IAdminUrlBuilder, AdminUrlBuilder>(LifeCycle.Singleton);
 			container.Register<IPostUrlBuilder, PostUrlBuilder>(LifeCycle.Singleton);
+			container.Register<IPageUrlBuilder, PageUrlBuilder>(LifeCycle.Singleton);
 		}
 
 		public void ServiceRegistration(IDexterContainer container)

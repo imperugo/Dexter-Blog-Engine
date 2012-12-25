@@ -134,9 +134,9 @@ namespace Dexter.Data.Raven.Services
 			RavenQueryStatistics stats;
 
 			List<Post> result = this.Session.Query<Post>()
+									.Statistics(out stats)
 			                        .ApplyFilterItem(filters)
 			                        .OrderByDescending(post => post.PublishAt)
-			                        .Statistics(out stats)
 			                        .Paging(pageIndex, pageSize)
 			                        .ToList();
 
@@ -179,9 +179,10 @@ namespace Dexter.Data.Raven.Services
 
 			RavenQueryStatistics stats;
 
-			IRavenQueryable<Post> query = this.Session.Query<Post>()
-			                                  .Where(post => post.PublishAt.Year == year)
-			                                  .ApplyFilterItem(filters);
+			var query = this.Session.Query<Post>()
+												.Statistics(out stats)
+												.Where(post => post.PublishAt.Year == year)
+												.ApplyFilterItem(filters);
 
 			if (month.HasValue)
 			{
@@ -194,7 +195,6 @@ namespace Dexter.Data.Raven.Services
 			}
 
 			List<Post> result = query
-				.Statistics(out stats)
 				.OrderByDescending(post => post.PublishAt)
 				.Paging(pageIndex, pageSize)
 				.ToList();
@@ -224,8 +224,8 @@ namespace Dexter.Data.Raven.Services
 			RavenQueryStatistics stats;
 
 			List<Post> result = this.Session.Query<Post>()
+									.Statistics(out stats)
 			                        .ApplyFilterItem(filters)
-			                        .Statistics(out stats)
 			                        .Where(post => post.Tags.Any(postTag => postTag == tag))
 			                        .OrderByDescending(post => post.PublishAt)
 			                        .Paging(pageIndex, pageSize)
@@ -342,6 +342,29 @@ namespace Dexter.Data.Raven.Services
 			post.TrackbacksId = trackbacks.Id;
 
 			this.Session.Store(post);
+		}
+
+		public IPagedResult<PostDto> Search(string term, int pageIndex, int pageSize, ItemQueryFilter filters)
+		{
+			RavenQueryStatistics stats;
+
+			var result = this.Session.Query<PostFullTextIndex.ReduceResult, PostFullTextIndex>()
+			                .Search(x => x.SearchQuery, term)
+			                .OrderByDescending(post => post.PublishDate)
+			                .Statistics(out stats)
+			                .As<Post>()
+							.ApplyFilterItem(filters)
+							.Paging(pageIndex, pageSize)
+							.ToList();
+
+			List<PostDto> posts = result.MapTo<PostDto>();
+
+			if (stats.TotalResults < 1)
+			{
+				return new EmptyPagedResult<PostDto>(pageIndex, pageSize);
+			}
+
+			return new PagedResult<PostDto>(pageIndex, pageSize, posts, stats.TotalResults);
 		}
 
 		#endregion

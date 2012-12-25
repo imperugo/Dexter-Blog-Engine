@@ -73,9 +73,11 @@
     <Compile Include="..\..\doc\Dexter.Build.cs">
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
+    <Compile Include="Concretes\PageUrlBuilder.cs" />
     <Compile Include="Concretes\UrlBuilder.cs" />
     <Compile Include="Concretes\AdminUrlBuilder.cs" />
     <Compile Include="Contracts\IAdminUrlBuilder.cs" />
+    <Compile Include="Contracts\IPageUrlBuilder.cs" />
     <Compile Include="Contracts\IPostUrlBuilder.cs" />
     <Compile Include="Contracts\IUrlBuilder.cs" />
     <Compile Include="Concretes\PostUrlBuilder.cs" />

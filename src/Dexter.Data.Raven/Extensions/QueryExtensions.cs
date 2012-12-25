@@ -22,11 +22,11 @@ namespace Dexter.Data.Raven.Extensions
 
 	using global::Raven.Client.Linq;
 
-	internal static class QueryExtensions
+	public static class QueryExtensions
 	{
 		#region Public Methods and Operators
 
-		public static IRavenQueryable<T> ApplyFilterItem<T>(this IRavenQueryable<T> query, ItemQueryFilter filters) where T : Item
+		public static IQueryable<T> ApplyFilterItem<T>(this IQueryable<T> query, ItemQueryFilter filters) where T : Item
 		{
 			if (filters != null && filters.Status.HasValue)
 			{

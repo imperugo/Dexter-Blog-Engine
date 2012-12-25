@@ -45,6 +45,8 @@ namespace Dexter.Data
 
 		void SaveTrackback(TrackBackDto trackBack, int itemId);
 
+		IPagedResult<PostDto> Search(string term, int pageIndex, int pageSize, ItemQueryFilter filters);
+
 		#endregion
 	}
 }
