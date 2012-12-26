@@ -97,7 +97,7 @@ namespace Dexter.Data.Raven.Services
 
 			if (post == null)
 			{
-				throw new ItemNotFoundException("id");
+				return null;
 			}
 
 			PostDto result = post.MapTo<PostDto>();

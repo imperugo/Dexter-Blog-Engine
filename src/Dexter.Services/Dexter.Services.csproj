@@ -41,6 +41,9 @@
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
     <Compile Include="Events\CancelEventArgsWithoutParameters.cs" />
+    <Compile Include="Events\CancelEventArgsWithOneParameterWithoutResult.cs" />
+    <Compile Include="Events\CancelEventArgsWithoutParameterWithResult.cs" />
+    <Compile Include="ICategoryService.cs" />
     <Compile Include="ICommentService.cs" />
     <Compile Include="IPageService.cs" />
     <Compile Include="Events\CancelEventArgsWithOneParameter.cs" />

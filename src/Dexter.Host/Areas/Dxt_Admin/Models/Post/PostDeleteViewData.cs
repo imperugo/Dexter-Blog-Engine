@@ -1,10 +1,10 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			CancelEventArgsWithOneParameter.cs
+// File:			PostDeleteViewData.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/11/01
+// Created:		2012/12/26
 // Last edit:	2012/12/26
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
@@ -14,27 +14,16 @@
 
 #endregion
 
-namespace Dexter.Services.Events
+namespace Dexter.Host.Areas.Dxt_Admin.Models.Post
 {
-	using System.ComponentModel;
+	using Dexter.Entities;
+	using Dexter.Web.Core.Models;
 
-	public class CancelEventArgsWithOneParameter<T, TK> : CancelEventArgs
+	public class PostDeleteViewData : DexterModelBase
 	{
-		#region Constructors and Destructors
-
-		public CancelEventArgsWithOneParameter(T parameter, TK result)
-		{
-			this.Parameter = parameter;
-			this.Result = result;
-		}
-
-		#endregion
-
 		#region Public Properties
 
-		public T Parameter { get; set; }
-
-		public TK Result { get; set; }
+		public PostDto Post { get; set; }
 
 		#endregion
 	}

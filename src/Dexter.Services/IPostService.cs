@@ -18,6 +18,7 @@ namespace Dexter.Services
 {
 	using System;
 	using System.Collections.Generic;
+	using System.ComponentModel;
 	using System.Threading.Tasks;
 
 	using Dexter.Entities;
@@ -40,6 +41,16 @@ namespace Dexter.Services
 		event EventHandler<CancelEventArgsWithoutParameters<IList<MonthDto>>> MonthsRetrievingForPublishedPosts;
 
 		/// <summary>
+		/// This event will raise after the <see cref="Post"/> is delete. The event is raised by by the implementation of <see cref="Delete"/> or the async version.
+		/// </summary>
+		event EventHandler<EventArgs> PostDeleted;
+
+		/// <summary>
+		/// This event will raise before to delete <see cref="Post"/>. The event is raised by by the implementation of <see cref="Delete"/> or the async version.
+		/// </summary>
+		event EventHandler<CancelEventArgsWithOneParameterWithoutResult<int>> PostDeleting;
+
+		/// <summary>
 		/// This event will raise after to retrieve <see cref="PostDto"/> by specific key. The event is raised by by the implementation of <see cref="GetPostByKey"/> or the async version.
 		/// </summary>
 		event EventHandler<GenericEventArgs<PostDto>> PostRetrievedById;
@@ -58,6 +69,16 @@ namespace Dexter.Services
 		/// This event will raise before to retrieve <see cref="PostDto"/> by specific slug. The event is raised by by the implementation of <see cref="GetPostBySlug"/> or the async version.
 		/// </summary>
 		event EventHandler<CancelEventArgsWithOneParameter<string, PostDto>> PostRetrievingBySlug;
+
+		/// <summary>
+		/// This event will raise after the <see cref="PostDto"/> is saved. The event is raised by by the implementation of <see cref="SaveOrUpdate"/> or the async version.
+		/// </summary>
+		event EventHandler<CancelEventArgsWithoutParameterWithResult<PostDto>> PostSaved;
+
+		/// <summary>
+		/// This event will raise before to save <see cref="PostDto"/>. The event is raised by by the implementation of <see cref="SaveOrUpdate"/> or the async version.
+		/// </summary>
+		event EventHandler<CancelEventArgsWithOneParameterWithoutResult<PostDto>> PostSaving;
 
 		/// <summary>
 		/// This event will raise after to retrieve <see cref="PostDto"/> filtered by the specified filters.. The event is raised by by the implementation of <see cref="GetPostsByDate"/> or the async version.
@@ -113,6 +134,8 @@ namespace Dexter.Services
 
 		#region Public Methods and Operators
 
+		void Delete(int key);
+
 		IList<MonthDto> GetMonthsForPublishedPosts();
 
 		Task<IList<MonthDto>> GetMonthsForPublishedPostsAsync();
@@ -144,6 +167,8 @@ namespace Dexter.Services
 		void SaveOrUpdate(PostDto item);
 
 		IPagedResult<PostDto> Search(string term, int pageIndex, int pageSize, ItemQueryFilter filters);
+
+		Task<IPagedResult<PostDto>> SearchAsync(string term, int pageIndex, int pageSize, ItemQueryFilter filters);
 
 		#endregion
 	}

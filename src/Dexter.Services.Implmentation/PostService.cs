@@ -5,12 +5,13 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/01
-// Last edit:	2012/12/24
+// Last edit:	2012/12/26
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Services.Implmentation
@@ -22,6 +23,7 @@ namespace Dexter.Services.Implmentation
 	using Common.Logging;
 
 	using Dexter.Data;
+	using Dexter.Data.Exceptions;
 	using Dexter.Entities;
 	using Dexter.Entities.Filters;
 	using Dexter.Entities.Result;
@@ -54,6 +56,10 @@ namespace Dexter.Services.Implmentation
 
 		public event EventHandler<CancelEventArgsWithoutParameters<IList<MonthDto>>> MonthsRetrievingForPublishedPosts;
 
+		public event EventHandler<EventArgs> PostDeleted;
+
+		public event EventHandler<CancelEventArgsWithOneParameterWithoutResult<int>> PostDeleting;
+
 		public event EventHandler<GenericEventArgs<PostDto>> PostRetrievedById;
 
 		public event EventHandler<GenericEventArgs<PostDto>> PostRetrievedBySlug;
@@ -61,6 +67,10 @@ namespace Dexter.Services.Implmentation
 		public event EventHandler<CancelEventArgsWithOneParameter<int, PostDto>> PostRetrievingById;
 
 		public event EventHandler<CancelEventArgsWithOneParameter<string, PostDto>> PostRetrievingBySlug;
+
+		public event EventHandler<CancelEventArgsWithoutParameterWithResult<PostDto>> PostSaved;
+
+		public event EventHandler<CancelEventArgsWithOneParameterWithoutResult<PostDto>> PostSaving;
 
 		public event EventHandler<GenericEventArgs<IPagedResult<PostDto>>> PostsRetrievedByDates;
 
@@ -74,17 +84,38 @@ namespace Dexter.Services.Implmentation
 
 		public event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, ItemQueryFilter>, IPagedResult<PostDto>>> PostsRetrievingWithFilters;
 
+		public event EventHandler<GenericEventArgs<IPagedResult<PostDto>>> PostsSearchedWithFilters;
+
+		public event EventHandler<CancelEventArgsWithOneParameter<Tuple<string, int, int, ItemQueryFilter>, IPagedResult<PostDto>>> PostsSearchingWithFilters;
+
 		public event EventHandler<GenericEventArgs<IList<TagDto>>> TagsRetrievedForPublishedPosts;
 
 		public event EventHandler<CancelEventArgsWithOneParameter<int, IList<TagDto>>> TagsRetrievingForPublishedPosts;
 
-		public event EventHandler<CancelEventArgsWithOneParameter<Tuple<string, int, int, ItemQueryFilter>, IPagedResult<PostDto>>> PostsSearchingWithFilters;
-
-		public event EventHandler<GenericEventArgs<IPagedResult<PostDto>>> PostsSearchedWithFilters;
-
 		#endregion
 
 		#region Public Methods and Operators
+
+		public void Delete(int key)
+		{
+			if (key < 1)
+			{
+				throw new ArgumentException("The Key must be greater than 0", "key");
+			}
+
+			CancelEventArgsWithOneParameterWithoutResult<int> e = new CancelEventArgsWithOneParameterWithoutResult<int>(key);
+
+			this.PostDeleting.Raise(this, e);
+
+			if (e.Cancel)
+			{
+				return;
+			}
+
+			this.postDataService.Delete(key);
+
+			this.PostDeleted.Raise(this, new EventArgs());
+		}
 
 		public IList<MonthDto> GetMonthsForPublishedPosts()
 		{
@@ -349,7 +380,23 @@ namespace Dexter.Services.Implmentation
 
 		public void SaveOrUpdate(PostDto item)
 		{
+			if (item == null)
+			{
+				throw new ItemNotFoundException("item");
+			}
+
+			CancelEventArgsWithOneParameterWithoutResult<PostDto> e = new CancelEventArgsWithOneParameterWithoutResult<PostDto>(item);
+
+			this.PostSaving.Raise(this, e);
+
+			if (e.Cancel)
+			{
+				return;
+			}
+
 			this.postDataService.SaveOrUpdate(item);
+
+			this.PostSaved.Raise(this, new CancelEventArgsWithoutParameterWithResult<PostDto>(item));
 		}
 
 		public IPagedResult<PostDto> Search(string term, int pageIndex, int pageSize, ItemQueryFilter filters)
@@ -386,6 +433,11 @@ namespace Dexter.Services.Implmentation
 			this.PostsSearchedWithFilters.Raise(this, new GenericEventArgs<IPagedResult<PostDto>>(result));
 
 			return result;
+		}
+
+		public Task<IPagedResult<PostDto>> SearchAsync(string term, int pageIndex, int pageSize, ItemQueryFilter filters)
+		{
+			return Task.Run(() => this.Search(term, pageIndex, pageSize, filters));
 		}
 
 		#endregion

@@ -22,6 +22,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 	using Dexter.Services;
 	using Dexter.Web.Core.Controllers.Web;
 
+	[Authorize]
 	public class PageController : DexterControllerBase
 	{
 		#region Constructors and Destructors

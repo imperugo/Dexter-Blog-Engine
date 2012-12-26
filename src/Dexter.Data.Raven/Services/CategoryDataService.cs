@@ -49,27 +49,6 @@ namespace Dexter.Data.Raven.Services
 
 		#endregion
 
-		// public List<CategoryDto> MakeTreeFromFlatList(IList<CategoryDto> flatList)
-		// {
-		// 	var dic = flatList.ToDictionary(n => n.Id, n => n);
-
-		// 	var rootNodes = new List<CategoryDto>();
-
-		// 	foreach (CategoryDto node in flatList)
-		// 	{
-		// 		if (node.ParentId != null)
-		// 		{
-		// 			CategoryDto parent = dic[node.Parent.Id].MapTo<CategoryDto>();
-		// 			node.Parent = parent;
-		// 			parent.Categories.Add(node);
-		// 		}
-		// 		else
-		// 		{
-		// 			rootNodes.Add(node);
-		// 		}
-		// 	}
-		// 	return rootNodes;
-		// }
 		#region Public Methods and Operators
 
 		public void DeleteCategory(string id, string newCategoryId)

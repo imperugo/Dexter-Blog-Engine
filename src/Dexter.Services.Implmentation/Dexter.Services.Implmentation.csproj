@@ -55,6 +55,7 @@
     <Compile Include="..\..\doc\Dexter.Build.cs">
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
+    <Compile Include="CategoryService.cs" />
     <Compile Include="CommentService.cs" />
     <Compile Include="ConfigurationService.cs" />
     <Compile Include="Installer.cs" />

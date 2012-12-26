@@ -1,10 +1,10 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			CategoryController.cs
+// File:			CancelEventArgsWithOneParameter.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/12/24
+// Created:		2012/11/01
 // Last edit:	2012/12/24
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
@@ -13,34 +13,24 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 #endregion
 
-namespace Dexter.Host.Areas.Dxt_Admin.Controllers
+namespace Dexter.Services.Events
 {
-	using System.Web.Mvc;
+	using System.ComponentModel;
 
-	using Common.Logging;
-
-	using Dexter.Services;
-	using Dexter.Web.Core.Controllers.Web;
-
-	[Authorize]
-	public class CategoryController : DexterControllerBase
+	public class CancelEventArgsWithOneParameterWithoutResult<T> : CancelEventArgs
 	{
 		#region Constructors and Destructors
 
-		public CategoryController(ILog logger, IConfigurationService configurationService, IPostService postService, ICommentService commentService)
-			: base(logger, configurationService, postService, commentService)
+		public CancelEventArgsWithOneParameterWithoutResult(T parameter)
 		{
+			this.Parameter = parameter;
 		}
 
 		#endregion
 
-		#region Public Methods and Operators
+		#region Public Properties
 
-		[AcceptVerbs(HttpVerbs.Get)]
-		public ActionResult Index()
-		{
-			return this.View();
-		}
+		public T Parameter { get; set; }
 
 		#endregion
 	}

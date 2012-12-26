@@ -2,8 +2,7 @@
 /*
  * Global reset
  * Based on Eric Meyer's : http://meyerweb.com/eric/thoughts/2008/01/15/resetting-again/
- */
-
+ */ 
 a, abbr, acronym, address, applet, article, aside, audio,
 b, big, blockquote, body,
 canvas, caption, center, cite, code, command,
@@ -77,7 +76,6 @@ table {
  * 999980 : modal windows
  * 999990 : notifications
  */
-
 html { background: #d5d8db; }
 
 body {
@@ -2446,7 +2444,6 @@ ul.tabs + .tabs-content {
 .side-tabs { display: block; }
 /*#source /Styles/Global/form.css */
 /************** Forms & pseudo-form **************/
-
 .form fieldset,
 .fieldset {
 	-moz-border-radius: 0.25em;
