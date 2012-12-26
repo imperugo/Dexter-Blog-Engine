@@ -78,6 +78,10 @@ namespace Dexter.Services.Implmentation
 
 		public event EventHandler<CancelEventArgsWithOneParameter<int, IList<TagDto>>> TagsRetrievingForPublishedPosts;
 
+		public event EventHandler<CancelEventArgsWithOneParameter<Tuple<string, int, int, ItemQueryFilter>, IPagedResult<PostDto>>> PostsSearchingWithFilters;
+
+		public event EventHandler<GenericEventArgs<IPagedResult<PostDto>>> PostsSearchedWithFilters;
+
 		#endregion
 
 		#region Public Methods and Operators
@@ -346,6 +350,42 @@ namespace Dexter.Services.Implmentation
 		public void SaveOrUpdate(PostDto item)
 		{
 			this.postDataService.SaveOrUpdate(item);
+		}
+
+		public IPagedResult<PostDto> Search(string term, int pageIndex, int pageSize, ItemQueryFilter filters)
+		{
+			if (pageIndex < 1)
+			{
+				throw new ArgumentException("The page index must be greater than 0", "pageIndex");
+			}
+
+			if (pageSize < 1)
+			{
+				throw new ArgumentException("The page size must be greater than 0", "pageSize");
+			}
+
+			if (filters == null)
+			{
+				filters = new ItemQueryFilter();
+				filters.MaxPublishAt = DateTime.Now;
+				filters.Status = ItemStatus.Published;
+			}
+
+			CancelEventArgsWithOneParameter<Tuple<string, int, int, ItemQueryFilter>, IPagedResult<PostDto>> e = new CancelEventArgsWithOneParameter<Tuple<string, int, int, ItemQueryFilter>, IPagedResult<PostDto>>(new Tuple<string, int, int, ItemQueryFilter>(term, pageIndex, pageSize, filters), null);
+
+			this.PostsSearchingWithFilters.Raise(this, e);
+
+			if (e.Cancel)
+			{
+				this.logger.DebugAsync("The result of the method 'Search' is overridden by the event 'PostsSearchingWithFilters'.");
+				return e.Result;
+			}
+
+			IPagedResult<PostDto> result = this.postDataService.Search(term, pageIndex, pageSize, filters);
+
+			this.PostsSearchedWithFilters.Raise(this, new GenericEventArgs<IPagedResult<PostDto>>(result));
+
+			return result;
 		}
 
 		#endregion

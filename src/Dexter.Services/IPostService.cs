@@ -5,12 +5,13 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/01
-// Last edit:	2012/12/24
+// Last edit:	2012/12/26
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Services
@@ -89,6 +90,16 @@ namespace Dexter.Services
 		event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, ItemQueryFilter>, IPagedResult<PostDto>>> PostsRetrievingWithFilters;
 
 		/// <summary>
+		/// This event will raise after to retrieve <see cref="IPagedResult"/> of <see cref="PostDto"/> with specific filters. The event is raised by by the implementation of <see cref="Search"/> or the async version.
+		/// </summary>
+		event EventHandler<GenericEventArgs<IPagedResult<PostDto>>> PostsSearchedWithFilters;
+
+		/// <summary>
+		/// This event will raise before to retrieve <see cref="IPagedResult"/> of <see cref="PostDto"/> with specific filters. The event is raised by by the implementation of <see cref="Search"/> or the async version.
+		/// </summary>
+		event EventHandler<CancelEventArgsWithOneParameter<Tuple<string, int, int, ItemQueryFilter>, IPagedResult<PostDto>>> PostsSearchingWithFilters;
+
+		/// <summary>
 		/// This event will raise after to retrieve <see cref="TagDto"/> of <see cref="PostDto"/> with specific filters. The event is raised by by the implementation of <see cref="GetTopTagsForPublishedPosts"/> or the async version.
 		/// </summary>
 		event EventHandler<GenericEventArgs<IList<TagDto>>> TagsRetrievedForPublishedPosts;
@@ -131,6 +142,8 @@ namespace Dexter.Services
 		Task<IList<TagDto>> GetTopTagsForPublishedPostsAsync(int maxNumberOfTags);
 
 		void SaveOrUpdate(PostDto item);
+
+		IPagedResult<PostDto> Search(string term, int pageIndex, int pageSize, ItemQueryFilter filters);
 
 		#endregion
 	}
