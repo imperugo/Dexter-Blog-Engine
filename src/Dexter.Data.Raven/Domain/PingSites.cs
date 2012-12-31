@@ -1,36 +1,29 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			IPostUrlBuilder.cs
+// File:			PingSites.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/12/01
-// Last edit:	2012/12/24
+// Created:		2012/12/31
+// Last edit:	2012/12/31
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
-namespace Dexter.Navigation.Contracts
+namespace Dexter.Data.Raven.Domain
 {
-	using Dexter.Entities;
-	using Dexter.Navigation.Helpers;
+	using System;
+	using System.Collections.Generic;
 
-	public interface IPostUrlBuilder
+	public class PingSites : EntityBase<string>
 	{
-		#region Public Methods and Operators
+		#region Public Properties
 
-		SiteUrl Edit(ItemDto item);
-
-		SiteUrl Delete(ItemDto item);
-
-		SiteUrl Permalink(ItemDto item);
-
-		SiteUrl ArchivePosts(int month, int year);
-
-		SiteUrl TrackBack(ItemDto item);
+		public IList<Uri> Sites { get; set; }
 
 		#endregion
 	}

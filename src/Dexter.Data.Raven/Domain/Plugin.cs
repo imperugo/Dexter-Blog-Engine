@@ -1,36 +1,40 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			IPostUrlBuilder.cs
+// File:			Plugin.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/12/01
-// Last edit:	2012/12/24
+// Created:		2012/12/31
+// Last edit:	2012/12/31
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
-namespace Dexter.Navigation.Contracts
+namespace Dexter.Data.Raven.Domain
 {
-	using Dexter.Entities;
-	using Dexter.Navigation.Helpers;
+	using System;
 
-	public interface IPostUrlBuilder
+	public class Plugin : EntityBase<int>
 	{
-		#region Public Methods and Operators
+		#region Public Properties
 
-		SiteUrl Edit(ItemDto item);
+		public virtual string Author { get; set; }
 
-		SiteUrl Delete(ItemDto item);
+		public string Description { get; set; }
 
-		SiteUrl Permalink(ItemDto item);
+		public bool Enabled { get; set; }
 
-		SiteUrl ArchivePosts(int month, int year);
+		public virtual bool IsInstalled { get; protected set; }
 
-		SiteUrl TrackBack(ItemDto item);
+		public string Name { get; set; }
+
+		public virtual Version Version { get; protected set; }
+
+		public virtual Uri Website { get; set; }
 
 		#endregion
 	}

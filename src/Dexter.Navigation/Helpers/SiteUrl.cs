@@ -113,9 +113,12 @@ namespace Dexter.Navigation.Helpers
 			sb.AppendFormat("{0}/", this.Controller);
 			sb.AppendFormat("{0}/", this.Action);
 
-			foreach (string segment in this.Segments)
+			if (this.Segments != null)
 			{
-				sb.AppendFormat("{0}/", segment);
+				foreach (string segment in this.Segments)
+				{
+					sb.AppendFormat("{0}/", segment);
+				}
 			}
 
 			if (this.Parameters != null && this.Parameters.Any())

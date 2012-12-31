@@ -5,7 +5,7 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/12/01
-// Last edit:	2012/12/24
+// Last edit:	2012/12/31
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -16,6 +16,7 @@
 
 namespace Dexter.Navigation.Concretes
 {
+	using System.Collections.Generic;
 	using System.Globalization;
 
 	using Dexter.Entities;
@@ -84,6 +85,15 @@ namespace Dexter.Navigation.Concretes
 				                    };
 
 			return new SiteUrl(this.Domain, this.HttpPort, false, null, "Blog", "Post", segments, null);
+		}
+
+		public SiteUrl TrackBack(ItemDto item)
+		{
+			return new SiteUrl(this.Domain, this.HttpPort, false, null, "Services", "Trackback", null, new Dictionary<string, object>
+				                                                                                           {
+					                                                                                           { "id", item.Id.ToString(CultureInfo.InvariantCulture) }, 
+					                                                                                           { "itemType", ItemType.Post }
+				                                                                                           });
 		}
 
 		#endregion
