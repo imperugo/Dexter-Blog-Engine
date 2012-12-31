@@ -1,43 +1,39 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			IUrlBuilder.cs
+// File:			CollectionExtensions.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/10/28
-// Last edit:	2012/12/24
+// Created:		2012/12/31
+// Last edit:	2012/12/31
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
-namespace Dexter.Navigation.Contracts
+namespace System.Collections
 {
-	using System.Web;
+	using System.Collections.Generic;
+	using System.Collections.Specialized;
+	using System.Linq;
 
-	using Dexter.Navigation.Helpers;
-
-	public interface IUrlBuilder
+	public static class CollectionExtensions
 	{
-		#region Public Properties
-
-		IAdminUrlBuilder Admin { get; }
-
-		SiteUrl Home { get; }
-
-		IPostUrlBuilder Post { get; }
-
-		IPageUrlBuilder Page { get; }
-
-		#endregion
-
 		#region Public Methods and Operators
 
-		SiteUrl CurrentUrl(HttpContextBase request);
-
-		SiteUrl PingbackUrl();
+		public static IDictionary<string, string> ToDictionary (this NameValueCollection source)
+		{
+			return source.Cast<string>()
+			             .Select(s => new
+				                          {
+					                          Key = s, 
+					                          Value = source[s]
+				                          })
+			             .ToDictionary(p => p.Key, p => p.Value);
+		}
 
 		#endregion
 	}

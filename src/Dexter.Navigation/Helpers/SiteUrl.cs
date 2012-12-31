@@ -35,17 +35,17 @@ namespace Dexter.Navigation.Helpers
 		{
 		}
 
-		public SiteUrl(string domain, string controller, string action, IDictionary<string, object> parameters)
+		public SiteUrl(string domain, string controller, string action, IDictionary<string, string> parameters)
 			: this(domain, 80, false, null, controller, action, null, parameters)
 		{
 		}
 
-		public SiteUrl(string domain, string area, string controller, string action, IDictionary<string, object> parameters)
+		public SiteUrl(string domain, string area, string controller, string action, IDictionary<string, string> parameters)
 			: this(domain, 80, false, area, controller, action, null, parameters)
 		{
 		}
 
-		public SiteUrl(string domain, int port, bool isSecureConnection, string area, string controller, string action, string[] segments, IDictionary<string, object> parameters)
+		public SiteUrl(string domain, int port, bool isSecureConnection, string area, string controller, string action, string[] segments, IDictionary<string, string> parameters)
 		{
 			this.Domain = domain;
 			this.Port = port;
@@ -72,7 +72,7 @@ namespace Dexter.Navigation.Helpers
 
 		public bool IsSecureConnection { get; private set; }
 
-		public IDictionary<string, object> Parameters { get; private set; }
+		public IDictionary<string, string> Parameters { get; private set; }
 
 		public int Port { get; private set; }
 
@@ -124,7 +124,7 @@ namespace Dexter.Navigation.Helpers
 			if (this.Parameters != null && this.Parameters.Any())
 			{
 				sb.Append("?d=u&");
-				foreach (KeyValuePair<string, object> parameter in this.Parameters)
+				foreach (KeyValuePair<string, string> parameter in this.Parameters)
 				{
 					sb.AppendFormat("&{0}={1}", HttpUtility.UrlEncode(parameter.Key), HttpUtility.UrlEncode(parameter.Value.ToString()));
 				}

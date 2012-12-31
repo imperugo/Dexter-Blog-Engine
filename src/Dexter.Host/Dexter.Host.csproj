@@ -136,6 +136,7 @@
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
     <Compile Include="App_Start\Automapper\AutoMapperConfiguration.cs" />
+    <Compile Include="App_Start\Backoffice\BackOfficeHelper.cs" />
     <Compile Include="App_Start\Installer.cs" />
     <Compile Include="App_Start\Validators\SimplyCategoryValidationAttribute.cs" />
     <Compile Include="Areas\Dxt_Admin\Controllers\CategoryController.cs" />
@@ -1221,6 +1222,7 @@
     <Content Include="Areas\Dxt_Admin\Views\Error\Forbidden.cshtml" />
     <Content Include="Areas\Dxt_Admin\Views\Error\ServiceUnavailable.cshtml" />
     <Content Include="Areas\Dxt_Admin\Views\Error\InternalServerError.cshtml" />
+    <Content Include="Areas\Dxt_Admin\Views\Shared\_layoutWithMenu.cshtml" />
     <None Include="Styles\GlobalStylesheets.css.bundle" />
     <None Include="Styles\Global\CommonStyles.css.bundle" />
   </ItemGroup>

@@ -71,6 +71,8 @@
     <Compile Include="Domain\EmailMessage.cs" />
     <Compile Include="Domain\ItemReference.cs" />
     <Compile Include="Domain\ItemTrackbacks.cs" />
+    <Compile Include="Domain\PingSites.cs" />
+    <Compile Include="Domain\Plugin.cs" />
     <Compile Include="Domain\PluginInfo.cs" />
     <Compile Include="Domain\Trackback.cs" />
     <Compile Include="Extensions\PostExtensions.cs" />
@@ -98,6 +100,7 @@
     <Compile Include="Installer.cs" />
     <Compile Include="Services\EmailNotificationDataService.cs" />
     <Compile Include="Services\PageDataService.cs" />
+    <Compile Include="Services\PingDataService.cs" />
     <Compile Include="Services\PostDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ServiceBase.cs" />

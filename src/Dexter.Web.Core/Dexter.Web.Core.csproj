@@ -98,6 +98,7 @@
     </Compile>
     <Compile Include="Controllers\Web\DexterControllerBase.cs" />
     <Compile Include="Filters\PingBackAttribute.cs" />
+    <Compile Include="Helpers\HtmlHelperHelper.cs" />
     <Compile Include="HttpApplication\DexterApplication.cs" />
     <Compile Include="HttpHandlers\HttpHandlerBase.cs" />
     <Compile Include="LayerInstaller.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="Models\DexterModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Routing\IRoutingService.cs" />
+    <Compile Include="Routing\RouteHelper.cs" />
     <Compile Include="Routing\Routes\SetupRoute.cs" />
     <Compile Include="Routing\RoutingService.cs" />
     <Compile Include="ViewEngine\DexterViewEngine.cs" />

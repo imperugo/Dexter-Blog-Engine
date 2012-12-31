@@ -1,0 +1,39 @@
+﻿@using Dexter.Entities
+@using Dexter.Web.Mvc.Helpers
+@{
+    Layout = "_layout.cshtml";
+}
+
+<body>
+		<!-- The template uses conditional comments to add wrappers div for ie8 and ie7 - just add .ie or .ie7 prefix to your css selectors when needed -->
+		<!--[if lt IE 9]><div class="ie"><![endif]-->
+		<!--[if lt IE 8]><div class="ie7"><![endif]-->
+
+		<!-- Server status -->
+	<header>
+		<div class="container_12">
+
+			<p id="skin-name"><small>Constellation<br /> Admin Skin</small> <strong>1.0</strong></p>
+			<div class="server-info">Dexter Version: <strong>@DexterInfo.Version</strong></div>
+		
+		</div>
+	</header>
+	
+	<!-- Main nav -->
+	<nav id="main-nav">
+		@Html.CreateMenu( )
+	</nav>
+	<!-- End main nav -->
+	
+	<!-- Sub nav -->
+	<div id="sub-nav">
+		<div class="container_12">
+			<a href="@DexterInfo.Website" target="_blank" title="Help" class="nav-button"><b>Help</b></a>
+			<a href="@U.Home" target="_blank" title="Help" class="nav-button"><b>Public Version</b></a>
+		</div>
+	</div>
+	<!-- End sub nav -->
+
+	<!--[if lt IE 8]></div><![endif]-->
+	<!--[if lt IE 9]></div><![endif]-->
+</body>

@@ -15,6 +15,7 @@
 
 namespace Dexter.Navigation.Concretes
 {
+	using System.Collections;
 	using System.Web;
 
 	using Common.Logging;
@@ -69,11 +70,11 @@ namespace Dexter.Navigation.Concretes
 
 		#region Public Methods and Operators
 
-		public SiteUrl CurrentUrl(HttpContextWrapper request)
+		public SiteUrl CurrentUrl(HttpContextBase request)
 		{
 			string area = request.Request.RequestContext.RouteData.Values["area"] != null ? request.Request.RequestContext.RouteData.Values["area"].ToString() : null;
 
-			return new SiteUrl(request.Request.Url.Host, request.Request.Url.Port, request.Request.IsSecureConnection, area, request.Request.RequestContext.RouteData.Values["controller"].ToString(), request.Request.RequestContext.RouteData.Values["action"].ToString(), null, null);
+			return new SiteUrl(request.Request.Url.Host, request.Request.Url.Port, request.Request.IsSecureConnection, area, request.Request.RequestContext.RouteData.Values["controller"].ToString(), request.Request.RequestContext.RouteData.Values["action"].ToString(), null, request.Request.QueryString.ToDictionary());
 		}
 
 		public SiteUrl PingbackUrl()

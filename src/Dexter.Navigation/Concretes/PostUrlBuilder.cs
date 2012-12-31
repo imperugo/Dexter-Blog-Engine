@@ -63,12 +63,11 @@ namespace Dexter.Navigation.Concretes
 
 		public SiteUrl Edit(ItemDto item)
 		{
+			string id = item != null ? item.Id.ToString(CultureInfo.InvariantCulture) : "0";
+
 			string[] segments = new[]
 				                    {
-					                    item.PublishAt.Date.Year.ToString(CultureInfo.InvariantCulture), 
-					                    item.PublishAt.Date.Month.ToString(CultureInfo.InvariantCulture), 
-					                    item.PublishAt.Date.Day.ToString(CultureInfo.InvariantCulture), 
-					                    item.Slug
+					                    id
 				                    };
 
 			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Post", "Manage", segments, null);
@@ -89,10 +88,10 @@ namespace Dexter.Navigation.Concretes
 
 		public SiteUrl TrackBack(ItemDto item)
 		{
-			return new SiteUrl(this.Domain, this.HttpPort, false, null, "Services", "Trackback", null, new Dictionary<string, object>
+			return new SiteUrl(this.Domain, this.HttpPort, false, null, "Services", "Trackback", null, new Dictionary<string, string>
 				                                                                                           {
 					                                                                                           { "id", item.Id.ToString(CultureInfo.InvariantCulture) }, 
-					                                                                                           { "itemType", ItemType.Post }
+					                                                                                           { "itemType", "Post" }
 				                                                                                           });
 		}
 

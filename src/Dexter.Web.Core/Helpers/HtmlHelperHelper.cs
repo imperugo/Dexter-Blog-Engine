@@ -1,7 +1,7 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			TrackBackHelper.cs
+// File:			HtmlHelperHelper.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/12/31
@@ -14,19 +14,26 @@
 
 #endregion
 
-namespace Dexter.Web.Core.Helpers
+namespace System.Web.Mvc.Html
 {
 	using System.Text;
-	using System.Web.Mvc;
 
 	using Dexter.Dependency;
 	using Dexter.Entities;
 	using Dexter.Navigation.Contracts;
 	using Dexter.Services;
 
-	public static class TrackBackHelper
+	public static class HtmlHelperHelper
 	{
 		#region Public Methods and Operators
+
+		public static void RenderAction(this HtmlHelper helper, string actionName, string controller, string area)
+		{
+			helper.RenderAction(actionName, controller, new
+				                                            {
+					                                            area
+				                                            });
+		}
 
 		public static MvcHtmlString TrackBackRdf(this HtmlHelper helper, PostDto item)
 		{

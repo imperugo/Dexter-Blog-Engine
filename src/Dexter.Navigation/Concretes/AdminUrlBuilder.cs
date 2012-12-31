@@ -5,7 +5,7 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/28
-// Last edit:	2012/12/26
+// Last edit:	2012/12/31
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -18,61 +18,43 @@ namespace Dexter.Navigation.Concretes
 {
 	using System.Collections.Generic;
 
-	using Dexter.Entities;
 	using Dexter.Navigation.Contracts;
 	using Dexter.Navigation.Helpers;
 	using Dexter.Services;
 
 	public class AdminUrlBuilder : UrlBuilderBase, IAdminUrlBuilder
 	{
-		#region Fields
+		#region Constructors and Destructors
 
-		private readonly IPageUrlBuilder pageUrlBuilder;
-
-		private readonly IPostUrlBuilder postUrlBuilder;
+		public AdminUrlBuilder(IConfigurationService configurationService, IAdminPostUrlBuilder post, IAdminPageUrlBuilder page, IAdminCategoryUrlBuilder category)
+			: base(configurationService)
+		{
+			this.Post = post;
+			this.Page = page;
+			this.Category = category;
+		}
 
 		#endregion
 
-		#region Constructors and Destructors
+		#region Public Properties
 
-		public AdminUrlBuilder(IConfigurationService configurationService, IPostUrlBuilder postUrlBuilder, IPageUrlBuilder pageUrlBuilder)
-			: base(configurationService)
-		{
-			this.postUrlBuilder = postUrlBuilder;
-			this.pageUrlBuilder = pageUrlBuilder;
-		}
+		public IAdminPageUrlBuilder Page { get; private set; }
+
+		public IAdminPostUrlBuilder Post { get; private set; }
+
+		public IAdminCategoryUrlBuilder Category { get; private set; }
 
 		#endregion
 
 		#region Public Methods and Operators
 
-		public SiteUrl DeletePage(ItemDto item)
-		{
-			return this.pageUrlBuilder.Delete(item);
-		}
-
-		public SiteUrl DeletePost(ItemDto item)
-		{
-			return this.postUrlBuilder.Delete(item);
-		}
-
-		public SiteUrl EditPage(ItemDto item)
-		{
-			return this.pageUrlBuilder.Edit(item);
-		}
-
-		public SiteUrl EditPost(ItemDto item)
-		{
-			return this.postUrlBuilder.Edit(item);
-		}
-
 		public SiteUrl FeedbackPage(FeedbackType feedback, string localizationKey, SiteUrl redirect)
 		{
-			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Feedback", feedback.ToString(), null, new Dictionary<string, object>
-					                                                                                           {
-						                                                                                           { "key", localizationKey },
-						                                                                                           { "url", redirect }
-					                                                                                           });
+			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Feedback", feedback.ToString(), null, new Dictionary<string, string>
+				                                                                                                          {
+					                                                                                                          { "key", localizationKey }, 
+					                                                                                                          { "url", redirect }
+				                                                                                                          });
 		}
 
 		public SiteUrl Home()
@@ -80,9 +62,9 @@ namespace Dexter.Navigation.Concretes
 			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Home", "Index", null, null);
 		}
 
-		public SiteUrl Post()
+		public SiteUrl EditConfiguration()
 		{
-			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Post", "Index", null, null);
+			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Home", "Configuration", null, null);
 		}
 
 		public SiteUrl Login()

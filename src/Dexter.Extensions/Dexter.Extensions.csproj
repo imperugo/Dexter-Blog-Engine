@@ -44,6 +44,7 @@
     <Compile Include="..\..\doc\Dexter.Build.cs">
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
+    <Compile Include="System\Collections\CollectionExtensions.cs" />
     <Compile Include="System\DateTime\DateTimeOffsetExtensions.cs" />
     <Compile Include="System\DateTime\DateTimeOffsetUtil.cs" />
     <Compile Include="System\EventHandlerExtension.cs" />

@@ -41,6 +41,7 @@
     <Compile Include="CommentDto.cs" />
     <Compile Include="BlogConfigurationDto.cs" />
     <Compile Include="CommentStatus.cs" />
+    <Compile Include="DexterInfo.cs" />
     <Compile Include="EmailMessageDto.cs" />
     <Compile Include="ItemType.cs" />
     <Compile Include="Setup.cs" />

@@ -46,6 +46,8 @@
     <Compile Include="Exceptions\ItemNotFoundException.cs" />
     <Compile Include="IConfigurationDataService.cs" />
     <Compile Include="ICommentDataService.cs" />
+    <Compile Include="IPingDataService.cs" />
+    <Compile Include="IPluginDataService.cs" />
     <Compile Include="IPostDataService.cs" />
     <Compile Include="ITrackBackDataService.cs" />
     <Compile Include="ITrackbackService.cs" />

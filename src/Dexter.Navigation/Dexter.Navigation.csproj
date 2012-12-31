@@ -73,6 +73,9 @@
     <Compile Include="..\..\doc\Dexter.Build.cs">
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
+    <Compile Include="Concretes\AdminCategoryUrlBuilder.cs" />
+    <Compile Include="Concretes\AdminPageUrlBuilder.cs" />
+    <Compile Include="Concretes\AdminPostUrlBuilder.cs" />
     <Compile Include="Concretes\PageUrlBuilder.cs" />
     <Compile Include="Concretes\UrlBuilder.cs" />
     <Compile Include="Concretes\AdminUrlBuilder.cs" />
@@ -98,6 +101,10 @@
     <ProjectReference Include="..\Dexter.Entities\Dexter.Entities.csproj">
       <Project>{5FB1AED5-D55E-43CC-A3E0-5E788BD72144}</Project>
       <Name>Dexter.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Extensions\Dexter.Extensions.csproj">
+      <Project>{408d067c-933b-4987-b76f-481708f08470}</Project>
+      <Name>Dexter.Extensions</Name>
     </ProjectReference>
     <ProjectReference Include="..\Dexter.Services\Dexter.Services.csproj">
       <Project>{BE578436-AD00-48FA-A16D-245044F109C2}</Project>

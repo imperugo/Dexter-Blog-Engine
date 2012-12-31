@@ -97,7 +97,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 				return this.urlBuilder.Admin.FeedbackPage(FeedbackType.Negative, "GenericError", null).Redirect();
 			}
 
-			return this.urlBuilder.Admin.FeedbackPage(FeedbackType.Positive, "PostDeleted", this.urlBuilder.Admin.Post()).Redirect();
+			return this.urlBuilder.Admin.FeedbackPage(FeedbackType.Positive, "PostDeleted", this.urlBuilder.Admin.Post.List()).Redirect();
 		}
 
 		[AcceptVerbs(HttpVerbs.Get)]
@@ -161,7 +161,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 				return this.urlBuilder.Admin.FeedbackPage(FeedbackType.Negative, "GenericError", null).Redirect();
 			}
 
-			return this.urlBuilder.Admin.FeedbackPage(FeedbackType.Positive, "PostSaved", this.urlBuilder.Admin.Post()).Redirect();
+			return this.urlBuilder.Admin.FeedbackPage(FeedbackType.Positive, "PostSaved", this.urlBuilder.Admin.Post.List()).Redirect();
 		}
 
 		#endregion

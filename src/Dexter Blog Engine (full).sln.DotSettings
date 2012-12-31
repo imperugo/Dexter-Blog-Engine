@@ -19,4 +19,5 @@ For updated news and information please visit http://dexterblogengine.com/&#xD;
 Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine&#xD;
 For any question contact info@dexterblogengine.com&#xD;
 &#xD;
-////////////////////////////////////////////////////////////////////////////////////////////////</s:String></wpf:ResourceDictionary>
+////////////////////////////////////////////////////////////////////////////////////////////////</s:String>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/PredefinedNamingRules/=PrivateStaticReadonly/@EntryIndexedValue">&lt;Policy Inspect="True" Prefix="" Suffix="" Style="aaBb" /&gt;</s:String></wpf:ResourceDictionary>
