@@ -4,13 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5FB1AED5-D55E-43CC-A3E0-5E788BD72144}</ProjectGuid>
+    <ProjectGuid>{487C4A05-25E3-4E7C-8DC0-B768F19AC3D8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Dexter.Entities</RootNamespace>
-    <AssemblyName>Dexter.Entities</AssemblyName>
+    <RootNamespace>Dexter.Scheduler</RootNamespace>
+    <AssemblyName>Dexter.Scheduler</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,41 +32,47 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="C5">
+      <HintPath>..\packages\Quartz.2.0.1\lib\net40\C5.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging">
+      <HintPath>..\packages\Common.Logging.2.0.0\lib\2.0\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Quartz">
+      <HintPath>..\packages\Quartz.2.0.1\lib\net40\Quartz.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\doc\Dexter.Build.cs">
-      <Link>Properties\Dexter.Build.cs</Link>
-    </Compile>
-    <Compile Include="CategoryDto.cs" />
-    <Compile Include="CommentDto.cs" />
-    <Compile Include="BlogConfigurationDto.cs" />
-    <Compile Include="CommentStatus.cs" />
-    <Compile Include="EmailMessageDto.cs" />
-    <Compile Include="ItemType.cs" />
-    <Compile Include="Setup.cs" />
-    <Compile Include="TrackbackDto.cs" />
-    <Compile Include="TrackbackStatus.cs" />
-    <Compile Include="Exceptions\InvalidItemSlugException.cs" />
-    <Compile Include="Filters\CommentQueryFilter.cs" />
-    <Compile Include="ItemBaseInfo.cs" />
-    <Compile Include="ItemDto.cs" />
-    <Compile Include="MonthDto.cs" />
-    <Compile Include="PageDto.cs" />
-    <Compile Include="PostDto.cs" />
-    <Compile Include="Filters\ItemQueryFilter.cs" />
-    <Compile Include="ItemStatus.cs" />
+    <Compile Include="Extensions\DexterContanerExtensions.cs" />
+    <Compile Include="Installer.cs" />
+    <Compile Include="Jobs\EmailNotificationJob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Result\EmptyPagedResult.cs" />
-    <Compile Include="Result\IPagedResult %28generic%29.cs" />
-    <Compile Include="Result\IPagedResult.cs" />
-    <Compile Include="Result\PagedResult.cs" />
-    <Compile Include="TagDto.cs" />
+    <Compile Include="Quartz\DexterJobFactory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dexter.Data\Dexter.Data.csproj">
+      <Project>{08bf3549-6b10-4e83-ae71-1c4665004c02}</Project>
+      <Name>Dexter.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Dependency\Dexter.Dependency.csproj">
+      <Project>{07ff041c-fc20-49a3-8bc4-a38e7f72abaa}</Project>
+      <Name>Dexter.Dependency</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Entities\Dexter.Entities.csproj">
+      <Project>{5fb1aed5-d55e-43cc-a3e0-5e788bd72144}</Project>
+      <Name>Dexter.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

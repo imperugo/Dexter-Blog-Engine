@@ -139,12 +139,16 @@
     <Compile Include="App_Start\Installer.cs" />
     <Compile Include="App_Start\Validators\SimplyCategoryValidationAttribute.cs" />
     <Compile Include="Areas\Dxt_Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Dxt_Admin\Controllers\ErrorController.cs" />
+    <Compile Include="Areas\Dxt_Admin\Controllers\FeedbackController.cs" />
     <Compile Include="Areas\Dxt_Admin\Controllers\PostController.cs" />
     <Compile Include="Areas\Dxt_Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Dxt_Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Dxt_Admin\Controllers\PageController.cs" />
     <Compile Include="Areas\Dxt_Admin\Dxt_AdminAreaRegistration.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Category\IndexViewModel.cs" />
+    <Compile Include="Areas\Dxt_Admin\Models\Error\IndexViewModel.cs" />
+    <Compile Include="Areas\Dxt_Admin\Models\Feedback\IndexViewModel.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Post\PostDeleteViewData.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Post\IndexViewModel.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Page\IndexViewModel.cs" />
@@ -1121,6 +1125,7 @@
     <Folder Include="App_Data\db\" />
     <Folder Include="App_Data\Plugins\" />
     <Folder Include="App_Data\Temp\" />
+    <Folder Include="Areas\Dxt_Admin\Views\Feedback\" />
     <Folder Include="Areas\Dxt_Setup\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
@@ -1208,6 +1213,14 @@
     <Content Include="Areas\Dxt_Admin\Views\Shared\_layout.cshtml" />
     <Content Include="Areas\Dxt_Admin\Views\Login\Index.cshtml" />
     <Content Include="App_Data\Setup\defaultPost.dxt" />
+    <Content Include="Areas\Dxt_Admin\Views\Error\InternalServerErrorDetailed.cshtml" />
+    <Content Include="Areas\Dxt_Admin\Views\Error\ReportSent.cshtml" />
+    <Content Include="Areas\Dxt_Admin\Views\Error\NotFound.cshtml" />
+    <Content Include="Areas\Dxt_Admin\Views\Error\BadRequest.cshtml" />
+    <Content Include="Areas\Dxt_Admin\Views\Error\Unauthorized.cshtml" />
+    <Content Include="Areas\Dxt_Admin\Views\Error\Forbidden.cshtml" />
+    <Content Include="Areas\Dxt_Admin\Views\Error\ServiceUnavailable.cshtml" />
+    <Content Include="Areas\Dxt_Admin\Views\Error\InternalServerError.cshtml" />
     <None Include="Styles\GlobalStylesheets.css.bundle" />
     <None Include="Styles\Global\CommonStyles.css.bundle" />
   </ItemGroup>

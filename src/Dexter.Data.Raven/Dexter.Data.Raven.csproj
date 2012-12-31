@@ -68,6 +68,7 @@
     </Compile>
     <Compile Include="AutoMapper\AutoMapperConfiguration.cs" />
     <Compile Include="DexterCall.cs" />
+    <Compile Include="Domain\EmailMessage.cs" />
     <Compile Include="Domain\ItemReference.cs" />
     <Compile Include="Domain\ItemTrackbacks.cs" />
     <Compile Include="Domain\PluginInfo.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Indexes\Reading\TagsForPublishedPostsWithCountIndex.cs" />
     <Compile Include="Indexes\Updating\UpdateCategoryIndex.cs" />
     <Compile Include="Indexes\Updating\UpdateDenormalizedItemIndex.cs" />
+    <Compile Include="Indexes\Updating\UpdateEmailStatus.cs" />
     <Compile Include="Services\CategoryDataService.cs" />
     <Compile Include="Services\ConfigurationDataService.cs" />
     <Compile Include="Services\CommentDataService.cs" />
@@ -92,11 +94,9 @@
     <Compile Include="Domain\Link.cs" />
     <Compile Include="Domain\Page.cs" />
     <Compile Include="Domain\Post.cs" />
-    <Compile Include="Domain\ReadingConfiguration.cs" />
-    <Compile Include="Domain\SeoConfiguration.cs" />
-    <Compile Include="Domain\SmtpConfiguration.cs" />
     <Compile Include="Extensions\QueryExtensions.cs" />
     <Compile Include="Installer.cs" />
+    <Compile Include="Services\EmailNotificationDataService.cs" />
     <Compile Include="Services\PageDataService.cs" />
     <Compile Include="Services\PostDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

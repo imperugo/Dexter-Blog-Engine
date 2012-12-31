@@ -5,12 +5,13 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/28
-// Last edit:	2012/12/24
+// Last edit:	2012/12/31
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Entities
@@ -28,6 +29,21 @@ namespace Dexter.Entities
 			this.SiteDomain = siteDomain;
 			this.SeoConfiguration = new SeoConfigurationDto(name);
 			this.CommentSettings = new CommentSettingsDto();
+			this.DebugInfo = new DebugInfo();
+			this.SmtpConfiguration = new SmtpConfiguration
+				                         {
+					                         SmtpHost = "localhost", 
+					                         UseSSL = false
+				                         };
+
+			this.ReadingConfiguration = new ReadingConfiguration
+				                            {
+					                            EncodingForPageAndFeed = "UTF-8", 
+					                            HomePageItemId = 10, 
+					                            NumberOfPostPerFeed = 10, 
+					                            NumberOfPostPerPage = 10, 
+					                            ShowAbstractInFeed = false
+				                            };
 		}
 
 		public BlogConfigurationDto()
@@ -39,6 +55,8 @@ namespace Dexter.Entities
 		#region Public Properties
 
 		public CommentSettingsDto CommentSettings { get; set; }
+
+		public DebugInfo DebugInfo { get; set; }
 
 		public string DefaultDomain { get; set; }
 
@@ -52,9 +70,13 @@ namespace Dexter.Entities
 
 		public string Name { get; set; }
 
+		public ReadingConfiguration ReadingConfiguration { get; set; }
+
 		public SeoConfigurationDto SeoConfiguration { get; set; }
 
 		public Uri SiteDomain { get; set; }
+
+		public SmtpConfiguration SmtpConfiguration { get; set; }
 
 		public Tracking Tracking { get; set; }
 
@@ -178,6 +200,69 @@ namespace Dexter.Entities
 		/// 	<c>true</c> if [enable track back send]; otherwise, <c>false</c>.
 		/// </value>
 		public bool EnableTrackBackSend { get; set; }
+
+		#endregion
+	}
+
+	public class SmtpConfiguration
+	{
+		#region Public Properties
+
+		/// <summary>
+		/// 	Gets or sets the password.
+		/// </summary>
+		/// <value> The password. </value>
+		public string Password { get; set; }
+
+		/// <summary>
+		/// 	Gets or sets the port.
+		/// </summary>
+		/// <value> The port. </value>
+		public int Port { get; set; }
+
+		/// <summary>
+		/// 	Gets or sets the SMTP host.
+		/// </summary>
+		/// <value> The SMTP host. </value>
+		public string SmtpHost { get; set; }
+
+		/// <summary>
+		/// 	Gets or sets a value indicating whether [use SSL].
+		/// </summary>
+		/// <value> <c>true</c> if [use SSL]; otherwise, <c>false</c> . </value>
+		public bool UseSSL { get; set; }
+
+		/// <summary>
+		/// 	Gets or sets the username.
+		/// </summary>
+		/// <value> The username. </value>
+		public string Username { get; set; }
+
+		#endregion
+	}
+
+	public class DebugInfo
+	{
+		#region Public Properties
+
+		public bool ShowException { get; set; }
+
+		#endregion
+	}
+
+	public class ReadingConfiguration
+	{
+		#region Public Properties
+
+		public string EncodingForPageAndFeed { get; set; }
+
+		public int HomePageItemId { get; set; }
+
+		public int NumberOfPostPerFeed { get; set; }
+
+		public int NumberOfPostPerPage { get; set; }
+
+		public bool ShowAbstractInFeed { get; set; }
 
 		#endregion
 	}

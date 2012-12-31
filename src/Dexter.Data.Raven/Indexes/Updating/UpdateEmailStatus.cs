@@ -1,10 +1,10 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			AutoMapperConfiguration.cs
+// File:			UpdateEmailStatus.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/10/27
+// Created:		2012/12/31
 // Last edit:	2012/12/31
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
@@ -14,28 +14,31 @@
 
 #endregion
 
-namespace Dexter.Data.Raven.AutoMapper
+namespace Dexter.Data.Raven.Indexes.Updating
 {
-	using System;
-
-	using global::AutoMapper;
-
 	using Dexter.Data.Raven.Domain;
-	using Dexter.Entities;
 
-	public class AutoMapperConfiguration
+	using global::Raven.Abstractions.Data;
+
+	using global::Raven.Client;
+
+	internal class UpdateEmailStatus
 	{
 		#region Public Methods and Operators
 
-		public static void Configure()
+		public static void UpdateIndexes(IDocumentStore store, IDocumentSession session, EmailMessage item)
 		{
-			Mapper.CreateMap<PostDto, Post>()
-			      .ForMember(dest => dest.SearchContent, opt => opt.MapFrom(x => x.Content.CleanHtmlText()));
-
-			Mapper.CreateMap<Post, PostDto>();
-			Mapper.CreateMap<Comment, CommentDto>().ReverseMap();
-			Mapper.CreateMap<Category, CategoryDto>().ReverseMap();
-			Mapper.CreateMap<EmailMessage, EmailMessageDto>().ReverseMap();
+			store.DatabaseCommands.Patch(
+				"EmailMessages/" + item.Id, 
+				new[]
+					{
+						new PatchRequest
+							{
+								Type = PatchCommandType.Set, 
+								Name = "Status", 
+								Value = "Sending..."
+							}
+					});
 		}
 
 		#endregion

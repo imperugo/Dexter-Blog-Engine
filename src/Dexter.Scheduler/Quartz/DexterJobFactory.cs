@@ -1,10 +1,10 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			AutoMapperConfiguration.cs
+// File:			DexterJobFactory.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/10/27
+// Created:		2012/12/31
 // Last edit:	2012/12/31
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
@@ -14,28 +14,36 @@
 
 #endregion
 
-namespace Dexter.Data.Raven.AutoMapper
+namespace Dexter.Scheduler.Quartz
 {
-	using System;
+	using Dexter.Dependency;
 
-	using global::AutoMapper;
+	using global::Quartz;
 
-	using Dexter.Data.Raven.Domain;
-	using Dexter.Entities;
+	using global::Quartz.Spi;
 
-	public class AutoMapperConfiguration
+	public class DexterJobFactory : IJobFactory
 	{
+		#region Fields
+
+		private readonly IDexterContainer container;
+
+		#endregion
+
+		#region Constructors and Destructors
+
+		public DexterJobFactory(IDexterContainer container)
+		{
+			this.container = container;
+		}
+
+		#endregion
+
 		#region Public Methods and Operators
 
-		public static void Configure()
+		public IJob NewJob(TriggerFiredBundle bundle, IScheduler scheduler)
 		{
-			Mapper.CreateMap<PostDto, Post>()
-			      .ForMember(dest => dest.SearchContent, opt => opt.MapFrom(x => x.Content.CleanHtmlText()));
-
-			Mapper.CreateMap<Post, PostDto>();
-			Mapper.CreateMap<Comment, CommentDto>().ReverseMap();
-			Mapper.CreateMap<Category, CategoryDto>().ReverseMap();
-			Mapper.CreateMap<EmailMessage, EmailMessageDto>().ReverseMap();
+			return (IJob)this.container.Resolve(bundle.JobDetail.JobType);
 		}
 
 		#endregion
