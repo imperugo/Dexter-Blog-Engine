@@ -186,11 +186,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Themes\Default\Assemblies\readme.txt" />
-    <Content Include="App_Data\Themes\Default\Contents\readme.txt" />
-    <Content Include="App_Data\Themes\Default\Javascripts\readme.txt" />
-    <Content Include="App_Data\Themes\Default\Styles\readme.txt" />
-    <Content Include="App_Data\Themes\Default\Views\readme.txt" />
+    <Content Include="App_Data\Extensions\Themes\Default\Assemblies\readme.txt" />
+    <Content Include="App_Data\Extensions\Themes\Default\Contents\readme.txt" />
+    <Content Include="App_Data\Extensions\Themes\Default\Javascripts\readme.txt" />
+    <Content Include="App_Data\Extensions\Themes\Default\Styles\readme.txt" />
+    <Content Include="App_Data\Extensions\Themes\Default\Views\readme.txt" />
     <Content Include="favicon-large.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -1124,7 +1124,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\db\" />
-    <Folder Include="App_Data\Plugins\" />
+    <Folder Include="App_Data\Extensions\Plugins\" />
     <Folder Include="App_Data\Temp\" />
     <Folder Include="Areas\Dxt_Admin\Views\Feedback\" />
     <Folder Include="Areas\Dxt_Setup\Views\Shared\" />
