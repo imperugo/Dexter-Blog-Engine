@@ -31,11 +31,17 @@ namespace Dexter.Host.Controllers
 
 	public class WidgetController : DexterControllerBase
 	{
+		private readonly IPostService postService;
+
+		private readonly ICommentService commentService;
+
 		#region Constructors and Destructors
 
 		public WidgetController(ILog logger, IConfigurationService configurationService, IPostService postService, ICommentService commentService)
-			: base(logger, configurationService, postService, commentService)
+			: base(logger, configurationService)
 		{
+			this.postService = postService;
+			this.commentService = commentService;
 		}
 
 		#endregion
@@ -45,7 +51,7 @@ namespace Dexter.Host.Controllers
 		[ChildActionOnly]
 		public async Task<ActionResult> Archive()
 		{
-			IList<MonthDto> months = await this.PostService.GetMonthsForPublishedPostsAsync();
+			IList<MonthDto> months = await this.postService.GetMonthsForPublishedPostsAsync();
 
 			return this.View(new ArchiveViewModel
 				                 {
@@ -56,7 +62,7 @@ namespace Dexter.Host.Controllers
 		[ChildActionOnly]
 		public async Task<ActionResult> FuturePosts(int maxItemsNumber)
 		{
-			IPagedResult<PostDto> items = await this.PostService.GetPostsAsync(1, maxItemsNumber, new ItemQueryFilter
+			IPagedResult<PostDto> items = await this.postService.GetPostsAsync(1, maxItemsNumber, new ItemQueryFilter
 				                                                                                      {
 					                                                                                      MinPublishAt = DateTimeOffset.Now.AsMinutes(), 
 					                                                                                      MaxPublishAt = DateTimeOffset.Now.AddYears(5).AsMinutes(), 
@@ -74,7 +80,7 @@ namespace Dexter.Host.Controllers
 		[ChildActionOnly]
 		public async Task<ActionResult> RecentComments(int maxNumberOfComments)
 		{
-			IList<CommentDto> comments = await this.CommentService.GetRecentCommentsAsync(maxNumberOfComments);
+			IList<CommentDto> comments = await this.commentService.GetRecentCommentsAsync(maxNumberOfComments);
 
 			return this.View(new RecentCommentsViewModel
 				                 {
@@ -85,7 +91,7 @@ namespace Dexter.Host.Controllers
 		[ChildActionOnly]
 		public async Task<ActionResult> TopTags(int maxNumberOfTags)
 		{
-			IList<TagDto> topTags = await this.PostService.GetTopTagsForPublishedPostsAsync(maxNumberOfTags);
+			IList<TagDto> topTags = await this.postService.GetTopTagsForPublishedPostsAsync(maxNumberOfTags);
 
 			return this.View(new TopTagsViewModel
 				                 {
@@ -96,7 +102,7 @@ namespace Dexter.Host.Controllers
 		[ChildActionOnly]
 		public async Task<ActionResult> PostComment(int itemId)
 		{
-			var comments = await this.CommentService.GetCommentForSpecificItemAsync(itemId);
+			var comments = await this.commentService.GetCommentForSpecificItemAsync(itemId);
 
 			return this.View(new ItemCommentViewModel()
 				                 {

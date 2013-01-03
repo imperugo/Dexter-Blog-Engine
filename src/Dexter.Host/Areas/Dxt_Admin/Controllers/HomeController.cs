@@ -16,6 +16,7 @@
 namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Threading.Tasks;
 	using System.Web.Mvc;
 
@@ -31,11 +32,17 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 	[Authorize]
 	public class HomeController : DexterControllerBase
 	{
+		private readonly IPostService postService;
+
+		private readonly ICategoryService categoryService;
+
 		#region Constructors and Destructors
 
-		public HomeController(ILog logger, IConfigurationService configurationService, IPostService postService, ICommentService commentService)
-			: base(logger, configurationService, postService, commentService)
+		public HomeController(ILog logger, IConfigurationService configurationService, IPostService postService, ICategoryService categoryService)
+			: base(logger, configurationService)
 		{
+			this.postService = postService;
+			this.categoryService = categoryService;
 		}
 
 		#endregion
@@ -45,17 +52,20 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 		[AcceptVerbs(HttpVerbs.Get)]
 		public async Task<ActionResult> Index()
 		{
-			Task<IPagedResult<PostDto>> futurePosts = this.PostService.GetPostsAsync(1, 5, new ItemQueryFilter
+			Task<IPagedResult<PostDto>> futurePosts = this.postService.GetPostsAsync(1, 5, new ItemQueryFilter
 				                                                                               {
 					                                                                               MaxPublishAt = DateTimeOffset.Now.AddMonths(1).AsMinutes(), 
 					                                                                               MinPublishAt = DateTimeOffset.Now.AsMinutes(), 
 					                                                                               Status = ItemStatus.Scheduled
 				                                                                               });
 
-			await Task.WhenAll(futurePosts);
+			Task<IList<CategoryDto>> categories = this.categoryService.GetCategoriesAsync();
+
+			await Task.WhenAll(futurePosts, categories);
 
 			IndexViewModel model = new IndexViewModel();
 			model.FuturePosts = futurePosts.Result;
+			model.Categories = categories.Result;
 
 			return this.View(model);
 		}

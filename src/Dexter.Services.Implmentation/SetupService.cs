@@ -66,10 +66,10 @@ namespace Dexter.Services.Implmentation
 			this.configurationDataService.SaveConfiguration(configuration);
 
 			//Creating roles
-			Membership.CreateUser(item.AdminUsername, item.AdminPassword, item.Email.Address);
-			Roles.CreateRole("Administrator");
+			//Membership.CreateUser(item.AdminUsername, item.AdminPassword, item.Email.Address);
+			//Roles.CreateRole("Administrator");
 
-			Roles.AddUserToRole(item.AdminUsername, "Administrator");
+			//Roles.AddUserToRole(item.AdminUsername, "Administrator");
 
 			//Creating default post
 			PostDto defaultPost = new PostDto();

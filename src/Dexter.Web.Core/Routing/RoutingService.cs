@@ -5,7 +5,7 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/01
-// Last edit:	2012/12/31
+// Last edit:	2013/01/03
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -45,6 +45,8 @@ namespace Dexter.Web.Core.Routing
 		public void RegisterRoutes()
 		{
 			RouteCollection routes = RouteTable.Routes;
+			HttpConfiguration webApiConfiguration = GlobalConfiguration.Configuration;
+
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
 			if (!this.setupService.IsInstalled)
@@ -53,9 +55,12 @@ namespace Dexter.Web.Core.Routing
 				return;
 			}
 
-			routes.MapRoute(
-				"Default", 
-				"{controller}/{action}/{id}", 
+			webApiConfiguration.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{id}", new
+				                                                                               {
+					                                                                               id = RouteParameter.Optional
+				                                                                               });
+
+			routes.MapRoute("Default", "{controller}/{action}/{id}", 
 				new
 					{
 						controller = "Home", 
@@ -63,16 +68,6 @@ namespace Dexter.Web.Core.Routing
 						id = UrlParameter.Optional
 					}, 
 				new[] { "Dexter.Host.Controllers" });
-
-			HttpConfiguration webApiConfiguration = GlobalConfiguration.Configuration;
-
-			webApiConfiguration.Routes.MapHttpRoute(
-				"DefaultApi", 
-				"api/{controller}/{id}", 
-				new
-					{
-						id = RouteParameter.Optional
-					});
 		}
 
 		public void UpdateRoutes()

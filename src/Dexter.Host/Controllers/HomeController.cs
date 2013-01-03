@@ -31,11 +31,14 @@ namespace Dexter.Host.Controllers
 
 	public class HomeController : DexterControllerBase
 	{
+		private readonly IPostService postService;
+
 		#region Constructors and Destructors
 
-		public HomeController(ILog logger, IConfigurationService configurationService, IPostService postService, ICommentService commentService)
-			: base(logger, configurationService, postService, commentService)
+		public HomeController(ILog logger, IConfigurationService configurationService, IPostService postService)
+			: base(logger, configurationService)
 		{
+			this.postService = postService;
 		}
 
 		#endregion
@@ -48,7 +51,7 @@ namespace Dexter.Host.Controllers
 		{
 			IndexViewModel model = new IndexViewModel();
 
-			Task<IPagedResult<PostDto>> postsTasks = this.PostService.GetPostsAsync(page, 10, new ItemQueryFilter
+			Task<IPagedResult<PostDto>> postsTasks = this.postService.GetPostsAsync(page, 10, new ItemQueryFilter
 				                                                                                  {
 					                                                                                  MaxPublishAt = DateTimeOffset.Now.AsMinutes(), 
 					                                                                                  Status = ItemStatus.Published
@@ -67,7 +70,7 @@ namespace Dexter.Host.Controllers
 		{
 			PostViewModel model = new PostViewModel();
 
-			Task<PostDto> postTasks = this.PostService.GetPostBySlugAsync(id);
+			Task<PostDto> postTasks = this.postService.GetPostBySlugAsync(id);
 
 			await Task.WhenAll(postTasks);
 

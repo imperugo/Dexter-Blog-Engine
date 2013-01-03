@@ -26,24 +26,19 @@ namespace Dexter.Web.Core.Controllers.Web
 	{
 		#region Fields
 
-		private readonly ICommentService commentService;
 
 		private readonly IConfigurationService configurationService;
 
 		private readonly ILog logger;
 
-		private readonly IPostService postService;
-
 		#endregion
 
 		#region Constructors and Destructors
 
-		public DexterControllerBase(ILog logger, IConfigurationService configurationService, IPostService postService, ICommentService commentService)
+		public DexterControllerBase(ILog logger, IConfigurationService configurationService)
 		{
 			this.logger = logger;
 			this.configurationService = configurationService;
-			this.postService = postService;
-			this.commentService = commentService;
 		}
 
 		#endregion
@@ -55,14 +50,6 @@ namespace Dexter.Web.Core.Controllers.Web
 			get
 			{
 				return this.ConfigurationService.GetConfiguration();
-			}
-		}
-
-		public ICommentService CommentService
-		{
-			get
-			{
-				return this.commentService;
 			}
 		}
 
@@ -79,14 +66,6 @@ namespace Dexter.Web.Core.Controllers.Web
 			get
 			{
 				return this.logger;
-			}
-		}
-
-		public IPostService PostService
-		{
-			get
-			{
-				return this.postService;
 			}
 		}
 

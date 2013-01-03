@@ -43,8 +43,8 @@ namespace Dexter.Host.Areas.Dxt_Setup.Controllers
 
 		#region Constructors and Destructors
 
-		public HomeController(ILog logger, IConfigurationService configurationService, IPostService postService, ICommentService commentService, IUrlBuilder urlBuilder, ISetupService setupService, IRoutingService routingService)
-			: base(logger, configurationService, postService, commentService)
+		public HomeController(ILog logger, IConfigurationService configurationService, IUrlBuilder urlBuilder, ISetupService setupService, IRoutingService routingService)
+			: base(logger, configurationService)
 		{
 			this.urlBuilder = urlBuilder;
 			this.setupService = setupService;

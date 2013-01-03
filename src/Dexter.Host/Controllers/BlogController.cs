@@ -30,11 +30,14 @@ namespace Dexter.Host.Controllers
 
 	public class BlogController : DexterControllerBase
 	{
+		private readonly IPostService postService;
+
 		#region Constructors and Destructors
 
-		public BlogController(ILog logger, IConfigurationService configurationService, IPostService postService, ICommentService commentService)
-			: base(logger, configurationService, postService, commentService)
+		public BlogController(ILog logger, IConfigurationService configurationService, IPostService postService)
+			: base(logger, configurationService)
 		{
+			this.postService = postService;
 		}
 
 		#endregion
@@ -59,7 +62,7 @@ namespace Dexter.Host.Controllers
 
 			ArchiveViewModel model = new ArchiveViewModel();
 
-			Task<IPagedResult<PostDto>> postsTask = this.PostService.GetPostsByDateAsync(page, 10, year.Value, month, null, null);
+			Task<IPagedResult<PostDto>> postsTask = this.postService.GetPostsByDateAsync(page, 10, year.Value, month, null, null);
 
 			await Task.WhenAll(postsTask);
 

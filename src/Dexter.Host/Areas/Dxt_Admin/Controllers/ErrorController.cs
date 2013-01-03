@@ -29,8 +29,8 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 	{
 		#region Constructors and Destructors
 
-		public ErrorController(ILog logger, IConfigurationService configurationService, IPostService postService, ICommentService commentService)
-			: base(logger, configurationService, postService, commentService)
+		public ErrorController(ILog logger, IConfigurationService configurationService)
+			: base(logger, configurationService)
 		{
 		}
 

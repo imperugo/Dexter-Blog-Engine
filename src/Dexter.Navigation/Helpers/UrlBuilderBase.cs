@@ -16,6 +16,8 @@
 
 namespace Dexter.Navigation.Helpers
 {
+	using System.Web;
+
 	using Dexter.Entities;
 	using Dexter.Services;
 
@@ -56,6 +58,11 @@ namespace Dexter.Navigation.Helpers
 		{
 			get
 			{
+				if (HttpContext.Current != null)
+				{
+					return HttpContext.Current.Request.Url.Host;
+				}
+
 				return this.Configuration.SiteDomain.Host;
 			}
 		}
@@ -64,6 +71,11 @@ namespace Dexter.Navigation.Helpers
 		{
 			get
 			{
+				if (HttpContext.Current != null)
+				{
+					return HttpContext.Current.Request.Url.Port;
+				}
+
 				return this.httpPort;
 			}
 		}
@@ -72,6 +84,11 @@ namespace Dexter.Navigation.Helpers
 		{
 			get
 			{
+				if (HttpContext.Current != null)
+				{
+					return HttpContext.Current.Request.Url.Port;
+				}
+
 				return this.httpsPort;
 			}
 		}

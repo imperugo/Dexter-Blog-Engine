@@ -5,12 +5,13 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/28
-// Last edit:	2012/12/24
+// Last edit:	2013/01/03
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Services.Implmentation
@@ -58,21 +59,9 @@ namespace Dexter.Services.Implmentation
 			return result;
 		}
 
-		public async Task<BlogConfigurationDto> GetConfigurationAsync()
+		public Task<BlogConfigurationDto> GetConfigurationAsync()
 		{
-			BlogConfigurationDto result = await this.cacheProvider.GetAsync<BlogConfigurationDto>("dexter.blog.configurationDto");
-
-			if (result == null)
-			{
-				Task.Run(() =>
-					{
-						result = this.configurationDataService.GetConfiguration();
-
-						this.cacheProvider.PutAsync("dexter.blog.configurationDto", result, TimeSpan.FromHours(3));
-					});
-			}
-
-			return result;
+			return Task.Run(() => this.configurationDataService.GetConfiguration());
 		}
 
 		#endregion

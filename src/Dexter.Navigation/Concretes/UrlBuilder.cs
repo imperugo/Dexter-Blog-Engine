@@ -18,32 +18,25 @@ namespace Dexter.Navigation.Concretes
 	using System.Collections;
 	using System.Web;
 
-	using Common.Logging;
-
 	using Dexter.Entities;
 	using Dexter.Navigation.Contracts;
 	using Dexter.Navigation.Helpers;
 	using Dexter.Services;
 
-	public class UrlBuilder : IUrlBuilder
+	public class UrlBuilder : UrlBuilderBase, IUrlBuilder
 	{
 		#region Fields
-
-		private readonly IConfigurationService configurationService;
-
-		private readonly ILog logger;
 
 		#endregion
 
 		#region Constructors and Destructors
 
-		public UrlBuilder(ILog logger, IAdminUrlBuilder adminUrlBuilder, IConfigurationService configurationService, IPostUrlBuilder postUrlBuilder, IPageUrlBuilder pageUrlBuilder)
+		public UrlBuilder(IConfigurationService configurationService, IAdminUrlBuilder admin, IPostUrlBuilder post, IPageUrlBuilder page)
+			: base(configurationService)
 		{
-			this.logger = logger;
-			this.Admin = adminUrlBuilder;
-			this.Post = postUrlBuilder;
-			this.Page = pageUrlBuilder;
-			this.configurationService = configurationService;
+			this.Admin = admin;
+			this.Post = post;
+			this.Page = page;
 		}
 
 		#endregion
@@ -56,9 +49,7 @@ namespace Dexter.Navigation.Concretes
 		{
 			get
 			{
-				BlogConfigurationDto conf = this.configurationService.GetConfiguration();
-
-				return new SiteUrl(conf.DefaultDomain, conf.DefaultHttpsPort, false, null, "Home", "Index", null, null);
+				return new SiteUrl(this.Domain, this.HttpPort, false, null, "Home", "Index", null, null);
 			}
 		}
 
@@ -74,12 +65,14 @@ namespace Dexter.Navigation.Concretes
 		{
 			string area = request.Request.RequestContext.RouteData.Values["area"] != null ? request.Request.RequestContext.RouteData.Values["area"].ToString() : null;
 
-			return new SiteUrl(request.Request.Url.Host, request.Request.Url.Port, request.Request.IsSecureConnection, area, request.Request.RequestContext.RouteData.Values["controller"].ToString(), request.Request.RequestContext.RouteData.Values["action"].ToString(), null, request.Request.QueryString.ToDictionary());
+			return new SiteUrl(this.Domain, this.HttpPort, request.Request.IsSecureConnection, area, request.Request.RequestContext.RouteData.Values["controller"].ToString(), request.Request.RequestContext.RouteData.Values["action"].ToString(), null, request.Request.QueryString.ToDictionary());
 		}
 
 		public SiteUrl PingbackUrl()
 		{
-			return new SiteUrl(this.Home.Domain, this.Home.Port, this.Home.IsSecureConnection, this.Home.Area, "Services", "Pingback", null,null);
+			BlogConfigurationDto conf = this.Configuration;
+
+			return new SiteUrl(this.Domain, this.HttpPort, false, this.Home.Area, "Services", "Pingback", null, null);
 		}
 
 		#endregion

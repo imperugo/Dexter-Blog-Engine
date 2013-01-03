@@ -5,7 +5,7 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/10/28
-// Last edit:	2012/12/31
+// Last edit:	2013/01/03
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -44,6 +44,8 @@ namespace Dexter.Entities
 					                            NumberOfPostPerPage = 10, 
 					                            ShowAbstractInFeed = false
 				                            };
+			this.DefaultHttpsPort = 443;
+			this.DefaultHttpPort = 80;
 		}
 
 		public BlogConfigurationDto()
@@ -58,11 +60,17 @@ namespace Dexter.Entities
 
 		public DebugInfo DebugInfo { get; set; }
 
-		public string DefaultDomain { get; set; }
+		public string DefaultDomain
+		{
+			get
+			{
+				return this.SiteDomain.Host;
+			}
+		}
 
 		public int DefaultHttpsPort { get; set; }
 
-		public int DefaultPort { get; set; }
+		public int DefaultHttpPort { get; set; }
 
 		public bool EnableHttps { get; set; }
 

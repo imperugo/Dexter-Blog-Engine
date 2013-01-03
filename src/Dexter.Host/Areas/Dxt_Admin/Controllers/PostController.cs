@@ -39,6 +39,8 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 	{
 		#region Fields
 
+		private readonly IPostService postService;
+
 		private readonly ICategoryService categoryService;
 
 		private readonly IUrlBuilder urlBuilder;
@@ -47,9 +49,10 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 
 		#region Constructors and Destructors
 
-		public PostController(ILog logger, IConfigurationService configurationService, IPostService postService, ICommentService commentService, ICategoryService categoryService, IUrlBuilder urlBuilder)
-			: base(logger, configurationService, postService, commentService)
+		public PostController(ILog logger, IConfigurationService configurationService, IPostService postService, ICategoryService categoryService, IUrlBuilder urlBuilder)
+			: base(logger, configurationService)
 		{
+			this.postService = postService;
 			this.categoryService = categoryService;
 			this.urlBuilder = urlBuilder;
 		}
@@ -66,7 +69,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 				return this.urlBuilder.Admin.FeedbackPage(FeedbackType.Negative, "PostNotFound", null).Redirect();
 			}
 
-			PostDto post = await this.PostService.GetPostByKeyAsync(id);
+			PostDto post = await this.postService.GetPostByKeyAsync(id);
 
 			if (post == null)
 			{
@@ -88,7 +91,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 
 			try
 			{
-				this.PostService.Delete(id);
+				this.postService.Delete(id);
 			}
 			catch (Exception e)
 			{
@@ -105,7 +108,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 		{
 			IndexViewModel model = new IndexViewModel();
 
-			Task<IPagedResult<PostDto>> posts = this.PostService.GetPostsAsync(1, 10, new ItemQueryFilter
+			Task<IPagedResult<PostDto>> posts = this.postService.GetPostsAsync(1, 10, new ItemQueryFilter
 				                                                                          {
 					                                                                          MaxPublishAt = DateTimeOffset.Now.AddYears(1).AsMinutes(), 
 					                                                                          MinPublishAt = DateTimeOffset.Now.AddYears(-10).AsMinutes(), 
@@ -125,7 +128,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 			Task<IList<CategoryDto>> categories = this.categoryService.GetCategoriesAsync();
 
 			PostBinder post = postId.HasValue
-				                  ? (await this.PostService.GetPostByKeyAsync(postId.Value)).MapTo<PostBinder>()
+				                  ? (await this.postService.GetPostByKeyAsync(postId.Value)).MapTo<PostBinder>()
 				                  : PostBinder.EmptyInstance();
 
 			ManageViewModel model = new ManageViewModel();
@@ -152,7 +155,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 
 			try
 			{
-				this.PostService.SaveOrUpdate(post.MapTo<PostDto>());
+				this.postService.SaveOrUpdate(post.MapTo<PostDto>());
 			}
 			catch (Exception e)
 			{

@@ -36,8 +36,8 @@ namespace Dexter.Host.Controllers
 
 		#region Constructors and Destructors
 
-		public PageController(ILog logger, IConfigurationService configurationService, IPostService postService, ICommentService commentService, IPageService pageService)
-			: base(logger, configurationService, postService, commentService)
+		public PageController(ILog logger, IConfigurationService configurationService, IPageService pageService)
+			: base(logger, configurationService)
 		{
 			this.pageService = pageService;
 		}

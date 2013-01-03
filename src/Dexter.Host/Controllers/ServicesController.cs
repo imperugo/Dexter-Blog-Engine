@@ -47,8 +47,8 @@ namespace Dexter.Host.Controllers
 
 		#region Constructors and Destructors
 
-		public ServicesController(ILog logger, IConfigurationService configurationService, IPostService postService, ICommentService commentService, ITrackbackService trackbackService)
-			: base(logger, configurationService, postService, commentService)
+		public ServicesController(ILog logger, IConfigurationService configurationService, ITrackbackService trackbackService)
+			: base(logger, configurationService)
 		{
 			this.configurationService = configurationService;
 			this.trackbackService = trackbackService;

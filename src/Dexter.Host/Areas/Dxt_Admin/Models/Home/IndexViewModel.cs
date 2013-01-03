@@ -23,6 +23,11 @@ namespace Dexter.Host.Areas.Dxt_Admin.Models.Home
 
 	public class IndexViewModel : DexterModelBase
 	{
+		public IndexViewModel()
+		{
+			this.Post = FastPostBinder.EmptyInstance();
+		}
+
 		#region Public Properties
 
 		public IEnumerable<CategoryDto> Categories { get; set; }

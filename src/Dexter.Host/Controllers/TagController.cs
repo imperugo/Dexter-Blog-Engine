@@ -26,11 +26,14 @@ namespace Dexter.Host.Controllers
 
 	public class TagController : DexterControllerBase
 	{
+		private readonly IPostService postService;
+
 		#region Constructors and Destructors
 
-		public TagController(ILog logger, IConfigurationService configurationService, IPostService postService, ICommentService commentService)
-			: base(logger, configurationService, postService, commentService)
+		public TagController(ILog logger, IConfigurationService configurationService, IPostService postService)
+			: base(logger, configurationService)
 		{
+			this.postService = postService;
 		}
 
 		#endregion
@@ -48,7 +51,7 @@ namespace Dexter.Host.Controllers
 			ArchiveViewModel model = new ArchiveViewModel();
 			model.Tag = id;
 
-			model.Posts = await this.PostService.GetPostsByTagAsync(page, 10, id);
+			model.Posts = await this.postService.GetPostsByTagAsync(page, 10, id);
 
 			return this.View(model);
 		}
@@ -58,7 +61,7 @@ namespace Dexter.Host.Controllers
 		{
 			IndexViewModel model = new IndexViewModel();
 
-			model.Tags = await this.PostService.GetTopTagsForPublishedPostsAsync(50);
+			model.Tags = await this.postService.GetTopTagsForPublishedPostsAsync(50);
 
 			return this.View(model);
 		}

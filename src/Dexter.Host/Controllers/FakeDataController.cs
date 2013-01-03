@@ -27,11 +27,14 @@ namespace Dexter.Host.Controllers
 
 	public class FakeDataController : DexterControllerBase
 	{
+		private readonly IPostService postService;
+
 		#region Constructors and Destructors
 
-		public FakeDataController(ILog logger, IConfigurationService configurationService, IPostService postService, ICommentService commentService)
-			: base(logger, configurationService, postService, commentService)
+		public FakeDataController(ILog logger, IConfigurationService configurationService, IPostService postService)
+			: base(logger, configurationService)
 		{
+			this.postService = postService;
 		}
 
 		#endregion
@@ -53,7 +56,7 @@ namespace Dexter.Host.Controllers
 					            "tag2"
 				            };
 
-			this.PostService.SaveOrUpdate(item);
+			this.postService.SaveOrUpdate(item);
 
 			return this.Content("Fake data added");
 		}
