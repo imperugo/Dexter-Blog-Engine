@@ -48,6 +48,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\doc\Dexter.Build.cs">
+      <Link>Properties\Dexter.Build.cs</Link>
+    </Compile>
     <Compile Include="Extensions\DexterContanerExtensions.cs" />
     <Compile Include="Installer.cs" />
     <Compile Include="Jobs\EmailNotificationJob.cs" />

@@ -5,7 +5,7 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2013/01/03
-// Last edit:	2013/01/03
+// Last edit:	2013/01/06
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -29,6 +29,7 @@ namespace Dexter.Plugin.Extensions
 		{
 			string extensionFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "/App_Data/Extensions");
 
+			ExtensionFolder = new DirectoryInfo(extensionFolder);
 			ThemesFolder = new DirectoryInfo(Path.Combine(extensionFolder, "Themes"));
 			PluginFolder = new DirectoryInfo(Path.Combine(extensionFolder, "Plugins"));
 		}
@@ -41,23 +42,35 @@ namespace Dexter.Plugin.Extensions
 
 		public static DirectoryInfo ThemesFolder { get; private set; }
 
+		public static DirectoryInfo ExtensionFolder { get; private set; }
+
 		#endregion
 
 		#region Public Methods and Operators
 
-		public static DirectoryInfo GetPluginFolder(this IPackage package)
+		public static DirectoryInfo GetPluginFolder(this string packageId)
 		{
-			if (package.IsTheme())
+			if (packageId.IsTheme())
 			{
-				return new DirectoryInfo(Path.Combine(ThemesFolder.FullName, package.Id));
+				return new DirectoryInfo(Path.Combine(ThemesFolder.FullName, packageId));
 			}
 
-			return new DirectoryInfo(Path.Combine(PluginFolder.FullName, package.Id));
+			return new DirectoryInfo(Path.Combine(PluginFolder.FullName, packageId));
+		}
+
+		public static DirectoryInfo GetPluginFolder(this IPackage package)
+		{
+			return package.Id.GetPluginFolder();
+		}
+
+		public static bool IsTheme(this string packageId)
+		{
+			return packageId.StartsWith("Dexter.Theme");
 		}
 
 		public static bool IsTheme(this IPackage package)
 		{
-			return package.Id.StartsWith("Dexter.Theme");
+			return package.Id.IsTheme();
 		}
 
 		#endregion

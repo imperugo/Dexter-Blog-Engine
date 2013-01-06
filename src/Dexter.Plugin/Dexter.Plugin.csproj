@@ -43,18 +43,19 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\doc\Dexter.Build.cs">
+      <Link>Properties\Dexter.Build.cs</Link>
+    </Compile>
     <Compile Include="Extensions\PackageExtensions.cs" />
     <Compile Include="Logger\NugetLogger.cs" />
-    <Compile Include="Model\PackageInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IPackageInstaller.cs" />
+    <Compile Include="Services\PackageInstaller.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Dexter.Extensions\Dexter.Extensions.csproj">
       <Project>{408d067c-933b-4987-b76f-481708f08470}</Project>

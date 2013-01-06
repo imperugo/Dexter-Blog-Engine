@@ -44,6 +44,9 @@ namespace Dexter.Plugin.Logger
 				case MessageLevel.Warning:
 					this.logger.WarnFormatAsync(message, args);
 					break;
+				case MessageLevel.Error:
+					this.logger.ErrorFormatAsync(message, args);
+					break;
 			}
 		}
 
