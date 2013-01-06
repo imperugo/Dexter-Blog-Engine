@@ -89,6 +89,26 @@ namespace Dexter.Plugin.Services
 			this.Install(package);
 		}
 
+		public IPagedResult<IPackage> SearchInstalledPlugin(PackageSearchFilter filter)
+		{
+			if (filter == null)
+			{
+				throw new ArgumentNullException("filter", "The package search filter cannot be null.");
+			}
+
+			IQueryable<IPackage> query = this.pluginPackageManager.LocalRepository.GetPackages();
+			IQueryable<IPackage> queryCount = this.pluginPackageManager.LocalRepository.GetPackages();
+
+			this.ApplyFilter(query, filter);
+			this.ApplyFilter(queryCount, filter);
+
+			List<IPackage> result = query.OrderBy(p => p.Id)
+										 .Skip(filter.PageIndex)
+										 .Take(filter.PageSize)
+										 .ToList();
+			return new PagedResult<IPackage>(filter.PageIndex, filter.PageSize, result, queryCount.Count());
+		}
+
 		public IPagedResult<IPackage> SearchPlugin(PackageSearchFilter filter)
 		{
 			if (filter == null)
@@ -106,6 +126,27 @@ namespace Dexter.Plugin.Services
 			                             .Skip(filter.PageIndex)
 			                             .Take(filter.PageSize)
 			                             .ToList();
+
+			return new PagedResult<IPackage>(filter.PageIndex, filter.PageSize, result, queryCount.Count());
+		}
+
+		public IPagedResult<IPackage> SearchInstalledThemes(PackageSearchFilter filter)
+		{
+			if (filter == null)
+			{
+				throw new ArgumentNullException("filter", "The package search filter cannot be null.");
+			}
+
+			IQueryable<IPackage> query = this.themePackageManager.LocalRepository.GetPackages();
+			IQueryable<IPackage> queryCount = this.themePackageManager.LocalRepository.GetPackages();
+
+			this.ApplyFilter(query, filter);
+			this.ApplyFilter(queryCount, filter);
+
+			List<IPackage> result = query.OrderBy(p => p.Id)
+										 .Skip(filter.PageIndex)
+										 .Take(filter.PageSize)
+										 .ToList();
 
 			return new PagedResult<IPackage>(filter.PageIndex, filter.PageSize, result, queryCount.Count());
 		}
