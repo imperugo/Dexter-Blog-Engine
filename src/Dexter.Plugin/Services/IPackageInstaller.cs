@@ -16,6 +16,8 @@
 
 namespace Dexter.Plugin.Services
 {
+	using Dexter.Entities.Result;
+
 	using NuGet;
 
 	public interface IPackageInstaller
@@ -26,9 +28,17 @@ namespace Dexter.Plugin.Services
 
 		void Install(string packageId, string version);
 
+		IPagedResult<IPackage> SearchPlugin(PackageSearchFilter filter);
+
+		IPagedResult<IPackage> SearchThemes(PackageSearchFilter filter);
+
 		void Uninstall(string packageId, string version);
 
 		void Uninstall(IPackage package);
+
+		void Update(string packageId, string version);
+
+		void Update(IPackage package);
 
 		#endregion
 	}
