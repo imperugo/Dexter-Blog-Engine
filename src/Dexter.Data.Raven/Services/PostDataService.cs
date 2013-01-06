@@ -5,12 +5,13 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
 // Created:		2012/11/02
-// Last edit:	2012/12/24
+// Last edit:	2013/01/06
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Data.Raven.Services
@@ -133,21 +134,11 @@ namespace Dexter.Data.Raven.Services
 
 			RavenQueryStatistics stats;
 
-			List<Post> result = this.Session.Query<Post>()
-									.Statistics(out stats)
-			                        .ApplyFilterItem(filters)
-			                        .OrderByDescending(post => post.PublishAt)
-			                        .Paging(pageIndex, pageSize)
-			                        .ToList();
-
-			List<PostDto> posts = result.MapTo<PostDto>();
-
-			if (stats.TotalResults < 1)
-			{
-				return new EmptyPagedResult<PostDto>(pageIndex, pageSize);
-			}
-
-			return new PagedResult<PostDto>(pageIndex, pageSize, posts, stats.TotalResults);
+			return this.Session.Query<Post>()
+			           .Statistics(out stats)
+			           .ApplyFilterItem(filters)
+			           .OrderByDescending(post => post.PublishAt)
+			           .ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
 		}
 
 		public IPagedResult<PostDto> GetPostsByDate(int pageIndex, int pageSize, int year, int? month, int? day, ItemQueryFilter filters)
@@ -179,10 +170,10 @@ namespace Dexter.Data.Raven.Services
 
 			RavenQueryStatistics stats;
 
-			var query = this.Session.Query<Post>()
-												.Statistics(out stats)
-												.Where(post => post.PublishAt.Year == year)
-												.ApplyFilterItem(filters);
+			IQueryable<Post> query = this.Session.Query<Post>()
+			                             .Statistics(out stats)
+			                             .Where(post => post.PublishAt.Year == year)
+			                             .ApplyFilterItem(filters);
 
 			if (month.HasValue)
 			{
@@ -194,19 +185,9 @@ namespace Dexter.Data.Raven.Services
 				query.Where(post => post.PublishAt.Day == day.Value);
 			}
 
-			List<Post> result = query
+			return query
 				.OrderByDescending(post => post.PublishAt)
-				.Paging(pageIndex, pageSize)
-				.ToList();
-
-			List<PostDto> posts = result.MapTo<PostDto>();
-
-			if (stats.TotalResults < 1)
-			{
-				return new EmptyPagedResult<PostDto>(pageIndex, pageSize);
-			}
-
-			return new PagedResult<PostDto>(pageIndex, pageSize, posts, stats.TotalResults);
+				.ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
 		}
 
 		public IPagedResult<PostDto> GetPostsByTag(int pageIndex, int pageSize, string tag, ItemQueryFilter filters)
@@ -223,22 +204,12 @@ namespace Dexter.Data.Raven.Services
 
 			RavenQueryStatistics stats;
 
-			List<Post> result = this.Session.Query<Post>()
-									.Statistics(out stats)
-			                        .ApplyFilterItem(filters)
-			                        .Where(post => post.Tags.Any(postTag => postTag == tag))
-			                        .OrderByDescending(post => post.PublishAt)
-			                        .Paging(pageIndex, pageSize)
-			                        .ToList();
-
-			List<PostDto> posts = result.MapTo<PostDto>();
-
-			if (stats.TotalResults < 1)
-			{
-				return new EmptyPagedResult<PostDto>(pageIndex, pageSize);
-			}
-
-			return new PagedResult<PostDto>(pageIndex, pageSize, posts, stats.TotalResults);
+			return this.Session.Query<Post>()
+			           .Statistics(out stats)
+			           .ApplyFilterItem(filters)
+			           .Where(post => post.Tags.Any(postTag => postTag == tag))
+			           .OrderByDescending(post => post.PublishAt)
+			           .ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
 		}
 
 		public IList<TagDto> GetTopTagsForPublishedPosts(int numberOfTags)
@@ -348,23 +319,13 @@ namespace Dexter.Data.Raven.Services
 		{
 			RavenQueryStatistics stats;
 
-			var result = this.Session.Query<PostFullTextIndex.ReduceResult, PostFullTextIndex>()
-			                .Search(x => x.SearchQuery, term)
-			                .OrderByDescending(post => post.PublishDate)
-			                .Statistics(out stats)
-			                .As<Post>()
-							.ApplyFilterItem(filters)
-							.Paging(pageIndex, pageSize)
-							.ToList();
-
-			List<PostDto> posts = result.MapTo<PostDto>();
-
-			if (stats.TotalResults < 1)
-			{
-				return new EmptyPagedResult<PostDto>(pageIndex, pageSize);
-			}
-
-			return new PagedResult<PostDto>(pageIndex, pageSize, posts, stats.TotalResults);
+			return this.Session.Query<PostFullTextIndex.ReduceResult, PostFullTextIndex>()
+			           .Search(x => x.SearchQuery, term)
+			           .OrderByDescending(post => post.PublishDate)
+			           .Statistics(out stats)
+			           .As<Post>()
+			           .ApplyFilterItem(filters)
+			           .ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
 		}
 
 		#endregion

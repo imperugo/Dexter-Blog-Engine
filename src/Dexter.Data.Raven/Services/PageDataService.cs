@@ -122,21 +122,11 @@ namespace Dexter.Data.Raven.Services
 
 			RavenQueryStatistics stats;
 
-			List<Page> result = this.Session.Query<Page>()
+			return this.Session.Query<Page>()
 			                        .Statistics(out stats)
 			                        .ApplyFilterItem(filter)
 			                        .OrderByDescending(post => post.PublishAt)
-			                        .Paging(pageIndex, pageSize)
-			                        .ToList();
-
-			List<PageDto> posts = result.MapTo<PageDto>();
-
-			if (stats.TotalResults < 1)
-			{
-				return new EmptyPagedResult<PageDto>(pageIndex, pageSize);
-			}
-
-			return new PagedResult<PageDto>(pageIndex, pageSize, posts, stats.TotalResults);
+									.ToPagedResult<Page, PageDto>(pageIndex, pageSize, stats);
 		}
 
 		#endregion
