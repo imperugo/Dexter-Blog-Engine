@@ -16,6 +16,7 @@
 namespace Dexter.Data.Exceptions
 {
 	using System;
+	using System.Runtime.Serialization;
 
 	public class ItemNotFoundException : ArgumentException
 	{
@@ -32,5 +33,27 @@ namespace Dexter.Data.Exceptions
 		}
 
 		#endregion
+	}
+
+	public class DexterException : ApplicationException
+	{
+		public DexterException()
+		{
+		}
+
+		public DexterException(string message)
+			: base(message)
+		{
+		}
+
+		public DexterException(string message, Exception innerException)
+			: base(message, innerException)
+		{
+		}
+
+		protected DexterException(SerializationInfo info, StreamingContext context)
+			: base(info, context)
+		{
+		}
 	}
 }

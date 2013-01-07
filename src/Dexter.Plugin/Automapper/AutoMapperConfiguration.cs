@@ -1,10 +1,10 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			NugetLogger.cs
+// File:			AutoMapperConfiguration.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2013/01/03
+// Created:		2013/01/07
 // Last edit:	2013/01/07
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
@@ -13,40 +13,24 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 #endregion
 
-namespace Dexter.PackageInstaller.Logger
+namespace Dexter.PackageInstaller.Automapper
 {
-	using Common.Logging;
+	using AutoMapper;
 
-	using Dexter.Extensions.Logging;
+	using Dexter.Entities;
+	using Dexter.PackageInstaller.Extensions;
 
 	using NuGet;
 
-	public class NugetLogger : ILogger
+	public class AutoMapperConfiguration
 	{
-		#region Fields
-
-		private readonly ILog logger = LogManager.GetLogger(typeof(NugetLogger));
-
-		#endregion
-
 		#region Public Methods and Operators
 
-		public void Log(MessageLevel level, string message, params object[] args)
+		public static void Configure()
 		{
-			switch (level)
-			{
-				case MessageLevel.Debug:
-					break;
-				case MessageLevel.Info:
-					this.logger.InfoFormatAsync(message, args);
-					break;
-				case MessageLevel.Warning:
-					this.logger.WarnFormatAsync(message, args);
-					break;
-				case MessageLevel.Error:
-					this.logger.ErrorFormatAsync(message, args);
-					break;
-			}
+			Mapper.CreateMap<IPackage, PackageDto>()
+			      .ForMember(dest => dest.ImageUri, source => source.MapFrom(x => x.IconUrl))
+			      .ForMember(dest => dest.IsTheme, source => source.MapFrom(x => x.IsTheme()));
 		}
 
 		#endregion

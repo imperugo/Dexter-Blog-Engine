@@ -14,19 +14,24 @@
 
 #endregion
 
-namespace Dexter.Plugin.Services
+namespace Dexter.PackageInstaller.Services
 {
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 
+	using AutoMapper;
+
+	using Dexter.Data.Exceptions;
+	using Dexter.Entities;
 	using Dexter.Entities.Result;
-	using Dexter.Plugin.Extensions;
-	using Dexter.Plugin.Logger;
+	using Dexter.PackageInstaller.Extensions;
+	using Dexter.PackageInstaller.Logger;
+	using Dexter.Services;
 
 	using NuGet;
 
-	using PackageExtensions = Dexter.Plugin.Extensions.PackageExtensions;
+	using PackageExtensions = Dexter.PackageInstaller.Extensions.PackageExtensions;
 
 	public class PackageInstaller : IPackageInstaller
 	{
@@ -44,7 +49,7 @@ namespace Dexter.Plugin.Services
 
 		public PackageInstaller()
 		{
-			//TODO:using nuget standard feed (it's a spike). In the future the urls must come from the configuration
+			// TODO:using nuget standard feed (it's a spike). In the future the urls must come from the configuration
 			this.packageRepository = new AggregateRepository(new[]
 				                                                 {
 					                                                 PackageRepositoryFactory.Default.CreateRepository("https://nuget.org/api/v2/")
@@ -59,37 +64,39 @@ namespace Dexter.Plugin.Services
 				                            {
 					                            Logger = new NugetLogger()
 				                            };
+
+			this.pluginPackageManager.PackageInstalling += this.PluginPackageManager_PackageInstalling;
+			this.pluginPackageManager.PackageInstalled += this.PluginPackageManager_PackageInstalled;
+			this.pluginPackageManager.PackageUninstalling += this.PluginPackageManager_PackageUninstalling;
+			this.pluginPackageManager.PackageUninstalled += this.PluginPackageManager_PackageUninstalled;
 		}
+
+		#endregion
+
+		#region Public Events
+
+		public event EventHandler<PackageEventArgs> PackageInstalled;
+
+		public event EventHandler<PackageEventArgs> PackageInstalling;
+
+		public event EventHandler<PackageEventArgs> PackageUnistalled;
+
+		public event EventHandler<PackageEventArgs> PackageUnistalling;
 
 		#endregion
 
 		#region Public Methods and Operators
 
-		public void Install(IPackage package)
-		{
-			if (package == null)
-			{
-				throw new ArgumentNullException("package", "The package cannot be null.");
-			}
-
-			if (package.IsTheme())
-			{
-				this.themePackageManager.InstallPackage(package, true, false);
-			}
-			else
-			{
-				this.pluginPackageManager.InstallPackage(package, true, false);
-			}
-		}
-
-		public void Install(string packageId, string version)
+		public PackageDto Install(string packageId, Version version)
 		{
 			IPackage package = this.FindPackage(packageId, version);
 
 			this.Install(package);
+
+			return package.MapTo<PackageDto>();
 		}
 
-		public IPagedResult<IPackage> SearchInstalledPlugin(PackageSearchFilter filter)
+		public IPagedResult<PackageDto> SearchInstalledPlugin(PackageSearchFilter filter)
 		{
 			if (filter == null)
 			{
@@ -103,13 +110,34 @@ namespace Dexter.Plugin.Services
 			this.ApplyFilter(queryCount, filter);
 
 			List<IPackage> result = query.OrderBy(p => p.Id)
-										 .Skip(filter.PageIndex)
-										 .Take(filter.PageSize)
-										 .ToList();
-			return new PagedResult<IPackage>(filter.PageIndex, filter.PageSize, result, queryCount.Count());
+			                             .Skip(filter.PageIndex)
+			                             .Take(filter.PageSize)
+			                             .ToList();
+			return new PagedResult<PackageDto>(filter.PageIndex, filter.PageSize, result.MapTo<PackageDto>(), queryCount.Count());
 		}
 
-		public IPagedResult<IPackage> SearchPlugin(PackageSearchFilter filter)
+		public IPagedResult<PackageDto> SearchInstalledThemes(PackageSearchFilter filter)
+		{
+			if (filter == null)
+			{
+				throw new ArgumentNullException("filter", "The package search filter cannot be null.");
+			}
+
+			IQueryable<IPackage> query = this.themePackageManager.LocalRepository.GetPackages();
+			IQueryable<IPackage> queryCount = this.themePackageManager.LocalRepository.GetPackages();
+
+			this.ApplyFilter(query, filter);
+			this.ApplyFilter(queryCount, filter);
+
+			List<IPackage> result = query.OrderBy(p => p.Id)
+			                             .Skip(filter.PageIndex)
+			                             .Take(filter.PageSize)
+			                             .ToList();
+
+			return new PagedResult<PackageDto>(filter.PageIndex, filter.PageSize, result.MapTo<PackageDto>(), queryCount.Count());
+		}
+
+		public IPagedResult<PackageDto> SearchPlugin(PackageSearchFilter filter)
 		{
 			if (filter == null)
 			{
@@ -127,31 +155,10 @@ namespace Dexter.Plugin.Services
 			                             .Take(filter.PageSize)
 			                             .ToList();
 
-			return new PagedResult<IPackage>(filter.PageIndex, filter.PageSize, result, queryCount.Count());
+			return new PagedResult<PackageDto>(filter.PageIndex, filter.PageSize, result.MapTo<PackageDto>(), queryCount.Count());
 		}
 
-		public IPagedResult<IPackage> SearchInstalledThemes(PackageSearchFilter filter)
-		{
-			if (filter == null)
-			{
-				throw new ArgumentNullException("filter", "The package search filter cannot be null.");
-			}
-
-			IQueryable<IPackage> query = this.themePackageManager.LocalRepository.GetPackages();
-			IQueryable<IPackage> queryCount = this.themePackageManager.LocalRepository.GetPackages();
-
-			this.ApplyFilter(query, filter);
-			this.ApplyFilter(queryCount, filter);
-
-			List<IPackage> result = query.OrderBy(p => p.Id)
-										 .Skip(filter.PageIndex)
-										 .Take(filter.PageSize)
-										 .ToList();
-
-			return new PagedResult<IPackage>(filter.PageIndex, filter.PageSize, result, queryCount.Count());
-		}
-
-		public IPagedResult<IPackage> SearchThemes(PackageSearchFilter filter)
+		public IPagedResult<PackageDto> SearchThemes(PackageSearchFilter filter)
 		{
 			if (filter == null)
 			{
@@ -169,50 +176,42 @@ namespace Dexter.Plugin.Services
 			                             .Take(filter.PageSize)
 			                             .ToList();
 
-			return new PagedResult<IPackage>(filter.PageIndex, filter.PageSize, result, queryCount.Count());
+			return new PagedResult<PackageDto>(filter.PageIndex, filter.PageSize, result.MapTo<PackageDto>(), queryCount.Count());
 		}
 
-		public void Uninstall(string packageId, string version)
+		public PackageDto Uninstall(string packageId, Version version)
 		{
-			IPackage package = this.FindPackage(packageId, version);
+			IPackage package = this.FindInstalledPackage(packageId, version);
 
 			this.Uninstall(package);
+
+			return package.MapTo<PackageDto>();
 		}
 
-		public void Uninstall(IPackage package)
-		{
-			if (package == null)
-			{
-				throw new ArgumentNullException("package", "The package cannot be null.");
-			}
-
-			if (package.IsTheme())
-			{
-				this.themePackageManager.UninstallPackage(package);
-			}
-			else
-			{
-				this.pluginPackageManager.UninstallPackage(package);
-			}
-		}
-
-		public void Update(string packageId, string version)
+		public PackageDto Update(string packageId, Version version)
 		{
 			IPackage package = this.FindPackage(packageId, version);
 
 			this.Update(package);
+
+			return package.MapTo<PackageDto>();
 		}
 
-		public void Update(IPackage package)
+		public bool UpdateAvailable(string packageId, Version version)
 		{
-			if (package.IsTheme())
+			IPackage package = this.FindPackage(packageId, version);
+
+			if (package == null)
 			{
-				this.themePackageManager.UpdatePackage(package, false, true);
+				throw new DexterException("Unable to locate the specified package");
 			}
-			else
-			{
-				this.pluginPackageManager.UpdatePackage(package, false, true);
-			}
+
+			return !package.IsLatestVersion;
+		}
+
+		public PackageDto Get(string packageId, Version version)
+		{
+			throw new NotImplementedException();
 		}
 
 		#endregion
@@ -232,7 +231,7 @@ namespace Dexter.Plugin.Services
 			}
 		}
 
-		private IPackage FindPackage(string packageId, string version)
+		private IPackage FindPackage(string packageId, Version version)
 		{
 			if (packageId == null)
 			{
@@ -244,11 +243,9 @@ namespace Dexter.Plugin.Services
 				throw new ArgumentException("The package Id must contain a valid value.", "packageId");
 			}
 
-			Version packageVersion = String.IsNullOrEmpty(version) ? null : new Version(version);
-
 			IPackage package = packageId.IsTheme()
-				                   ? this.themePackageManager.LocalRepository.FindPackage(packageId, new SemanticVersion(packageVersion))
-				                   : this.pluginPackageManager.LocalRepository.FindPackage(packageId, new SemanticVersion(packageVersion));
+								   ? this.themePackageManager.SourceRepository.FindPackage(packageId, new SemanticVersion(version))
+								   : this.pluginPackageManager.SourceRepository.FindPackage(packageId, new SemanticVersion(version));
 
 			if (package == null)
 			{
@@ -258,29 +255,107 @@ namespace Dexter.Plugin.Services
 			return package;
 		}
 
-		#endregion
-	}
-
-	public class PackageSearchFilter
-	{
-		#region Constructors and Destructors
-
-		public PackageSearchFilter()
+		private IPackage FindInstalledPackage(string packageId, Version version)
 		{
-			this.PageSize = 10;
+			if (packageId == null)
+			{
+				throw new ArgumentNullException("packageId", "The package Id cannot be null");
+			}
+
+			if (packageId == string.Empty)
+			{
+				throw new ArgumentException("The package Id must contain a valid value.", "packageId");
+			}
+
+			IPackage package = packageId.IsTheme()
+				                   ? this.themePackageManager.LocalRepository.FindPackage(packageId, new SemanticVersion(version))
+				                   : this.pluginPackageManager.LocalRepository.FindPackage(packageId, new SemanticVersion(version));
+
+			if (package == null)
+			{
+				throw new ArgumentException(string.Format("The specified package could not be found, id:{0} version:{1}", packageId, version));
+			}
+
+			return package;
 		}
 
-		#endregion
+		private void Install(IPackage package)
+		{
+			if (package == null)
+			{
+				throw new ArgumentNullException("package", "The package cannot be null.");
+			}
 
-		#region Public Properties
+			if (package.IsTheme())
+			{
+				this.themePackageManager.InstallPackage(package, true, false);
+			}
+			else
+			{
+				this.pluginPackageManager.InstallPackage(package, true, false);
+			}
+		}
 
-		public int PageIndex { get; set; }
+		private void PluginPackageManager_PackageInstalled(object sender, PackageOperationEventArgs e)
+		{
+			PackageDto package = e.Package.MapTo<PackageDto>();
+			string packagePath = e.InstallPath;
 
-		public int PageSize { get; set; }
+			this.PackageInstalled.Raise(sender, new PackageEventArgs(packagePath, package));
+		}
 
-		public string[] Tags { get; set; }
+		private void PluginPackageManager_PackageInstalling(object sender, PackageOperationEventArgs e)
+		{
+			PackageDto package = e.Package.MapTo<PackageDto>();
+			string packagePath = e.InstallPath;
 
-		public string Title { get; set; }
+			this.PackageInstalling.Raise(sender, new PackageEventArgs(packagePath, package));
+		}
+
+		private void PluginPackageManager_PackageUninstalled(object sender, PackageOperationEventArgs e)
+		{
+			PackageDto package = e.Package.MapTo<PackageDto>();
+			string packagePath = e.InstallPath;
+
+			this.PackageUnistalled.Raise(sender, new PackageEventArgs(packagePath, package));
+		}
+
+		private void PluginPackageManager_PackageUninstalling(object sender, PackageOperationEventArgs e)
+		{
+			PackageDto package = e.Package.MapTo<PackageDto>();
+			string packagePath = e.InstallPath;
+
+			this.PackageUnistalling.Raise(sender, new PackageEventArgs(packagePath, package));
+		}
+
+		private void Uninstall(IPackage package)
+		{
+			if (package == null)
+			{
+				throw new ArgumentNullException("package", "The package cannot be null.");
+			}
+
+			if (package.IsTheme())
+			{
+				this.themePackageManager.UninstallPackage(package);
+			}
+			else
+			{
+				this.pluginPackageManager.UninstallPackage(package);
+			}
+		}
+
+		private void Update(IPackage package)
+		{
+			if (package.IsTheme())
+			{
+				this.themePackageManager.UpdatePackage(package, false, true);
+			}
+			else
+			{
+				this.pluginPackageManager.UpdatePackage(package, false, true);
+			}
+		}
 
 		#endregion
 	}

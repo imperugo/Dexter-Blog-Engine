@@ -17,6 +17,7 @@ namespace Dexter.Services.Implmentation
 {
 	using Dexter.Dependency;
 	using Dexter.Dependency.Installation;
+	using Dexter.Services.Implmentation.Automapper;
 
 	public class Installer : ILayerInstaller
 	{
@@ -37,6 +38,7 @@ namespace Dexter.Services.Implmentation
 
 		public void ServiceRegistrationComplete(IDexterContainer container)
 		{
+			AutoMapperConfiguration.Configure();
 		}
 
 		#endregion

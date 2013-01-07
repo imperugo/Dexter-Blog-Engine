@@ -7,8 +7,8 @@
     <ProjectGuid>{70BE4F00-3F08-40DA-B6BA-58CBEAAA1B62}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Dexter.Plugin</RootNamespace>
-    <AssemblyName>Dexter.Plugin</AssemblyName>
+    <RootNamespace>Dexter.PackageInstaller</RootNamespace>
+    <AssemblyName>Dexter.PackageInstaller</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.2.2.1-ci9000\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Common.Logging">
       <HintPath>..\packages\Common.Logging.2.1.2\lib\net40\Common.Logging.dll</HintPath>
     </Reference>
@@ -46,10 +49,11 @@
     <Compile Include="..\..\doc\Dexter.Build.cs">
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
+    <Compile Include="Automapper\AutoMapperConfiguration.cs" />
     <Compile Include="Extensions\PackageExtensions.cs" />
+    <Compile Include="LayerInstaller.cs" />
     <Compile Include="Logger\NugetLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\IPackageInstaller.cs" />
     <Compile Include="Services\PackageInstaller.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -57,9 +61,29 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\Dexter.Automapper.Extensions\Dexter.Automapper.Extensions.csproj">
+      <Project>{8cd3fcf5-e770-4628-bcf3-97308132015e}</Project>
+      <Name>Dexter.Automapper.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Data\Dexter.Data.csproj">
+      <Project>{08BF3549-6B10-4E83-AE71-1C4665004C02}</Project>
+      <Name>Dexter.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Dependency\Dexter.Dependency.csproj">
+      <Project>{07FF041C-FC20-49A3-8BC4-A38E7F72ABAA}</Project>
+      <Name>Dexter.Dependency</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Entities\Dexter.Entities.csproj">
+      <Project>{5FB1AED5-D55E-43CC-A3E0-5E788BD72144}</Project>
+      <Name>Dexter.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dexter.Extensions\Dexter.Extensions.csproj">
       <Project>{408d067c-933b-4987-b76f-481708f08470}</Project>
       <Name>Dexter.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Services\Dexter.Services.csproj">
+      <Project>{BE578436-AD00-48FA-A16D-245044F109C2}</Project>
+      <Name>Dexter.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

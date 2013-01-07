@@ -44,7 +44,7 @@ namespace Dexter.Web.Core.ViewEngine
 
 		public DexterViewEngine()
 		{
-			this.ViewLocationFormats = new[]
+			this.ViewLocationFormats = new string []
 				                           {
 					                           "~/App_Data/Themes/Default/Views/{1}/{2}/{0}.aspx", 
 					                           "~/App_Data/Themes/Default/Views/{1}/{2}/{0}.ascx", 

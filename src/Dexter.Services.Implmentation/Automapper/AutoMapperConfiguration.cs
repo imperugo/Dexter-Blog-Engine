@@ -1,10 +1,10 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			Dexter.Build.cs
+// File:			AutoMapperConfiguration.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/10/27
+// Created:		2013/01/07
 // Last edit:	2013/01/07
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
@@ -13,13 +13,23 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 #endregion
 
-using System.Reflection;
+namespace Dexter.Services.Implmentation.Automapper
+{
+	using AutoMapper;
 
-//Major.Minor.Patch
-//Major = new version, possible breaking changes
-//Minor = new features
-//Patch = bug fixing
-[assembly: AssemblyFileVersion("0.0.0.1")]
-[assembly: AssemblyVersion("0.0.0.1")]
-[assembly: AssemblyCompany("Dexter Blog Engine (https://github.com/imperugo/DexterBlogEngine)")]
-[assembly: AssemblyCopyright("Copyright https://github.com/imperugo/DexterBlogEngine")]
+	using Dexter.Entities;
+
+	public class AutoMapperConfiguration
+	{
+		#region Public Methods and Operators
+
+		public static void Configure()
+		{
+			Mapper.CreateMap<PackageDto, PluginDto>()
+			      .ForMember(dest => dest.PackageId, source => source.MapFrom(x => x.Id))
+			      .ForMember(dest => dest.PackageId, source => source.Ignore());
+		}
+
+		#endregion
+	}
+}

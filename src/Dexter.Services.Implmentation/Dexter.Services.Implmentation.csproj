@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.2.2.0\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Common.Logging, Version=2.1.2.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Common.Logging.2.1.2\lib\net40\Common.Logging.dll</HintPath>
@@ -55,17 +58,23 @@
     <Compile Include="..\..\doc\Dexter.Build.cs">
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
+    <Compile Include="Automapper\AutoMapperConfiguration.cs" />
     <Compile Include="CategoryService.cs" />
     <Compile Include="CommentService.cs" />
     <Compile Include="ConfigurationService.cs" />
     <Compile Include="Installer.cs" />
     <Compile Include="PageService.cs" />
+    <Compile Include="PluginService.cs" />
     <Compile Include="PostService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SetupService.cs" />
     <Compile Include="TrackbackService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dexter.Automapper.Extensions\Dexter.Automapper.Extensions.csproj">
+      <Project>{8CD3FCF5-E770-4628-BCF3-97308132015E}</Project>
+      <Name>Dexter.Automapper.Extensions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dexter.Caching\Dexter.Caching.csproj">
       <Project>{FF50D350-E3A2-4BD8-9BBC-58166891E0C2}</Project>
       <Name>Dexter.Caching</Name>

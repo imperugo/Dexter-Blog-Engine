@@ -45,10 +45,12 @@
     <Compile Include="Events\CancelEventArgsWithoutParameterWithResult.cs" />
     <Compile Include="ICategoryService.cs" />
     <Compile Include="ICommentService.cs" />
+    <Compile Include="IPackageInstaller.cs" />
     <Compile Include="IPageService.cs" />
     <Compile Include="Events\CancelEventArgsWithOneParameter.cs" />
     <Compile Include="Events\GenericEventArgs.cs" />
     <Compile Include="IConfigurationService.cs" />
+    <Compile Include="IPluginService.cs" />
     <Compile Include="IPostService.cs" />
     <Compile Include="ISetupService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -85,21 +85,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\src\packages\RavenDB.Database.2.0.2161-Unstable\lib\net40\PowerCollections.dll</HintPath>
     </Reference>
-    <Reference Include="Raven.Abstractions, Version=1.2.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\src\packages\RavenDB.Client.2.0.2161-Unstable\lib\net40\Raven.Abstractions.dll</HintPath>
+    <Reference Include="Raven.Abstractions">
+      <HintPath>..\..\src\packages\RavenDB.Client.2.0.2230\lib\net40\Raven.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Raven.Client.Embedded, Version=1.2.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\src\packages\RavenDB.Embedded.2.0.2161-Unstable\lib\net40\Raven.Client.Embedded.dll</HintPath>
+    <Reference Include="Raven.Client.Embedded">
+      <HintPath>..\..\src\packages\RavenDB.Embedded.2.0.2230\lib\net40\Raven.Client.Embedded.dll</HintPath>
     </Reference>
-    <Reference Include="Raven.Client.Lightweight, Version=1.2.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\src\packages\RavenDB.Client.2.0.2161-Unstable\lib\net40\Raven.Client.Lightweight.dll</HintPath>
+    <Reference Include="Raven.Client.Lightweight">
+      <HintPath>..\..\src\packages\RavenDB.Client.2.0.2230\lib\net40\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
-    <Reference Include="Raven.Database, Version=1.2.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\src\packages\RavenDB.Database.2.0.2161-Unstable\lib\net40\Raven.Database.dll</HintPath>
+    <Reference Include="Raven.Database">
+      <HintPath>..\..\src\packages\RavenDB.Database.2.0.2230\lib\net40\Raven.Database.dll</HintPath>
     </Reference>
     <Reference Include="SharpTestsEx">
       <HintPath>..\..\src\packages\SharpTestsEx.1.1.1\lib\SharpTestsEx.dll</HintPath>

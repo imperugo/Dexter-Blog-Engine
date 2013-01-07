@@ -42,8 +42,11 @@
     <Compile Include="BlogConfigurationDto.cs" />
     <Compile Include="CommentStatus.cs" />
     <Compile Include="DexterInfo.cs" />
+    <Compile Include="DtoBase.cs" />
     <Compile Include="EmailMessageDto.cs" />
     <Compile Include="ItemType.cs" />
+    <Compile Include="PackageDto.cs" />
+    <Compile Include="PluginDto.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="TrackbackDto.cs" />
     <Compile Include="TrackbackStatus.cs" />

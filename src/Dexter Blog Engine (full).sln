@@ -66,9 +66,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scheduling", "Scheduling", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dexter.Scheduler", "Dexter.Scheduler\Dexter.Scheduler.csproj", "{487C4A05-25E3-4E7C-8DC0-B768F19AC3D8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PluginManager", "PluginManager", "{3A9F322E-29B2-470E-AFD4-AB20DEEF502F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{3A9F322E-29B2-470E-AFD4-AB20DEEF502F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dexter.Plugin", "Dexter.Plugin\Dexter.Plugin.csproj", "{70BE4F00-3F08-40DA-B6BA-58CBEAAA1B62}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dexter.PackageInstaller", "Dexter.Plugin\Dexter.PackageInstaller.csproj", "{70BE4F00-3F08-40DA-B6BA-58CBEAAA1B62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
