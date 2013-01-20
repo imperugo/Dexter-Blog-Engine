@@ -1,0 +1,107 @@
+﻿@model Dexter.Entities.Result.IPagedResult<Dexter.Entities.PostDto>
+
+@helper GetRowColor(string text){
+	string[] cssStyles = new[] { "", "orange-keyword", "purple-keyword", "green-keyword" };
+	var css = cssStyles.GetRandom();
+
+	<text>
+		<li class="@css">@text</li>
+	</text>
+}
+
+<div class="block-border">
+	<form class="block-content form" id="table_form" method="post" action="">
+		<h1>Recent Posts</h1>
+
+		<div class="block-controls">
+
+			<ul class="controls-buttons">
+				@Html.Pager(Model)
+				<li class="sep"></li>
+			</ul>
+
+		</div>
+
+		<div class="no-margin">
+			<table class="table" cellspacing="0" width="100%">
+				<thead>
+					<tr>
+						<th class="black-cell"><span class="success"></span></th>
+						<th scope="col">Title</th>
+						<th scope="col">Categories</th>
+						<th scope="col">Tags</th>
+						<th scope="col">Date</th>
+						<th scope="col" class="table-actions">Actions</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					@foreach (var post in Model.Result)
+					{
+						<tr>
+							<th scope="row" class="table-check-cell">
+								<input type="checkbox" name="selected[]" id="table-selected-1" value="1">
+							</th>
+							<td>@post.Title</td>
+							<td>
+								<ul class="keywords">
+									@foreach (string category in post.Categories)
+									{
+										@GetRowColor(category)
+									}
+								</ul>
+							</td>
+							@{
+								bool isTagsEmpty = (post.Tags == null || !post.Tags.Any());
+								var tdTagsClass = isTagsEmpty ? "empty" : null;
+							}
+							<td class="@tdTagsClass">
+								@if (isTagsEmpty)
+								{
+									<text>
+										(none)
+									</text>
+								}
+								else
+								{
+									<ul class="keywords">
+										@foreach (var tag in post.Tags)
+										{
+											@GetRowColor(tag)
+										}
+									</ul>
+								}
+							</td>
+							<td>@post.PublishAt.DateTime</td>
+							<td class="table-actions">
+								<a href="#" title="Edit" class="with-tip">
+									<img src="~/images/icons/fugue/pencil.png" width="16" height="16"></a>
+								<a href="#" title="Delete" class="with-tip">
+									<img src="~/images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+							</td>
+						</tr>
+					}
+				</tbody>
+
+			</table>
+		</div>
+
+		<ul class="message no-margin">
+			<li>@Model.PagedSummary()</li>
+		</ul>
+
+		<div class="block-footer">
+			<img src="~/images/icons/fugue/arrow-curve-000-left.png" width="16" height="16" class="picto">
+			<a href="#" class="button">Select All</a>
+			<a href="#" class="button">Unselect All</a>
+			<span class="sep"></span>
+			<select name="table-action" id="table-action" class="small">
+				<option value="">Action for selected...</option>
+				<option value="validate">Validate</option>
+				<option value="delete">Delete</option>
+			</select>
+			<button type="submit" class="small">Ok</button>
+		</div>
+
+	</form>
+</div>

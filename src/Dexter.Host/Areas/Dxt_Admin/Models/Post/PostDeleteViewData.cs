@@ -19,7 +19,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Models.Post
 	using Dexter.Entities;
 	using Dexter.Web.Core.Models;
 
-	public class PostDeleteViewData : DexterModelBase
+	public class PostDeleteViewData : DexterBackofficeModelBase
 	{
 		#region Public Properties
 

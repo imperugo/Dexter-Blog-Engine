@@ -3,22 +3,20 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 // File:			SetupService.cs
 // Website:		http://dexterblogengine.com/
-// Authors:		http://dexterblogengine.com/About.ashx
+// Authors:		http://dexterblogengine.com/aboutus
 // Created:		2012/12/23
-// Last edit:	2012/12/24
-// License:		GNU Library General Public License (LGPL)
+// Last edit:	2013/01/20
+// License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Services.Implmentation
 {
 	using System;
 	using System.IO;
-	using System.Web.Security;
 
 	using Dexter.Data;
 	using Dexter.Entities;
@@ -31,14 +29,17 @@ namespace Dexter.Services.Implmentation
 
 		private readonly IPostDataService postDataService;
 
+		private readonly ICategoryDataService categoryService;
+
 		#endregion
 
 		#region Constructors and Destructors
 
-		public SetupService(IConfigurationDataService configurationDataService, IPostDataService postDataService)
+		public SetupService(IConfigurationDataService configurationDataService, IPostDataService postDataService, ICategoryDataService categoryService)
 		{
 			this.configurationDataService = configurationDataService;
 			this.postDataService = postDataService;
+			this.categoryService = categoryService;
 		}
 
 		#endregion
@@ -65,13 +66,16 @@ namespace Dexter.Services.Implmentation
 
 			this.configurationDataService.SaveConfiguration(configuration);
 
-			//Creating roles
-			//Membership.CreateUser(item.AdminUsername, item.AdminPassword, item.Email.Address);
-			//Roles.CreateRole("Administrator");
+			// Creating roles
+			// Membership.CreateUser(item.AdminUsername, item.AdminPassword, item.Email.Address);
+			// Roles.CreateRole("Administrator");
 
-			//Roles.AddUserToRole(item.AdminUsername, "Administrator");
+			// Roles.AddUserToRole(item.AdminUsername, "Administrator");
 
-			//Creating default post
+			//Creating default category
+			this.categoryService.SaveOrUpdate("Various", true, null);
+			
+			// Creating default post
 			PostDto defaultPost = new PostDto();
 
 			string defaultPostPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App_Data/Setup/defaultPost.dxt");

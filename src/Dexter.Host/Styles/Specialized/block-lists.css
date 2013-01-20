@@ -24,7 +24,7 @@ body.dark .block-content .favorites > li { border-top-color: #999999; }
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
 	-webkit-background-size: 100% 100%;
-	background: url(../images/old-browsers-bg/favorites-bg.png) repeat-x;
+	background: url(../../../images/old-browsers-bg/favorites-bg.png) repeat-x;
 	background: -moz-linear-gradient(
 	                                top,
 	                                rgba(0, 0, 0, 0.1),
@@ -45,7 +45,7 @@ body.dark .block-content .favorites > li { border-top-color: #999999; }
 }
 
 .favorites > li > a {
-	background: url(../images/favorites-border.png) no-repeat left center;
+	background: url(../../../images/favorites-border.png) no-repeat left center;
 	color: #39c;
 	display: block;
 	font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Sans", Arial, Helvetica, sans-serif;
@@ -243,7 +243,7 @@ ul.grid > li {
 	-webkit-background-size: 100% 100%;
 	-webkit-border-radius: 0.417em;
 	-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
-	background: #cccccc url(../images/old-browsers-bg/grid-block-bg.png) repeat-x top;
+	background: #cccccc url(../../../images/old-browsers-bg/grid-block-bg.png) repeat-x top;
 	background: -moz-linear-gradient(
 	                                top,
 	                                #f5f5f5,
@@ -275,15 +275,15 @@ ul.grid > li .grid-picto {
 	padding: 0.75em 0.75em 0.75em 3.9em;
 }
 
-ul.grid > li .grid-picto.user { background-image: url(../images/icons/web-app/32/Profile.png); }
+ul.grid > li .grid-picto.user { background-image: url(../../../images/icons/web-app/32/Profile.png); }
 
-ul.grid > li .grid-picto.computer { background-image: url(../images/icons/web-app/32/Loading.png); }
+ul.grid > li .grid-picto.computer { background-image: url(../../../images/icons/web-app/32/Loading.png); }
 
-ul.grid > li .grid-picto.chart { background-image: url(../images/icons/web-app/32/Pie-Chart.png); }
+ul.grid > li .grid-picto.chart { background-image: url(../../../images/icons/web-app/32/Pie-Chart.png); }
 
-ul.grid > li .grid-picto.print { background-image: url(../images/icons/web-app/32/Print.png); }
+ul.grid > li .grid-picto.print { background-image: url(../../../images/icons/web-app/32/Print.png); }
 
-ul.grid > li .grid-picto.warning { background-image: url(../images/icons/web-app/32/Warning.png); }
+ul.grid > li .grid-picto.warning { background-image: url(../../../images/icons/web-app/32/Warning.png); }
 
 ul.grid > li .grid-name {
 	color: #373737;
@@ -306,7 +306,7 @@ ul.grid > li .grid-actions {
 	-webkit-background-size: 100% 100%;
 	-webkit-border-bottom-right-radius: 0.333em;
 	-webkit-border-top-right-radius: 0.333em;
-	background: #b3b3b3 url(../images/old-browsers-bg/grid-block-controls-bg.png) repeat-x top;
+	background: #b3b3b3 url(../../../images/old-browsers-bg/grid-block-controls-bg.png) repeat-x top;
 	background: -moz-linear-gradient(
 	                                top,
 	                                #f0f0f0,
@@ -358,7 +358,7 @@ ul.grid > li .grid-actions li img { margin: 0 -1px -3px 0; }
 	-webkit-background-size: 100% 100%;
 	-webkit-border-radius: 0.25em;
 	-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
-	background: #e6e6e6 url(../images/old-browsers-bg/lite-grey-grad-bg.png) repeat-x top;
+	background: #e6e6e6 url(../../../images/old-browsers-bg/lite-grey-grad-bg.png) repeat-x top;
 	background: -moz-linear-gradient(
 	                                top,
 	                                #f7f7f7,
@@ -400,7 +400,7 @@ ul.grid > li .grid-actions li img { margin: 0 -1px -3px 0; }
 .task-dialog { margin: 0 -1.667em; }
 
 .task-dialog > li {
-	background: #ffffcd url(../images/icons/fugue/balloon-reverse.png) no-repeat 0.667em 0.75em;
+	background: #ffffcd url(../../../images/icons/fugue/balloon-reverse.png) no-repeat 0.667em 0.75em;
 	border-top: 1px solid #c5c39c;
 	color: #565340;
 	margin: 0 -1px;
@@ -474,7 +474,7 @@ ul.grid > li .grid-actions li img { margin: 0 -1px -3px 0; }
 .icon-list { margin: 0 -19px 0.833em -7px; }
 
 .icon-list li {
-	background: url(../images/corner.png) no-repeat right bottom;
+	background: url(../../../images/corner.png) no-repeat right bottom;
 	float: left;
 	font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Sans", Arial, Helvetica, sans-serif;
 	font-size: 1.5em;
@@ -526,7 +526,7 @@ body.dark .block-content .icon-list li small { color: #808080; }
 /************* Small files icon list ************/
 
 .small-files-list li {
-	background: url(../images/icons/finefiles/32/default.png) no-repeat;
+	background: url(../../../images/icons/finefiles/32/default.png) no-repeat;
 	color: black;
 	line-height: 1.083em;
 	margin-bottom: 0.25em;
@@ -550,21 +550,21 @@ body.dark .block-content .icon-list li small { color: #808080; }
 
 .small-files-list li small { color: #999999; }
 
-.small-files-list.icon-html li, .small-files-list li.icon-html { background-image: url(../images/icons/finefiles/32/html.png); }
+.small-files-list.icon-html li, .small-files-list li.icon-html { background-image: url(../../../images/icons/finefiles/32/html.png); }
 
-.small-files-list.icon-xml li, .small-files-list li.icon-xml { background-image: url(../images/icons/finefiles/32/xml.png); }
+.small-files-list.icon-xml li, .small-files-list li.icon-xml { background-image: url(../../../images/icons/finefiles/32/xml.png); }
 
-.small-files-list.icon-img li, .small-files-list li.icon-img { background-image: url(../images/icons/finefiles/32/other_image.png); }
+.small-files-list.icon-img li, .small-files-list li.icon-img { background-image: url(../../../images/icons/finefiles/32/other_image.png); }
 
-.small-files-list.icon-music li, .small-files-list li.icon-music { background-image: url(../images/icons/finefiles/32/other_music2.png); }
+.small-files-list.icon-music li, .small-files-list li.icon-music { background-image: url(../../../images/icons/finefiles/32/other_music2.png); }
 
-.small-files-list.icon-movie li, .small-files-list li.icon-movie { background-image: url(../images/icons/finefiles/32/mpg.png); }
+.small-files-list.icon-movie li, .small-files-list li.icon-movie { background-image: url(../../../images/icons/finefiles/32/mpg.png); }
 
-.small-files-list.icon-folder li, .small-files-list li.icon-folder { background-image: url(../images/icons/finefiles/32/_Close.png); }
+.small-files-list.icon-folder li, .small-files-list li.icon-folder { background-image: url(../../../images/icons/finefiles/32/_Close.png); }
 
-.small-files-list.icon-mail li, .small-files-list li.icon-mail { background-image: url(../images/icons/email.png); }
+.small-files-list.icon-mail li, .small-files-list li.icon-mail { background-image: url(../../../images/icons/email.png); }
 
-.small-files-list.icon-comment li, .small-files-list li.icon-comment { background-image: url(../images/icons/web-app/32/Comment.png); }
+.small-files-list.icon-comment li, .small-files-list li.icon-comment { background-image: url(../../../images/icons/web-app/32/Comment.png); }
 
 /*************** Extended infos list ************/
 
@@ -579,7 +579,7 @@ body.dark .block-content .icon-list li small { color: #808080; }
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
 	-webkit-background-size: 100% 100%;
-	background: url(../images/old-browsers-bg/favorites-bg.png) repeat-y;
+	background: url(../../../images/old-browsers-bg/favorites-bg.png) repeat-y;
 	background: -moz-linear-gradient(
 	                                top,
 	                                rgba(0, 0, 0, 0.1),
@@ -663,21 +663,21 @@ body.dark .block-content .extended-list .extended-options li { color: #333; }
 
 .extended-list .extended-options li.first-child { margin-left: 0; }
 
-.icon-user .icon, .icon.icon-user { background-image: url(../images/icons/web-app/48/Profile.png); }
+.icon-user .icon, .icon.icon-user { background-image: url(../../../images/icons/web-app/48/Profile.png); }
 
-.icon-image .icon, .icon.icon-image { background-image: url(../images/icons/web-app/48/Picture.png); }
+.icon-image .icon, .icon.icon-image { background-image: url(../../../images/icons/web-app/48/Picture.png); }
 
-.icon-chart .icon, .icon.icon-chart { background-image: url(../images/icons/web-app/48/Pie-Chart.png); }
+.icon-chart .icon, .icon.icon-chart { background-image: url(../../../images/icons/web-app/48/Pie-Chart.png); }
 
-.icon-printer .icon, .icon.icon-printer { background-image: url(../images/icons/web-app/48/Print.png); }
+.icon-printer .icon, .icon.icon-printer { background-image: url(../../../images/icons/web-app/48/Print.png); }
 
-.icon-computer .icon, .icon.icon-computer { background-image: url(../images/icons/web-app/48/Loading.png); }
+.icon-computer .icon, .icon.icon-computer { background-image: url(../../../images/icons/web-app/48/Loading.png); }
 
-.icon-article .icon, .icon.icon-article { background-image: url(../images/icons/web-app/48/Modify.png); }
+.icon-article .icon, .icon.icon-article { background-image: url(../../../images/icons/web-app/48/Modify.png); }
 
-.icon-comment .icon, .icon.icon-comment { background-image: url(../images/icons/web-app/48/Comment.png); }
+.icon-comment .icon, .icon.icon-comment { background-image: url(../../../images/icons/web-app/48/Comment.png); }
 
-.icon-warning .icon, .icon.icon-warning { background-image: url(../images/icons/web-app/48/Warning.png); }
+.icon-warning .icon, .icon.icon-warning { background-image: url(../../../images/icons/web-app/48/Warning.png); }
 
 /* http://perishablepress.com/press/2008/02/05/lessons-learned-concerning-the-clearfix-css-hack */
 

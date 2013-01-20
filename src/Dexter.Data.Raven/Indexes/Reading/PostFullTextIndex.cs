@@ -3,15 +3,14 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 // File:			PostFullTextIndex.cs
 // Website:		http://dexterblogengine.com/
-// Authors:		http://dexterblogengine.com/About.ashx
+// Authors:		http://dexterblogengine.com/aboutus
 // Created:		2012/12/24
-// Last edit:	2012/12/24
-// License:		GNU Library General Public License (LGPL)
+// Last edit:	2013/01/20
+// License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Data.Raven.Indexes.Reading
@@ -22,6 +21,7 @@ namespace Dexter.Data.Raven.Indexes.Reading
 	using Dexter.Data.Raven.Domain;
 
 	using global::Raven.Abstractions.Indexing;
+
 	using global::Raven.Client.Indexes;
 
 	public class PostFullTextIndex : AbstractIndexCreationTask<Post, PostFullTextIndex.ReduceResult>
@@ -32,11 +32,11 @@ namespace Dexter.Data.Raven.Indexes.Reading
 		{
 			this.Map = posts => posts.Select(post => new
 				                                         {
-															 SearchQuery = post.Tags.Concat(new[]
-																                                 {
-																	                                 post.Title.ToLowerInvariant(),
-																									 post.SearchContent
-																                                 }),
+					                                         SearchQuery = post.Tags.Concat(new[]
+						                                                                        {
+							                                                                        post.Title.ToLowerInvariant(), 
+							                                                                        post.SearchContent
+						                                                                        }), 
 					                                         PublishDate = post.PublishAt
 				                                         });
 

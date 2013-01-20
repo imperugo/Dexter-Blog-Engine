@@ -1,8 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿#region Disclaimer/Info
+
+// ////////////////////////////////////////////////////////////////////////////////////////////////
+// File:			AdminPageUrlBuilder.cs
+// Website:		http://dexterblogengine.com/
+// Authors:		http://dexterblogengine.com/aboutus
+// Created:		2012/12/31
+// Last edit:	2013/01/20
+// License:		New BSD License (BSD)
+// For updated news and information please visit http://dexterblogengine.com/
+// Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
+// For any question contact info@dexterblogengine.com
+// ////////////////////////////////////////////////////////////////////////////////////////////////
+#endregion
 
 namespace Dexter.Navigation.Concretes
 {
@@ -13,13 +22,23 @@ namespace Dexter.Navigation.Concretes
 
 	public class AdminPageUrlBuilder : UrlBuilderBase, IAdminPageUrlBuilder
 	{
+		#region Fields
+
 		private readonly IPageUrlBuilder pageUrlBuilder;
+
+		#endregion
+
+		#region Constructors and Destructors
 
 		public AdminPageUrlBuilder(IConfigurationService configurationService, IPageUrlBuilder pageUrlBuilder)
 			: base(configurationService)
 		{
 			this.pageUrlBuilder = pageUrlBuilder;
 		}
+
+		#endregion
+
+		#region Public Methods and Operators
 
 		public SiteUrl Delete(ItemDto item)
 		{
@@ -31,14 +50,16 @@ namespace Dexter.Navigation.Concretes
 			return this.pageUrlBuilder.Edit(item);
 		}
 
+		public SiteUrl List()
+		{
+			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Page", "Index", null, null);
+		}
+
 		public SiteUrl New()
 		{
 			return this.pageUrlBuilder.Edit(null);
 		}
 
-		public SiteUrl List()
-		{
-			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Page", "Index", null, null);
-		}
+		#endregion
 	}
 }

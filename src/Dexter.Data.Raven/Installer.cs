@@ -3,10 +3,10 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 // File:			Installer.cs
 // Website:		http://dexterblogengine.com/
-// Authors:		http://dexterblogengine.com/About.ashx
+// Authors:		http://dexterblogengine.com/aboutus
 // Created:		2012/11/01
-// Last edit:	2012/12/24
-// License:		GNU Library General Public License (LGPL)
+// Last edit:	2013/01/20
+// License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
@@ -42,6 +42,7 @@ namespace Dexter.Data.Raven
 			container.Register<IPageDataService, PageDataService>(LifeCycle.Singleton);
 			container.Register<ICommentDataService, CommentDataService>(LifeCycle.Singleton);
 			container.Register<IConfigurationDataService, ConfigurationDataService>(LifeCycle.Singleton);
+			container.Register<ICategoryDataService, CategoryDataService>(LifeCycle.Singleton);
 			container.Register<IDexterCall, DexterCall>(LifeCycle.Singleton);
 			container.Register<ISessionFactory, SessionFactory>(LifeCycle.Singleton);
 

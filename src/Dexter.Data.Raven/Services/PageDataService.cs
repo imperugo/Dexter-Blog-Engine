@@ -3,10 +3,10 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 // File:			PageDataService.cs
 // Website:		http://dexterblogengine.com/
-// Authors:		http://dexterblogengine.com/About.ashx
+// Authors:		http://dexterblogengine.com/aboutus
 // Created:		2012/11/02
-// Last edit:	2012/12/24
-// License:		GNU Library General Public License (LGPL)
+// Last edit:	2013/01/20
+// License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
@@ -16,7 +16,6 @@
 namespace Dexter.Data.Raven.Services
 {
 	using System;
-	using System.Collections.Generic;
 	using System.Linq;
 
 	using global::AutoMapper;
@@ -123,10 +122,10 @@ namespace Dexter.Data.Raven.Services
 			RavenQueryStatistics stats;
 
 			return this.Session.Query<Page>()
-			                        .Statistics(out stats)
-			                        .ApplyFilterItem(filter)
-			                        .OrderByDescending(post => post.PublishAt)
-									.ToPagedResult<Page, PageDto>(pageIndex, pageSize, stats);
+			           .Statistics(out stats)
+			           .ApplyFilterItem(filter)
+			           .OrderByDescending(post => post.PublishAt)
+			           .ToPagedResult<Page, PageDto>(pageIndex, pageSize, stats);
 		}
 
 		#endregion

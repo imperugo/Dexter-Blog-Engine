@@ -3,15 +3,14 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 // File:			IPackageInstaller.cs
 // Website:		http://dexterblogengine.com/
-// Authors:		http://dexterblogengine.com/About.ashx
+// Authors:		http://dexterblogengine.com/aboutus
 // Created:		2013/01/07
-// Last edit:	2013/01/07
-// License:		GNU Library General Public License (LGPL)
+// Last edit:	2013/01/20
+// License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Services
@@ -51,6 +50,14 @@ namespace Dexter.Services
 		#endregion
 
 		#region Public Methods and Operators
+
+		/// <summary>
+		/// Gets the specified package id.
+		/// </summary>
+		/// <param name="packageId">The package id.</param>
+		/// <param name="version">The version.</param>
+		/// <returns></returns>
+		PackageDto Get(string packageId, Version version);
 
 		/// <summary>
 		/// Installs the package with the specified <param name="packageId" /> and <param name="version" />
@@ -108,14 +115,6 @@ namespace Dexter.Services
 		/// <param name="version">The version.</param>
 		/// <returns></returns>
 		bool UpdateAvailable(string packageId, Version version);
-
-		/// <summary>
-		/// Gets the specified package id.
-		/// </summary>
-		/// <param name="packageId">The package id.</param>
-		/// <param name="version">The version.</param>
-		/// <returns></returns>
-		PackageDto Get(string packageId, Version version);
 
 		#endregion
 	}

@@ -3,15 +3,14 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 // File:			AdminUrlBuilder.cs
 // Website:		http://dexterblogengine.com/
-// Authors:		http://dexterblogengine.com/About.ashx
+// Authors:		http://dexterblogengine.com/aboutus
 // Created:		2012/10/28
-// Last edit:	2012/12/31
-// License:		GNU Library General Public License (LGPL)
+// Last edit:	2013/01/20
+// License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Navigation.Concretes
@@ -38,15 +37,20 @@ namespace Dexter.Navigation.Concretes
 
 		#region Public Properties
 
+		public IAdminCategoryUrlBuilder Category { get; private set; }
+
 		public IAdminPageUrlBuilder Page { get; private set; }
 
 		public IAdminPostUrlBuilder Post { get; private set; }
 
-		public IAdminCategoryUrlBuilder Category { get; private set; }
-
 		#endregion
 
 		#region Public Methods and Operators
+
+		public SiteUrl EditConfiguration()
+		{
+			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Home", "Configuration", null, null);
+		}
 
 		public SiteUrl FeedbackPage(FeedbackType feedback, string localizationKey, SiteUrl redirect)
 		{
@@ -60,11 +64,6 @@ namespace Dexter.Navigation.Concretes
 		public SiteUrl Home()
 		{
 			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Home", "Index", null, null);
-		}
-
-		public SiteUrl EditConfiguration()
-		{
-			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Home", "Configuration", null, null);
 		}
 
 		public SiteUrl Login()

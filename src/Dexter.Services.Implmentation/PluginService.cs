@@ -3,15 +3,14 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 // File:			PluginService.cs
 // Website:		http://dexterblogengine.com/
-// Authors:		http://dexterblogengine.com/About.ashx
+// Authors:		http://dexterblogengine.com/aboutus
 // Created:		2013/01/07
-// Last edit:	2013/01/07
-// License:		GNU Library General Public License (LGPL)
+// Last edit:	2013/01/20
+// License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Services.Implmentation
@@ -49,7 +48,7 @@ namespace Dexter.Services.Implmentation
 
 		public void DisablePlugin(string pluginId, Version version)
 		{
-			var plugin = this.pluginDataService.GetPlugin(pluginId, version);
+			PluginDto plugin = this.pluginDataService.GetPlugin(pluginId, version);
 
 			if (plugin == null)
 			{
@@ -61,7 +60,7 @@ namespace Dexter.Services.Implmentation
 
 		public void EnablePlugin(string pluginId, Version version)
 		{
-			var plugin = this.pluginDataService.GetPlugin(pluginId, version);
+			PluginDto plugin = this.pluginDataService.GetPlugin(pluginId, version);
 
 			if (plugin == null)
 			{
@@ -78,7 +77,7 @@ namespace Dexter.Services.Implmentation
 
 		public void Install(string pluginId, Version version)
 		{
-			var package = this.packageInstaller.Install(pluginId, version);
+			PackageDto package = this.packageInstaller.Install(pluginId, version);
 
 			this.pluginDataService.EnablePlugin(package.MapTo<PluginDto>());
 		}

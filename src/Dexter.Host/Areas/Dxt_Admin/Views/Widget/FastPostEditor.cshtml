@@ -1,0 +1,130 @@
+﻿@using Dexter.Host.App_Start
+@model Dexter.Host.Areas.Dxt_Admin.Models.Widget.FastPostEditorViewModel
+
+<div class="block-border">
+	<form class="block-content form" id="complex_form" method="post" action="">
+		<h1>Fast Post</h1>
+
+		@Html.AntiForgeryToken()
+				
+		@if (!ViewData.ModelState.IsValid) {
+			<ul class="message error no-margin">
+				@Html.ValidationSummary()
+				<li class="close-bt"></li>
+			</ul>
+		}
+				
+		<div class="columns">
+			<ul class="tabs js-tabs same-height">
+				<li class="current"><a href="#tab-locales" title="Locales">Writer</a></li>
+				<li><a href="#tab-options" title="Options">Options</a></li>
+			</ul>
+							
+			<div class="tabs-content">	
+				<div id="tab-locales">
+					<div class="infos">
+						<h3>Write new post!</h3>
+						<p>Use the simple form below.</p>
+					</div>
+									
+					<div id="tab-en">
+						<fieldset class="grey-bg">
+							<legend>Required fields</legend>
+							<div class="col-left">
+								<p>
+									<label for="complex-title">Page title</label>
+									<span class="relative">
+										@Html.TextBoxFor(x => x.Post.Title, new { @class = "full-width", placeholder = "Write here the title of the post" })
+									</span>
+								</p>
+
+								<p>
+									<label for="complex-en-style">Category</label>
+									@Html.DropDownListFor( x => x.Post.CategoryId, new SelectList ( Model.Categories, "Id", "Name" ), "-- Categories --", new { @class = "full-width" } )
+								</p>
+
+								<p>
+									<label for="complex-en-style">Message</label>
+									@Html.TextAreaFor(x => x.Post.FormattedBody, new { cols = "80", rows = "20"})
+								</p>
+							</div>
+						</fieldset>
+					</div>
+				</div>
+								
+				<div id="tab-options" style="height: 423px; display: none; ">
+					<fieldset class="grey-bg">
+						<p>
+							<label for="simple-required">Publish Date</label>
+							<span class="input-type-text margin-right">
+								@Html.EditorFor(x => x.Post.PublishDate)
+								<img height="16" width="16" src="@Url.Content( "~/images/Icons/Fugue/calendar-month.png" )" alt="calendar" />
+								@Html.DropDownListFor(x => x.Post.PublishHour, new SelectList(Constants.HoursValues, Model.Post.PublishHour))
+								@Html.DropDownListFor(x => x.Post.PublishMinutes, new SelectList(Constants.MinutesValues, Model.Post.PublishMinutes))
+							</span>
+							<button class="grey" type="button" id="publishToday">Today</button>
+						</p>
+
+						<p>
+							<label for="complex-title">Tags</label>
+							<span class="relative">
+								@Html.TextBoxFor(x => x.Post.Tags, new { @class = "full-width", placeholder = "Write here tags separeted by comma" })
+							</span>
+						</p>
+
+						<p>
+							<label for="table-display" style="display:inline">Publish</label>
+							@Html.CheckBoxFor( x => x.Post.Publish, new { @class = "mini-switch"} )
+
+							<label for="table-display" style="display:inline">Enable Comments</label>
+							@Html.CheckBoxFor( x => x.Post.CommentEnabled, new { @class = "mini-switch"} )
+						</p>
+
+						<p>
+							<label for="simple-required">Slug</label>
+							@Html.TextBoxFor(x => x.Post.Slug, new { @class = "full-width", placeholder = "Write the slug of the post" })
+						</p>
+
+						<p>
+							<label for="simple-required">Abstract</label>
+							@Html.TextBoxFor(x => x.Post.Abstract, new { @class = "full-width", placeholder = "Write the abstract of the post" })
+						</p>
+					</fieldset>
+				</div>
+
+				<p class="input-with-button" style="padding-top:10px;">
+					<button type="submit">Save</button>
+				</p>
+			</div>
+		</div>
+	</form>
+</div>
+
+<script src="~/js/ckeditor/ckeditor.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#Post_PublishDate").dateinput({
+			trigger: true,
+			format: 'dd mmmm yyyy',
+		});
+
+		$('#publishToday').click(function() {
+			$('#Post_PublishDate').data("dateinput").today();
+			var date = new Date();
+
+			var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+
+			$('#Post_PublishHour').val(date.getHours());
+			$('#Post_PublishMinutes').val(minutes);
+		});
+		
+		CKEDITOR.replace('Post_FormattedBody', {
+			toolbar:
+			[
+				['Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink'],
+				['Image', 'Table', 'SpecialChar', 'Code'],
+				['Styles', 'Format', 'Font', 'FontSize', 'Maximize']
+			]
+		});
+	});
+</script>

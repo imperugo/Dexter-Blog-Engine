@@ -10,10 +10,10 @@
 &#xD;
 File:			$FILENAME$&#xD;
 Website:		http://dexterblogengine.com/&#xD;
-Authors:		http://dexterblogengine.com/About.ashx&#xD;
+Authors:		http://dexterblogengine.com/aboutus&#xD;
 Created:		$CREATED_YEAR$/$CREATED_MONTH$/$CREATED_DAY$&#xD;
 Last edit:	$CURRENT_YEAR$/$CURRENT_MONTH$/$CURRENT_DAY$&#xD;
-License:		GNU Library General Public License (LGPL)&#xD;
+License:		New BSD License (BSD)&#xD;
 &#xD;
 For updated news and information please visit http://dexterblogengine.com/&#xD;
 Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine&#xD;

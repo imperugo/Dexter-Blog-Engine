@@ -143,7 +143,7 @@
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
 	-webkit-background-size: 100% 100%;
-	background: #999999 url(../images/old-browsers-bg/tfoot-bg.png) repeat-x top;
+	background: #999999 url(../../images/old-browsers-bg/tfoot-bg.png) repeat-x top;
 	background: -moz-linear-gradient(
 	                                top,
 	                                #333333,
@@ -194,7 +194,7 @@
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
 	-webkit-background-size: 100% 100%;
-	background: #242424 url(../images/old-browsers-bg/black-cell-bg.png) repeat-x top;
+	background: #242424 url(../../images/old-browsers-bg/black-cell-bg.png) repeat-x top;
 	background: -moz-linear-gradient(
 	                                top,
 	                                #4c4c4c,
@@ -247,11 +247,11 @@
 	top: 0;
 }
 
-.table .black-cell span.loading, .with-head .black-cell span.loading { background-image: url(../images/table-loader.gif); }
+.table .black-cell span.loading, .with-head .black-cell span.loading { background-image: url(../../images/table-loader.gif); }
 
-.table .black-cell span.error, .with-head .black-cell span.error { background-image: url(../images/icons/fugue/cross-circle.png); }
+.table .black-cell span.error, .with-head .black-cell span.error { background-image: url(../../images/icons/fugue/cross-circle.png); }
 
-.table .black-cell span.success, .with-head .black-cell span.success { background-image: url(../images/icons/fugue/tick-circle-blue.png); }
+.table .black-cell span.success, .with-head .black-cell span.success { background-image: url(../../images/icons/fugue/tick-circle-blue.png); }
 
 .table-actions a img { margin: -2px 0; }
 	
@@ -271,7 +271,7 @@
 
 .column-sort .sort-up,
 .column-sort .sort-down {
-	background: url(../images/table-sort-arrows.png) no-repeat;
+	background: url(../../images/table-sort-arrows.png) no-repeat;
 	border-right: 1px solid #999999;
 	display: block;
 	height: 14px;

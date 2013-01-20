@@ -3,15 +3,14 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 // File:			AdminCategoryUrlBuilder.cs
 // Website:		http://dexterblogengine.com/
-// Authors:		http://dexterblogengine.com/About.ashx
+// Authors:		http://dexterblogengine.com/aboutus
 // Created:		2012/12/31
-// Last edit:	2012/12/31
-// License:		GNU Library General Public License (LGPL)
+// Last edit:	2013/01/20
+// License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Navigation.Concretes
@@ -31,14 +30,18 @@ namespace Dexter.Navigation.Concretes
 
 		#endregion
 
-		public SiteUrl New()
-		{
-			throw new System.NotImplementedException();
-		}
+		#region Public Methods and Operators
 
 		public SiteUrl List()
 		{
-			throw new System.NotImplementedException();
+			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Category", "Index", null, null);
 		}
+
+		public SiteUrl New()
+		{
+			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Category", "Manage", null, null);
+		}
+
+		#endregion
 	}
 }

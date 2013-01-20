@@ -3,10 +3,10 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 // File:			PostDataServiceTest.cs
 // Website:		http://dexterblogengine.com/
-// Authors:		http://dexterblogengine.com/About.ashx
+// Authors:		http://dexterblogengine.com/aboutus
 // Created:		2012/10/27
-// Last edit:	2012/12/24
-// License:		GNU Library General Public License (LGPL)
+// Last edit:	2013/01/20
+// License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
@@ -19,10 +19,6 @@ namespace Dexter.Data.Raven.Test.PostService
 	using System.Collections.Generic;
 	using System.Linq;
 
-	using Dexter.Data.Raven.Extensions;
-	using Dexter.Data.Raven.Indexes.Reading;
-	using Dexter.Entities.Filters;
-
 	using global::AutoMapper;
 
 	using Common.Logging;
@@ -31,6 +27,7 @@ namespace Dexter.Data.Raven.Test.PostService
 	using Dexter.Data.Raven.Services;
 	using Dexter.Data.Raven.Test.Helpers;
 	using Dexter.Entities;
+	using Dexter.Entities.Result;
 
 	using Moq;
 
@@ -160,7 +157,7 @@ namespace Dexter.Data.Raven.Test.PostService
 		[Fact]
 		public void SearchPost_WithValidData_ShouldReturnValidItems()
 		{
-			var posts = PostHelper.GetPosts(6);
+			IList<Post> posts = PostHelper.GetPosts(6);
 
 			posts[0].Title = "Manage cookies using Web API";
 			posts[0].SearchContent = "In my last project, I’ve deeply used WebApi, both for the client side and server side. In fact my application must call several REST endpoints developed with java and, after a code elaboration, I have to expose the data to other clients (javascript into an html page in this case).One of the pillars request by the Java services (really is not a technology request but just from the implementation made by the external company) is to read all cookies from the response and then send them back to the next requests (like a proxy).To make more clear where my app is, I realized the following chart:";
@@ -180,14 +177,14 @@ namespace Dexter.Data.Raven.Test.PostService
 			posts[5].Title = "How integrate Facebook, Twitter, LinkedIn, Yahoo, Google and Microsoft Account with your ASP.NET MVC application";
 			posts[5].SearchContent = "In the past week, 15 august, Microsoft released an incredible number of cool stuff, starting from Windows 8 and ending to Visual Studio 2012 including the new ASP.NET Stack. The version 4 of ASP.NET MVC introduces several cool features; most of them was available with the Beta and RC versions (Web API, Bundling, Mobile Projects Templates, etc.), but the RTM is not a “fixed version” of the RC, it has other interesting things.";
 
-			foreach (var post in posts)
+			foreach (Post post in posts)
 			{
 				this.SetupData(x => x.Store(post));
 			}
 
 			this.WaitStaleIndexes();
 
-			var result = sut.Search("facebook", 1, 10, null);
+			IPagedResult<PostDto> result = this.sut.Search("facebook", 1, 10, null);
 
 			result.Result.Count().Should().Be.GreaterThan(0);
 		}

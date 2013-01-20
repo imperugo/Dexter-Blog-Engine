@@ -48,7 +48,6 @@ namespace Dexter.Host.Areas.Dxt_Admin.Models.Home
 
 		public string Slug { get; set; }
 
-		[Required]
 		public string Tags { get; set; }
 
 		[Required]

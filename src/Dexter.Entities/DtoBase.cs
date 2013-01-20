@@ -3,15 +3,14 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 // File:			DtoBase.cs
 // Website:		http://dexterblogengine.com/
-// Authors:		http://dexterblogengine.com/About.ashx
+// Authors:		http://dexterblogengine.com/aboutus
 // Created:		2013/01/07
-// Last edit:	2013/01/07
-// License:		GNU Library General Public License (LGPL)
+// Last edit:	2013/01/20
+// License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Entities
@@ -24,11 +23,16 @@ namespace Dexter.Entities
 	{
 		#region Fields
 
-		private readonly ConcurrentDictionary<String, object> customProperties = new ConcurrentDictionary<String, object>();
+		private readonly ConcurrentDictionary<string, object> customProperties = new ConcurrentDictionary<string, object>();
 
 		#endregion
 
 		#region Public Methods and Operators
+
+		public bool PropertyExist(string name)
+		{
+			return this.customProperties.ContainsKey(name);
+		}
 
 		/// <summary>
 		/// 	Provides the implementation for operations that get member values. Classes derived from the <see cref = "T:System.Dynamic.DynamicObject" /> class can override this method to specify dynamic behavior for operations such as getting a value for a property.
@@ -66,11 +70,6 @@ namespace Dexter.Entities
 			this.customProperties[binder.Name] = value;
 
 			return true;
-		}
-
-		public bool PropertyExist(string name)
-		{
-			return this.customProperties.ContainsKey(name);
 		}
 
 		#endregion

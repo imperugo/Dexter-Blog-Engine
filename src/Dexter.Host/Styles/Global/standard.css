@@ -8,7 +8,7 @@ html {
 }
 
 body {
-	background: url(../images/bg.png) no-repeat center top;
+	background: url(../../images//bg.png) no-repeat center top;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	min-height: 100%;
 }
@@ -218,7 +218,7 @@ nav {
 	-o-background-size: 100% 100%;
 	-webkit-background-size: 100% 100%;
 	-webkit-box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
-	background: #3399cc url(../images/old-browsers-bg/main-nav-bg.png) repeat-x bottom;
+	background: #3399cc url(../../images//old-browsers-bg/main-nav-bg.png) repeat-x bottom;
 	background: -moz-linear-gradient(top, #014a7d, #3399cc);
 	background: -moz-linear-gradient(top, #014a7d, #3399cc);
 	background-size: 100% 100%;
@@ -256,24 +256,24 @@ nav > ul > li > a {
 	transition: opacity 2s;
 }
 
-nav > ul > li.home, nav > ul > li.home > a { background-image: url(../images/icons/home_2states.png); }
+nav > ul > li.home, nav > ul > li.home > a { background-image: url(../../images//icons/home_2states.png); }
 
-nav > ul > li.write, nav > ul > li.write > a { background-image: url(../images/icons/write_2states.png); }
+nav > ul > li.write, nav > ul > li.write > a { background-image: url(../../images//icons/write_2states.png); }
 
-nav > ul > li.comments, nav > ul > li.comments > a { background-image: url(../images/icons/comments_2states.png); }
+nav > ul > li.comments, nav > ul > li.comments > a { background-image: url(../../images//icons/comments_2states.png); }
 
-nav > ul > li.medias, nav > ul > li.medias > a { background-image: url(../images/icons/medias_2states.png); }
+nav > ul > li.medias, nav > ul > li.medias > a { background-image: url(../../images//icons/medias_2states.png); }
 
-nav > ul > li.users, nav > ul > li.users > a { background-image: url(../images/icons/users_2states.png); }
+nav > ul > li.users, nav > ul > li.users > a { background-image: url(../../images//icons/users_2states.png); }
 
-nav > ul > li.stats, nav > ul > li.stats > a { background-image: url(../images/icons/stats_2states.png); }
+nav > ul > li.stats, nav > ul > li.stats > a { background-image: url(../../images//icons/stats_2states.png); }
 
-nav > ul > li.settings, nav > ul > li.settings > a { background-image: url(../images/icons/settings_2states.png); }
+nav > ul > li.settings, nav > ul > li.settings > a { background-image: url(../../images//icons/settings_2states.png); }
 
-nav > ul > li.backup, nav > ul > li.backup > a { background-image: url(../images/icons/backup_2states.png); }
+nav > ul > li.backup, nav > ul > li.backup > a { background-image: url(../../images//icons/backup_2states.png); }
 
 nav > ul > li.current {
-	background: url(../images/tab-bg.png) no-repeat;
+	background: url(../../images//tab-bg.png) no-repeat;
 	margin: 0 -8px -13px -8px;
 	padding: 0 8px 13px 8px;
 }
@@ -312,7 +312,7 @@ nav > ul > li > ul > li,
 	-webkit-border-radius: 0.417em;
 	-webkit-box-shadow: 0 0 7px #000000;
 	-webkit-transition: all 1s;
-	background: #465a6e url(../images/old-browsers-bg/subnav-bt-border-bg.png) repeat-x;
+	background: #465a6e url(../../images//old-browsers-bg/subnav-bt-border-bg.png) repeat-x;
 	background: -moz-linear-gradient(top, #9faab6, #465a6e);
 	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#9faab6), to(#465a6e));
 	background-size: 100% 100%;
@@ -339,7 +339,7 @@ nav > ul > li > ul > li.current {
 	-webkit-border-bottom-left-radius: 0;
 	-webkit-border-bottom-right-radius: 0;
 	-webkit-box-shadow: none;
-	background: #dadada url(../images/old-browsers-bg/subnav-current-bt-border-bg.png) repeat-x;
+	background: #dadada url(../../images//old-browsers-bg/subnav-current-bt-border-bg.png) repeat-x;
 	background: -moz-linear-gradient(
 	                                top,
 	                                white,
@@ -389,7 +389,7 @@ nav > ul > li > ul > li .menu {
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
 	-webkit-background-size: 100% 100%;
-	background: #1d2a36 url(../images/old-browsers-bg/subnav-bt-bg.png) repeat-x !important;
+	background: #1d2a36 url(../../images//old-browsers-bg/subnav-bt-bg.png) repeat-x !important;
 	background: -moz-linear-gradient(top, #858d95, #46505b 50%, #38424d 50%, #1c2733) !important;
 	background: -moz-linear-gradient(top, #858d95, #46505b 50%, #38424d 50%, #1c2733) !important;
 	background-size: 100% 100%;
@@ -418,7 +418,7 @@ nav > ul > li > ul > li:hover,
 }
 
 nav > ul > li > ul > li.current:hover {
-	background: #dadada url(../images/old-browsers-bg/subnav-current-bt-border-bg.png) repeat-x;
+	background: #dadada url(../../images//old-browsers-bg/subnav-current-bt-border-bg.png) repeat-x;
 	background: -moz-linear-gradient(
 	                                top,
 	                                white,
@@ -445,7 +445,7 @@ nav > ul > li > ul > li .menu:hover {
 	-webkit-background-size: 100% 100%;
 	-webkit-box-shadow: 0 0 7px #cbe9f7;
 	-webkit-transition: all 100ms;
-	background: #305d79 url(../images/old-browsers-bg/subnav-bt-hover-bg.png) repeat-x !important;
+	background: #305d79 url(../../images//old-browsers-bg/subnav-bt-hover-bg.png) repeat-x !important;
 	background: -moz-linear-gradient(left, rgba(109, 192, 229, 0), rgba(109, 192, 229, 0.2) 25%, rgba(109, 192, 229, 0.4) 50%, rgba(109, 192, 229, 0.3) 75%, rgba(109, 192, 229, 0)),
 	            -moz-linear-gradient(top, #afc2cf, #537288 50%, #45667c 50%, #2c526b) !important;
 	background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(rgba(109, 192, 229, 0)), to(rgba(109, 192, 229, 0)), color-stop(.25, rgba(109, 192, 229, 0.3)), color-stop(.5, rgba(109, 192, 229, 0.4)), color-stop(.75, rgba(109, 192, 229, 0.3))),
@@ -467,7 +467,7 @@ nav > ul > li > ul > li.current > a:hover {
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
 	-webkit-background-size: 100% 100%;
-	background: black url(../images/old-browsers-bg/subnav-bg.png) repeat-x;
+	background: black url(../../images//old-browsers-bg/subnav-bg.png) repeat-x;
 	background: -moz-linear-gradient(top, #303135, #3c3d42 6%, #404447 18%, #34383b 50%, #25292c 50%, #1a1b1f 63%, black);
 	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#303135), to(black), color-stop(.06, #3c3d42), color-stop(.18, #404447), color-stop(.5, #34383b), color-stop(.5, #25292c), color-stop(.63, #1a1b1f));
 	background-size: 100% 100%;
@@ -490,7 +490,7 @@ nav > ul > li > ul > li.current > a:hover {
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
 	-webkit-background-size: 100% 100%;
-	background: white url(../images/old-browsers-bg/status-bar-bg.png) repeat-x;
+	background: white url(../../images//old-browsers-bg/status-bar-bg.png) repeat-x;
 	background: -moz-linear-gradient(top, white, #dadada 6%, white 92%, #cfcfcf);
 	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(#cfcfcf), color-stop(.05, #dadada), color-stop(.92, white));
 	background-size: 100% 100%;
@@ -524,7 +524,7 @@ nav > ul > li > ul > li.current > a:hover {
 	-webkit-background-size: 100% 100%;
 	-webkit-border-radius: 0.417em;
 	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-	background: #0c5fa5 url(../images/old-browsers-bg/breadcrumb-bg.png) repeat-x;
+	background: #0c5fa5 url(../../images//old-browsers-bg/breadcrumb-bg.png) repeat-x;
 	background: -moz-linear-gradient(
 	                                top,
 	                                white,
@@ -550,7 +550,7 @@ nav > ul > li > ul > li.current > a:hover {
 }
 
 #breadcrumb li {
-	background: url(../images/breadcrumb-sep.png) no-repeat right center;
+	background: url(../../images//breadcrumb-sep.png) no-repeat right center;
 	color: white;
 	float: left;
 	height: 1.75em;
@@ -594,7 +594,7 @@ nav > ul > li > ul > li.current > a:hover {
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
 	-webkit-background-size: 100% 100%;
-	background: url(../images/old-browsers-bg/status-bar-shadow.png) repeat-x;
+	background: url(../../images//old-browsers-bg/status-bar-shadow.png) repeat-x;
 	background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1) 30%, rgba(0, 0, 0, 0));
 	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0)), color-stop(.3, rgba(0, 0, 0, 0.1)));
 	background-size: 100% 100%;
@@ -693,7 +693,7 @@ nav > ul > li > ul > li.current > a:hover {
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
 	-webkit-background-size: 100% 100%;
-	background: url(../images/old-browsers-bg/search-more-shadow.png) no-repeat center bottom;
+	background: url(../../images//old-browsers-bg/search-more-shadow.png) no-repeat center bottom;
 	background: -moz-linear-gradient(
 	                                top,
 	                                rgba(255, 255, 255, 1),
@@ -735,45 +735,45 @@ ul.small-pagination + .search-more,
 ul.small-pagination + .search-less { margin-top: -0.667em; }
 
 .search-more:before {
-	content: url(../images/search-more-arrow.png);
+	content: url(../../images//search-more-arrow.png);
 	padding-right: 0.556em;
 }
 
-.search-more:hover:before { content: url(../images/search-more-arrow-hover.png); }
+.search-more:hover:before { content: url(../../images//search-more-arrow-hover.png); }
 
 .search-more:after {
-	content: url(../images/search-more-arrow.png);
+	content: url(../../images//search-more-arrow.png);
 	padding-left: 0.556em;
 }
 
-.search-more:hover:after { content: url(../images/search-more-arrow-hover.png); }
+.search-more:hover:after { content: url(../../images//search-more-arrow-hover.png); }
 
 .search-less:before {
-	content: url(../images/search-less-arrow.png);
+	content: url(../../images//search-less-arrow.png);
 	padding-right: 0.556em;
 }
 
-.search-less:hover:before { content: url(../images/search-less-arrow-hover.png); }
+.search-less:hover:before { content: url(../../images//search-less-arrow-hover.png); }
 
 .search-less:after {
-	content: url(../images/search-less-arrow.png);
+	content: url(../../images//search-less-arrow.png);
 	padding-left: 0.556em;
 }
 
-.search-less:hover:after { content: url(../images/search-less-arrow-hover.png); }
+.search-less:hover:after { content: url(../../images//search-less-arrow-hover.png); }
 
 .result-block hr {
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
 	-webkit-background-size: 100% 100%;
-	background: #ffffff url(../images/old-browsers-bg/search-sep-bg.png) repeat-y left;
+	background: #ffffff url(../../images//old-browsers-bg/search-sep-bg.png) repeat-y left;
 	background: -moz-linear-gradient(
 	                                left,
 	                                #ffffff,
 	                                #cccccc 50%,
 	                                #ffffff
 );
-	background: #ffffff url(../images/old-browsers-bg/search-sep-bg.png) repeat-y left;
+	background: #ffffff url(../../images//old-browsers-bg/search-sep-bg.png) repeat-y left;
 	background-size: 100% 100%;
 	border: 0;
 	clear: both;
@@ -816,7 +816,7 @@ ul.small-pagination + .search-less { margin-top: -0.667em; }
 .result-block ul + .result-info { margin-top: -0.5em; }
 
 .result-block .result-info.loading {
-	background: #333333 url(../images/table-loader.gif) no-repeat 0.75em center;
+	background: #333333 url(../../images//table-loader.gif) no-repeat 0.75em center;
 	padding-left: 2.667em;
 }
 
@@ -841,7 +841,7 @@ ul.small-pagination + .search-less { margin-top: -0.667em; }
 	-o-background-size: 100% 100%;
 	-webkit-background-size: 100% 100%;
 	-webkit-box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.35);
-	background: url(../images/old-browsers-bg/control-bar-bg.png) repeat-x;
+	background: url(../../images//old-browsers-bg/control-bar-bg.png) repeat-x;
 	background: -moz-linear-gradient(
 	                                top,
 	                                rgba(0, 0, 0, 0.2),
@@ -861,7 +861,7 @@ ul.small-pagination + .search-less { margin-top: -0.667em; }
 #cb-place-holder { display: none; }
 
 #control-bar.fixed {
-	background: url(../images/old-browsers-bg/black50.png);
+	background: url(../../images//old-browsers-bg/black50.png);
 	background: rgba(0, 0, 0, 0.5);
 	left: 0;
 	margin: 0;
@@ -934,14 +934,14 @@ article { margin-top: 3em; }
 	-webkit-background-size: 100% 100%;
 	-webkit-border-radius: 0.286em;
 	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-	background: #40535c url(../images/old-browsers-bg/title-link-bg.png) repeat-x top;
+	background: #40535c url(../../images//old-browsers-bg/title-link-bg.png) repeat-x top;
 	background: -moz-linear-gradient(
 	                                top,
 	                                white,
 	                                #9eb1ba 4%,
 	                                #40535c
 );
-	background: #40535c url(../images/old-browsers-bg/title-link-bg.png) repeat-x top;
+	background: #40535c url(../../images//old-browsers-bg/title-link-bg.png) repeat-x top;
 	background-size: 100% 100%;
 	border: 1px solid;
 	border-color: #7e9098 #61727b #2b373d;
@@ -969,7 +969,7 @@ article { margin-top: 3em; }
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
 	-webkit-background-size: 100% 100%;
-	background: #057fdb url(../images/old-browsers-bg/title-link-hover-bg.png) repeat-x top;
+	background: #057fdb url(../../images//old-browsers-bg/title-link-hover-bg.png) repeat-x top;
 	background: -moz-linear-gradient(
 	                                top,
 	                                white,
@@ -999,8 +999,8 @@ article { margin-top: 3em; }
 .block-content .red .h1 > a:hover,
 .block-content h1.red > a:hover,
 .block-content .h1.red > a:hover {
-	background: #9d0404 url(../images/old-browsers-bg/button-element-red-hover-bg.png) repeat-x top;
-	background: #9d0404 url(../images/old-browsers-bg/button-element-red-hover-bg.png) repeat-x top;
+	background: #9d0404 url(../../images//old-browsers-bg/button-element-red-hover-bg.png) repeat-x top;
+	background: #9d0404 url(../../images//old-browsers-bg/button-element-red-hover-bg.png) repeat-x top;
 	background: -moz-linear-gradient(
 	                                top,
 	                                white,
@@ -1198,7 +1198,7 @@ article { margin-top: 3em; }
 	-webkit-background-size: 100% 100%;
 	-webkit-border-bottom-left-radius: 0.5em;
 	-webkit-border-top-left-radius: 0.5em;
-	background: #9a9ea3 url(../images/old-browsers-bg/action-tab-bg.png) repeat-x top;
+	background: #9a9ea3 url(../../images//old-browsers-bg/action-tab-bg.png) repeat-x top;
 	background: -moz-linear-gradient(
 	                                top,
 	                                #82858b,
@@ -1236,8 +1236,8 @@ article { margin-top: 3em; }
 }
 
 .action-tabs li:hover a {
-	background: #c7c9cd url(../images/old-browsers-bg/action-tab-hover-bg.png) repeat-x top;
-	background: #c7c9cd url(../images/old-browsers-bg/action-tab-hover-bg.png) repeat-x top;
+	background: #c7c9cd url(../../images//old-browsers-bg/action-tab-hover-bg.png) repeat-x top;
+	background: #c7c9cd url(../../images//old-browsers-bg/action-tab-hover-bg.png) repeat-x top;
 	background: -moz-linear-gradient(
 	                                top,
 	                                #afb0b4,
@@ -1295,7 +1295,7 @@ section .message { margin-bottom: 1.667em; }
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
 	-webkit-background-size: 100% 100%;
-	background: #c4c4c4 url(../images/old-browsers-bg/content-columns-sep-bg.png) repeat-y left;
+	background: #c4c4c4 url(../../images//old-browsers-bg/content-columns-sep-bg.png) repeat-y left;
 	background: -moz-linear-gradient(
 	                                left,
 	                                #e6e6e6,
@@ -1420,13 +1420,13 @@ section .message { margin-bottom: 1.667em; }
 .menu-opener .menu-arrow {
 	-moz-background-size: 2px 100%;
 	-webkit-background-size: 2px 100%;
-	background: url(../images/menu-border.png) no-repeat left center;
+	background: url(../../images//menu-border.png) no-repeat left center;
 	background-size: 2px 100%;
 	width: 1.75em;
 }
 
 .menu-opener .menu {
-	background: url(../images/trans.png);
+	background: url(../../images//trans.png);
 	left: 0;
 }
 
@@ -1445,7 +1445,7 @@ section .message { margin-bottom: 1.667em; }
 	-webkit-border-radius: 0.25em;
 	-webkit-border-top-left-radius: 0;
 	-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
-	background: #cccccc url(../images/menu-bg.png) repeat-y;
+	background: #cccccc url(../../images//menu-bg.png) repeat-y;
 	border: 1px solid white;
 	border-radius: 0 0.25em 0.25em 0.25em;
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
@@ -1485,7 +1485,7 @@ section .message { margin-bottom: 1.667em; }
 	-webkit-background-clip: padding-box;
 	-webkit-border-radius: 0;
 	-webkit-box-shadow: none;
-	background: url(../images/menu-arrow.png) no-repeat;
+	background: url(../../images//menu-arrow.png) no-repeat;
 	border: none;
 	border-radius: 0;
 	box-shadow: none;
@@ -1501,7 +1501,7 @@ section .message { margin-bottom: 1.667em; }
 .menu ul li:hover > ul {
 	-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 	-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
-	background: #cccccc url(../images/menu-bg.png) repeat-y;
+	background: #cccccc url(../../images//menu-bg.png) repeat-y;
 	border: 1px solid white;
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 	height: auto;
@@ -1581,69 +1581,69 @@ section .message { margin-bottom: 1.667em; }
 	color: white;
 }
 
-.menu .icon_address { background-image: url(../images/icons/fugue/address-book.png); }
+.menu .icon_address { background-image: url(../../images//icons/fugue/address-book.png); }
 
-.menu .icon_alarm { background-image: url(../images/icons/fugue/alarm-clock-blue.png); }
+.menu .icon_alarm { background-image: url(../../images//icons/fugue/alarm-clock-blue.png); }
 
-.menu .icon_blog { background-image: url(../images/icons/fugue/application-blog.png); }
+.menu .icon_blog { background-image: url(../../images//icons/fugue/application-blog.png); }
 
-.menu .icon_terminal { background-image: url(../images/icons/fugue/application-terminal.png); }
+.menu .icon_terminal { background-image: url(../../images//icons/fugue/application-terminal.png); }
 
-.menu .icon_battery { background-image: url(../images/icons/fugue/battery-full.png); }
+.menu .icon_battery { background-image: url(../../images//icons/fugue/battery-full.png); }
 
-.menu .icon_building { background-image: url(../images/icons/fugue/building.png); }
+.menu .icon_building { background-image: url(../../images//icons/fugue/building.png); }
 
-.menu .icon_calendar { background-image: url(../images/icons/fugue/calendar-day.png); }
+.menu .icon_calendar { background-image: url(../../images//icons/fugue/calendar-day.png); }
 
-.menu .icon_cards { background-image: url(../images/icons/fugue/cards-address.png); }
+.menu .icon_cards { background-image: url(../../images//icons/fugue/cards-address.png); }
 
-.menu .icon_chart { background-image: url(../images/icons/fugue/chart.png); }
+.menu .icon_chart { background-image: url(../../images//icons/fugue/chart.png); }
 
-.menu .icon_computer { background-image: url(../images/icons/fugue/computer.png); }
+.menu .icon_computer { background-image: url(../../images//icons/fugue/computer.png); }
 
-.menu .icon_database { background-image: url(../images/icons/fugue/database.png); }
+.menu .icon_database { background-image: url(../../images//icons/fugue/database.png); }
 
-.menu .icon_delete { background-image: url(../images/icons/fugue/cross-circle.png); }
+.menu .icon_delete { background-image: url(../../images//icons/fugue/cross-circle.png); }
 
-.menu .icon_doc_excel { background-image: url(../images/icons/fugue/document-excel.png); }
+.menu .icon_doc_excel { background-image: url(../../images//icons/fugue/document-excel.png); }
 
-.menu .icon_doc_pdf { background-image: url(../images/icons/fugue/document-pdf.png); }
+.menu .icon_doc_pdf { background-image: url(../../images//icons/fugue/document-pdf.png); }
 
-.menu .icon_doc_csv { background-image: url(../images/icons/fugue/document-excel-csv.png); }
+.menu .icon_doc_csv { background-image: url(../../images//icons/fugue/document-excel-csv.png); }
 
-.menu .icon_doc_image { background-image: url(../images/icons/fugue/document-image.png); }
+.menu .icon_doc_image { background-image: url(../../images//icons/fugue/document-image.png); }
 
-.menu .icon_doc_web { background-image: url(../images/icons/fugue/document-globe.png); }
+.menu .icon_doc_web { background-image: url(../../images//icons/fugue/document-globe.png); }
 
-.menu .icon_down { background-image: url(../images/icons/fugue/arrow-270.png); }
+.menu .icon_down { background-image: url(../../images//icons/fugue/arrow-270.png); }
 
-.menu .icon_edit { background-image: url(../images/icons/fugue/pencil.png); }
+.menu .icon_edit { background-image: url(../../images//icons/fugue/pencil.png); }
 
-.menu .icon_film { background-image: url(../images/icons/fugue/film.png); }
+.menu .icon_film { background-image: url(../../images//icons/fugue/film.png); }
 
-.menu .icon_security { background-image: url(../images/icons/fugue/hard-hat.png); }
+.menu .icon_security { background-image: url(../../images//icons/fugue/hard-hat.png); }
 
-.menu .icon_images { background-image: url(../images/icons/fugue/images.png); }
+.menu .icon_images { background-image: url(../../images//icons/fugue/images.png); }
 
-.menu .icon_mail { background-image: url(../images/icons/fugue/mail.png); }
+.menu .icon_mail { background-image: url(../../images//icons/fugue/mail.png); }
 
-.menu .icon_monitor { background-image: url(../images/icons/fugue/monitor.png); }
+.menu .icon_monitor { background-image: url(../../images//icons/fugue/monitor.png); }
 
-.menu .icon_newspaper { background-image: url(../images/icons/fugue/newspaper.png); }
+.menu .icon_newspaper { background-image: url(../../images//icons/fugue/newspaper.png); }
 
-.menu .icon_search { background-image: url(../images/icons/fugue/magnifier.png); }
+.menu .icon_search { background-image: url(../../images//icons/fugue/magnifier.png); }
 
-.menu .icon_network { background-image: url(../images/icons/fugue/globe-network.png); }
+.menu .icon_network { background-image: url(../../images//icons/fugue/globe-network.png); }
 
-.menu .icon_server { background-image: url(../images/icons/fugue/server.png); }
+.menu .icon_server { background-image: url(../../images//icons/fugue/server.png); }
 
-.menu .icon_export { background-image: url(../images/icons/fugue/application-export.png); }
+.menu .icon_export { background-image: url(../../images//icons/fugue/application-export.png); }
 
-.menu .icon_refresh { background-image: url(../images/icons/fugue/arrow-circle.png); }
+.menu .icon_refresh { background-image: url(../../images//icons/fugue/arrow-circle.png); }
 
-.menu .icon_reset { background-image: url(../images/icons/fugue/counter-reset.png); }
+.menu .icon_reset { background-image: url(../../images//icons/fugue/counter-reset.png); }
 
-.menu .icon_up { background-image: url(../images/icons/fugue/arrow-090.png); }
+.menu .icon_up { background-image: url(../../images//icons/fugue/arrow-090.png); }
 
 nav > ul > li > ul > li.with-menu,
 nav > ul > li > ul > li.menu-opener { padding-right: 2.3em; }
@@ -1708,7 +1708,7 @@ nav > ul > li > ul > li .menu > ul {
 nav > ul > li > ul > li .menu > ul,
 nav > ul > li > ul > li .menu ul li:hover > ul {
 	background-color: #1c1e20;
-	background-image: url(../images/main-menu-bg.png);
+	background-image: url(../../images//main-menu-bg.png);
 	border-color: #b3b3b3;
 }
 
@@ -1742,14 +1742,14 @@ section .h1 .menu {
 
 section h1 .menu:hover,
 section .h1 .menu:hover {
-	background: url(../images/menu-border.png) no-repeat left center,
+	background: url(../../images//menu-border.png) no-repeat left center,
 	            -moz-linear-gradient(
 	                                top,
 	                                white,
 	                                #2bcef3 5%,
 	                                #057fdb
 );
-	background: url(../images/menu-border.png) no-repeat left center,
+	background: url(../../images//menu-border.png) no-repeat left center,
 	            -webkit-gradient(
 	                            linear,
 	                            left top, left bottom,
@@ -1764,7 +1764,7 @@ section h1 .menu ul li:hover > ul,
 section .h1 .menu > ul,
 section .h1 .menu ul li:hover > ul {
 	background-color: #006699;
-	background-image: url(../images/h1-menu-bg.png);
+	background-image: url(../../images//h1-menu-bg.png);
 	border-color: #99ccff;
 }
 
@@ -1797,17 +1797,17 @@ section .h1 .menu ul li.sep {
 }
 
 section h1 .menu ul li ul,
-section .h1 .menu ul li ul { background-image: url(../images/menu-arrow-white.png); }
+section .h1 .menu ul li ul { background-image: url(../../images//menu-arrow-white.png); }
 
 .button.with-menu .menu:hover,
 .button.menu-opener:hover .menu-arrow {
-	background: url(../images/menu-border.png) no-repeat left center,
+	background: url(../../images//menu-border.png) no-repeat left center,
 	            -moz-linear-gradient(
 	                                top,
 	                                #dff3fc,
 	                                #98d2f3
 );
-	background: url(../images/menu-border.png) no-repeat left center,
+	background: url(../../images//menu-border.png) no-repeat left center,
 	            -webkit-gradient(
 	                            linear,
 	                            left top, left bottom,
@@ -1853,7 +1853,7 @@ section .h1 .menu ul li ul { background-image: url(../images/menu-arrow-white.pn
 	-webkit-background-clip: padding-box;
 	-webkit-border-radius: 0.417em;
 	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-	background: url(../images/old-browsers-bg/black80.png);
+	background: url(../../images//old-browsers-bg/black80.png);
 	background: rgba(0, 0, 0, 0.8);
 	border-radius: 0.417em;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
@@ -1921,7 +1921,7 @@ footer .float-right .button:first-child {
 /****************** Modal window ****************/
 
 #modal {
-	background: url(../images/old-browsers-bg/black50.png);
+	background: url(../../images//old-browsers-bg/black50.png);
 	background: rgba(0, 0, 0, 0.5);
 	height: 100%;
 	left: 0;
@@ -1964,7 +1964,7 @@ div.modal-window {
 }
 
 .modal-loading {
-	background: url(../images/arbo-loader.gif) no-repeat center 3em;
+	background: url(../../images//arbo-loader.gif) no-repeat center 3em;
 	color: #999999;
 	height: 4em;
 	padding-top: 4.5em;
@@ -1988,7 +1988,7 @@ div.modal-window {
 .modal-resize-b,
 .modal-resize-bl,
 .modal-resize-l {
-	background: url(../images/trans.png);
+	background: url(../../images//trans.png);
 	position: absolute;
 	z-index: 89;
 }

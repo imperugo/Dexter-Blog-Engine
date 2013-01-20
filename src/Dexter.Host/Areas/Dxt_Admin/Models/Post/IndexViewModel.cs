@@ -20,7 +20,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Models.Post
 	using Dexter.Entities.Result;
 	using Dexter.Web.Core.Models;
 
-	public class IndexViewModel : DexterModelBase
+	public class IndexViewModel : DexterBackofficeModelBase
 	{
 		#region Public Properties
 

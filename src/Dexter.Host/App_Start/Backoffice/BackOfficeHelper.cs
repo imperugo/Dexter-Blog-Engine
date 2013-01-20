@@ -3,10 +3,10 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 // File:			BackOfficeHelper.cs
 // Website:		http://dexterblogengine.com/
-// Authors:		http://dexterblogengine.com/About.ashx
+// Authors:		http://dexterblogengine.com/aboutus
 // Created:		2012/12/31
-// Last edit:	2012/12/31
-// License:		GNU Library General Public License (LGPL)
+// Last edit:	2013/01/20
+// License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
@@ -25,6 +25,7 @@ namespace Dexter.Web.Mvc.Helpers
 
 	using Dexter.Dependency;
 	using Dexter.Entities;
+	using Dexter.Entities.Result;
 	using Dexter.Navigation.Contracts;
 
 	public static class BackOfficeHelper
@@ -66,19 +67,79 @@ namespace Dexter.Web.Mvc.Helpers
 			return MvcHtmlString.Create(sb.ToString());
 		}
 
-		public static MvcHtmlString Render(this HtmlHelper helper, int pageSize, int pageIndex, long totalCounts, string ulClass, bool renderPreviousAndNext, string previousText, string nextText, string currentClass, string baseUrl)
+		public static MvcHtmlString PagedSummary<T>(this IPagedResult<T> result)
 		{
-			IUrlBuilder u = DexterContainer.Resolve<IUrlBuilder>();
+			long total = result.TotalCount;
+			int min = (result.PageIndex - 1) * result.PageSize;
+
+			if (min == 0)
+			{
+				min = 1;
+			}
+
+			long max = ((result.PageIndex - 1) * result.PageSize) + result.PageSize;
+
+			if (result.TotalCount < max)
+			{
+				max = result.TotalCount;
+			}
+
+			return new MvcHtmlString(string.Format("Results {0} - {1} out of {2}", min, max, total));
+		}
+
+		public static MvcHtmlString Pager<T>(this HtmlHelper helper, IPagedResult<T> result)
+		{
+			if (result.TotalPages == 1)
+			{
+				return new MvcHtmlString(string.Empty);
+			}
 
 			StringBuilder sb = new StringBuilder();
+			sb.Append("<ul class=\"controls-buttons\">");
 
-			if (ulClass.IsNullOrEmpty())
+			if (result.HasPreviousPage)
+			{
+				string previousImageUrl = helper.ViewContext.HttpContext.Server.MapPath("~/images/icons/fugue/navigation-180.png");
+				sb.Append("<li>");
+				sb.AppendFormat("<a href=\"{0}\" title=\"Previous\">", "#");
+				sb.AppendFormat("<img src=\"{0}\" width=\"16\" height=\"16\">", previousImageUrl);
+				sb.Append("Prev");
+				sb.Append("</a>");
+				sb.Append("</li>");
+			}
+
+			for (int i = 0; i < result.TotalPages; i++)
+			{
+				sb.AppendFormat("<li><a href=\"{0}\" title=\"Page {1}\"><b>{1}</b></a></li>", "#", i + 1);
+			}
+
+			if (result.HasNextPage)
+			{
+				string nextImageUrl = helper.ViewContext.HttpContext.Server.MapPath("~/images/icons/fugue/navigation.png");
+				sb.Append("<li>");
+				sb.AppendFormat("<a href=\"{0}\" title=\"Next\">", "#");
+				sb.AppendFormat("<img src=\"{0}\" width=\"16\" height=\"16\">", nextImageUrl);
+				sb.Append("Next");
+				sb.Append("</a>");
+				sb.Append("</li>");
+			}
+
+			sb.Append("<ul>");
+
+			return new MvcHtmlString(sb.ToString());
+		}
+
+		public static MvcHtmlString Render(this HtmlHelper helper, int pageSize, int pageIndex, long totalCounts, string unorderedListClass, bool renderPreviousAndNext, string previousText, string nextText, string currentClass, string baseUrl)
+		{
+			StringBuilder sb = new StringBuilder();
+
+			if (unorderedListClass.IsNullOrEmpty())
 			{
 				sb.Append("<ul>");
 			}
 			else
 			{
-				sb.AppendFormat("<ul class=\"{0}\">", ulClass);
+				sb.AppendFormat("<ul class=\"{0}\">", unorderedListClass);
 			}
 
 			if (pageIndex > 1 && renderPreviousAndNext)
@@ -86,7 +147,7 @@ namespace Dexter.Web.Mvc.Helpers
 				sb.AppendFormat("<li><a href=\"{0}\" title=\"Previous\">{1}</a></li>", "#", previousText);
 			}
 
-			for (int page = pageIndex; page < Math.Round((totalCounts / pageSize) + 0.5) && page < pageIndex + pageSize; page++)
+			for (int page = pageIndex; page < Math.Round(totalCounts / pageSize + 0.5) && page < pageIndex + pageSize; page++)
 			{
 				sb.AppendFormat(page == pageIndex
 					                ? "<li><a href=\"{0}\" title=\"Page {1}\"><b>{1}</b></a></li>"

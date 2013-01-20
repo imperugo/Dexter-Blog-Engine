@@ -5,7 +5,7 @@
 /****************** Basic list ******************/
 
 .bullet-list li {
-	background: url(../images/icons/fugue/control-000-small.png) no-repeat 0 0.167em;
+	background: url(../../images/icons/fugue/control-000-small.png) no-repeat 0 0.167em;
 	line-height: 1.25em;
 	margin-bottom: 0.75em;
 	padding-left: 1.5em;
@@ -118,11 +118,11 @@ ul.floating-tags .tag-time,
 ul.floating-tags .tag-tags,
 ul.floating-tags .tag-user { padding-left: 2em; }
 
-ul.tags .tag-time, ul.floating-tags .tag-time { background-image: url(../images/icons/fugue/clock.png); }
+ul.tags .tag-time, ul.floating-tags .tag-time { background-image: url(../../images/icons/fugue/clock.png); }
 
-ul.tags .tag-tags, ul.floating-tags .tag-tags { background-image: url(../images/icons/fugue/tags-label.png); }
+ul.tags .tag-tags, ul.floating-tags .tag-tags { background-image: url(../../images/icons/fugue/tags-label.png); }
 
-ul.tags .tag-user, ul.floating-tags .tag-user { background-image: url(../images/icons/fugue/user.png); }
+ul.tags .tag-user, ul.floating-tags .tag-user { background-image: url(../../images/icons/fugue/user.png); }
 
 /*************** Small pagination ***************/
 
@@ -196,13 +196,13 @@ ul + .small-pagination { margin-top: -0.667em; }
 	width: 1em;
 }
 
-.small-pagination li.prev a { background: url(../images/icons/fugue/navigation-180.png) no-repeat center center; }
+.small-pagination li.prev a { background: url(../../images/icons/fugue/navigation-180.png) no-repeat center center; }
 
-.small-pagination li.prev a:hover { background-image: url(../images/icons/fugue/navigation-180-white.png); }
+.small-pagination li.prev a:hover { background-image: url(../../images/icons/fugue/navigation-180-white.png); }
 
-.small-pagination li.next a { background: url(../images/icons/fugue/navigation.png) no-repeat center center; }
+.small-pagination li.next a { background: url(../../images/icons/fugue/navigation.png) no-repeat center center; }
 
-.small-pagination li.next a:hover { background-image: url(../images/icons/fugue/navigation-000-white.png); }
+.small-pagination li.next a:hover { background-image: url(../../images/icons/fugue/navigation-000-white.png); }
 			/* IE class */
 
 .ie7 .small-pagination li.prev a,
@@ -213,22 +213,22 @@ ul + .small-pagination { margin-top: -0.667em; }
 ul.arbo { margin-top: 0.5em; }
 
 ul.arbo li {
-	background: url(../images/arbo-points-v.gif) repeat-y 8px 0.667em;
+	background: url(../../images/arbo-points-v.gif) repeat-y 8px 0.667em;
 	line-height: 1.333em;
 	padding-bottom: 0.333em;
 	padding-left: 20px;
 }
 
-ul.arbo li:last-child { background: url(../images/arbo-points-v-end.gif) no-repeat 8px -7px; }
+ul.arbo li:last-child { background: url(../../images/arbo-points-v-end.gif) no-repeat 8px -7px; }
 		/* IE class */
 
 ul.arbo li.last-child,
-ul.arbo li.first-child.last-child { background: url(../images/arbo-points-v-end.gif) no-repeat 8px -7px; }
+ul.arbo li.first-child.last-child { background: url(../../images/arbo-points-v-end.gif) no-repeat 8px -7px; }
 
-ul.arbo > li:only-child { background: url(../images/arbo-points-h.gif) no-repeat 8px 0.75em; }
+ul.arbo > li:only-child { background: url(../../images/arbo-points-h.gif) no-repeat 8px 0.75em; }
 		/* IE class */
 
-ul.arbo > li.first-child.last-child { background: url(../images/arbo-points-h.gif) no-repeat 8px 0.75em; }
+ul.arbo > li.first-child.last-child { background: url(../../images/arbo-points-h.gif) no-repeat 8px 0.75em; }
 
 ul.arbo li > a,
 ul.arbo li > span {
@@ -275,7 +275,7 @@ ul.arbo li ul li:only-child { background-position: 8px -1px; }
 ul.arbo li ul li.first-child.last-child { background-position: 8px -1px; }
 
 ul.arbo li span.toggle {
-	background: url(../images/icons/toggle-small-sprite.png) no-repeat 0 center;
+	background: url(../../images/icons/toggle-small-sprite.png) no-repeat 0 center;
 	cursor: pointer;
 	float: left;
 	height: 1.333em;
@@ -291,13 +291,13 @@ ul.arbo li.closed span.toggle { background-position: -32px center; }
 ul.arbo li.closed span.toggle:hover { background-position: -48px center; }
 
 ul.arbo li .loading {
-	background: url(../images/arbo-loader.gif) no-repeat 10px center;
+	background: url(../../images/arbo-loader.gif) no-repeat 10px center;
 	color: #999999;
 	padding-left: 32px;
 }
 
 .dark-grey-gradient ul.arbo li .loading,
-ul.arbo.dark-grey-gradient li .loading { background-image: url(../images/arbo-loader-grey.gif); }
+ul.arbo.dark-grey-gradient li .loading { background-image: url(../../images/arbo-loader-grey.gif); }
 
 ul.arbo li .empty {
 	color: #999999;
@@ -336,63 +336,63 @@ ul.arbo li .folder-zipper {
 	padding-left: 20px;
 }
 
-ul.arbo li .document { background-image: url(../images/icons/fugue/document.png); }
+ul.arbo li .document { background-image: url(../../images/icons/fugue/document.png); }
 
-ul.arbo li .document-access { background-image: url(../images/icons/fugue/document-access.png); }
+ul.arbo li .document-access { background-image: url(../../images/icons/fugue/document-access.png); }
 
-ul.arbo li .document-binary { background-image: url(../images/icons/fugue/document-binary.png); }
+ul.arbo li .document-binary { background-image: url(../../images/icons/fugue/document-binary.png); }
 
-ul.arbo li .document-bookmark { background-image: url(../images/icons/fugue/document-bookmark.png); }
+ul.arbo li .document-bookmark { background-image: url(../../images/icons/fugue/document-bookmark.png); }
 
-ul.arbo li .document-code { background-image: url(../images/icons/fugue/document-code.png); }
+ul.arbo li .document-code { background-image: url(../../images/icons/fugue/document-code.png); }
 
-ul.arbo li .document-excel { background-image: url(../images/icons/fugue/document-excel.png); }
+ul.arbo li .document-excel { background-image: url(../../images/icons/fugue/document-excel.png); }
 
-ul.arbo li .document-film { background-image: url(../images/icons/fugue/document-film.png); }
+ul.arbo li .document-film { background-image: url(../../images/icons/fugue/document-film.png); }
 
-ul.arbo li .document-flash { background-image: url(../images/icons/fugue/document-flash-movie.png); }
+ul.arbo li .document-flash { background-image: url(../../images/icons/fugue/document-flash-movie.png); }
 
-ul.arbo li .document-illustrator { background-image: url(../images/icons/fugue/document-illustrator.png); }
+ul.arbo li .document-illustrator { background-image: url(../../images/icons/fugue/document-illustrator.png); }
 
-ul.arbo li .document-image { background-image: url(../images/icons/fugue/document-image.png); }
+ul.arbo li .document-image { background-image: url(../../images/icons/fugue/document-image.png); }
 
-ul.arbo li .document-music { background-image: url(../images/icons/fugue/document-music.png); }
+ul.arbo li .document-music { background-image: url(../../images/icons/fugue/document-music.png); }
 
-ul.arbo li .document-office { background-image: url(../images/icons/fugue/document-office.png); }
+ul.arbo li .document-office { background-image: url(../../images/icons/fugue/document-office.png); }
 
-ul.arbo li .document-pdf { background-image: url(../images/icons/fugue/document-pdf.png); }
+ul.arbo li .document-pdf { background-image: url(../../images/icons/fugue/document-pdf.png); }
 
-ul.arbo li .document-photoshop { background-image: url(../images/icons/fugue/document-photoshop.png); }
+ul.arbo li .document-photoshop { background-image: url(../../images/icons/fugue/document-photoshop.png); }
 
-ul.arbo li .document-powerpoint { background-image: url(../images/icons/fugue/document-powerpoint.png); }
+ul.arbo li .document-powerpoint { background-image: url(../../images/icons/fugue/document-powerpoint.png); }
 
-ul.arbo li .document-text { background-image: url(../images/icons/fugue/document-text.png); }
+ul.arbo li .document-text { background-image: url(../../images/icons/fugue/document-text.png); }
 
-ul.arbo li .document-web { background-image: url(../images/icons/fugue/document-globe.png); }
+ul.arbo li .document-web { background-image: url(../../images/icons/fugue/document-globe.png); }
 
-ul.arbo li .document-word { background-image: url(../images/icons/fugue/document-word.png); }
+ul.arbo li .document-word { background-image: url(../../images/icons/fugue/document-word.png); }
 
-ul.arbo li .document-zip { background-image: url(../images/icons/fugue/document-zipper.png); }
+ul.arbo li .document-zip { background-image: url(../../images/icons/fugue/document-zipper.png); }
 
-ul.arbo li .folder { background-image: url(../images/icons/fugue/folder-open.png); }
+ul.arbo li .folder { background-image: url(../../images/icons/fugue/folder-open.png); }
 
-ul.arbo li.closed .folder { background-image: url(../images/icons/fugue/folder.png); }
+ul.arbo li.closed .folder { background-image: url(../../images/icons/fugue/folder.png); }
 
-ul.arbo li .folder-bookmark { background-image: url(../images/icons/fugue/folder-bookmark.png); }
+ul.arbo li .folder-bookmark { background-image: url(../../images/icons/fugue/folder-bookmark.png); }
 
-ul.arbo li .folder-document { background-image: url(../images/icons/fugue/folder-open-document.png); }
+ul.arbo li .folder-document { background-image: url(../../images/icons/fugue/folder-open-document.png); }
 
-ul.arbo li .folder-music { background-image: url(../images/icons/fugue/folder-open-document-music.png); }
+ul.arbo li .folder-music { background-image: url(../../images/icons/fugue/folder-open-document-music.png); }
 
-ul.arbo li .folder-text { background-image: url(../images/icons/fugue/folder-open-document-text.png); }
+ul.arbo li .folder-text { background-image: url(../../images/icons/fugue/folder-open-document-text.png); }
 
-ul.arbo li .folder-film { background-image: url(../images/icons/fugue/folder-open-film.png); }
+ul.arbo li .folder-film { background-image: url(../../images/icons/fugue/folder-open-film.png); }
 
-ul.arbo li .folder-image { background-image: url(../images/icons/fugue/folder-open-image.png); }
+ul.arbo li .folder-image { background-image: url(../../images/icons/fugue/folder-open-image.png); }
 
-ul.arbo li .folder-table { background-image: url(../images/icons/fugue/folder-open-table.png); }
+ul.arbo li .folder-table { background-image: url(../../images/icons/fugue/folder-open-table.png); }
 
-ul.arbo li .folder-zipper { background-image: url(../images/icons/fugue/folder-zipper.png); }
+ul.arbo li .folder-zipper { background-image: url(../../images/icons/fugue/folder-zipper.png); }
 
 ul.arbo.with-title > li {
 	background: none;
@@ -427,20 +427,20 @@ ul.arbo.with-title > li > .title-search {
 	padding-left: 30px;
 }
 
-ul.arbo.with-title > li > .title-computer { background-image: url(../images/icons/web-app/24/Loading.png); }
+ul.arbo.with-title > li > .title-computer { background-image: url(../../images/icons/web-app/24/Loading.png); }
 
-ul.arbo.with-title > li > .title-picture { background-image: url(../images/icons/web-app/24/Picture.png); }
+ul.arbo.with-title > li > .title-picture { background-image: url(../../images/icons/web-app/24/Picture.png); }
 
-ul.arbo.with-title > li > .title-print { background-image: url(../images/icons/web-app/24/Print.png); }
+ul.arbo.with-title > li > .title-print { background-image: url(../../images/icons/web-app/24/Print.png); }
 
-ul.arbo.with-title > li > .title-user { background-image: url(../images/icons/web-app/24/Profile.png); }
+ul.arbo.with-title > li > .title-user { background-image: url(../../images/icons/web-app/24/Profile.png); }
 
-ul.arbo.with-title > li > .title-search { background-image: url(../images/icons/web-app/24/Search.png); }
+ul.arbo.with-title > li > .title-search { background-image: url(../../images/icons/web-app/24/Search.png); }
 
 /****************** Icons lists *****************/
 
 .picto-list li {
-	background: url(../images/icons/fugue/control-000-small.png) no-repeat 0 1px;
+	background: url(../../images/icons/fugue/control-000-small.png) no-repeat 0 1px;
 	line-height: 1.25em;
 	margin-bottom: 0.333em;
 	padding: 0.083em;
@@ -452,21 +452,21 @@ ul.arbo.with-title > li > .title-search { background-image: url(../images/icons/
 .picto-list li:last-child { margin-bottom: 0; }
 	
 	
-.picto-list.icon-info li, .picto-list li.icon-info { background-image: url(../images/icons/fugue/information-blue.png); }
+.picto-list.icon-info li, .picto-list li.icon-info { background-image: url(../../images/icons/fugue/information-blue.png); }
 
-.picto-list.icon-image li, .picto-list li.icon-image { background-image: url(../images/icons/fugue/image.png); }
+.picto-list.icon-image li, .picto-list li.icon-image { background-image: url(../../images/icons/fugue/image.png); }
 
-.picto-list.icon-user li, .picto-list li.icon-user { background-image: url(../images/icons/fugue/user.png); }
+.picto-list.icon-user li, .picto-list li.icon-user { background-image: url(../../images/icons/fugue/user.png); }
 
-.picto-list.icon-top li, .picto-list li.icon-top { background-image: url(../images/icons/fugue/arrow-curve-090.png); }
+.picto-list.icon-top li, .picto-list li.icon-top { background-image: url(../../images/icons/fugue/arrow-curve-090.png); }
 
-.red .picto-list.icon-top li, .red .picto-list li.icon-top { background-image: url(../images/icons/fugue/arrow-curve-090-red.png); }
+.red .picto-list.icon-top li, .red .picto-list li.icon-top { background-image: url(../../images/icons/fugue/arrow-curve-090-red.png); }
 
-.picto-list.icon-tag-small li, .picto-list li.icon-tag-small { background-image: url(../images/icons/fugue/tag-small.png); }
+.picto-list.icon-tag-small li, .picto-list li.icon-tag-small { background-image: url(../../images/icons/fugue/tag-small.png); }
 
-.picto-list.icon-doc-small li, .picto-list li.icon-doc-small { background-image: url(../images/icons/fugue/document-small.png); }
+.picto-list.icon-doc-small li, .picto-list li.icon-doc-small { background-image: url(../../images/icons/fugue/document-small.png); }
 
-.picto-list.icon-pin-small li, .picto-list li.icon-pin-small { background-image: url(../images/icons/fugue/pin-small.png); }
+.picto-list.icon-pin-small li, .picto-list li.icon-pin-small { background-image: url(../../images/icons/fugue/pin-small.png); }
 
 /****************** Simple list *****************/
 
@@ -509,7 +509,7 @@ ul.arbo.with-title > li > .title-search { background-image: url(../images/icons/
 .simple-list .with-icon li span,
 .simple-list li.with-icon a,
 .simple-list li.with-icon span {
-	background-image: url(../images/icons/fugue/control-000-small.png);
+	background-image: url(../../images/icons/fugue/control-000-small.png);
 	padding-left: 2.5em;
 }
 
@@ -583,7 +583,7 @@ ul.arbo.with-title > li > .title-search { background-image: url(../images/icons/
 .collapsible-list.with-icon span,
 .collapsible-list .with-icon a,
 .collapsible-list .with-icon span {
-	background-image: url(../images/icons/fugue/control-000-small.png);
+	background-image: url(../../images/icons/fugue/control-000-small.png);
 	padding-left: 2.25em;
 }
 
@@ -593,7 +593,7 @@ ul.arbo.with-title > li > .title-search { background-image: url(../images/icons/
 .collapsible-list > li.with-icon > span { padding-left: 2.5em; }
 
 .collapsible-list li .toggle {
-	background: url(../images/icons/toggle-sprite.png) no-repeat 0 center;
+	background: url(../../images/icons/toggle-sprite.png) no-repeat 0 center;
 	cursor: pointer;
 	float: left;
 	height: 2em;
@@ -648,37 +648,37 @@ ul.arbo.with-title > li > .title-search { background-image: url(../images/icons/
 .with-icon.icon-info a,
 .with-icon.icon-info span,
 .with-icon .icon-info a,
-.with-icon .icon-info span { background-image: url(../images/icons/fugue/information-blue.png) !important; }
+.with-icon .icon-info span { background-image: url(../../images/icons/fugue/information-blue.png) !important; }
 
 .with-icon.icon-group a,
 .with-icon.icon-group span,
 .with-icon .icon-group a,
-.with-icon .icon-group span { background-image: url(../images/icons/fugue/users.png) !important; }
+.with-icon .icon-group span { background-image: url(../../images/icons/fugue/users.png) !important; }
 
 .with-icon.icon-user a,
 .with-icon.icon-user span,
 .with-icon .icon-user a,
-.with-icon .icon-user span { background-image: url(../images/icons/fugue/user.png) !important; }
+.with-icon .icon-user span { background-image: url(../../images/icons/fugue/user.png) !important; }
 
 .with-icon.icon-file a,
 .with-icon.icon-file span,
 .with-icon .icon-file a,
-.with-icon .icon-file span { background-image: url(../images/icons/fugue/document.png) !important; }
+.with-icon .icon-file span { background-image: url(../../images/icons/fugue/document.png) !important; }
 
 .with-icon.icon-tags a,
 .with-icon.icon-tags span,
 .with-icon .icon-tags a,
-.with-icon .icon-tags span { background-image: url(../images/icons/fugue/tags-label.png) !important; }
+.with-icon .icon-tags span { background-image: url(../../images/icons/fugue/tags-label.png) !important; }
 
 .with-icon.icon-date a,
 .with-icon.icon-date span,
 .with-icon .icon-date a,
-.with-icon .icon-date span { background-image: url(../images/icons/fugue/calendar-day.png) !important; }
+.with-icon .icon-date span { background-image: url(../../images/icons/fugue/calendar-day.png) !important; }
 
 /*************** Definitions list ***************/
 
 dl.definition dt {
-	background: url(../images/icons/fugue/control-000-small.png) no-repeat;
+	background: url(../../images/icons/fugue/control-000-small.png) no-repeat;
 	font-weight: bold;
 	line-height: 1.25em;
 	margin-bottom: 0.167em;
@@ -716,7 +716,7 @@ dl.accordion dt {
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
 	-webkit-background-size: 100% 100%;
-	background: #e7e7e7 url(../images/old-browsers-bg/accordion-tab-bg.png) repeat-x top;
+	background: #e7e7e7 url(../../images/old-browsers-bg/accordion-tab-bg.png) repeat-x top;
 	background: -moz-linear-gradient(
 	                                top,
 	                                #f8f8f8,
@@ -767,7 +767,7 @@ dl.accordion dt .number {
 	-o-background-size: 100% 100%;
 	-webkit-background-size: 100% 100%;
 	-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
-	background: #0c5fa5 url(../images/old-browsers-bg/title-bg.png) repeat-x top;
+	background: #0c5fa5 url(../../images/old-browsers-bg/title-bg.png) repeat-x top;
 	background: -moz-linear-gradient(
 	                                top,
 	                                #72c6e4,

@@ -3,22 +3,20 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 // File:			PluginDataService.cs
 // Website:		http://dexterblogengine.com/
-// Authors:		http://dexterblogengine.com/About.ashx
+// Authors:		http://dexterblogengine.com/aboutus
 // Created:		2013/01/07
-// Last edit:	2013/01/07
-// License:		GNU Library General Public License (LGPL)
+// Last edit:	2013/01/20
+// License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Data.Raven.Services
 {
 	using System;
 	using System.Linq;
-
 
 	using Common.Logging;
 
@@ -43,6 +41,44 @@ namespace Dexter.Data.Raven.Services
 		#endregion
 
 		#region Public Methods and Operators
+
+		public void DisablePlugin(PluginDto item)
+		{
+			if (item == null)
+			{
+				throw new ArgumentNullException("item", "The package cannot be null");
+			}
+
+			Plugin plugin = this.Session.Load<Plugin>(item.Id);
+
+			if (plugin == null)
+			{
+				throw new DexterException("Unable to find the specified package");
+			}
+
+			plugin.Enabled = false;
+
+			this.Session.Store(plugin);
+		}
+
+		public void EnablePlugin(PluginDto item)
+		{
+			if (item == null)
+			{
+				throw new ArgumentNullException("item", "The package cannot be null");
+			}
+
+			Plugin plugin = this.Session.Load<Plugin>(item.Id);
+
+			if (plugin == null)
+			{
+				throw new DexterException("Unable to find the specified package");
+			}
+
+			plugin.Enabled = true;
+
+			this.Session.Store(plugin);
+		}
 
 		public IPagedResult<PluginDto> GetInstalledPlugin(int pageIndex, int pageSize)
 		{
@@ -72,44 +108,6 @@ namespace Dexter.Data.Raven.Services
 		public void UpdatePlugin(PluginDto item)
 		{
 			throw new NotImplementedException();
-		}
-
-		public void DisablePlugin(PluginDto item)
-		{
-			if (item == null)
-			{
-				throw new ArgumentNullException("item", "The package cannot be null");
-			}
-
-			var plugin = this.Session.Load<Plugin>(item.Id);
-
-			if (plugin == null)
-			{
-				throw new DexterException("Unable to find the specified package");
-			}
-
-			plugin.Enabled = false;
-
-			this.Session.Store(plugin);
-		}
-
-		public void EnablePlugin(PluginDto item)
-		{
-			if (item == null)
-			{
-				throw new ArgumentNullException("item", "The package cannot be null");
-			}
-
-			var plugin = this.Session.Load<Plugin>(item.Id);
-
-			if (plugin == null)
-			{
-				throw new DexterException("Unable to find the specified package");
-			}
-
-			plugin.Enabled = true;
-
-			this.Session.Store(plugin);
 		}
 
 		#endregion

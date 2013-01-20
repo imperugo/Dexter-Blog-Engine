@@ -116,14 +116,14 @@
 .ie7 .gallery-preview .next:hover img { margin-top: 40px; }
 
 .gallery-preview .prev {
-	background: url(../images/gallery-bt-prev.png) no-repeat 100px 0;
+	background: url(../../images/gallery-bt-prev.png) no-repeat 100px 0;
 	left: 0;
 }
 
 .gallery-preview .prev:hover { background-position: 0 0; }
 
 .gallery-preview .next {
-	background: url(../images/gallery-bt-next.png) no-repeat 100px 0;
+	background: url(../../images/gallery-bt-next.png) no-repeat 100px 0;
 	right: 0;
 }
 

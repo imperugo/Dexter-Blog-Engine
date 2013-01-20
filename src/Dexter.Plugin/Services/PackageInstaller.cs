@@ -3,15 +3,14 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 // File:			PackageInstaller.cs
 // Website:		http://dexterblogengine.com/
-// Authors:		http://dexterblogengine.com/About.ashx
+// Authors:		http://dexterblogengine.com/aboutus
 // Created:		2013/01/06
-// Last edit:	2013/01/07
-// License:		GNU Library General Public License (LGPL)
+// Last edit:	2013/01/20
+// License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.PackageInstaller.Services
@@ -86,6 +85,11 @@ namespace Dexter.PackageInstaller.Services
 		#endregion
 
 		#region Public Methods and Operators
+
+		public PackageDto Get(string packageId, Version version)
+		{
+			throw new NotImplementedException();
+		}
 
 		public PackageDto Install(string packageId, Version version)
 		{
@@ -209,11 +213,6 @@ namespace Dexter.PackageInstaller.Services
 			return !package.IsLatestVersion;
 		}
 
-		public PackageDto Get(string packageId, Version version)
-		{
-			throw new NotImplementedException();
-		}
-
 		#endregion
 
 		#region Methods
@@ -231,30 +230,6 @@ namespace Dexter.PackageInstaller.Services
 			}
 		}
 
-		private IPackage FindPackage(string packageId, Version version)
-		{
-			if (packageId == null)
-			{
-				throw new ArgumentNullException("packageId", "The package Id cannot be null");
-			}
-
-			if (packageId == string.Empty)
-			{
-				throw new ArgumentException("The package Id must contain a valid value.", "packageId");
-			}
-
-			IPackage package = packageId.IsTheme()
-								   ? this.themePackageManager.SourceRepository.FindPackage(packageId, new SemanticVersion(version))
-								   : this.pluginPackageManager.SourceRepository.FindPackage(packageId, new SemanticVersion(version));
-
-			if (package == null)
-			{
-				throw new ArgumentException(string.Format("The specified package could not be found, id:{0} version:{1}", packageId, version));
-			}
-
-			return package;
-		}
-
 		private IPackage FindInstalledPackage(string packageId, Version version)
 		{
 			if (packageId == null)
@@ -270,6 +245,30 @@ namespace Dexter.PackageInstaller.Services
 			IPackage package = packageId.IsTheme()
 				                   ? this.themePackageManager.LocalRepository.FindPackage(packageId, new SemanticVersion(version))
 				                   : this.pluginPackageManager.LocalRepository.FindPackage(packageId, new SemanticVersion(version));
+
+			if (package == null)
+			{
+				throw new ArgumentException(string.Format("The specified package could not be found, id:{0} version:{1}", packageId, version));
+			}
+
+			return package;
+		}
+
+		private IPackage FindPackage(string packageId, Version version)
+		{
+			if (packageId == null)
+			{
+				throw new ArgumentNullException("packageId", "The package Id cannot be null");
+			}
+
+			if (packageId == string.Empty)
+			{
+				throw new ArgumentException("The package Id must contain a valid value.", "packageId");
+			}
+
+			IPackage package = packageId.IsTheme()
+				                   ? this.themePackageManager.SourceRepository.FindPackage(packageId, new SemanticVersion(version))
+				                   : this.pluginPackageManager.SourceRepository.FindPackage(packageId, new SemanticVersion(version));
 
 			if (package == null)
 			{

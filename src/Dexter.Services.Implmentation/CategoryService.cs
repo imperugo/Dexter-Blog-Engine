@@ -3,15 +3,14 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 // File:			CategoryService.cs
 // Website:		http://dexterblogengine.com/
-// Authors:		http://dexterblogengine.com/About.ashx
+// Authors:		http://dexterblogengine.com/aboutus
 // Created:		2012/12/26
-// Last edit:	2012/12/26
-// License:		GNU Library General Public License (LGPL)
+// Last edit:	2013/01/20
+// License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Services.Implmentation
@@ -72,6 +71,31 @@ namespace Dexter.Services.Implmentation
 		public Task<IList<CategoryDto>> GetCategoriesAsync()
 		{
 			return Task.Run(() => this.GetCategories());
+		}
+
+		public void SaveOrUpdate(CategoryDto category)
+		{
+			if (category == null)
+			{
+				throw new ArgumentNullException("category", "The specified category must contain a valid instance");
+			}
+
+			if (category.Name == null)
+			{
+				throw new ArgumentNullException("category.Name", "The category name cannot be null.");
+			}
+
+			if (category.Name == string.Empty)
+			{
+				throw new ArgumentException("category.Name", "The category name cannot be empty.");
+			}
+
+			throw new NotImplementedException();
+		}
+
+		public Task SaveOrUpdateAsync(CategoryDto category)
+		{
+			return Task.Run(() => this.SaveOrUpdate(category));
 		}
 
 		#endregion

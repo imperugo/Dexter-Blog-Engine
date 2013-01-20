@@ -1,5 +1,4 @@
-﻿@model Dexter.Web.Core.Models.DexterModelBase
-@{
+﻿@{
 	this.Layout = null;
 }
 
@@ -16,7 +15,7 @@
 		<!-- Favicon -->
 		<link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico">
 		<link rel="icon" type="image/png" href="~/favicon-large.png">
-	
+		
 		<!-- Generic libs -->
 		<script type="text/javascript" src="~/js/html5.js"> </script><!-- this has to be loaded before anything else -->
 		<script type="text/javascript" src="~/js/jquery-1.4.2.min.js"> </script>
@@ -30,7 +29,7 @@
 		<script type="text/javascript" src="~/js/standard.js"> </script>
 		<!--[if lte IE 8]><script type="text/javascript" src="~/js/standard.ie.js"> </script><![endif]-->
 		<script type="text/javascript" src="~/js/jquery.tip.js"> </script>
-	
+
 		@this.RenderSection("header", false)
 	</head>
 	@this.RenderBody()

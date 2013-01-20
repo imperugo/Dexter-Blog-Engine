@@ -3,15 +3,14 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 // File:			BlogConfigurationDto.cs
 // Website:		http://dexterblogengine.com/
-// Authors:		http://dexterblogengine.com/About.ashx
+// Authors:		http://dexterblogengine.com/aboutus
 // Created:		2012/10/28
-// Last edit:	2013/01/03
-// License:		GNU Library General Public License (LGPL)
+// Last edit:	2013/01/20
+// License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
 namespace Dexter.Entities
@@ -56,6 +55,8 @@ namespace Dexter.Entities
 
 		#region Public Properties
 
+		public TimeZoneInfo TimeZone { get; set; }
+
 		public CommentSettingsDto CommentSettings { get; set; }
 
 		public DebugInfo DebugInfo { get; set; }
@@ -68,9 +69,9 @@ namespace Dexter.Entities
 			}
 		}
 
-		public int DefaultHttpsPort { get; set; }
-
 		public int DefaultHttpPort { get; set; }
+
+		public int DefaultHttpsPort { get; set; }
 
 		public bool EnableHttps { get; set; }
 

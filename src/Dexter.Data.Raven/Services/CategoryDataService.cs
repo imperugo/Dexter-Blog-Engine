@@ -3,10 +3,10 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 // File:			CategoryDataService.cs
 // Website:		http://dexterblogengine.com/
-// Authors:		http://dexterblogengine.com/About.ashx
+// Authors:		http://dexterblogengine.com/aboutus
 // Created:		2012/12/01
-// Last edit:	2012/12/24
-// License:		GNU Library General Public License (LGPL)
+// Last edit:	2013/01/20
+// License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
@@ -168,6 +168,9 @@ namespace Dexter.Data.Raven.Services
 				.Select(item => new CategoryDto
 					                {
 						                Id = item.Id, 
+										Name = item.Name,
+										IsDefault = item.IsDefault,
+										PostCount = item.PostsId != null ? item.PostsId.Length : 0,
 						                Categories = this.MakeTree(flatObjects, item.MapTo<CategoryDto>())
 					                }).ToList();
 		}

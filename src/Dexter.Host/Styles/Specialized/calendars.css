@@ -30,7 +30,7 @@
 	-webkit-background-size: 100% 100%;
 	-webkit-border-radius: 0.417em;
 	-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
-	background: #dfdfdf url(../images/old-browsers-bg/button-bg.png) repeat-x top;
+	background: #dfdfdf url(../../images/old-browsers-bg/button-bg.png) repeat-x top;
 	background: -moz-linear-gradient(
 	                                top,
 	                                #f6f6f6,
@@ -76,13 +76,13 @@
 }
 
 .calendar-controls .calendar-prev {
-	background: url(../images/menu-border.png) no-repeat right center;
+	background: url(../../images/menu-border.png) no-repeat right center;
 	float: left;
 	margin-left: -0.5em;
 }
 
 .calendar-controls .calendar-next {
-	background: url(../images/menu-border.png) no-repeat left center;
+	background: url(../../images/menu-border.png) no-repeat left center;
 	float: right;
 	margin-right: -0.5em;
 }
@@ -111,8 +111,8 @@
 	-o-background-size: 100% 100%;
 	-webkit-background-size: 100% 100%;
 	-webkit-text-shadow: 1px 1px 0 white;
-	background: #cccccc url(../images/old-browsers-bg/mini-calendar-head-bg.png) repeat-x top;
-	background: #cccccc url(../images/old-browsers-bg/mini-calendar-head-bg.png) repeat-x top;
+	background: #cccccc url(../../images/old-browsers-bg/mini-calendar-head-bg.png) repeat-x top;
+	background: #cccccc url(../../images/old-browsers-bg/mini-calendar-head-bg.png) repeat-x top;
 	background: -webkit-gradient(
 	                            linear,
 	                            left top, left bottom,
@@ -325,46 +325,46 @@
 .medium-calendar tbody td.unavailable {
 	-moz-text-shadow: 1px 1px 0 white;
 	-webkit-text-shadow: 1px 1px 0 white;
-	background: white url(../images/lite-grey-stripes.png);
+	background: white url(../../images/lite-grey-stripes.png);
 	color: #b0b0b0;
 	text-shadow: 1px 1px 0 white;
 }
 
 .medium-calendar tbody tr:nth-child(odd) th.unavailable,
-.medium-calendar tbody tr:nth-child(odd) td.unavailable { background: #f2f2f2 url(../images/medium-grey-stripes.png); }
+.medium-calendar tbody tr:nth-child(odd) td.unavailable { background: #f2f2f2 url(../../images/medium-grey-stripes.png); }
 				/* IE class */
 
 .medium-calendar tbody tr.odd th.unavailable,
-.medium-calendar tbody tr.odd td.unavailable { background: #f2f2f2 url(../images/medium-grey-stripes.png); }
+.medium-calendar tbody tr.odd td.unavailable { background: #f2f2f2 url(../../images/medium-grey-stripes.png); }
 
 .medium-calendar tbody tr:nth-child(even) th.unavailable,
 .medium-calendar tbody tr:nth-child(even) td.unavailable {
-	background: #e6e6e6 url(../images/grey-stripes.png);
+	background: #e6e6e6 url(../../images/grey-stripes.png);
 	color: #a0a0a0;
 }
 				/* IE class */
 
 .medium-calendar tbody tr.even th.unavailable,
 .medium-calendar tbody tr.even td.unavailable {
-	background: #e6e6e6 url(../images/grey-stripes.png);
+	background: #e6e6e6 url(../../images/grey-stripes.png);
 	color: #a0a0a0;
 }
 
 .blue-corner {
-	background: url(../images/blue-corner.png) no-repeat left bottom;
+	background: url(../../images/blue-corner.png) no-repeat left bottom;
 	display: block;
 	height: 100%;
 }
 
-.other-month .blue-corner { background-image: url(../images/grey-corner-left.png); }
+.other-month .blue-corner { background-image: url(../../images/grey-corner-left.png); }
 
 .red-corner {
-	background: url(../images/red-corner.png) no-repeat right bottom;
+	background: url(../../images/red-corner.png) no-repeat right bottom;
 	display: block;
 	height: 100%;
 }
 
-.other-month .red-corner { background-image: url(../images/grey-corner-right.png); }
+.other-month .red-corner { background-image: url(../../images/grey-corner-right.png); }
 
 .nb-events {
 	-moz-background-size: 100% 100%;
@@ -375,13 +375,13 @@
 	-webkit-background-size: 100% 100%;
 	-webkit-border-radius: 0.667em;
 	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-	background: #0c5fa5 url(../images/old-browsers-bg/nb-events-bg.png) repeat-x top;
+	background: #0c5fa5 url(../../images/old-browsers-bg/nb-events-bg.png) repeat-x top;
 	background: -moz-linear-gradient(
 	                                top,
 	                                #72c6e4,
 	                                #0c5fa5
 );
-	background: #0c5fa5 url(../images/old-browsers-bg/nb-events-bg.png) repeat-x top;
+	background: #0c5fa5 url(../../images/old-browsers-bg/nb-events-bg.png) repeat-x top;
 	background-size: 100% 100%;
 	border: 1px solid white;
 	border-radius: 0.667em;
@@ -408,7 +408,7 @@
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
 	-webkit-background-size: 100% 100%;
-	background: #dfdfdf url(../images/old-browsers-bg/nb-events-other-bg.png) repeat-x top;
+	background: #dfdfdf url(../../images/old-browsers-bg/nb-events-other-bg.png) repeat-x top;
 	background: -moz-linear-gradient(
 	                                top,
 	                                #f6f6f6,
@@ -491,7 +491,7 @@
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
 	-webkit-background-size: 100% 100%;
-	background: #242424 url(../images/old-browsers-bg/black-cell-bg.png) repeat-x top;
+	background: #242424 url(../../images/old-browsers-bg/black-cell-bg.png) repeat-x top;
 	background: -moz-linear-gradient(
 	                                top,
 	                                #4c4c4c,
@@ -518,11 +518,11 @@
 	margin: -0.75em;
 }
 
-.calendar .black-cell span.loading, .list-calendar .black-cell span.loading { background-image: url(../images/table-loader.gif); }
+.calendar .black-cell span.loading, .list-calendar .black-cell span.loading { background-image: url(../../images/table-loader.gif); }
 
-.calendar .black-cell span.error, .list-calendar .black-cell span.error { background-image: url(../images/icons/fugue/cross-circle.png); }
+.calendar .black-cell span.error, .list-calendar .black-cell span.error { background-image: url(../../images/icons/fugue/cross-circle.png); }
 
-.calendar .black-cell span.success, .list-calendar .black-cell span.success { background-image: url(../images/icons/fugue/tick-circle-blue.png); }
+.calendar .black-cell span.success, .list-calendar .black-cell span.success { background-image: url(../../images/icons/fugue/tick-circle-blue.png); }
 
 .calendar tbody th,
 .calendar tbody td,
@@ -688,7 +688,7 @@
 	-webkit-border-radius: 0.333em;
 	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 	-webkit-transition: all 250ms;
-	background: #dfdfdf url(../images/old-browsers-bg/button-bg.png) repeat-x top;
+	background: #dfdfdf url(../../images/old-browsers-bg/button-bg.png) repeat-x top;
 	background: -moz-linear-gradient(
 	                                top,
 	                                #f6f6f6,
@@ -728,13 +728,13 @@
 .ie7 .calendar .add-event { margin-top: 0.333em; }
 
 .calendar .add-event:before {
-	content: url(../images/icons/add-mini.png);
+	content: url(../../images/icons/add-mini.png);
 	padding-right: 0.333em;
 }
 			/* IE class */
 
 .calendar .add-event .before {
-	background: url(../images/icons/add-mini.png) no-repeat;
+	background: url(../../images/icons/add-mini.png) no-repeat;
 	display: inline-block;
 	height: 7px;
 	margin: 0 0.333em -1px 0;
@@ -782,26 +782,26 @@
 .calendar tbody .unavailable {
 	-moz-text-shadow: 1px 1px 0 white;
 	-webkit-text-shadow: 1px 1px 0 white;
-	background: white url(../images/lite-grey-stripes.png);
+	background: white url(../../images/lite-grey-stripes.png);
 	color: #b0b0b0;
 	text-shadow: 1px 1px 0 white;
 }
 
 .calendar tbody .unavailable .day { color: #b0b0b0; }
 
-.calendar tbody tr:nth-child(odd) .unavailable { background: #f2f2f2 url(../images/medium-grey-stripes.png); }
+.calendar tbody tr:nth-child(odd) .unavailable { background: #f2f2f2 url(../../images/medium-grey-stripes.png); }
 			/* IE class */
 
-.calendar tbody tr.odd .unavailable { background: #f2f2f2 url(../images/medium-grey-stripes.png); }
+.calendar tbody tr.odd .unavailable { background: #f2f2f2 url(../../images/medium-grey-stripes.png); }
 
 .calendar tbody tr:nth-child(even) .unavailable {
-	background: #e6e6e6 url(../images/grey-stripes.png);
+	background: #e6e6e6 url(../../images/grey-stripes.png);
 	color: #a0a0a0;
 }
 			/* IE class */
 
 .calendar tbody tr.even .unavailable {
-	background: #e6e6e6 url(../images/grey-stripes.png);
+	background: #e6e6e6 url(../../images/grey-stripes.png);
 	color: #a0a0a0;
 }
 	
@@ -1099,7 +1099,7 @@
 .calendar .events + .more-events { margin-top: 0.333em; }
 
 .list-calendar .more-events:after {
-	background: url(../images/menu-open-arrow.png) no-repeat 3px center;
+	background: url(../../images/menu-open-arrow.png) no-repeat 3px center;
 	content: '';
 	padding: 0 8px;
 }
@@ -1241,7 +1241,7 @@
 .week-calendar {
 	-o-background-size: 100% 2.5em;
 	-webkit-background-size: 100% 2.5em;
-	background: #a4a4a4 url(../images/old-browsers-bg/planning-header-bg.png) repeat-x top;
+	background: #a4a4a4 url(../../images/old-browsers-bg/planning-header-bg.png) repeat-x top;
 	background: -moz-linear-gradient(
 	                                top,
 	                                #cccccc,
@@ -1313,7 +1313,7 @@
 }
 
 .week-calendar > li.weekend > ul {
-	background: url(../images/old-browsers-bg/black10.png);
+	background: url(../../images/old-browsers-bg/black10.png);
 	background: rgba(0, 0, 0, 0.1);
 }
 
@@ -1323,7 +1323,7 @@
 	-webkit-background-clip: padding-box;
 	-webkit-border-radius: 0.5em;
 	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
-	background: #dfdfdf url(../images/old-browsers-bg/event-bg.png) repeat-x top;
+	background: #dfdfdf url(../../images/old-browsers-bg/event-bg.png) repeat-x top;
 	background: -moz-linear-gradient(
 	                                top,
 	                                rgba(255, 255, 255, 0.75),
@@ -1428,11 +1428,11 @@
 }
 
 .week-calendar .lunch {
-	background: url(../images/old-browsers-bg/black05.png);
+	background: url(../../images/old-browsers-bg/black05.png);
 	background: rgba(0, 0, 0, 0.05);
 }
 
-.week-calendar .unavailable { background: url(../images/lite-grey-stripes.png); }
+.week-calendar .unavailable { background: url(../../images/lite-grey-stripes.png); }
 
 .week-calendar > li > ul > li .mini-menu { right: 0.75em; }
 
@@ -1493,7 +1493,7 @@
 	-webkit-background-size: auto;
 	-webkit-border-radius: 0;
 	-webkit-box-shadow: none;
-	background: white url(../images/dots.gif) repeat-x left center;
+	background: white url(../../images/dots.gif) repeat-x left center;
 	background-size: auto;
 	border: 0;
 	border-radius: 0;

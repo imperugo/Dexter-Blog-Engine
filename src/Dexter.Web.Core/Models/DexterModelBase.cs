@@ -3,10 +3,10 @@
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 // File:			DexterModelBase.cs
 // Website:		http://dexterblogengine.com/
-// Authors:		http://dexterblogengine.com/About.ashx
+// Authors:		http://dexterblogengine.com/aboutus
 // Created:		2012/11/01
-// Last edit:	2012/12/24
-// License:		GNU Library General Public License (LGPL)
+// Last edit:	2013/01/20
+// License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
@@ -16,7 +16,7 @@
 namespace Dexter.Web.Core.Models
 {
 	using System;
-	using System.Collections.Generic;
+	using System.Collections.Concurrent;
 	using System.Dynamic;
 
 	using Dexter.Entities;
@@ -25,9 +25,7 @@ namespace Dexter.Web.Core.Models
 	{
 		#region Fields
 
-		private readonly IDictionary<string, object> customProperties = new Dictionary<string, object>();
-
-		private readonly object lockObject = new object();
+		private readonly ConcurrentDictionary<string, object> customProperties = new ConcurrentDictionary<string, object>();
 
 		private string copyRight;
 
@@ -134,16 +132,14 @@ namespace Dexter.Web.Core.Models
 			if (this.customProperties.ContainsKey(binder.Name))
 			{
 				result = this.customProperties[binder.Name];
-			}
-			else
-			{
-				result = binder.ReturnType.IsValueType
-					         ? Activator.CreateInstance(binder.ReturnType)
-					         : null;
-				this.customProperties.Add(binder.Name, result);
+				return true;
 			}
 
-			return true;
+			result = binder.ReturnType.IsValueType
+				         ? Activator.CreateInstance(binder.ReturnType)
+				         : null;
+
+			return this.customProperties.TryAdd(binder.Name, result);
 		}
 
 		/// <summary>
@@ -156,10 +152,7 @@ namespace Dexter.Web.Core.Models
 		/// </returns>
 		public override bool TrySetMember(SetMemberBinder binder, object value)
 		{
-			lock (this.lockObject)
-			{
-				this.customProperties[binder.Name] = value;
-			}
+			this.customProperties[binder.Name] = value;
 
 			return true;
 		}
