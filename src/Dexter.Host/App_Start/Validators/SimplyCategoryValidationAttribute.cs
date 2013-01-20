@@ -72,14 +72,14 @@ namespace Dexter.Host.App_Start.Validators
 				return false;
 			}
 
-			ICollection<SimplyCategoryBinder> categories = value as ICollection<SimplyCategoryBinder>;
+			IEnumerable<string> categories = value as IEnumerable<string>;
 
 			if (categories == null)
 			{
 				return false;
 			}
 
-			IEnumerable<SimplyCategoryBinder> selectedCat = categories.Where(x => !x.Name.IsNullOrEmpty());
+			IEnumerable<string> selectedCat = categories.Where(x => !string.IsNullOrEmpty(x));
 
 			return selectedCat.Any();
 		}

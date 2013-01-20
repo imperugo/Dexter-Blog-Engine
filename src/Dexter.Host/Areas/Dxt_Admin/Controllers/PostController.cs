@@ -34,7 +34,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 	using Dexter.Services;
 	using Dexter.Web.Core.Controllers.Web;
 
-	[Authorize]
+	//[Authorize]
 	public class PostController : DexterControllerBase
 	{
 		#region Fields
@@ -123,12 +123,12 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 		}
 
 		[AcceptVerbs(HttpVerbs.Get)]
-		public async Task<ActionResult> Manage(int? postId)
+		public async Task<ActionResult> Manage(int? id, int? month, int? day, int? year)
 		{
 			Task<IList<CategoryDto>> categories = this.categoryService.GetCategoriesAsync();
 
-			PostBinder post = postId.HasValue
-				                  ? (await this.postService.GetPostByKeyAsync(postId.Value)).MapTo<PostBinder>()
+			PostBinder post = id.HasValue
+				                  ? (await this.postService.GetPostByKeyAsync(id.Value)).MapTo<PostBinder>()
 				                  : PostBinder.EmptyInstance();
 
 			ManageViewModel model = new ManageViewModel();

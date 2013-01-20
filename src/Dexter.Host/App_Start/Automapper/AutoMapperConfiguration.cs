@@ -19,6 +19,7 @@ namespace Dexter.Host.App_Start.Automapper
 	using AutoMapper;
 
 	using Dexter.Entities;
+	using Dexter.Host.Areas.Dxt_Admin.Models.Post;
 	using Dexter.Host.Areas.Dxt_Setup.Models;
 
 	public class AutoMapperConfiguration
@@ -28,6 +29,9 @@ namespace Dexter.Host.App_Start.Automapper
 		public static void Configure()
 		{
 			Mapper.CreateMap<SetupBinder, Setup>();
+			Mapper.CreateMap<PostDto, PostBinder>()
+			      .ForMember(dest => dest.FormattedBody, source => source.MapFrom(p => p.Content))
+			      .ForMember(dest => dest.Tags, source => source.MapFrom(p => string.Join(",", p.Tags)));
 		}
 
 		#endregion

@@ -50,7 +50,7 @@ namespace Dexter.Host.Controllers
 			item.PublishAt = DateTime.Today;
 			item.Slug = "PostSlug";
 			item.Status = ItemStatus.Published;
-			item.Tags = new Collection<string>
+			item.Tags = new []
 				            {
 					            "tag1", 
 					            "tag2"

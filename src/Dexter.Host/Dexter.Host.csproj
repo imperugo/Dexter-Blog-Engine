@@ -1412,6 +1412,7 @@
     <Content Include="js\ckeditor\skins\moono\readme.md" />
     <Content Include="Areas\Dxt_Admin\Views\Widget\PostList.cshtml" />
     <Content Include="Areas\Dxt_Admin\Views\Widget\FastPostEditor.cshtml" />
+    <Content Include="Areas\Dxt_Admin\Views\Post\Manage.cshtml" />
     <None Include="Styles\Global\CommonStyles.css.bundle" />
   </ItemGroup>
   <PropertyGroup>

@@ -249,7 +249,7 @@ namespace Dexter.Web.Mvc.Helpers
 
 				sb.Append("<span>");
 				sb.AppendFormat("<input type=\"hidden\" name=\"{2}.Categories[{0}].ID\" value=\"{1}\" />", categoryNumber, category.Id, bindePrefix);
-				sb.AppendFormat("<input type=\"checkbox\" name=\"{2}.Categories[{0}].Name\" value=\"{1}\" {3} /> ", categoryNumber, category.Name, bindePrefix, selectedValues != null && selectedValues.Contains(category.Id)
+				sb.AppendFormat("<input type=\"checkbox\" name=\"{2}.Categories[{0}].Name\" value=\"{1}\" {3} /> ", categoryNumber, category.Name, bindePrefix, selectedValues != null && selectedValues.Contains(category.Name)
 					                                                                                                                                                ? "checked=\"checked\""
 					                                                                                                                                                : string.Empty);
 				sb.Append(category.Name);

@@ -60,7 +60,6 @@ namespace Dexter.Host.Areas.Dxt_Admin.Models.Post
 
 		public PostBinder()
 		{
-			this.Categories = new Collection<SimplyCategoryBinder>();
 		}
 
 		#endregion
@@ -72,7 +71,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Models.Post
 		public bool BreakOnAggregate { get; set; }
 
 		[SimplyCategoryValidation]
-		public ICollection<SimplyCategoryBinder> Categories { get; set; }
+		public string[] Categories { get; set; }
 
 		public bool CommentEnabled { get; set; }
 
@@ -114,17 +113,6 @@ namespace Dexter.Host.Areas.Dxt_Admin.Models.Post
 					       CommentEnabled = true
 				       };
 		}
-
-		#endregion
-	}
-
-	public class SimplyCategoryBinder
-	{
-		#region Public Properties
-
-		public int Id { get; set; }
-
-		public string Name { get; set; }
 
 		#endregion
 	}

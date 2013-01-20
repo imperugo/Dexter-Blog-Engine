@@ -62,7 +62,7 @@
 								@Html.DropDownListFor(x => x.Post.PublishHour, new SelectList(Constants.HoursValues, Model.Post.PublishHour))
 								@Html.DropDownListFor(x => x.Post.PublishMinutes, new SelectList(Constants.MinutesValues, Model.Post.PublishMinutes))
 							</span>
-							<button class="grey" type="button" id="publishToday">Today</button>
+							<button class="grey" type="button" id="publishToday">Now</button>
 						</p>
 
 						<p>
@@ -113,8 +113,9 @@
 			var date = new Date();
 
 			var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+			var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
 
-			$('#Post_PublishHour').val(date.getHours());
+			$('#Post_PublishHour').val(hours);
 			$('#Post_PublishMinutes').val(minutes);
 		});
 		
