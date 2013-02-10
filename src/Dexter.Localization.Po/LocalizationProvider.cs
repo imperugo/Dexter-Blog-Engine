@@ -5,12 +5,13 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
 // Created:		2012/10/27
-// Last edit:	2013/01/20
+// Last edit:	2013/02/10
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Localization.Po
@@ -30,7 +31,7 @@ namespace Dexter.Localization.Po
 	{
 		#region Static Fields
 
-		private static readonly Dictionary<char, char> EscapeTranslations = new Dictionary<char, char>
+		private static readonly Dictionary<char, char> escapeTranslations = new Dictionary<char, char>
 			                                                                    {
 				                                                                    { 'n', '\n' }, 
 				                                                                    { 'r', '\r' }, 
@@ -50,30 +51,14 @@ namespace Dexter.Localization.Po
 		#region Constructors and Destructors
 
 		/// <summary>
-		/// 	Initializes a new instance of the <see cref="T:System.Object" /> class.
+		/// Initializes a new instance of the <see cref="T:System.Object"/> class.
 		/// </summary>
-		/// <param name="storage"> The storage. </param>
-		/// <param name="cacheProvider"> The cache provider. </param>
-		/// <param name="logger"> The logger. </param>
+		/// <param name="cacheProvider">The cache provider.</param>
+		/// <param name="logger">The logger.</param>
 		public LocalizationProvider(ICacheProvider cacheProvider, ILog logger)
 		{
 			this.logger = logger;
 			this.cacheProvider = cacheProvider;
-		}
-
-		#endregion
-
-		#region Public Properties
-
-		/// <summary>
-		/// 	Return the default Culture
-		/// </summary>
-		public CultureInfo DefaultCulture
-		{
-			get
-			{
-				throw new NotImplementedException();
-			}
 		}
 
 		#endregion
@@ -84,7 +69,9 @@ namespace Dexter.Localization.Po
 		{
 			get
 			{
-				return IsHostedInAspnet() ? "App_Data/Localization/{0}/{1}.po" : "Localization/{0}/{1}.po";
+				return IsHostedInAspnet()
+					       ? "App_Data/Localization/{0}/{1}.po"
+					       : "Localization/{0}/{1}.po";
 			}
 		}
 
@@ -92,35 +79,17 @@ namespace Dexter.Localization.Po
 
 		#region Public Methods and Operators
 
-		public static void CopyStream(Stream input, Stream output)
-		{
-			byte[] buffer = new byte[8 * 1024];
-			int len;
-			while ((len = input.Read(buffer, 0, buffer.Length)) > 0)
-			{
-				output.Write(buffer, 0, len);
-			}
-		}
-
 		/// <summary>
 		/// 	Deletes the module.
 		/// </summary>
-		/// <param name="cultureName"> Name of the culture. </param>
-		/// <param name="moduleName"> Name of the module. </param>
-		/// <exception cref="ArgumentException">Will be throw if there is an existing module with the same specified name for the same specified culture.</exception>
-		/// <exception cref="ArgumentNullException">Will be throw if
-		/// 	<paramref name="moduleName" />
-		/// 	is null.</exception>
-		/// <exception cref="ArgumentException">Will be throw if
-		/// 	<paramref name="moduleName" />
-		/// 	is empty.</exception>
-		/// <exception cref="ArgumentNullException">Will be throw if
-		/// 	<paramref name="cultureName" />
-		/// 	is null.</exception>
-		/// <exception cref="ArgumentException">Will be throw if
-		/// 	<paramref name="cultureName" />
-		/// 	is empty.</exception>
-		/// <exception cref="LocalizationModuleNotFoundException">Will be throw if there isn't an existing module with the same specified name for the same specified culture.</exception>
+		/// <param name = "cultureName">Name of the culture.</param>
+		/// <param name = "moduleName">Name of the module.</param>
+		/// <exception cref = "ArgumentException">Will be throw if there is an existing module with the same specified name for the same specified culture.</exception>
+		/// <exception cref = "ArgumentNullException">Will be throw if <paramref name = "moduleName" /> is null.</exception>
+		/// <exception cref = "ArgumentException">Will be throw if <paramref name = "moduleName" /> is empty.</exception>
+		/// <exception cref = "ArgumentNullException">Will be throw if <paramref name = "cultureName" /> is null.</exception>
+		/// <exception cref = "ArgumentException">Will be throw if <paramref name = "cultureName" /> is empty.</exception>
+		/// <exception cref = "LocalizationModuleNotFoundException">Will be throw if there isn't an existing module with the same specified name for the same specified culture.</exception>
 		public void DeleteModule(string cultureName, string moduleName)
 		{
 			if (moduleName == string.Empty)
@@ -156,48 +125,32 @@ namespace Dexter.Localization.Po
 		}
 
 		/// <summary>
-		/// 	Gets the localized string.
+		/// Gets the localized string.
 		/// </summary>
-		/// <param name="msgId"> The MSG id. </param>
-		/// <param name="cultureName"> Name of the culture. </param>
-		/// <returns> The result will never be null. </returns>
-		/// <exception cref="ArgumentNullException">Will be throw if
-		/// 	<paramref name="msgId" />
-		/// 	is null.</exception>
-		/// <exception cref="ArgumentException">Will be throw if
-		/// 	<paramref name="msgId" />
-		/// 	is empty.</exception>
-		/// <exception cref="ArgumentNullException">Will be throw if
-		/// 	<paramref name="cultureName" />
-		/// 	is null.</exception>
-		/// <exception cref="ArgumentException">Will be throw if
-		/// 	<paramref name="cultureName" />
-		/// 	is empty.</exception>
+		/// <param name="msgId">The MSG id.</param>
+		/// <param name="cultureName">Name of the culture.</param>
+		/// <returns>The result will never be null.</returns>
+		/// <exception cref="ArgumentNullException">Will be throw if <paramref name="msgId"/> is null.</exception>
+		/// <exception cref="ArgumentException">Will be throw if <paramref name="msgId"/> is empty.</exception>
+		/// <exception cref="ArgumentNullException">Will be throw if <paramref name="cultureName"/> is null.</exception>
+		/// <exception cref="ArgumentException">Will be throw if <paramref name="cultureName"/> is empty.</exception>
 		public LocalizedString GetLocalizedString(string msgId, string cultureName)
 		{
 			return this.GetLocalizedString(null, msgId, cultureName);
 		}
 
 		/// <summary>
-		/// 	Gets the localized string.
+		/// Gets the localized string.
 		/// </summary>
-		/// <param name="moduleName"> Name of the module. </param>
-		/// <param name="msgId"> The MSG id. </param>
-		/// <param name="cultureName"> Name of the culture. </param>
-		/// <param name="args"> The args. </param>
-		/// <returns> The result will never be null. </returns>
-		/// <exception cref="ArgumentNullException">Will be throw if
-		/// 	<paramref name="msgId" />
-		/// 	is null.</exception>
-		/// <exception cref="ArgumentException">Will be throw if
-		/// 	<paramref name="msgId" />
-		/// 	is empty.</exception>
-		/// <exception cref="ArgumentNullException">Will be throw if
-		/// 	<paramref name="cultureName" />
-		/// 	is null.</exception>
-		/// <exception cref="ArgumentException">Will be throw if
-		/// 	<paramref name="cultureName" />
-		/// 	is empty.</exception>
+		/// <param name="moduleName">Name of the module.</param>
+		/// <param name="msgId">The MSG id.</param>
+		/// <param name="cultureName">Name of the culture.</param>
+		/// <param name="args">The args.</param>
+		/// <returns>The result will never be null.</returns>
+		/// <exception cref="ArgumentNullException">Will be throw if <paramref name="msgId"/> is null.</exception>
+		/// <exception cref="ArgumentException">Will be throw if <paramref name="msgId"/> is empty.</exception>
+		/// <exception cref="ArgumentNullException">Will be throw if <paramref name="cultureName"/> is null.</exception>
+		/// <exception cref="ArgumentException">Will be throw if <paramref name="cultureName"/> is empty.</exception>
 		public LocalizedString GetLocalizedString(string moduleName, string msgId, string cultureName, params object[] args)
 		{
 			if (msgId == string.Empty)
@@ -248,47 +201,31 @@ namespace Dexter.Localization.Po
 		}
 
 		/// <summary>
-		/// 	Saves the module.
+		/// Saves the module.
 		/// </summary>
-		/// <param name="cultureName"> Name of the culture. </param>
-		/// <param name="moduleName"> Name of the module. </param>
-		/// <param name="inputStream"> The input stream. </param>
+		/// <param name="cultureName">Name of the culture.</param>
+		/// <param name="moduleName">Name of the module.</param>
+		/// <param name="inputStream">The input stream.</param>
 		/// <exception cref="LocalizationModuleExistentException">Will be throw if there is an existing module with the same specified name for the same specified culture.</exception>
-		/// <exception cref="ArgumentNullException">Will be throw if
-		/// 	<paramref name="moduleName" />
-		/// 	is null.</exception>
-		/// <exception cref="ArgumentException">Will be throw if
-		/// 	<paramref name="moduleName" />
-		/// 	is empty.</exception>
-		/// <exception cref="ArgumentNullException">Will be throw if
-		/// 	<paramref name="cultureName" />
-		/// 	is null.</exception>
-		/// <exception cref="ArgumentException">Will be throw if
-		/// 	<paramref name="cultureName" />
-		/// 	is empty.</exception>
+		/// <exception cref="ArgumentNullException">Will be throw if <paramref name="moduleName"/> is null.</exception>
+		/// <exception cref="ArgumentException">Will be throw if <paramref name="moduleName"/> is empty.</exception>
+		/// <exception cref="ArgumentNullException">Will be throw if <paramref name="cultureName"/> is null.</exception>
+		/// <exception cref="ArgumentException">Will be throw if <paramref name="cultureName"/> is empty.</exception>
 		public void SaveModule(string cultureName, string moduleName, Stream inputStream)
 		{
 			this.Save(moduleName, cultureName, inputStream, true);
 		}
 
 		/// <summary>
-		/// 	Saves the or update module.
+		/// Saves the or update module.
 		/// </summary>
-		/// <param name="cultureName"> Name of the culture. </param>
-		/// <param name="moduleName"> Name of the module. </param>
-		/// <param name="inputStream"> The input stream. </param>
-		/// <exception cref="ArgumentNullException">Will be throw if
-		/// 	<paramref name="moduleName" />
-		/// 	is null.</exception>
-		/// <exception cref="ArgumentException">Will be throw if
-		/// 	<paramref name="moduleName" />
-		/// 	is empty.</exception>
-		/// <exception cref="ArgumentNullException">Will be throw if
-		/// 	<paramref name="cultureName" />
-		/// 	is null.</exception>
-		/// <exception cref="ArgumentException">Will be throw if
-		/// 	<paramref name="cultureName" />
-		/// 	is empty.</exception>
+		/// <param name="cultureName">Name of the culture.</param>
+		/// <param name="moduleName">Name of the module.</param>
+		/// <param name="inputStream">The input stream.</param>
+		/// <exception cref="ArgumentNullException">Will be throw if <paramref name="moduleName"/> is null.</exception>
+		/// <exception cref="ArgumentException">Will be throw if <paramref name="moduleName"/> is empty.</exception>
+		/// <exception cref="ArgumentNullException">Will be throw if <paramref name="cultureName"/> is null.</exception>
+		/// <exception cref="ArgumentException">Will be throw if <paramref name="cultureName"/> is empty.</exception>
 		public void SaveOrUpdateModule(string cultureName, string moduleName, Stream inputStream)
 		{
 			this.Save(moduleName, cultureName, inputStream, false);
@@ -300,59 +237,58 @@ namespace Dexter.Localization.Po
 
 		private static bool IsHostedInAspnet()
 		{
-			return AppDomain.CurrentDomain.GetData(".appDomain") != null;
+			return (AppDomain.CurrentDomain.GetData(".appDomain") != null);
 		}
 
-		private static string ParseId(string line)
+		private static string ParseId(string fileLine)
 		{
-			return Unescape(line.Substring(5).Trim().Trim('"'));
+			return Unescape(fileLine.Substring(5).Trim().Trim('"'));
 		}
 
 		private static void ParseLocalizationStream(string text, IDictionary<string, string> translations)
 		{
 			StringReader reader = new StringReader(text);
-			string poLine, scope;
+			string fileLine, scope;
 
-			string id = scope = string.Empty;
+			string id = scope = String.Empty;
 
-			while ((poLine = reader.ReadLine()) != null)
+			while ((fileLine = reader.ReadLine()) != null)
 			{
-				if (poLine.StartsWith("#:"))
+				if (fileLine.StartsWith("#:"))
 				{
-					scope = ParseScope(poLine);
+					scope = ParseScope(fileLine);
 					continue;
 				}
 
-				if (poLine.StartsWith("msgid"))
+				if (fileLine.StartsWith("msgid"))
 				{
-					id = ParseId(poLine);
+					id = ParseId(fileLine);
 					continue;
 				}
 
-				if (poLine.StartsWith("msgstr"))
+				if (fileLine.StartsWith("msgstr"))
 				{
-					string translation = ParseTranslation(poLine);
+					string translation = ParseTranslation(fileLine);
 
 					// ignore incomplete localizations (empty msgid or msgstr)
-					if (!string.IsNullOrWhiteSpace(id) && !string.IsNullOrWhiteSpace(translation))
+					if (!String.IsNullOrWhiteSpace(id) && !String.IsNullOrWhiteSpace(translation))
 					{
 						string scopedKey = (scope + "|" + id).ToLowerInvariant();
 						translations.Add(scopedKey, translation);
 					}
-
-					id = scope = string.Empty;
+					id = scope = String.Empty;
 				}
 			}
 		}
 
-		private static string ParseScope(string line)
+		private static string ParseScope(string fileLine)
 		{
-			return Unescape(line.Substring(2).Trim().Trim('"'));
+			return Unescape(fileLine.Substring(2).Trim().Trim('"'));
 		}
 
-		private static string ParseTranslation(string line)
+		private static string ParseTranslation(string fileLine)
 		{
-			return Unescape(line.Substring(6).Trim().Trim('"'));
+			return Unescape(fileLine.Substring(6).Trim().Trim('"'));
 		}
 
 		private static string Unescape(string str)
@@ -372,9 +308,10 @@ namespace Dexter.Localization.Po
 							sb.Append(str.Substring(0, i - 1));
 						}
 					}
-
 					char unescaped;
-					sb.Append(EscapeTranslations.TryGetValue(c, out unescaped) ? unescaped : c);
+					sb.Append(escapeTranslations.TryGetValue(c, out unescaped)
+						          ? unescaped
+						          : c);
 					escaped = false;
 				}
 				else
@@ -389,42 +326,37 @@ namespace Dexter.Localization.Po
 					}
 				}
 			}
-
-			return sb == null ? str : sb.ToString();
+			return sb == null
+				       ? str
+				       : sb.ToString();
 		}
 
 		private CultureDictionary LoadCulture(string moduleName, CultureInfo culture)
 		{
-			string key = string.Format("Localization.Dictionary.Culture:{0}.Module{1}", culture.Name, moduleName);
+			string key = string.Format("Dictionary.Culture:{0}.Module{1}", culture.Name, moduleName);
 
-			CultureDictionary value = this.cacheProvider.Get<CultureDictionary>(key).Return(o => o, () =>
-				{
-					CultureDictionary c = new CultureDictionary
-						                      {
-							                      Culture = culture, 
-							                      Translations = this.LoadTranslations(moduleName, culture)
-						                      };
+			CultureDictionary cachedObject = this.cacheProvider.Get<CultureDictionary>(key);
 
-					this.cacheProvider.Put(key, c, TimeSpan.FromDays(1));
+			if (cachedObject == null)
+			{
+				cachedObject = new CultureDictionary
+					               {
+						               Culture = culture, 
+						               Translations = this.LoadTranslations(moduleName, culture)
+					               };
+				this.cacheProvider.Put(key, cachedObject, TimeSpan.FromDays(1));
+			}
 
-					return c;
-				});
-
-			return value;
+			return cachedObject;
 		}
 
 		private IDictionary<string, string> LoadTranslations(string moduleName, CultureInfo culture)
 		{
 			string filePath = string.Format(this.ModulesLocalizationFilePathFormat, culture.Name, moduleName);
 
-			if (!File.Exists(filePath))
+			using (StreamReader sr = new StreamReader(filePath))
 			{
-				return null;
-			}
-
-			using (StreamReader streamReader = new StreamReader(filePath))
-			{
-				string container = streamReader.ReadToEnd();
+				string container = sr.ReadToEnd();
 
 				IDictionary<string, string> result = new Dictionary<string, string>();
 
@@ -468,13 +400,11 @@ namespace Dexter.Localization.Po
 				{
 					throw new LocalizationModuleExistentException("Another localization module with the same name and the same culture exists into the repository.");
 				}
-
-				File.Delete(filePath);
 			}
 
-			using (Stream file = File.OpenWrite(filePath))
+			using (FileStream sw = new FileStream(filePath, FileMode.CreateNew, FileAccess.ReadWrite))
 			{
-				CopyStream(inputStream, file);
+				inputStream.CopyTo(sw);
 			}
 		}
 

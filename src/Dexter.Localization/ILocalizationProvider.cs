@@ -23,15 +23,6 @@ namespace Dexter.Localization
 
 	public interface ILocalizationProvider
 	{
-		#region Public Properties
-
-		/// <summary>
-		/// 	Return the default culture
-		/// </summary>
-		CultureInfo DefaultCulture { get; }
-
-		#endregion
-
 		#region Public Methods and Operators
 
 		/// <summary>
