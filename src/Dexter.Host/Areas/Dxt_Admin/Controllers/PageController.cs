@@ -19,17 +19,21 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 
 	using Common.Logging;
 
+	using Dexter.Host.Areas.Dxt_Admin.Models.Page;
 	using Dexter.Services;
 	using Dexter.Web.Core.Controllers.Web;
 
 	[Authorize]
 	public class PageController : DexterControllerBase
 	{
+		private readonly IPageService pageService;
+
 		#region Constructors and Destructors
 
-		public PageController(ILog logger, IConfigurationService configurationService)
+		public PageController(ILog logger, IConfigurationService configurationService, IPageService pageService)
 			: base(logger, configurationService)
 		{
+			this.pageService = pageService;
 		}
 
 		#endregion
@@ -39,7 +43,9 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 		[AcceptVerbs(HttpVerbs.Get)]
 		public ActionResult Index()
 		{
-			return this.View();
+			IndexViewModel model = new IndexViewModel();
+
+			return this.View(model);
 		}
 
 		#endregion

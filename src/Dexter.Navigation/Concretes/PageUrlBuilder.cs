@@ -60,6 +60,11 @@ namespace Dexter.Navigation.Concretes
 			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Page", "Manage", segments, null);
 		}
 
+		public SiteUrl Create()
+		{
+			return this.Edit(null);
+		}
+
 		public SiteUrl Permalink(ItemDto item)
 		{
 			return new SiteUrl(this.Domain, this.HttpPort, false, null, "Blog", "Page", new[] { item.Slug }, null);

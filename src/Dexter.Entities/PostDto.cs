@@ -23,8 +23,6 @@ namespace Dexter.Entities
 
 		public string[] Categories { get; set; }
 
-		public string[] Tags { get; set; }
-
 		#endregion
 	}
 }

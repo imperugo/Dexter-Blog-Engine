@@ -1,4 +1,4 @@
-﻿@model Dexter.Entities.Result.IPagedResult<Dexter.Entities.PostDto>
+﻿@model Dexter.Entities.Result.IPagedResult<Dexter.Entities.PageDto>
 
 @helper GetRowColor(string text){
 	string[] cssStyles = new[] { "", "orange-keyword", "purple-keyword", "green-keyword" };
@@ -10,10 +10,11 @@
 }
 
 <div class="block-border">
+	
 	@if (Model.TotalCount < 1)
 	{
 		<ul class="message no-margin">
-			<li>There are no posts! Create the first one <a href="@U.Post.Create()">here</a></li>
+			<li>There are no pages! Create the first one <a href="@U.Page.Create()">here</a></li>
 		</ul>
 	}
 	else
@@ -36,7 +37,6 @@
 						<tr>
 							<th class="black-cell"><span class="success"></span></th>
 							<th scope="col">Title</th>
-							<th scope="col">Categories</th>
 							<th scope="col">Tags</th>
 							<th scope="col">Date</th>
 							<th scope="col" class="table-actions">Actions</th>
@@ -44,23 +44,15 @@
 					</thead>
 
 					<tbody>
-						@foreach (var post in Model.Result)
+						@foreach (var page in Model.Result)
 						{
 							<tr>
 								<th scope="row" class="table-check-cell">
 									<input type="checkbox" name="selected[]" id="table-selected-1" value="1">
 								</th>
-								<td>@post.Title</td>
-								<td>
-									<ul class="keywords">
-										@foreach (string category in post.Categories)
-										{
-											@GetRowColor(category)
-										}
-									</ul>
-								</td>
+								<td>@page.Title</td>
 								@{
-									bool isTagsEmpty = (post.Tags == null || !post.Tags.Any());
+									bool isTagsEmpty = (page.Tags == null || !page.Tags.Any());
 									var tdTagsClass = isTagsEmpty ? "empty" : null;
 								}
 								<td class="@tdTagsClass">
@@ -73,18 +65,18 @@
 									else
 									{
 										<ul class="keywords">
-											@foreach (var tag in post.Tags)
+											@foreach (var tag in page.Tags)
 											{
 												@GetRowColor(tag)
 											}
 										</ul>
 									}
 								</td>
-								<td>@post.PublishAt.DateTime</td>
+								<td>@page.PublishAt.DateTime</td>
 								<td class="table-actions">
-									<a href="@U.Admin.Post.Edit(post)" title="Edit" class="with-tip">
+									<a href="@U.Admin.Page.Edit(page)" title="Edit" class="with-tip">
 										<img src="~/images/icons/fugue/pencil.png" width="16" height="16"></a>
-									<a href="@U.Admin.Post.Delete(post)" title="Delete" class="with-tip">
+									<a href="@U.Admin.Page.Delete(page)" title="Delete" class="with-tip">
 										<img src="~/images/icons/fugue/cross-circle.png" width="16" height="16"></a>
 								</td>
 							</tr>

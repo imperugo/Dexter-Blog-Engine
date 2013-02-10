@@ -36,15 +36,18 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 
 		private readonly IPostService postService;
 
+		private readonly IPageService pageService;
+
 		#endregion
 
 		#region Constructors and Destructors
 
-		public WidgetController(ILog logger, IConfigurationService configurationService, IPostService postService, ICategoryService categoryService)
+		public WidgetController(ILog logger, IConfigurationService configurationService, IPostService postService, ICategoryService categoryService, IPageService pageService)
 			: base(logger, configurationService)
 		{
 			this.postService = postService;
 			this.categoryService = categoryService;
+			this.pageService = pageService;
 		}
 
 		#endregion
@@ -65,12 +68,35 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 		[ChildActionOnly]
 		public ActionResult PostList(int pageIndex, int pageSize, ItemQueryFilter filter)
 		{
-			IPagedResult<PostDto> model = this.postService.GetPosts(1, 5, new ItemQueryFilter
-				                                                              {
-					                                                              MaxPublishAt = DateTimeOffset.Now.AddMonths(1).AsMinutes(), 
-					                                                              MinPublishAt = DateTimeOffset.Now.AsMinutes(), 
-					                                                              Status = ItemStatus.Scheduled
-				                                                              });
+			if (filter == null)
+			{
+				filter = new ItemQueryFilter
+					         {
+						         MaxPublishAt = DateTimeOffset.Now.AddMonths(1).AsMinutes(),
+						         MinPublishAt = DateTimeOffset.Now.AsMinutes(),
+						         Status = ItemStatus.Scheduled
+					         };
+			}
+			IPagedResult<PostDto> model = this.postService.GetPosts(1, 5, filter);
+
+			return this.View(model);
+		}
+
+		[HttpGet]
+		[ChildActionOnly]
+		public ActionResult PageList(int pageIndex, int pageSize, ItemQueryFilter filter)
+		{
+			if (filter == null)
+			{
+				filter = new ItemQueryFilter
+				{
+					MaxPublishAt = DateTimeOffset.Now.AddMonths(1).AsMinutes(),
+					MinPublishAt = DateTimeOffset.Now.AsMinutes(),
+					Status = ItemStatus.Scheduled
+				};
+			}
+
+			IPagedResult<PageDto> model = this.pageService.GetPages(1, 5, filter);
 
 			return this.View(model);
 		}

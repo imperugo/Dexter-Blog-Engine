@@ -26,6 +26,8 @@ namespace Dexter.Navigation.Contracts
 
 		SiteUrl Edit(ItemDto item);
 
+		SiteUrl Create();
+
 		SiteUrl Permalink(ItemDto item);
 
 		#endregion

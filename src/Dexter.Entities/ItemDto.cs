@@ -49,6 +49,8 @@ namespace Dexter.Entities
 
 		public int TotalTrackback { get; set; }
 
+		public string[] Tags { get; set; }
+
 		#endregion
 	}
 }

@@ -1413,6 +1413,9 @@
     <Content Include="Areas\Dxt_Admin\Views\Widget\PostList.cshtml" />
     <Content Include="Areas\Dxt_Admin\Views\Widget\FastPostEditor.cshtml" />
     <Content Include="Areas\Dxt_Admin\Views\Post\Manage.cshtml" />
+    <Content Include="Areas\Dxt_Admin\Views\Post\Index.cshtml" />
+    <Content Include="Areas\Dxt_Admin\Views\Widget\PageList.cshtml" />
+    <Content Include="Areas\Dxt_Admin\Views\Page\Index.cshtml" />
     <None Include="Styles\Global\CommonStyles.css.bundle" />
   </ItemGroup>
   <PropertyGroup>

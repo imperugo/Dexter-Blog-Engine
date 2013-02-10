@@ -66,9 +66,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 				return this.View(model);
 			}
 
-			//bool validCredentials = Membership.ValidateUser(credential.Username, credential.Password);
-
-			bool validCredentials = credential.Username == "imperugo" ? true : false;
+			bool validCredentials = Membership.ValidateUser(credential.Username, credential.Password);
 
 			if (!validCredentials)
 			{
