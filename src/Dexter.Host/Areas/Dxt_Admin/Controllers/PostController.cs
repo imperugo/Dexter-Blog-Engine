@@ -34,7 +34,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 	using Dexter.Services;
 	using Dexter.Web.Core.Controllers.Web;
 
-	//[Authorize]
+	[Authorize]
 	public class PostController : DexterControllerBase
 	{
 		#region Fields

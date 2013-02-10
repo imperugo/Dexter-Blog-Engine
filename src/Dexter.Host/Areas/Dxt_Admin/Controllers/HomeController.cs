@@ -29,7 +29,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 	using Dexter.Services;
 	using Dexter.Web.Core.Controllers.Web;
 
-	//[Authorize]
+	[Authorize]
 	public class HomeController : DexterControllerBase
 	{
 		private readonly IPostService postService;
