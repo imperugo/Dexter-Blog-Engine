@@ -1,44 +1,35 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			LayerInstaller.cs
+// File:			AsyncExtensions.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
-// Created:		2013/01/07
-// Last edit:	2013/01/20
+// Created:		2013/02/01
+// Last edit:	2013/02/01
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
-namespace Dexter.PackageInstaller
+namespace Dexter.Extensions.Async
 {
-	using Dexter.Dependency;
-	using Dexter.Dependency.Installation;
-	using Dexter.PackageInstaller.Automapper;
+	using System;
+	using System.Collections.Generic;
+	using System.Threading.Tasks;
 
-	using NuGet;
-
-	public class LayerInstaller : ILayerInstaller
+	public static class AsyncExtensions
 	{
 		#region Public Methods and Operators
 
-		public void ApplicationStarted(IDexterContainer container)
+		public static async Task ForEachAsync<T>(IEnumerable<T> items, Func<T, Task> func)
 		{
-			
-		}
-
-		public void ServiceRegistration(IDexterContainer container)
-		{
-			container.Register<IPackageManager, PackageManager>(LifeCycle.Singleton);
-			
-		}
-
-		public void ServiceRegistrationComplete(IDexterContainer container)
-		{
-			AutoMapperConfiguration.Configure();
+			foreach (T item in items)
+			{
+				await func(item);
+			}
 		}
 
 		#endregion

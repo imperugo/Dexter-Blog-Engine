@@ -59,6 +59,15 @@
 				<label for="simple-required">Tags</label>
 				@Html.TextBoxFor(x => x.Post.Tags, new { @class = "full-width", placeholder = "Write here tags separeted by comma" })
 			</p>
+			
+			<p>
+				<label for="simple-required">Tags</label>
+				@Html.DropDownListFor(x => x.Post.ItemStatus, new []
+					                                              {
+						                                              new SelectListItem(){Selected = true,Text = "Published",Value = "1"},
+						                                              new SelectListItem(){Selected = true,Text = "Published",Value = "1"},
+					                                              } )
+			</p>
 
 			<p>
 				<fieldset class="grey-bg @(!ViewData.ModelState.IsValid && ViewData.ModelState["post.Categories"].Errors != null ? "" : "collapsed")">

@@ -86,16 +86,20 @@
       <HintPath>..\..\src\packages\RavenDB.Database.2.0.2161-Unstable\lib\net40\PowerCollections.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Abstractions">
-      <HintPath>..\..\src\packages\RavenDB.Client.2.0.2230\lib\net40\Raven.Abstractions.dll</HintPath>
+      <HintPath>..\..\src\packages\RavenDB.Client.2.0.2261\lib\net40\Raven.Abstractions.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Raven.Client.Embedded">
-      <HintPath>..\..\src\packages\RavenDB.Embedded.2.0.2230\lib\net40\Raven.Client.Embedded.dll</HintPath>
+      <HintPath>..\..\src\packages\RavenDB.Embedded.2.0.2261\lib\net40\Raven.Client.Embedded.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Raven.Client.Lightweight">
-      <HintPath>..\..\src\packages\RavenDB.Client.2.0.2230\lib\net40\Raven.Client.Lightweight.dll</HintPath>
+      <HintPath>..\..\src\packages\RavenDB.Client.2.0.2261\lib\net40\Raven.Client.Lightweight.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Raven.Database">
-      <HintPath>..\..\src\packages\RavenDB.Database.2.0.2230\lib\net40\Raven.Database.dll</HintPath>
+      <HintPath>..\..\src\packages\RavenDB.Database.2.0.2261\lib\net40\Raven.Database.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="SharpTestsEx">
       <HintPath>..\..\src\packages\SharpTestsEx.1.1.1\lib\SharpTestsEx.dll</HintPath>

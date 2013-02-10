@@ -27,14 +27,15 @@ namespace Dexter.Async
 
 		public void ApplicationStarted(IDexterContainer container)
 		{
-			container.Register<ICallContextFactory, DexterCallContextFactory>(LifeCycle.Singleton);
-			container.Register<IAsyncCallContext, AsyncCallContext>(LifeCycle.Singleton);
-			container.Register<IWebCallContext, WebCallContext>(LifeCycle.Singleton);
-			container.Register<ITaskExecutor, TaskExecutor.TaskExecutor>(LifeCycle.Singleton);
+			
 		}
 
 		public void ServiceRegistration(IDexterContainer container)
 		{
+			container.Register<ICallContextFactory, DexterCallContextFactory>(LifeCycle.Singleton);
+			container.Register<IAsyncCallContext, AsyncCallContext>(LifeCycle.Singleton);
+			container.Register<IWebCallContext, WebCallContext>(LifeCycle.Singleton);
+			container.Register<ITaskExecutor, TaskExecutor.TaskExecutor>(LifeCycle.Singleton);
 		}
 
 		public void ServiceRegistrationComplete(IDexterContainer container)

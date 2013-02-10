@@ -15,6 +15,9 @@
 
 namespace Dexter.Data.Raven
 {
+	using BuildingBlocks.Membership;
+	using BuildingBlocks.Membership.Contract;
+
 	using Dexter.Async;
 	using Dexter.Data.Raven.AutoMapper;
 	using Dexter.Data.Raven.Services;
@@ -45,6 +48,7 @@ namespace Dexter.Data.Raven
 			container.Register<ICategoryDataService, CategoryDataService>(LifeCycle.Singleton);
 			container.Register<IDexterCall, DexterCall>(LifeCycle.Singleton);
 			container.Register<ISessionFactory, SessionFactory>(LifeCycle.Singleton);
+			container.Register<IRepositoryFactory, Membership.RepositoryFactory>(LifeCycle.Singleton);
 
 			IDocumentStore store = new EmbeddableDocumentStore
 				                       {
@@ -62,6 +66,7 @@ namespace Dexter.Data.Raven
 
 		public void ServiceRegistrationComplete(IDexterContainer container)
 		{
+			RepositoryFactory.Initialize(container.Resolve<IRepositoryFactory>());
 			AutoMapperConfiguration.Configure();
 		}
 

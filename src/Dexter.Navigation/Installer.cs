@@ -26,6 +26,11 @@ namespace Dexter.Navigation
 
 		public void ApplicationStarted(IDexterContainer container)
 		{
+			
+		}
+
+		public void ServiceRegistration(IDexterContainer container)
+		{
 			container.Register<IUrlBuilder, UrlBuilder>(LifeCycle.Singleton);
 			container.Register<IAdminUrlBuilder, AdminUrlBuilder>(LifeCycle.Singleton);
 			container.Register<IPostUrlBuilder, PostUrlBuilder>(LifeCycle.Singleton);
@@ -33,10 +38,6 @@ namespace Dexter.Navigation
 			container.Register<IAdminPageUrlBuilder, AdminPageUrlBuilder>(LifeCycle.Singleton);
 			container.Register<IAdminPostUrlBuilder, AdminPostUrlBuilder>(LifeCycle.Singleton);
 			container.Register<IAdminCategoryUrlBuilder, AdminCategoryUrlBuilder>(LifeCycle.Singleton);
-		}
-
-		public void ServiceRegistration(IDexterContainer container)
-		{
 		}
 
 		public void ServiceRegistrationComplete(IDexterContainer container)

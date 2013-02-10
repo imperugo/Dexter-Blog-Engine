@@ -17,6 +17,7 @@ namespace Dexter.Services.Implmentation
 {
 	using System;
 	using System.IO;
+	using System.Web.Security;
 
 	using Dexter.Data;
 	using Dexter.Entities;
@@ -66,11 +67,14 @@ namespace Dexter.Services.Implmentation
 
 			this.configurationDataService.SaveConfiguration(configuration);
 
-			// Creating roles
-			// Membership.CreateUser(item.AdminUsername, item.AdminPassword, item.Email.Address);
-			// Roles.CreateRole("Administrator");
+			// Creating user
+			Membership.CreateUser(item.AdminUsername, item.AdminPassword, item.Email.Address);
 
-			// Roles.AddUserToRole(item.AdminUsername, "Administrator");
+			// Creating administrator role
+			Roles.CreateRole("Administrator");
+
+			// Adding user to role
+			Roles.AddUserToRole(item.AdminUsername, "Administrator");
 
 			//Creating default category
 			this.categoryService.SaveOrUpdate("Various", true, null);

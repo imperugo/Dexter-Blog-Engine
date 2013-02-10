@@ -62,7 +62,7 @@ namespace Dexter.Navigation.Concretes
 
 		public SiteUrl Edit(ItemDto item)
 		{
-			string id = item != null ? item.Id.ToString(CultureInfo.InvariantCulture) : "0";
+			string id = item != null ? item.Id.ToString(CultureInfo.InvariantCulture) : null;
 
 			string[] segments = new[]
 				                    {

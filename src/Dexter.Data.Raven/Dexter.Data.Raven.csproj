@@ -36,30 +36,57 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\AutoMapper.2.2.0\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="Common.Logging, Version=2.1.2.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+    <Reference Include="BuildingBlocks.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Common.Logging.2.1.2\lib\net40\Common.Logging.dll</HintPath>
+      <HintPath>..\packages\BuildingBlocks.Common.1.0.0.49\lib\net40\BuildingBlocks.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="BuildingBlocks.Membership, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\BuildingBlocks.Membership.1.0.0.49\lib\net40\BuildingBlocks.Membership.dll</HintPath>
+    </Reference>
+    <Reference Include="BuildingBlocks.Membership.RavenDB, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\BuildingBlocks.Membership.RavenDB.1.0.0.49\lib\net40\BuildingBlocks.Membership.RavenDB.dll</HintPath>
+    </Reference>
+    <Reference Include="BuildingBlocks.Query, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\BuildingBlocks.Query.1.0.0.49\lib\net40\BuildingBlocks.Query.dll</HintPath>
+    </Reference>
+    <Reference Include="BuildingBlocks.Store, Version=1.0.0.49, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\BuildingBlocks.Store.1.0.0.49\lib\net40\BuildingBlocks.Store.dll</HintPath>
+    </Reference>
+    <Reference Include="BuildingBlocks.Store.RavenDB, Version=1.0.0.49, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\BuildingBlocks.Store.RavenDB.1.0.0.49\lib\net40\BuildingBlocks.Store.RavenDB.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging, Version=2.1.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Common.Logging.2.1.1\lib\net40\Common.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RavenDB.Client.2.0.2230\lib\net40\Raven.Abstractions.dll</HintPath>
+      <HintPath>..\packages\RavenDB.Client.2.0.2261\lib\net40\Raven.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Client.Embedded, Version=2.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RavenDB.Embedded.2.0.2230\lib\net40\Raven.Client.Embedded.dll</HintPath>
+      <HintPath>..\packages\RavenDB.Embedded.2.0.2261\lib\net40\Raven.Client.Embedded.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Client.Lightweight, Version=2.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RavenDB.Client.2.0.2230\lib\net40\Raven.Client.Lightweight.dll</HintPath>
+      <HintPath>..\packages\RavenDB.Client.2.0.2261\lib\net40\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Database, Version=2.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RavenDB.Database.2.0.2230\lib\net40\Raven.Database.dll</HintPath>
+      <HintPath>..\packages\RavenDB.Database.2.0.2261\lib\net40\Raven.Database.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Linq.Dynamic">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.0\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +112,7 @@
     <Compile Include="Indexes\Updating\UpdateCategoryIndex.cs" />
     <Compile Include="Indexes\Updating\UpdateDenormalizedItemIndex.cs" />
     <Compile Include="Indexes\Updating\UpdateEmailStatus.cs" />
+    <Compile Include="Membership\RepositoryFactory.cs" />
     <Compile Include="Services\CategoryDataService.cs" />
     <Compile Include="Services\ConfigurationDataService.cs" />
     <Compile Include="Services\CommentDataService.cs" />

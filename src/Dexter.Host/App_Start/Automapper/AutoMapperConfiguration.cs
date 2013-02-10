@@ -16,6 +16,8 @@
 
 namespace Dexter.Host.App_Start.Automapper
 {
+	using System;
+
 	using AutoMapper;
 
 	using Dexter.Entities;
@@ -29,6 +31,10 @@ namespace Dexter.Host.App_Start.Automapper
 		public static void Configure()
 		{
 			Mapper.CreateMap<SetupBinder, Setup>();
+
+			Mapper.CreateMap<PostBinder, PostDto>()
+			      .ForMember(dest => dest.Status, source => source.MapFrom(p => new DateTimeOffset(p.PublishDate).AsMinutes() > DateTimeOffset.Now.AsMinutes() ? ItemStatus.Scheduled : ItemStatus.Published));
+
 			Mapper.CreateMap<PostDto, PostBinder>()
 			      .ForMember(dest => dest.FormattedBody, source => source.MapFrom(p => p.Content))
 			      .ForMember(dest => dest.Tags, source => source.MapFrom(p => string.Join(",", p.Tags)));

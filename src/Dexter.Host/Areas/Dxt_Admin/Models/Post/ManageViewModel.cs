@@ -98,6 +98,8 @@ namespace Dexter.Host.Areas.Dxt_Admin.Models.Post
 		[Required]
 		public string Title { get; set; }
 
+		public int ItemStatus { get; set; }
+
 		#endregion
 
 		#region Public Methods and Operators
