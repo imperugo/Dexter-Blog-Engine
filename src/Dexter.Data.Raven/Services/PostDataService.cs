@@ -176,12 +176,12 @@ namespace Dexter.Data.Raven.Services
 
 			if (month.HasValue)
 			{
-				query.Where(post => post.PublishAt.Month == month.Value);
+				query = query.Where(post => post.PublishAt.Month == month.Value);
 			}
 
 			if (day.HasValue)
 			{
-				query.Where(post => post.PublishAt.Day == day.Value);
+				query = query.Where(post => post.PublishAt.Day == day.Value);
 			}
 
 			return query
@@ -319,12 +319,13 @@ namespace Dexter.Data.Raven.Services
 			RavenQueryStatistics stats;
 
 			return this.Session.Query<PostFullTextIndex.ReduceResult, PostFullTextIndex>()
-						.Search(x => x.SearchQuery, term)
-						.OrderByDescending(post => post.PublishDate)
-						.Statistics(out stats)
-						.As<Post>()
-						.ApplyFilterItem(filters)
-						.ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
+			           .Customize(x => x.Highlight("SearchQuery", 128, 1, "Results"))
+			           .Search(x => x.SearchQuery, term)
+			           .OrderByDescending(post => post.PublishDate)
+			           .Statistics(out stats)
+			           .As<Post>()
+			           .ApplyFilterItem(filters)
+			           .ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
 		}
 
 		#endregion

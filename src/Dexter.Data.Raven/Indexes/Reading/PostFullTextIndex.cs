@@ -31,16 +31,17 @@ namespace Dexter.Data.Raven.Indexes.Reading
 		public PostFullTextIndex()
 		{
 			this.Map = posts => posts.Select(post => new
-				                                         {
-					                                         SearchQuery = post.Tags.Concat(new[]
-						                                                                        {
-							                                                                        post.Title.ToLowerInvariant(), 
-							                                                                        post.SearchContent
-						                                                                        }), 
-					                                         PublishDate = post.PublishAt
-				                                         });
+														 {
+															 SearchQuery = post.Tags.Concat(new[]
+																								{
+																									post.Title.ToLowerInvariant(), 
+																									post.SearchContent
+																								}),
+															 PublishDate = post.PublishAt
+														 });
 
 			this.Index(x => x.SearchQuery, FieldIndexing.Analyzed);
+			this.Store(x => x.SearchQuery, FieldStorage.Yes);
 		}
 
 		#endregion
@@ -51,7 +52,7 @@ namespace Dexter.Data.Raven.Indexes.Reading
 
 			public DateTimeOffset PublishDate { get; set; }
 
-			public object[] SearchQuery { get; set; }
+			public string SearchQuery { get; set; }
 
 			#endregion
 		}

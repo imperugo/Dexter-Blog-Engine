@@ -184,7 +184,7 @@ namespace Dexter.Data.Raven.Test.PostService
 
 			this.WaitStaleIndexes();
 
-			IPagedResult<PostDto> result = this.sut.Search("facebook", 1, 10, null);
+			IPagedResult<PostDto> result = this.sut.Search("Facebook", 1, 10, null);
 
 			result.Result.Count().Should().Be.GreaterThan(0);
 		}
