@@ -75,10 +75,10 @@ namespace Dexter.Data.Raven.Services
 			DateTime now = DateTime.Now;
 
 			List<MonthDto> dates = this.Session.Query<MonthDto, MonthOfPublishedPostsWithCountIndex>()
-			                           .OrderByDescending(x => x.Year)
-			                           .ThenByDescending(x => x.Month)
-			                           .Where(x => (x.Year < now.Year || x.Year == now.Year) && x.Month <= now.Month)
-			                           .ToList();
+									   .OrderByDescending(x => x.Year)
+									   .ThenByDescending(x => x.Month)
+									   .Where(x => (x.Year < now.Year || x.Year == now.Year) && x.Month <= now.Month)
+									   .ToList();
 
 			return dates;
 		}
@@ -91,9 +91,9 @@ namespace Dexter.Data.Raven.Services
 			}
 
 			Post post = this.Session
-			                .Include<Post>(x => x.CommentsId)
-			                .Include<Post>(x => x.TrackbacksId)
-			                .Load(id);
+							.Include<Post>(x => x.CommentsId)
+							.Include<Post>(x => x.TrackbacksId)
+							.Load(id);
 
 			if (post == null)
 			{
@@ -134,10 +134,10 @@ namespace Dexter.Data.Raven.Services
 			RavenQueryStatistics stats;
 
 			return this.Session.Query<Post>()
-			           .Statistics(out stats)
-			           .ApplyFilterItem(filters)
-			           .OrderByDescending(post => post.PublishAt)
-			           .ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
+					   .Statistics(out stats)
+					   .ApplyFilterItem(filters)
+					   .OrderByDescending(post => post.PublishAt)
+					   .ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
 		}
 
 		public IPagedResult<PostDto> GetPostsByDate(int pageIndex, int pageSize, int year, int? month, int? day, ItemQueryFilter filters)
@@ -170,9 +170,9 @@ namespace Dexter.Data.Raven.Services
 			RavenQueryStatistics stats;
 
 			IQueryable<Post> query = this.Session.Query<Post>()
-			                             .Statistics(out stats)
-			                             .Where(post => post.PublishAt.Year == year)
-			                             .ApplyFilterItem(filters);
+										 .Statistics(out stats)
+										 .Where(post => post.PublishAt.Year == year)
+										 .ApplyFilterItem(filters);
 
 			if (month.HasValue)
 			{
@@ -204,11 +204,11 @@ namespace Dexter.Data.Raven.Services
 			RavenQueryStatistics stats;
 
 			return this.Session.Query<Post>()
-			           .Statistics(out stats)
-			           .ApplyFilterItem(filters)
-			           .Where(post => post.Tags.Any(postTag => postTag == tag))
-			           .OrderByDescending(post => post.PublishAt)
-			           .ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
+					   .Statistics(out stats)
+					   .ApplyFilterItem(filters)
+					   .Where(post => post.Tags.Any(postTag => postTag == tag))
+					   .OrderByDescending(post => post.PublishAt)
+					   .ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
 		}
 
 		public IList<TagDto> GetTopTagsForPublishedPosts(int numberOfTags)
@@ -219,9 +219,9 @@ namespace Dexter.Data.Raven.Services
 			}
 
 			return this.Session.Query<TagDto, TagsForPublishedPostsWithCountIndex>()
-			           .OrderBy(x => x.Count)
-			           .Take(numberOfTags)
-			           .ToList();
+					   .OrderBy(x => x.Count)
+					   .Take(numberOfTags)
+					   .ToList();
 		}
 
 		public void SaveOrUpdate(PostDto item)
@@ -232,10 +232,10 @@ namespace Dexter.Data.Raven.Services
 			}
 
 			Post post = this.Session.Load<Post>(item.Id)
-			            ?? new Post
-				               {
-					               CreatedAt = DateTimeOffset.Now
-				               };
+						?? new Post
+							   {
+								   CreatedAt = DateTimeOffset.Now
+							   };
 
 			bool mustUpdateDenormalizedObject = false;
 
@@ -253,14 +253,14 @@ namespace Dexter.Data.Raven.Services
 				post.Slug = SlugHelper.GenerateSlug(post, this.GetPostBySlugInternal);
 
 				ItemComments comments = new ItemComments
-					                        {
-						                        Item = new ItemReference
-							                               {
-								                               Id = post.Id, 
-								                               Status = post.Status, 
-								                               ItemPublishedAt = post.PublishAt
-							                               }
-					                        };
+											{
+												Item = new ItemReference
+														   {
+															   Id = post.Id,
+															   Status = post.Status,
+															   ItemPublishedAt = post.PublishAt
+														   }
+											};
 
 				this.Session.Store(comments);
 				post.CommentsId = comments.Id;
@@ -287,8 +287,8 @@ namespace Dexter.Data.Raven.Services
 			}
 
 			Post post = this.Session
-			                .Include<Post>(x => x.TrackbacksId)
-			                .Load<Post>(itemId);
+							.Include<Post>(x => x.TrackbacksId)
+							.Load<Post>(itemId);
 
 			if (post == null)
 			{
@@ -296,15 +296,15 @@ namespace Dexter.Data.Raven.Services
 			}
 
 			ItemTrackbacks trackbacks = this.Session.Load<ItemTrackbacks>(post.TrackbacksId)
-			                            ?? new ItemTrackbacks
-				                               {
-					                               Item = new ItemReference
-						                                      {
-							                                      Id = post.Id, 
-							                                      Status = post.Status, 
-							                                      ItemPublishedAt = post.PublishAt
-						                                      }
-				                               };
+										?? new ItemTrackbacks
+											   {
+												   Item = new ItemReference
+															  {
+																  Id = post.Id,
+																  Status = post.Status,
+																  ItemPublishedAt = post.PublishAt
+															  }
+											   };
 
 			trackbacks.AddTrackback(trackBack.MapTo<Trackback>(), trackBack.Status);
 
@@ -319,12 +319,12 @@ namespace Dexter.Data.Raven.Services
 			RavenQueryStatistics stats;
 
 			return this.Session.Query<PostFullTextIndex.ReduceResult, PostFullTextIndex>()
-			           .Search(x => x.SearchQuery, term)
-			           .OrderByDescending(post => post.PublishDate)
-			           .Statistics(out stats)
-			           .As<Post>()
-			           .ApplyFilterItem(filters)
-			           .ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
+						.Search(x => x.SearchQuery, term)
+						.OrderByDescending(post => post.PublishDate)
+						.Statistics(out stats)
+						.As<Post>()
+						.ApplyFilterItem(filters)
+						.ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
 		}
 
 		#endregion
@@ -344,10 +344,10 @@ namespace Dexter.Data.Raven.Services
 			}
 
 			Post post = this.Session.Query<Post>()
-			                .Where(x => x.Slug == slug)
-			                .Include(x => x.CommentsId)
-			                .Include(x => x.TrackbacksId)
-			                .FirstOrDefault();
+							.Where(x => x.Slug == slug)
+							.Include(x => x.CommentsId)
+							.Include(x => x.TrackbacksId)
+							.FirstOrDefault();
 
 			return post;
 		}
