@@ -34,17 +34,17 @@ namespace Dexter.Data.Raven.Extensions
 		{
 			if (filters != null && filters.Status.HasValue)
 			{
-				query.Where(x => x.Status == filters.Status);
+				query = query.Where(x => x.Status == filters.Status);
 			}
 
 			if (filters != null && filters.MinPublishAt.HasValue)
 			{
-				query.Where(x => x.PublishAt > filters.MaxPublishAt);
+				query = query.Where(x => x.PublishAt > filters.MaxPublishAt);
 			}
 
 			if (filters != null && filters.MaxPublishAt.HasValue)
 			{
-				query.Where(x => x.PublishAt < filters.MaxPublishAt);
+				query = query.Where(x => x.PublishAt < filters.MaxPublishAt);
 			}
 
 			return query;

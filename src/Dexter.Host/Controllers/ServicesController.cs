@@ -111,7 +111,7 @@ namespace Dexter.Host.Controllers
 				}
 				catch (Exception e)
 				{
-					this.Logger.ErrorAsync("Error during saving pingback", e);
+					this.Logger.Error("Error during saving pingback", e);
 					this.SendError(0, "Ops, something wrong");
 				}
 			}
@@ -215,7 +215,7 @@ namespace Dexter.Host.Controllers
 			}
 			catch (Exception e)
 			{
-				this.Logger.ErrorAsync("Something wrong during pingback check", e);
+				this.Logger.Error("Something wrong during pingback check", e);
 				return null;
 			}
 		}
