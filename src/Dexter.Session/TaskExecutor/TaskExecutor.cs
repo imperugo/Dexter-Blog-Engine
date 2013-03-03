@@ -56,11 +56,13 @@ namespace Dexter.Async.TaskExecutor
 		public void Discard()
 		{
 			TasksToExecute.Value.Clear();
+			this.logger.Debug("Cleaning the Task Excecutor");
 		}
 
 		public void ExcuteLater(BackgroundTask task)
 		{
 			TasksToExecute.Value.Add(task);
+			this.logger.DebugFormat("Adding '{0}' to the Task Executor", task);
 		}
 
 		public void StartExecuting()
@@ -75,6 +77,7 @@ namespace Dexter.Async.TaskExecutor
 					{
 						foreach (BackgroundTask backgroundTask in copy)
 						{
+							this.logger.DebugFormat("Running '{0}'", backgroundTask);
 							backgroundTask.Run();
 						}
 					}, TaskCreationOptions.LongRunning)
@@ -82,18 +85,11 @@ namespace Dexter.Async.TaskExecutor
 					    {
 						    if (this.ExceptionHandler != null)
 						    {
+							    logger.ErrorFormat("An error ocured running '{0}'", task, task.Exception);
 							    this.ExceptionHandler(task.Exception);
 						    }
 					    }, TaskContinuationOptions.OnlyOnFaulted);
 			}
-		}
-
-		#endregion
-
-		#region Methods
-
-		private void ExecuteTask(BackgroundTask task)
-		{
 		}
 
 		#endregion

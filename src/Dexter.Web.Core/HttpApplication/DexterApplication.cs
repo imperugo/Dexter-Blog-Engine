@@ -79,9 +79,17 @@ namespace Dexter.Web.Core.HttpApplication
 		{
 			Exception errors = this.Server.GetLastError();
 
-			this.dexterCall.Complete(errors == null);
+			bool succesfully = errors == null;
+			this.dexterCall.Complete(succesfully);
 
-			this.taskExecutor.StartExecuting();
+			if (succesfully)
+			{
+				this.taskExecutor.StartExecuting();
+			}
+			else
+			{
+				this.taskExecutor.Discard();
+			}
 		}
 
 		public new void Error()

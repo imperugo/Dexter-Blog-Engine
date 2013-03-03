@@ -68,7 +68,7 @@ namespace Dexter.Data.Raven.Extensions
 
 			List<TK> posts = data.MapTo<TK>();
 
-			return new PagedResult<TK>(currentPage, pageSize, posts, stats.TotalResults);
+			return new PagedResult<TK>(currentPage, pageSize, posts , stats.TotalResults);
 		}
 
 		#endregion

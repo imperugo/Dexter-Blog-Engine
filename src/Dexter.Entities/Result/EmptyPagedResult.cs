@@ -15,6 +15,8 @@
 
 namespace Dexter.Entities.Result
 {
+	using System.Collections.Generic;
+
 	/// <summary>
 	/// 	The implementation of <see cref="IPagedResult{T}" /> used for empty result;
 	/// </summary>
@@ -29,7 +31,7 @@ namespace Dexter.Entities.Result
 		/// <param name="pageIndex"> Index of the page. </param>
 		/// <param name="pageSize"> Size of the page. </param>
 		public EmptyPagedResult(int pageIndex, int pageSize)
-			: base(pageIndex, pageSize, null, 0)
+			: base(pageIndex, pageSize, new List<T>(), 0)
 		{
 		}
 

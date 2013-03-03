@@ -195,6 +195,11 @@ namespace Dexter.Dependency
 				}
 			}
 
+			if (containerType == null)
+			{
+				throw new ArgumentException("Unable to find the DI Implementation.");
+			}
+
 			IDexterContainerFactory factory = Activator.CreateInstance(containerType) as IDexterContainerFactory;
 
 			if (factory == null)
