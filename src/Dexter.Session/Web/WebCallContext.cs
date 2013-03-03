@@ -15,7 +15,7 @@
 
 namespace Dexter.Async.Web
 {
-	using System.Runtime.Remoting.Messaging;
+	using System.Web;
 
 	/// <summary>
 	/// This class is the implementation of ICallContext
@@ -32,12 +32,12 @@ namespace Dexter.Async.Web
 		{
 			get
 			{
-				return CallContext.LogicalGetData(key);
+				return HttpContext.Current.Items[key];
 			}
 
 			set
 			{
-				CallContext.LogicalSetData(key, value);
+				HttpContext.Current.Items[key] = value;
 			}
 		}
 

@@ -32,33 +32,33 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=2.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+    <Reference Include="AutoMapper, Version=2.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\AutoMapper.2.2.0\lib\net40\AutoMapper.dll</HintPath>
+      <HintPath>..\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="BuildingBlocks.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\BuildingBlocks.Common.1.0.0.51\lib\net40\BuildingBlocks.Common.dll</HintPath>
+      <HintPath>..\packages\BuildingBlocks.Common.1.0.0.55\lib\net40\BuildingBlocks.Common.dll</HintPath>
     </Reference>
     <Reference Include="BuildingBlocks.Membership, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\BuildingBlocks.Membership.1.0.0.51\lib\net40\BuildingBlocks.Membership.dll</HintPath>
+      <HintPath>..\packages\BuildingBlocks.Membership.1.0.0.55\lib\net40\BuildingBlocks.Membership.dll</HintPath>
     </Reference>
     <Reference Include="BuildingBlocks.Membership.RavenDB, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\BuildingBlocks.Membership.RavenDB.1.0.0.51\lib\net40\BuildingBlocks.Membership.RavenDB.dll</HintPath>
+      <HintPath>..\packages\BuildingBlocks.Membership.RavenDB.1.0.0.55\lib\net40\BuildingBlocks.Membership.RavenDB.dll</HintPath>
     </Reference>
     <Reference Include="BuildingBlocks.Query, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\BuildingBlocks.Query.1.0.0.51\lib\net40\BuildingBlocks.Query.dll</HintPath>
+      <HintPath>..\packages\BuildingBlocks.Query.1.0.0.55\lib\net40\BuildingBlocks.Query.dll</HintPath>
     </Reference>
-    <Reference Include="BuildingBlocks.Store, Version=1.0.0.51, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="BuildingBlocks.Store, Version=1.0.0.55, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\BuildingBlocks.Store.1.0.0.51\lib\net40\BuildingBlocks.Store.dll</HintPath>
+      <HintPath>..\packages\BuildingBlocks.Store.1.0.0.55\lib\net40\BuildingBlocks.Store.dll</HintPath>
     </Reference>
-    <Reference Include="BuildingBlocks.Store.RavenDB, Version=1.0.0.51, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="BuildingBlocks.Store.RavenDB, Version=1.0.0.55, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\BuildingBlocks.Store.RavenDB.1.0.0.51\lib\net40\BuildingBlocks.Store.RavenDB.dll</HintPath>
+      <HintPath>..\packages\BuildingBlocks.Store.RavenDB.1.0.0.55\lib\net40\BuildingBlocks.Store.RavenDB.dll</HintPath>
     </Reference>
     <Reference Include="Common.Logging, Version=2.1.2.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
