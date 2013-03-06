@@ -20,12 +20,13 @@ namespace Dexter.Data.Raven.Session
 	using Dexter.Async;
 
 	using global::Raven.Client;
+	using global::Raven.Client.Document;
 
 	public class SessionFactory : ISessionFactory
 	{
 		#region Constants
 
-		internal const string SessionStateKey = "{740123ac-1ef2-422f-b8d9-019bf3f36e1e}";
+		internal const string SessionStateKey = "{DEXTER-SESSION-KEY}";
 
 		#endregion
 

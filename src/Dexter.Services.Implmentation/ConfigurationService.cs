@@ -58,11 +58,6 @@ namespace Dexter.Services.Implmentation
 			return result;
 		}
 
-		public Task<BlogConfigurationDto> GetConfigurationAsync()
-		{
-			return Task.Run(() => this.configurationDataService.GetConfiguration());
-		}
-
 		#endregion
 	}
 }

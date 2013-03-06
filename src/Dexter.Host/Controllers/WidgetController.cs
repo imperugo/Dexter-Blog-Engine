@@ -49,9 +49,9 @@ namespace Dexter.Host.Controllers
 		#region Public Methods and Operators
 
 		[ChildActionOnly]
-		public async Task<ActionResult> Archive()
+		public ActionResult Archive()
 		{
-			IList<MonthDto> months = await this.postService.GetMonthsForPublishedPostsAsync();
+			IList<MonthDto> months = this.postService.GetMonthsForPublishedPosts();
 
 			return this.View(new ArchiveViewModel
 				                 {
@@ -60,9 +60,9 @@ namespace Dexter.Host.Controllers
 		}
 
 		[ChildActionOnly]
-		public async Task<ActionResult> FuturePosts(int maxItemsNumber)
+		public ActionResult FuturePosts(int maxItemsNumber)
 		{
-			IPagedResult<PostDto> items = await this.postService.GetPostsAsync(1, maxItemsNumber, new ItemQueryFilter
+			IPagedResult<PostDto> items = this.postService.GetPosts(1, maxItemsNumber, new ItemQueryFilter
 				                                                                                      {
 					                                                                                      MinPublishAt = DateTimeOffset.Now.AsMinutes(), 
 					                                                                                      MaxPublishAt = DateTimeOffset.Now.AddYears(5).AsMinutes(), 
@@ -78,9 +78,9 @@ namespace Dexter.Host.Controllers
 		}
 
 		[ChildActionOnly]
-		public async Task<ActionResult> RecentComments(int maxNumberOfComments)
+		public ActionResult RecentComments(int maxNumberOfComments)
 		{
-			IList<CommentDto> comments = await this.commentService.GetRecentCommentsAsync(maxNumberOfComments);
+			IList<CommentDto> comments = this.commentService.GetRecentComments(maxNumberOfComments);
 
 			return this.View(new RecentCommentsViewModel
 				                 {
@@ -89,9 +89,9 @@ namespace Dexter.Host.Controllers
 		}
 
 		[ChildActionOnly]
-		public async Task<ActionResult> TopTags(int maxNumberOfTags)
+		public ActionResult TopTags(int maxNumberOfTags)
 		{
-			IList<TagDto> topTags = await this.postService.GetTopTagsForPublishedPostsAsync(maxNumberOfTags);
+			IList<TagDto> topTags = this.postService.GetTopTagsForPublishedPosts(maxNumberOfTags);
 
 			return this.View(new TopTagsViewModel
 				                 {
@@ -100,9 +100,9 @@ namespace Dexter.Host.Controllers
 		}
 
 		[ChildActionOnly]
-		public async Task<ActionResult> PostComment(int itemId)
+		public ActionResult PostComment(int itemId)
 		{
-			var comments = await this.commentService.GetCommentForSpecificItemAsync(itemId);
+			var comments = this.commentService.GetCommentForSpecificItem(itemId);
 
 			return this.View(new ItemCommentViewModel()
 				                 {

@@ -89,11 +89,6 @@ namespace Dexter.Services.Implmentation
 			return result;
 		}
 
-		public Task<PageDto> GetPageByKeyAsync(int key)
-		{
-			return Task.Run(() => this.GetPageByKey(key));
-		}
-
 		public PageDto GetPageBySlug(string slug)
 		{
 			if (slug == null)
@@ -121,11 +116,6 @@ namespace Dexter.Services.Implmentation
 			this.PageRetrievedBySlug.Raise(this, new GenericEventArgs<PageDto>(result));
 
 			return result;
-		}
-
-		public Task<PageDto> GetPageBySlugAsync(string slug)
-		{
-			return Task.Run(() => this.GetPageBySlug(slug));
 		}
 
 		public IPagedResult<PageDto> GetPages(int pageIndex, int pageSize, ItemQueryFilter filters)
@@ -162,11 +152,6 @@ namespace Dexter.Services.Implmentation
 			this.PagesRetrievedWithFilters.Raise(this, new GenericEventArgs<IPagedResult<PageDto>>(result));
 
 			return result;
-		}
-
-		public Task<IPagedResult<PageDto>> GetPagesAsync(int pageIndex, int pageSize, ItemQueryFilter filter)
-		{
-			return Task.Run(() => this.GetPagesAsync(pageIndex, pageSize, filter));
 		}
 
 		#endregion

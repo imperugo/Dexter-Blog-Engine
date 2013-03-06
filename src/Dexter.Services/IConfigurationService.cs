@@ -25,8 +25,6 @@ namespace Dexter.Services
 
 		BlogConfigurationDto GetConfiguration();
 
-		Task<BlogConfigurationDto> GetConfigurationAsync();
-
 		#endregion
 	}
 }

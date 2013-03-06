@@ -43,11 +43,7 @@ namespace Dexter.Services
 
 		IList<CategoryDto> GetCategories();
 
-		Task<IList<CategoryDto>> GetCategoriesAsync();
-
 		void SaveOrUpdate(CategoryDto category);
-
-		Task SaveOrUpdateAsync(CategoryDto category);
 
 		#endregion
 	}

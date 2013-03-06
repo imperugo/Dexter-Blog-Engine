@@ -78,7 +78,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 
 			FormsAuthentication.SetAuthCookie(credential.Username, true);
 
-			this.Logger.InfoFormatAsync("User '{0}' is logged in.", credential.Username);
+			this.Logger.InfoFormat("User '{0}' is logged in.", credential.Username);
 
 			return this.urlBuilder.Admin.Home().Redirect();
 		}

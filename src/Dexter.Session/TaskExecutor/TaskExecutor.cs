@@ -67,6 +67,8 @@ namespace Dexter.Async.TaskExecutor
 
 		public void StartExecuting()
 		{
+			logger.Debug("Starting Task Executor");
+
 			List<BackgroundTask> value = TasksToExecute.Value;
 			BackgroundTask[] copy = value.ToArray();
 			value.Clear();

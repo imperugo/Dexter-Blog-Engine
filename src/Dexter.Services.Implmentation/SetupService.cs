@@ -5,12 +5,13 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
 // Created:		2012/12/23
-// Last edit:	2013/01/20
+// Last edit:	2013/03/04
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Services.Implmentation
@@ -26,11 +27,11 @@ namespace Dexter.Services.Implmentation
 	{
 		#region Fields
 
+		private readonly ICategoryDataService categoryService;
+
 		private readonly IConfigurationDataService configurationDataService;
 
 		private readonly IPostDataService postDataService;
-
-		private readonly ICategoryDataService categoryService;
 
 		#endregion
 
@@ -67,6 +68,9 @@ namespace Dexter.Services.Implmentation
 
 			this.configurationDataService.SaveConfiguration(configuration);
 
+			//Creating default category
+			this.categoryService.SaveOrUpdate("Various", true, null);
+
 			// Creating user
 			Membership.CreateUser(item.AdminUsername, item.AdminPassword, item.Email.Address);
 
@@ -76,10 +80,6 @@ namespace Dexter.Services.Implmentation
 			// Adding user to role
 			Roles.AddUserToRole(item.AdminUsername, "Administrator");
 
-			//Creating default category
-			this.categoryService.SaveOrUpdate("Various", true, null);
-			
-			// Creating default post
 			PostDto defaultPost = new PostDto();
 
 			string defaultPostPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App_Data/Setup/defaultPost.dxt");
@@ -87,9 +87,10 @@ namespace Dexter.Services.Implmentation
 			defaultPost.Title = "Welcome to Dexter!";
 			defaultPost.Tags = new[] { "Dexter" };
 			defaultPost.Categories = new[] { "Various" };
-			defaultPost.Content = File.ReadAllText(defaultPostPath).Replace("[SiteDomain]", item.SiteDomain.Host);
 			defaultPost.Status = ItemStatus.Published;
 			defaultPost.PublishAt = DateTimeOffset.Now.AsMinutes();
+			defaultPost.Author = item.AdminUsername;
+			defaultPost.Content = File.ReadAllText(defaultPostPath).Replace("[SiteDomain]", item.SiteDomain.Host);
 
 			this.postDataService.SaveOrUpdate(defaultPost);
 		}

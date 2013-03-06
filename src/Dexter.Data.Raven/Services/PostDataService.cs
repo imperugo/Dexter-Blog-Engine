@@ -18,6 +18,7 @@ namespace Dexter.Data.Raven.Services
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Threading;
 
 	using global::AutoMapper;
 
@@ -236,6 +237,11 @@ namespace Dexter.Data.Raven.Services
 							   {
 								   CreatedAt = DateTimeOffset.Now
 							   };
+
+			if (string.IsNullOrEmpty(item.Author))
+			{
+				post.Author = Thread.CurrentPrincipal.Identity.Name;
+			}
 
 			bool mustUpdateDenormalizedObject = false;
 

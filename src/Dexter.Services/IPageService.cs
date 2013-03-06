@@ -63,15 +63,9 @@ namespace Dexter.Services
 
 		PageDto GetPageByKey(int key);
 
-		Task<PageDto> GetPageByKeyAsync(int key);
-
 		PageDto GetPageBySlug(string slug);
 
-		Task<PageDto> GetPageBySlugAsync(string slug);
-
 		IPagedResult<PageDto> GetPages(int pageIndex, int pageSize, ItemQueryFilter filters);
-
-		Task<IPagedResult<PageDto>> GetPagesAsync(int pageIndex, int pageSize, ItemQueryFilter filter);
 
 		#endregion
 	}

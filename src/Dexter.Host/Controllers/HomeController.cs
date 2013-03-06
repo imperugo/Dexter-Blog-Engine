@@ -47,34 +47,26 @@ namespace Dexter.Host.Controllers
 
 		[PingBack]
 		[AcceptVerbs(HttpVerbs.Get | HttpVerbs.Head)]
-		public async Task<ActionResult> Index(int page = 1)
+		public ActionResult Index(int page = 1)
 		{
 			IndexViewModel model = new IndexViewModel();
 
-			Task<IPagedResult<PostDto>> postsTasks = this.postService.GetPostsAsync(page, 10, new ItemQueryFilter
+			model.Posts = this.postService.GetPosts(page, 10, new ItemQueryFilter
 				                                                                                  {
 					                                                                                  MaxPublishAt = DateTimeOffset.Now.AsMinutes(), 
 					                                                                                  Status = ItemStatus.Published
 				                                                                                  });
-
-			await Task.WhenAll(postsTasks);
-
-			model.Posts = postsTasks.Result;
 
 			return this.Json(model, JsonRequestBehavior.AllowGet);
 		}
 
 		[PingBack]
 		[AcceptVerbs(HttpVerbs.Get | HttpVerbs.Head)]
-		public async Task<ActionResult> Post(string id)
+		public ActionResult Post(string id)
 		{
 			PostViewModel model = new PostViewModel();
 
-			Task<PostDto> postTasks = this.postService.GetPostBySlugAsync(id);
-
-			await Task.WhenAll(postTasks);
-
-			model.Post = postTasks.Result;
+			model.Post = this.postService.GetPostBySlug(id);
 
 			return this.View(model);
 		}

@@ -58,7 +58,7 @@ namespace Dexter.Services.Implmentation
 
 		#region Public Methods and Operators
 
-		public async Task SaveOrUpdateAsync(TrackBackDto trackBack, ItemType itemType)
+		public async Task SaveOrUpdate(TrackBackDto trackBack, ItemType itemType)
 		{
 			if (trackBack == null)
 			{

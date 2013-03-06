@@ -15,6 +15,7 @@
 
 namespace Dexter.Host.Areas.Dxt_Setup.Controllers
 {
+	using System.Threading.Tasks;
 	using System.Web.Mvc;
 
 	using AutoMapper;

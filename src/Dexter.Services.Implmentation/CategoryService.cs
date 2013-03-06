@@ -68,11 +68,6 @@ namespace Dexter.Services.Implmentation
 			return data;
 		}
 
-		public Task<IList<CategoryDto>> GetCategoriesAsync()
-		{
-			return Task.Run(() => this.GetCategories());
-		}
-
 		public void SaveOrUpdate(CategoryDto category)
 		{
 			if (category == null)
@@ -91,11 +86,6 @@ namespace Dexter.Services.Implmentation
 			}
 
 			throw new NotImplementedException();
-		}
-
-		public Task SaveOrUpdateAsync(CategoryDto category)
-		{
-			return Task.Run(() => this.SaveOrUpdate(category));
 		}
 
 		#endregion

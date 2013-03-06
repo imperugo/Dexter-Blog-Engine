@@ -21,6 +21,8 @@ namespace Dexter.Entities
 	{
 		#region Public Properties
 
+		public string Author { get; set; }
+
 		public string Abstract { get; set; }
 
 		public bool AllowComments { get; set; }

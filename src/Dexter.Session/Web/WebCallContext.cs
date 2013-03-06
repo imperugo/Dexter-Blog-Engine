@@ -15,6 +15,7 @@
 
 namespace Dexter.Async.Web
 {
+	using System.Runtime.Remoting.Messaging;
 	using System.Web;
 
 	/// <summary>
@@ -33,11 +34,13 @@ namespace Dexter.Async.Web
 			get
 			{
 				return HttpContext.Current.Items[key];
+				//return CallContext.LogicalGetData(key);
 			}
 
 			set
 			{
 				HttpContext.Current.Items[key] = value;
+				//CallContext.LogicalSetData(key, value);
 			}
 		}
 

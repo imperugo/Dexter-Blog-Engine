@@ -15,6 +15,8 @@
 
 namespace Dexter.Data.Raven.Services
 {
+	using System.Linq;
+
 	using Common.Logging;
 
 	using Dexter.Data.Raven.Session;

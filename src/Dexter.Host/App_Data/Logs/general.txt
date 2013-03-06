@@ -1,0 +1,27 @@
+2013-03-04 14:41:58,453 [1] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created imperugo 
+ 2013-03-04 14:41:59,498 [9] DEBUG Dexter.Data.Raven.Session.SessionFactory - There is no session into the current context. imperugo 
+ 2013-03-04 14:41:59,500 [9] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor imperugo 
+ 2013-03-04 14:42:00,288 [8] DEBUG Dexter.Data.Raven.Session.SessionFactory - There is no session into the current context. imperugo 
+ 2013-03-04 14:42:00,289 [8] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor imperugo 
+ 2013-03-04 14:42:12,703 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created imperugo 
+ 2013-03-04 14:42:12,766 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created imperugo 
+ 2013-03-04 14:42:12,769 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created imperugo 
+ 2013-03-04 14:42:37,529 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created imperugo 
+ 2013-03-04 14:42:37,553 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created imperugo 
+ 2013-03-04 14:42:37,562 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created imperugo 
+ 2013-03-04 14:42:40,618 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created imperugo 
+ 2013-03-04 14:42:40,624 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created imperugo 
+ 2013-03-04 14:42:40,639 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes imperugo 
+ 2013-03-04 14:42:40,686 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed imperugo 
+ 2013-03-04 14:42:40,688 [14] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor imperugo 
+ 2013-03-04 14:42:43,601 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - There is no session into the current context. imperugo 
+ 2013-03-04 14:42:43,630 [14] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor imperugo 
+ 2013-03-04 14:42:44,968 [6] DEBUG Dexter.Data.Raven.Session.SessionFactory - There is no session into the current context. imperugo 
+ 2013-03-04 14:42:44,972 [6] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor imperugo 
+ 2013-03-04 14:43:25,890 [24] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created imperugo 
+ 2013-03-04 14:43:27,753 [19] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created imperugo 
+ 2013-03-04 14:43:27,781 [19] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created imperugo 
+ 2013-03-04 14:43:31,892 [19] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes imperugo 
+ 2013-03-04 14:43:31,925 [19] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed imperugo 
+ 2013-03-04 14:43:31,927 [19] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor imperugo 
+ 

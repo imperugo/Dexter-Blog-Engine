@@ -72,8 +72,8 @@ namespace Dexter.Async
 		public ICallContext RetrieveCallContext()
 		{
 			return !this.IsWebRequest
-				       ? this.contextAsync
-				       : this.contextWeb;
+					   ? this.contextAsync
+					   : this.contextWeb;
 		}
 
 		#endregion

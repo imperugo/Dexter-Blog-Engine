@@ -63,7 +63,7 @@ namespace Dexter.Async.TaskExecutor
 
 		#region Methods
 
-		protected virtual void Finalize()
+		protected virtual void Complete()
 		{
 			this.dexterCall.Complete(!this.isFault);
 		}

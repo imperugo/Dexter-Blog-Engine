@@ -106,11 +106,6 @@ namespace Dexter.Services.Implmentation
 			return result;
 		}
 
-		public Task<IList<CommentDto>> GetCommentForSpecificItemAsync(int itemId, CommentQueryFilter queryFilter)
-		{
-			return Task.Run(() => this.GetCommentForSpecificItem(itemId, queryFilter));
-		}
-
 		public IList<CommentDto> GetRecentComments(int maxNumber, CommentQueryFilter queryFilter = null)
 		{
 			if (maxNumber < 1)
@@ -125,11 +120,6 @@ namespace Dexter.Services.Implmentation
 			}
 
 			return null;
-		}
-
-		public Task<IList<CommentDto>> GetRecentCommentsAsync(int maxNumber, CommentQueryFilter queryFilter = null)
-		{
-			return Task.Run(() => this.GetRecentComments(maxNumber, queryFilter));
 		}
 
 		#endregion

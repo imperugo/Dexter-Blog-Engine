@@ -23,7 +23,7 @@ namespace Dexter.Dependency.Web.Mvc
 	using Common.Logging;
 
 	/// <summary>
-	/// 	Defines a controller provider for all mvc controllers.
+	/// Defines a controller provider for all MVC controllers.
 	/// </summary>
 	public class DexterControllerFactory : DefaultControllerFactory
 	{
@@ -74,9 +74,7 @@ namespace Dexter.Dependency.Web.Mvc
 		/// <exception cref="T:System.ArgumentNullException">The
 		/// 	<paramref name="requestContext" />
 		/// 	parameter is null.</exception>
-		/// <exception cref="T:System.ArgumentException">The
-		/// 	<paramref name="controllerName" />
-		/// 	parameter is null or empty.</exception>
+		/// <exception cref="T:System.ArgumentException">The <paramref name="controllerName" />parameter is null or empty.</exception>
 		public override IController CreateController(RequestContext requestContext, string controllerName)
 		{
 			Type controllerType = this.GetControllerType(requestContext, controllerName);
@@ -86,6 +84,8 @@ namespace Dexter.Dependency.Web.Mvc
 				throw new HttpException(404, string.Format("The controller for path '{0}' could not be found.", requestContext.HttpContext.Request.Path));
 			}
 
+			this.logger.DebugFormat("Releasing controller '{0}'", controllerType);
+			
 			return this.GetControllerInstance(requestContext, controllerType);
 		}
 
@@ -110,17 +110,21 @@ namespace Dexter.Dependency.Web.Mvc
 		/// <param name="requestContext"> The context of the HTTP request, which includes the HTTP context and route data. </param>
 		/// <param name="controllerType"> The type of the controller. </param>
 		/// <returns> The controller instance. </returns>
-		/// <exception cref="T:System.Web.HttpException">
-		/// 	<paramref name="controllerType" />
-		/// 	is null.</exception>
-		/// <exception cref="T:System.ArgumentException">
-		/// 	<paramref name="controllerType" />
-		/// 	cannot be assigned.</exception>
-		/// <exception cref="T:System.InvalidOperationException">An instance of
-		/// 	<paramref name="controllerType" />
-		/// 	cannot be created.</exception>
+		/// <exception cref="T:System.Web.HttpException"><paramref name="controllerType" />is null.</exception>
+		/// <exception cref="T:System.ArgumentException"><paramref name="controllerType" />cannot be assigned.</exception>
+		/// <exception cref="T:System.InvalidOperationException">An instance of <paramref name="controllerType" />cannot be created.</exception>
 		protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType)
 		{
+			if (controllerType == null)
+			{
+				throw new HttpException(404, string.Format("The controller for path '{0}' could not be found.", requestContext.HttpContext.Request.Path));
+			}
+
+			if (this.container.HasComponent(controllerType))
+			{
+				throw new InvalidOperationException("Unable to release the specified controller");
+			}
+
 			this.logger.DebugFormat("Resolving controller {0}", controllerType);
 			return this.container.Resolve(controllerType) as IController;
 		}

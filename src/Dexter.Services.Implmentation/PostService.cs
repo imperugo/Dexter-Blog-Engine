@@ -134,11 +134,6 @@ namespace Dexter.Services.Implmentation
 			return data;
 		}
 
-		public Task<IList<MonthDto>> GetMonthsForPublishedPostsAsync()
-		{
-			return Task.Run(() => this.GetMonthsForPublishedPosts());
-		}
-
 		public PostDto GetPostByKey(int key)
 		{
 			if (key < 1)
@@ -161,11 +156,6 @@ namespace Dexter.Services.Implmentation
 			this.PostRetrievedById.Raise(this, new GenericEventArgs<PostDto>(result));
 
 			return result;
-		}
-
-		public Task<PostDto> GetPostByKeyAsync(int key)
-		{
-			return Task.Run(() => this.GetPostByKey(key));
 		}
 
 		public PostDto GetPostBySlug(string slug)
@@ -195,11 +185,6 @@ namespace Dexter.Services.Implmentation
 			this.PostRetrievedBySlug.Raise(this, new GenericEventArgs<PostDto>(result));
 
 			return result;
-		}
-
-		public Task<PostDto> GetPostBySlugAsync(string slug)
-		{
-			return Task.Run(() => this.GetPostBySlug(slug));
 		}
 
 		public IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, ItemQueryFilter filters)
@@ -236,11 +221,6 @@ namespace Dexter.Services.Implmentation
 			this.PostsRetrievedWithFilters.Raise(this, new GenericEventArgs<IPagedResult<PostDto>>(result));
 
 			return result;
-		}
-
-		public Task<IPagedResult<PostDto>> GetPostsAsync(int pageIndex, int pageSize, ItemQueryFilter filter)
-		{
-			return Task.Run(() => this.GetPosts(pageIndex, pageSize, filter));
 		}
 
 		public IPagedResult<PostDto> GetPostsByDate(int pageIndex, int pageSize, int year, int? month, int? day, ItemQueryFilter filters = null)
@@ -295,11 +275,6 @@ namespace Dexter.Services.Implmentation
 			return result;
 		}
 
-		public Task<IPagedResult<PostDto>> GetPostsByDateAsync(int pageIndex, int pageSize, int year, int? month, int? day, ItemQueryFilter filters = null)
-		{
-			return Task.Run(() => this.GetPostsByDate(pageIndex, pageSize, year, month, day, filters));
-		}
-
 		public IPagedResult<PostDto> GetPostsByTag(int pageIndex, int pageSize, string tag, ItemQueryFilter filters = null)
 		{
 			if (pageIndex < 1)
@@ -344,11 +319,6 @@ namespace Dexter.Services.Implmentation
 			return result;
 		}
 
-		public Task<IPagedResult<PostDto>> GetPostsByTagAsync(int pageIndex, int pageSize, string tag, ItemQueryFilter filters = null)
-		{
-			return Task.Run(() => this.GetPostsByTag(pageIndex, pageSize, tag, filters));
-		}
-
 		public IList<TagDto> GetTopTagsForPublishedPosts(int maxNumberOfTags)
 		{
 			if (maxNumberOfTags < 1)
@@ -370,11 +340,6 @@ namespace Dexter.Services.Implmentation
 			this.TagsRetrievedForPublishedPosts.Raise(this, new GenericEventArgs<IList<TagDto>>(data));
 
 			return data;
-		}
-
-		public Task<IList<TagDto>> GetTopTagsForPublishedPostsAsync(int maxNumberOfTags)
-		{
-			return Task.Run(() => this.GetTopTagsForPublishedPosts(maxNumberOfTags));
 		}
 
 		public void SaveOrUpdate(PostDto item)
@@ -432,11 +397,6 @@ namespace Dexter.Services.Implmentation
 			this.PostsSearchedWithFilters.Raise(this, new GenericEventArgs<IPagedResult<PostDto>>(result));
 
 			return result;
-		}
-
-		public Task<IPagedResult<PostDto>> SearchAsync(string term, int pageIndex, int pageSize, ItemQueryFilter filters)
-		{
-			return Task.Run(() => this.Search(term, pageIndex, pageSize, filters));
 		}
 
 		#endregion

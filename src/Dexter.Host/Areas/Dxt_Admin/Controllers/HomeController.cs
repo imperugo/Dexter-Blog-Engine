@@ -51,19 +51,16 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 		#region Public Methods and Operators
 
 		[AcceptVerbs(HttpVerbs.Get)]
-		public async Task<ActionResult> Index()
+		public ActionResult Index()
 		{
-			Task<IPagedResult<PostDto>> futurePosts = this.postService.GetPostsAsync(1, 50, new ItemQueryFilter()
+			IndexViewModel model = new IndexViewModel();
+
+			model.FuturePosts = this.postService.GetPosts(1, 50, new ItemQueryFilter()
 				                                                        {
 																			MaxPublishAt = DateTimeOffset.Now.AddDays(7).AsMinutes(),
 																			MinPublishAt = DateTimeOffset.Now.AsMinutes(),
 																			Status = ItemStatus.Scheduled
 				                                                        });
-
-			await Task.WhenAll(futurePosts);
-
-			IndexViewModel model = new IndexViewModel();
-			model.FuturePosts = futurePosts.Result;
 
 			return this.View(model);
 		}

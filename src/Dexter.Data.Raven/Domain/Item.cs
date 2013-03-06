@@ -47,6 +47,8 @@ namespace Dexter.Data.Raven.Domain
 
 		public string TrackbacksId { get; set; }
 
+		public string Author { get; set; }
+
 		#endregion
 	}
 }

@@ -136,37 +136,21 @@ namespace Dexter.Services
 
 		IList<MonthDto> GetMonthsForPublishedPosts();
 
-		Task<IList<MonthDto>> GetMonthsForPublishedPostsAsync();
-
 		PostDto GetPostByKey(int key);
-
-		Task<PostDto> GetPostByKeyAsync(int key);
 
 		PostDto GetPostBySlug(string slug);
 
-		Task<PostDto> GetPostBySlugAsync(string slug);
-
 		IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, ItemQueryFilter filters = null);
-
-		Task<IPagedResult<PostDto>> GetPostsAsync(int pageIndex, int pageSize, ItemQueryFilter filter = null);
 
 		IPagedResult<PostDto> GetPostsByDate(int pageIndex, int pageSize, int year, int? month, int? day, ItemQueryFilter filters = null);
 
-		Task<IPagedResult<PostDto>> GetPostsByDateAsync(int pageIndex, int pageSize, int year, int? month, int? day, ItemQueryFilter filters = null);
-
 		IPagedResult<PostDto> GetPostsByTag(int pageIndex, int pageSize, string tag, ItemQueryFilter filters = null);
 
-		Task<IPagedResult<PostDto>> GetPostsByTagAsync(int pageIndex, int pageSize, string tag, ItemQueryFilter filters = null);
-
 		IList<TagDto> GetTopTagsForPublishedPosts(int maxNumberOfTags);
-
-		Task<IList<TagDto>> GetTopTagsForPublishedPostsAsync(int maxNumberOfTags);
 
 		void SaveOrUpdate(PostDto item);
 
 		IPagedResult<PostDto> Search(string term, int pageIndex, int pageSize, ItemQueryFilter filters);
-
-		Task<IPagedResult<PostDto>> SearchAsync(string term, int pageIndex, int pageSize, ItemQueryFilter filters);
 
 		#endregion
 	}

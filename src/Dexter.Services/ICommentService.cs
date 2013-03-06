@@ -53,11 +53,7 @@ namespace Dexter.Services
 
 		IList<CommentDto> GetCommentForSpecificItem(int itemId, CommentQueryFilter queryFilter = null);
 
-		Task<IList<CommentDto>> GetCommentForSpecificItemAsync(int itemId, CommentQueryFilter queryFilter = null);
-
 		IList<CommentDto> GetRecentComments(int maxNumber, CommentQueryFilter queryFilter = null);
-
-		Task<IList<CommentDto>> GetRecentCommentsAsync(int maxNumber, CommentQueryFilter queryFilter = null);
 
 		#endregion
 	}

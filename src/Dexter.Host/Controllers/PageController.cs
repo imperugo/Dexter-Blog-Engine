@@ -48,25 +48,24 @@ namespace Dexter.Host.Controllers
 
 		[PingBack]
 		[AcceptVerbs(HttpVerbs.Get | HttpVerbs.Head)]
-		public async Task<ActionResult> Index(string id)
+		public ActionResult Index(string id)
 		{
 			if (string.IsNullOrEmpty(id))
 			{
 				return this.HttpNotFound();
 			}
 
-			Task<PageDto> pageTasks = this.pageService.GetPageBySlugAsync(id);
+			PageDto page = this.pageService.GetPageBySlug(id);
 
-			await Task.WhenAll(pageTasks);
 
-			if (pageTasks == null)
+			if (page == null)
 			{
 				return this.HttpNotFound();
 			}
 
 			IndexViewModel model = new IndexViewModel();
 
-			model.Page = pageTasks.Result;
+			model.Page = page;
 
 			return this.View(model);
 		}

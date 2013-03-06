@@ -41,7 +41,7 @@ namespace Dexter.Host.Controllers
 		#region Public Methods and Operators
 
 		[AcceptVerbs(HttpVerbs.Get | HttpVerbs.Head)]
-		public async Task<ActionResult> Archive(string id, int page = 1)
+		public ActionResult Archive(string id, int page = 1)
 		{
 			if (string.IsNullOrEmpty(id))
 			{
@@ -51,17 +51,17 @@ namespace Dexter.Host.Controllers
 			ArchiveViewModel model = new ArchiveViewModel();
 			model.Tag = id;
 
-			model.Posts = await this.postService.GetPostsByTagAsync(page, 10, id);
+			model.Posts = this.postService.GetPostsByTag(page, 10, id);
 
 			return this.View(model);
 		}
 
 		[AcceptVerbs(HttpVerbs.Get | HttpVerbs.Head)]
-		public async Task<ActionResult> Index()
+		public ActionResult Index()
 		{
 			IndexViewModel model = new IndexViewModel();
 
-			model.Tags = await this.postService.GetTopTagsForPublishedPostsAsync(50);
+			model.Tags = this.postService.GetTopTagsForPublishedPosts(50);
 
 			return this.View(model);
 		}

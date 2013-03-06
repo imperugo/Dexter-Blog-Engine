@@ -62,14 +62,14 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 		#region Public Methods and Operators
 
 		[AcceptVerbs(HttpVerbs.Get)]
-		public async Task<ActionResult> ConfirmDelete(int id)
+		public ActionResult ConfirmDelete(int id)
 		{
 			if (id < 1)
 			{
 				return this.urlBuilder.Admin.FeedbackPage(FeedbackType.Negative, "PostNotFound", null).Redirect();
 			}
 
-			PostDto post = await this.postService.GetPostByKeyAsync(id);
+			PostDto post = this.postService.GetPostByKey(id);
 
 			if (post == null)
 			{
@@ -95,7 +95,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 			}
 			catch (Exception e)
 			{
-				this.Logger.ErrorAsync("Error during deleting the post", e);
+				this.Logger.Error("Error during deleting the post", e);
 
 				return this.urlBuilder.Admin.FeedbackPage(FeedbackType.Negative, "GenericError", null).Redirect();
 			}
@@ -104,51 +104,45 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 		}
 
 		[AcceptVerbs(HttpVerbs.Get)]
-		public async Task<ActionResult> Index()
+		public ActionResult Index()
 		{
 			IndexViewModel model = new IndexViewModel();
 
-			Task<IPagedResult<PostDto>> posts = this.postService.GetPostsAsync(1, 10, new ItemQueryFilter
+			model.Posts = this.postService.GetPosts(1, 10, new ItemQueryFilter
 				                                                                          {
 					                                                                          MaxPublishAt = DateTimeOffset.Now.AddYears(1).AsMinutes(), 
 					                                                                          MinPublishAt = DateTimeOffset.Now.AddYears(-10).AsMinutes(), 
 					                                                                          Status = null
 				                                                                          });
 
-			await Task.WhenAll(posts);
-
-			model.Posts = posts.Result;
-
 			return this.View(model);
 		}
 
 		[AcceptVerbs(HttpVerbs.Get)]
-		public async Task<ActionResult> Manage(int? id, int? month, int? day, int? year)
+		public ActionResult Manage(int? id, int? month, int? day, int? year)
 		{
-			Task<IList<CategoryDto>> categories = this.categoryService.GetCategoriesAsync();
+			IList<CategoryDto> categories = this.categoryService.GetCategories();
 
 			PostBinder post = id.HasValue
-				                  ? (await this.postService.GetPostByKeyAsync(id.Value)).MapTo<PostBinder>()
+				                  ? (this.postService.GetPostByKey(id.Value)).MapTo<PostBinder>()
 				                  : PostBinder.EmptyInstance();
 
 			ManageViewModel model = new ManageViewModel();
 
-			await Task.WhenAll(categories);
-
 			model.Post = post;
-			model.Categories = categories.Result;
+			model.Categories = categories;
 
 			return this.View(model);
 		}
 
 		[AcceptVerbs(HttpVerbs.Post)]
-		public async Task<ActionResult> Manage(PostBinder post)
+		public ActionResult Manage(PostBinder post)
 		{
 			if (!this.ModelState.IsValid)
 			{
 				ManageViewModel model = new ManageViewModel();
 				model.Post = post;
-				model.Categories = await this.categoryService.GetCategoriesAsync();
+				model.Categories = this.categoryService.GetCategories();
 
 				return this.View(model);
 			}
