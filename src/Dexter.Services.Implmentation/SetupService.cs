@@ -21,6 +21,8 @@ namespace Dexter.Services.Implmentation
 	using System.Threading.Tasks;
 	using System.Web.Security;
 
+	using Common.Logging;
+
 	using Dexter.Data;
 	using Dexter.Entities;
 
@@ -34,15 +36,18 @@ namespace Dexter.Services.Implmentation
 
 		private readonly IPostDataService postDataService;
 
+		private readonly ILog logger;
+
 		#endregion
 
 		#region Constructors and Destructors
 
-		public SetupService(IConfigurationDataService configurationDataService, IPostDataService postDataService, ICategoryDataService categoryService)
+		public SetupService(IConfigurationDataService configurationDataService, IPostDataService postDataService, ICategoryDataService categoryService, ILog logger)
 		{
 			this.configurationDataService = configurationDataService;
 			this.postDataService = postDataService;
 			this.categoryService = categoryService;
+			this.logger = logger;
 		}
 
 		#endregion
@@ -63,27 +68,30 @@ namespace Dexter.Services.Implmentation
 
 		#region Public Methods and Operators
 
-		public async Task InitializeAsync(Setup item)
+		public void Initialize(Setup item)
 		{
 			string defaultPostPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App_Data/Setup/defaultPost.dxt");
-
-			Task<string> postContentTask = this.GetDefaultPostContentAsync(defaultPostPath, item.SiteDomain.Host);
 
 			BlogConfigurationDto configuration = new BlogConfigurationDto(item.BlogName, item.SiteDomain);
 
 			this.configurationDataService.SaveConfiguration(configuration);
+			this.logger.Debug("Created blog configuration.");
 
 			//Creating default category
 			this.categoryService.SaveOrUpdate("Various", true, null);
+			this.logger.Debug("Created default category.");
 
 			// Creating user
 			Membership.CreateUser(item.AdminUsername, item.AdminPassword, item.Email.Address);
+			this.logger.Debug("Created admin user.");
 
 			// Creating administrator role
 			Roles.CreateRole("Administrator");
+			this.logger.Debug("Created administrator role.");
 
 			// Adding user to role
 			Roles.AddUserToRole(item.AdminUsername, "Administrator");
+			this.logger.Debug("Assigned user to administration role.");
 
 			PostDto defaultPost = new PostDto();
 
@@ -91,19 +99,15 @@ namespace Dexter.Services.Implmentation
 			defaultPost.Tags = new[] { "Dexter" };
 			defaultPost.Categories = new[] { "Various" };
 			defaultPost.Status = ItemStatus.Published;
-			defaultPost.PublishAt = DateTimeOffset.Now.AsMinutes();
+			defaultPost.PublishAt = DateTimeOffset.Now;
 			defaultPost.Author = item.AdminUsername;
-
-			defaultPost.Content = await postContentTask;
+			defaultPost.AllowComments = true;
+			defaultPost.Content = File.ReadAllText(defaultPostPath).Replace("[SiteDomain]", item.SiteDomain.Host);
 
 			this.postDataService.SaveOrUpdate(defaultPost);
+			this.logger.Debug("Created default post.");
 		}
 
 		#endregion
-
-		private Task<string> GetDefaultPostContentAsync(string filePath, string host)
-		{
-			return Task.Run(() => File.ReadAllText(filePath).Replace("[SiteDomain]", host));
-		}
 	}
 }

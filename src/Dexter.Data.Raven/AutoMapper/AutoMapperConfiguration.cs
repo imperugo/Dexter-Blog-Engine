@@ -29,9 +29,9 @@ namespace Dexter.Data.Raven.AutoMapper
 		public static void Configure()
 		{
 			Mapper.CreateMap<PostDto, Post>()
-			      .ForMember(dest => dest.SearchContent, opt => opt.MapFrom(x => x.Content.CleanHtmlText()));
+			      .ForMember(dest => dest.SearchContent, opt => opt.MapFrom(x => x.Content.CleanHtmlText()))
+			      .ReverseMap();
 
-			Mapper.CreateMap<Post, PostDto>();
 			Mapper.CreateMap<Comment, CommentDto>().ReverseMap();
 			Mapper.CreateMap<Category, CategoryDto>().ReverseMap();
 			Mapper.CreateMap<EmailMessage, EmailMessageDto>().ReverseMap();

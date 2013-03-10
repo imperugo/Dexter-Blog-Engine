@@ -20,6 +20,7 @@ namespace Dexter.Data.Raven
 
 	using Dexter.Async;
 	using Dexter.Data.Raven.AutoMapper;
+	using Dexter.Data.Raven.Listeners;
 	using Dexter.Data.Raven.Services;
 	using Dexter.Data.Raven.Session;
 	using Dexter.Dependency;
@@ -50,12 +51,14 @@ namespace Dexter.Data.Raven
 			container.Register<ISessionFactory, SessionFactory>(LifeCycle.Singleton);
 			container.Register<IRepositoryFactory, Membership.RepositoryFactory>(LifeCycle.Singleton);
 
-			IDocumentStore store = new EmbeddableDocumentStore
+			EmbeddableDocumentStore store = new EmbeddableDocumentStore
 				                       {
 					                       RunInMemory = false, 
 					                       DataDirectory = "App_Data/db"
 				                       };
 			store.Initialize();
+
+			store.RegisterListener(new NoStaleQueriesListener());
 
 			Setup.Indexes.UpdateDatabaseIndexes(store);
 

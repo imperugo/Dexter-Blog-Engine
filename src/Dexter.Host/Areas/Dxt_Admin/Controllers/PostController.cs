@@ -18,7 +18,6 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 {
 	using System;
 	using System.Collections.Generic;
-	using System.Threading.Tasks;
 	using System.Web.Mvc;
 
 	using AutoMapper;
@@ -27,8 +26,6 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 
 	using Dexter.Entities;
 	using Dexter.Entities.Filters;
-	using Dexter.Entities.Result;
-	using Dexter.Extensions.Logging;
 	using Dexter.Host.Areas.Dxt_Admin.Models.Post;
 	using Dexter.Navigation.Contracts;
 	using Dexter.Services;

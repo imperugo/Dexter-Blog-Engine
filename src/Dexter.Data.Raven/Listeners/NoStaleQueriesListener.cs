@@ -1,11 +1,11 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			WebCallContext.cs
+// File:			NoStaleQueriesListener.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
-// Created:		2012/11/02
-// Last edit:	2013/03/10
+// Created:		2013/03/11
+// Last edit:	2013/03/11
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -14,32 +14,19 @@
 
 #endregion
 
-namespace Dexter.Async.Web
+namespace Dexter.Data.Raven.Listeners
 {
-	using System.Web;
+	using global::Raven.Client;
 
-	/// <summary>
-	/// This class is the implementation of ICallContext
-	/// </summary>
-	public class WebCallContext : IWebCallContext
+	using global::Raven.Client.Listeners;
+
+	public class NoStaleQueriesListener : IDocumentQueryListener
 	{
-		#region Public Indexers
+		#region Public Methods and Operators
 
-		/// <summary>
-		/// Gets the items.
-		/// </summary>
-		/// <value>The items.</value>
-		public object this[string key]
+		public void BeforeQueryExecuted(IDocumentQueryCustomization queryCustomization)
 		{
-			get
-			{
-				return HttpContext.Current.Items[key];
-			}
-
-			set
-			{
-				HttpContext.Current.Items[key] = value;
-			}
+			queryCustomization.WaitForNonStaleResultsAsOfNow();
 		}
 
 		#endregion

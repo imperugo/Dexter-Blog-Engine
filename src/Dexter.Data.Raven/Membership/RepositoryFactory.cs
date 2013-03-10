@@ -20,11 +20,6 @@ namespace Dexter.Data.Raven.Membership
 	using BuildingBlocks.Membership.RavenDB;
 	using BuildingBlocks.Store.RavenDB;
 
-	using Common.Logging;
-
-	using Dexter.Data.Raven.Services;
-	using Dexter.Data.Raven.Session;
-
 	using global::Raven.Client;
 
 	public class RepositoryFactory : IRepositoryFactory

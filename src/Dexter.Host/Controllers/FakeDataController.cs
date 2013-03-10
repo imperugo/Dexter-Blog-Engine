@@ -45,7 +45,7 @@ namespace Dexter.Host.Controllers
 		{
 			PostDto item = new PostDto();
 			item.Title = "Post Title";
-			item.Abstract = "Post abstract";
+			item.Excerpt = "Post abstract";
 			item.Content = "This is the body of a fake post";
 			item.PublishAt = DateTime.Today;
 			item.Slug = "PostSlug";

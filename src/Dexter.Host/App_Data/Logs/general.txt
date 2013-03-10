@@ -1,48 +1,291 @@
-2013-03-04 14:41:58,453 [1] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created imperugo 
- 2013-03-04 14:41:59,498 [9] DEBUG Dexter.Data.Raven.Session.SessionFactory - There is no session into the current context. imperugo 
- 2013-03-04 14:41:59,500 [9] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor imperugo 
- 2013-03-04 14:42:00,288 [8] DEBUG Dexter.Data.Raven.Session.SessionFactory - There is no session into the current context. imperugo 
- 2013-03-04 14:42:00,289 [8] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor imperugo 
- 2013-03-04 14:42:12,703 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created imperugo 
- 2013-03-04 14:42:12,766 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created imperugo 
- 2013-03-04 14:42:12,769 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created imperugo 
- 2013-03-04 14:42:37,529 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created imperugo 
- 2013-03-04 14:42:37,553 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created imperugo 
- 2013-03-04 14:42:37,562 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created imperugo 
- 2013-03-04 14:42:40,618 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created imperugo 
- 2013-03-04 14:42:40,624 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created imperugo 
- 2013-03-04 14:42:40,639 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes imperugo 
- 2013-03-04 14:42:40,686 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed imperugo 
- 2013-03-04 14:42:40,688 [14] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor imperugo 
- 2013-03-04 14:42:43,601 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - There is no session into the current context. imperugo 
- 2013-03-04 14:42:43,630 [14] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor imperugo 
- 2013-03-04 14:42:44,968 [6] DEBUG Dexter.Data.Raven.Session.SessionFactory - There is no session into the current context. imperugo 
- 2013-03-04 14:42:44,972 [6] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor imperugo 
- 2013-03-04 14:43:25,890 [24] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created imperugo 
- 2013-03-04 14:43:27,753 [19] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created imperugo 
- 2013-03-04 14:43:27,781 [19] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created imperugo 
- 2013-03-04 14:43:31,892 [19] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes imperugo 
- 2013-03-04 14:43:31,925 [19] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed imperugo 
- 2013-03-04 14:43:31,927 [19] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor imperugo 
- 2013-03-10 20:13:13,675 [1] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created imperugo 
- 2013-03-10 20:13:14,195 [5] DEBUG Dexter.Data.Raven.Session.SessionFactory - There is no session into the current context. imperugo 
- 2013-03-10 20:13:14,197 [5] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor imperugo 
- 2013-03-10 20:13:15,583 [7] DEBUG Dexter.Data.Raven.Session.SessionFactory - There is no session into the current context. imperugo 
- 2013-03-10 20:13:15,584 [7] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor imperugo 
- 2013-03-10 20:14:28,608 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created imperugo 
- 2013-03-10 20:14:28,673 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created imperugo 
- 2013-03-10 20:14:28,677 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created imperugo 
- 2013-03-10 20:14:56,586 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created imperugo 
- 2013-03-10 20:14:56,617 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created imperugo 
- 2013-03-10 20:14:56,633 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created imperugo 
- 2013-03-10 20:14:59,989 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created imperugo 
- 2013-03-10 20:14:59,993 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created imperugo 
- 2013-03-10 20:15:00,030 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes imperugo 
- 2013-03-10 20:15:00,093 [14] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed imperugo 
- 2013-03-10 20:15:00,095 [14] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor imperugo 
- 2013-03-10 20:15:00,616 [29] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created imperugo 
- 2013-03-10 20:15:01,456 [29] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created imperugo 
- 2013-03-10 20:15:20,138 [29] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes imperugo 
- 2013-03-10 20:15:20,141 [29] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed imperugo 
- 2013-03-10 20:15:20,142 [29] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor imperugo 
+2013-03-11 00:19:52,463 [13] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:19:52,486 [39] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Dxt-Setup/Home/Index' 
+ 2013-03-11 00:19:52,746 [39] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:19:52,818 [39] DEBUG Dexter.Services.Implmentation.SetupService - Created blog configuration. 
+ 2013-03-11 00:19:52,819 [39] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created 
+ 2013-03-11 00:19:52,821 [39] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created 
+ 2013-03-11 00:19:52,969 [39] DEBUG Dexter.Services.Implmentation.SetupService - Created default category. 
+ 2013-03-11 00:19:53,703 [39] DEBUG Dexter.Services.Implmentation.SetupService - Created admin user. 
+ 2013-03-11 00:19:54,030 [39] DEBUG Dexter.Services.Implmentation.SetupService - Created administrator role. 
+ 2013-03-11 00:19:54,346 [39] DEBUG Dexter.Services.Implmentation.SetupService - Assigned user to administration role. 
+ 2013-03-11 00:19:54,349 [39] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created 
+ 2013-03-11 00:19:54,368 [39] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created 
+ 2013-03-11 00:19:54,375 [39] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created 
+ 2013-03-11 00:19:54,594 [39] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created 
+ 2013-03-11 00:19:54,597 [39] DEBUG Dexter.Services.Implmentation.SetupService - Created default post. 
+ 2013-03-11 00:19:54,598 [39] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created 
+ 2013-03-11 00:19:54,613 [39] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:19:54,651 [39] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:19:54,652 [39] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:19:54,653 [39] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:19:54,653 [39] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Dxt-Setup/Home/Index' 
+ 2013-03-11 00:20:05,843 [13] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:20:05,938 [36] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:20:06,236 [36] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:20:06,255 [36] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created 
+ 2013-03-11 00:20:06,914 [36] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:20:06,941 [36] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:20:06,941 [36] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:20:06,941 [36] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:20:06,941 [36] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:21:28,124 [22] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:21:28,130 [22] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:21:48,534 [22] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:21:48,534 [22] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:21:48,534 [22] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:21:48,534 [22] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:21:48,534 [22] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:23:15,834 [12] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:23:15,858 [10] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/' 
+ 2013-03-11 00:23:15,981 [10] DEBUG Dexter.Data.Raven.Session.SessionFactory - There is no session into the current context. 
+ 2013-03-11 00:23:15,982 [10] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:23:15,982 [10] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:23:15,982 [10] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/' 
+ 2013-03-11 00:23:15,991 [58] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Dxt-Setup/Home/Index' 
+ 2013-03-11 00:23:16,592 [58] DEBUG Dexter.Data.Raven.Session.SessionFactory - There is no session into the current context. 
+ 2013-03-11 00:23:16,592 [58] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:23:16,592 [58] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:23:16,592 [58] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Dxt-Setup/Home/Index' 
+ 2013-03-11 00:23:48,222 [12] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:23:48,245 [59] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Dxt-Setup/Home/Index' 
+ 2013-03-11 00:23:48,642 [59] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:23:48,717 [59] DEBUG Dexter.Services.Implmentation.SetupService - Created blog configuration. 
+ 2013-03-11 00:23:48,718 [59] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created 
+ 2013-03-11 00:23:48,720 [59] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created 
+ 2013-03-11 00:23:48,861 [59] DEBUG Dexter.Services.Implmentation.SetupService - Created default category. 
+ 2013-03-11 00:23:49,543 [59] DEBUG Dexter.Services.Implmentation.SetupService - Created admin user. 
+ 2013-03-11 00:23:49,850 [59] DEBUG Dexter.Services.Implmentation.SetupService - Created administrator role. 
+ 2013-03-11 00:23:50,164 [59] DEBUG Dexter.Services.Implmentation.SetupService - Assigned user to administration role. 
+ 2013-03-11 00:23:50,168 [59] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created 
+ 2013-03-11 00:23:50,186 [59] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created 
+ 2013-03-11 00:23:50,193 [59] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created 
+ 2013-03-11 00:23:50,405 [59] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created 
+ 2013-03-11 00:23:50,408 [59] DEBUG Dexter.Services.Implmentation.SetupService - Created default post. 
+ 2013-03-11 00:23:50,410 [59] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created 
+ 2013-03-11 00:23:50,429 [59] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:23:50,467 [59] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:23:50,468 [59] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:23:50,468 [59] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:23:50,468 [59] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Dxt-Setup/Home/Index' 
+ 2013-03-11 00:23:50,692 [2] DEBUG Dexter.Data.Raven.Session.SessionFactory - There is no session into the current context. 
+ 2013-03-11 00:24:01,137 [12] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:24:01,229 [27] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:24:01,434 [27] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:24:01,442 [27] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created 
+ 2013-03-11 00:24:02,103 [27] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:24:02,131 [27] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:24:02,131 [27] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:24:02,131 [27] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:24:02,131 [27] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:31,783 [12] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:25:31,806 [41] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/' 
+ 2013-03-11 00:25:31,921 [41] DEBUG Dexter.Data.Raven.Session.SessionFactory - There is no session into the current context. 
+ 2013-03-11 00:25:31,922 [41] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:25:31,922 [41] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:25:31,922 [41] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/' 
+ 2013-03-11 00:25:31,929 [42] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Dxt-Setup/Home/Index' 
+ 2013-03-11 00:25:32,695 [42] DEBUG Dexter.Data.Raven.Session.SessionFactory - There is no session into the current context. 
+ 2013-03-11 00:25:32,695 [42] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:25:32,695 [42] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:25:32,695 [42] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Dxt-Setup/Home/Index' 
+ 2013-03-11 00:25:43,574 [50] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Dxt-Setup/Home/Index' 
+ 2013-03-11 00:25:43,674 [50] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:25:43,730 [50] DEBUG Dexter.Services.Implmentation.SetupService - Created blog configuration. 
+ 2013-03-11 00:25:43,731 [50] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created 
+ 2013-03-11 00:25:43,732 [50] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created 
+ 2013-03-11 00:25:43,885 [50] DEBUG Dexter.Services.Implmentation.SetupService - Created default category. 
+ 2013-03-11 00:25:44,514 [50] DEBUG Dexter.Services.Implmentation.SetupService - Created admin user. 
+ 2013-03-11 00:25:44,823 [50] DEBUG Dexter.Services.Implmentation.SetupService - Created administrator role. 
+ 2013-03-11 00:25:45,159 [50] DEBUG Dexter.Services.Implmentation.SetupService - Assigned user to administration role. 
+ 2013-03-11 00:25:45,162 [50] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created 
+ 2013-03-11 00:25:45,182 [50] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created 
+ 2013-03-11 00:25:45,213 [50] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created 
+ 2013-03-11 00:25:45,431 [50] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created 
+ 2013-03-11 00:25:45,434 [50] DEBUG Dexter.Services.Implmentation.SetupService - Created default post. 
+ 2013-03-11 00:25:45,435 [50] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created 
+ 2013-03-11 00:25:45,445 [50] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:25:45,480 [50] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:25:45,480 [50] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:25:45,480 [50] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:25:45,480 [50] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Dxt-Setup/Home/Index' 
+ 2013-03-11 00:25:45,522 [41] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:45,532 [41] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:25:45,560 [41] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created 
+ 2013-03-11 00:25:45,896 [41] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:25:45,897 [41] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:25:45,897 [41] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:25:45,897 [41] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:25:45,897 [41] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:48,011 [26] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:48,012 [26] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:25:48,016 [26] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:25:48,016 [26] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:25:48,016 [26] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:25:48,016 [26] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:25:48,017 [26] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:48,619 [33] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:48,620 [33] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:25:48,624 [33] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:25:48,624 [33] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:25:48,624 [33] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:25:48,624 [33] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:25:48,624 [33] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:49,194 [44] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:49,196 [44] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:25:49,200 [44] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:25:49,200 [44] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:25:49,200 [44] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:25:49,200 [44] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:25:49,200 [44] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:49,723 [21] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:49,724 [21] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:25:49,728 [21] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:25:49,728 [21] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:25:49,728 [21] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:25:49,728 [21] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:25:49,728 [21] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:50,341 [8] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:50,342 [8] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:25:50,346 [8] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:25:50,346 [8] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:25:50,346 [8] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:25:50,346 [8] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:25:50,346 [8] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:50,730 [5] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:50,731 [5] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:25:50,735 [5] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:25:50,735 [5] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:25:50,735 [5] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:25:50,735 [5] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:25:50,735 [5] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:51,499 [41] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:51,501 [41] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:25:51,505 [41] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:25:51,505 [41] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:25:51,505 [41] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:25:51,505 [41] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:25:51,505 [41] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:51,922 [21] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:51,924 [21] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:25:51,927 [21] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:25:51,927 [21] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:25:51,927 [21] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:25:51,929 [21] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:25:51,929 [21] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:52,656 [8] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:52,657 [8] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:25:52,662 [8] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:25:52,662 [8] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:25:52,662 [8] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:25:52,662 [8] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:25:52,663 [8] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:53,987 [25] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:53,989 [25] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:25:53,993 [25] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:25:53,993 [25] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:25:53,993 [25] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:25:53,993 [25] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:25:53,993 [25] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:54,579 [5] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:54,580 [5] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:25:54,584 [5] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:25:54,584 [5] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:25:54,584 [5] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:25:54,584 [5] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:25:54,584 [5] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:55,143 [33] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:55,145 [33] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:25:55,149 [33] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:25:55,150 [33] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:25:55,150 [33] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:25:55,150 [33] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:25:55,150 [33] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:55,594 [20] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:55,595 [20] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:25:55,600 [20] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:25:55,600 [20] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:25:55,600 [20] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:25:55,600 [20] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:25:55,600 [20] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:56,315 [23] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:56,317 [23] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:25:56,321 [23] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:25:56,321 [23] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:25:56,321 [23] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:25:56,321 [23] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:25:56,322 [23] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:56,779 [26] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:56,780 [26] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:25:56,784 [26] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:25:56,784 [26] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:25:56,784 [26] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:25:56,784 [26] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:25:56,784 [26] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:57,497 [44] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:57,498 [44] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:25:57,502 [44] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:25:57,502 [44] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:25:57,502 [44] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:25:57,502 [44] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:25:57,502 [44] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:57,954 [42] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:57,955 [42] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:25:57,959 [42] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:25:57,959 [42] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:25:57,959 [42] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:25:57,959 [42] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:25:57,959 [42] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:59,178 [50] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:59,179 [50] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:25:59,183 [50] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:25:59,183 [50] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:25:59,183 [50] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:25:59,183 [50] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:25:59,183 [50] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:59,657 [5] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:25:59,659 [5] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:25:59,662 [5] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:25:59,662 [5] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:25:59,662 [5] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:25:59,662 [5] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:25:59,662 [5] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:26:00,378 [21] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:26:00,379 [21] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:26:00,392 [21] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:26:00,392 [21] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:26:00,392 [21] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:26:00,392 [21] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:26:00,392 [21] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:26:00,538 [50] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:26:00,539 [50] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:26:00,545 [50] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:26:00,546 [50] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:26:00,546 [50] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:26:00,546 [50] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:26:00,546 [50] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:26:35,516 [23] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:26:35,520 [23] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:26:54,593 [23] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:26:54,594 [23] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:26:54,594 [23] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:26:54,594 [23] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:26:54,594 [23] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:28:21,903 [24] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:28:21,983 [56] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:28:22,192 [56] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:28:22,200 [56] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created 
+ 2013-03-11 00:28:22,759 [56] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:28:22,786 [56] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:28:22,787 [56] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:28:22,787 [56] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:28:22,787 [56] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:29:50,355 [24] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:29:50,440 [15] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Beginning request for url 'http://localhost:45169/Home/Index/' 
+ 2013-03-11 00:29:50,729 [15] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·Created 
+ 2013-03-11 00:29:50,748 [15] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session·was·already·created 
+ 2013-03-11 00:29:51,306 [15] DEBUG Dexter.Data.Raven.Session.SessionFactory - Saving changes 
+ 2013-03-11 00:29:51,332 [15] DEBUG Dexter.Data.Raven.Session.SessionFactory - Session Removed 
+ 2013-03-11 00:29:51,333 [15] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Starting Task Executor 
+ 2013-03-11 00:29:51,333 [15] DEBUG Dexter.Async.TaskExecutor.TaskExecutor - Ending Task Executor 
+ 2013-03-11 00:29:51,333 [15] DEBUG Dexter.Web.Core.HttpApplication.DexterApplication - Ending request for url 'http://localhost:45169/Home/Index/' 
  

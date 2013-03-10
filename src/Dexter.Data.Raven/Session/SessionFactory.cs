@@ -20,7 +20,6 @@ namespace Dexter.Data.Raven.Session
 	using Dexter.Async;
 
 	using global::Raven.Client;
-	using global::Raven.Client.Document;
 
 	public class SessionFactory : ISessionFactory
 	{

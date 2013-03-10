@@ -72,6 +72,7 @@ namespace Dexter.Web.Core.HttpApplication
 
 		public new void BeginRequest()
 		{
+			this.logger.DebugFormat("Beginning request for url '{0}'",HttpContext.Current.Request.Url);
 			this.dexterCall.StartSession();
 		}
 
@@ -90,6 +91,8 @@ namespace Dexter.Web.Core.HttpApplication
 			{
 				this.taskExecutor.Discard();
 			}
+
+			this.logger.DebugFormat("Ending request for url '{0}'", HttpContext.Current.Request.Url);
 		}
 
 		public new void Error()

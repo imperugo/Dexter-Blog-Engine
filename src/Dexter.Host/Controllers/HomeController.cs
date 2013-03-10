@@ -16,14 +16,12 @@
 namespace Dexter.Host.Controllers
 {
 	using System;
-	using System.Threading.Tasks;
 	using System.Web.Mvc;
 
 	using Common.Logging;
 
 	using Dexter.Entities;
 	using Dexter.Entities.Filters;
-	using Dexter.Entities.Result;
 	using Dexter.Host.Model.HomeController;
 	using Dexter.Services;
 	using Dexter.Web.Core.Controllers.Web;

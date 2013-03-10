@@ -92,6 +92,10 @@ namespace Dexter.Async.TaskExecutor
 						    }
 					    }, TaskContinuationOptions.OnlyOnFaulted);
 			}
+			else
+			{
+				logger.Debug("Ending Task Executor");
+			}
 		}
 
 		#endregion

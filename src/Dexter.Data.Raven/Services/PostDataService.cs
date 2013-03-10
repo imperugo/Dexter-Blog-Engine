@@ -243,11 +243,6 @@ namespace Dexter.Data.Raven.Services
 				post.Author = Thread.CurrentPrincipal.Identity.Name;
 			}
 
-			if (string.IsNullOrEmpty(item.Abstract))
-			{
-				post.Excerpt = AbstractHelper.GenerateAbstract(item.Content);
-			}
-
 			bool mustUpdateDenormalizedObject = false;
 
 			if (!item.IsTransient)
@@ -256,6 +251,11 @@ namespace Dexter.Data.Raven.Services
 			}
 
 			item.MapPropertiesToInstance(post);
+
+			if (string.IsNullOrEmpty(post.Excerpt))
+			{
+				post.Excerpt = AbstractHelper.GenerateAbstract(post.Content);
+			}
 
 			this.Session.Store(post);
 
