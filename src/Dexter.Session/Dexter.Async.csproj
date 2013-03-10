@@ -49,6 +49,7 @@
     <Compile Include="Async\AsyncCallContext.cs" />
     <Compile Include="Async\IAsyncCallContext.cs" />
     <Compile Include="DexterCallContextFactory.cs" />
+    <Compile Include="Extensions\TaskExtensions.cs" />
     <Compile Include="ICallContext.cs" />
     <Compile Include="ICallContextFactory.cs" />
     <Compile Include="IDexterCall.cs" />

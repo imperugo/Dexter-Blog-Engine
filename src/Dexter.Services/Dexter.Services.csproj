@@ -43,6 +43,7 @@
     <Compile Include="Events\CancelEventArgsWithoutParameters.cs" />
     <Compile Include="Events\CancelEventArgsWithOneParameterWithoutResult.cs" />
     <Compile Include="Events\CancelEventArgsWithoutParameterWithResult.cs" />
+    <Compile Include="Extensions\CategoryServiceExtensions.cs" />
     <Compile Include="ICategoryService.cs" />
     <Compile Include="ICommentService.cs" />
     <Compile Include="IPackageInstaller.cs" />
@@ -59,6 +60,10 @@
     <ProjectReference Include="..\Dexter.Entities\Dexter.Entities.csproj">
       <Project>{5FB1AED5-D55E-43CC-A3E0-5E788BD72144}</Project>
       <Name>Dexter.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Session\Dexter.Async.csproj">
+      <Project>{93f94260-4a10-41fd-ab0f-c1c22bfe3e78}</Project>
+      <Name>Dexter.Async</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

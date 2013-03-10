@@ -25,7 +25,7 @@ namespace Dexter.Dependency
 	{
 		#region Public Methods and Operators
 
-		public static void RegisterCronJob<T>(this IDexterContainer container, string cronPattern, bool enabled) where T : IJob
+		public static void RegisterCronJob<T>(this IDexterContainer container, string cronPattern, bool enabled = true) where T : IJob
 		{
 			string triggerName = string.Format("{0}_For_{1}_", cronPattern, typeof(T).Name);
 
@@ -41,7 +41,7 @@ namespace Dexter.Dependency
 			Register<T>(container, job, trigger, enabled);
 		}
 
-		public static void RegisterDailyJob<T>(this IDexterContainer container, TimeOfDay timeOf, bool enabled) where T : IJob
+		public static void RegisterDailyJob<T>(this IDexterContainer container, TimeOfDay timeOf, bool enabled = true) where T : IJob
 		{
 			string triggerName = string.Format("{0}_For_{1}_", timeOf, typeof(T).Name);
 			ITrigger trigger = TriggerBuilder.Create()
@@ -56,7 +56,7 @@ namespace Dexter.Dependency
 			Register<T>(container, job, trigger, enabled);
 		}
 
-		public static void RegisterDaysOfTheWeekJob<T>(this IDexterContainer container, TimeOfDay timeOf, bool enabled) where T : IJob
+		public static void RegisterDaysOfTheWeekJob<T>(this IDexterContainer container, TimeOfDay timeOf, bool enabled = true) where T : IJob
 		{
 			string triggerName = string.Format("{0}_For_{1}_", timeOf, typeof(T).Name);
 			ITrigger trigger = TriggerBuilder.Create()
@@ -71,17 +71,17 @@ namespace Dexter.Dependency
 			Register<T>(container, job, trigger, enabled);
 		}
 
-		public static void RegisterHoursIntervalJob<T>(this IDexterContainer container, int hours, bool enabled) where T : IJob
+		public static void RegisterHoursIntervalJob<T>(this IDexterContainer container, int hours, bool enabled = true) where T : IJob
 		{
 			RegisterMinutes<T>(container, hours * 60, enabled);
 		}
 
-		public static void RegisterMinutesIntervalJob<T>(this IDexterContainer container, int minutes, bool enabled) where T : IJob
+		public static void RegisterMinutesIntervalJob<T>(this IDexterContainer container, int minutes, bool enabled = true) where T : IJob
 		{
 			RegisterMinutes<T>(container, minutes, enabled);
 		}
 
-		public static void RegisterSecondsIntervalJob<T>(this IDexterContainer container, int seconds, bool enabled) where T : IJob
+		public static void RegisterSecondsIntervalJob<T>(this IDexterContainer container, int seconds, bool enabled = true) where T : IJob
 		{
 			RegisterSeconds<T>(container, seconds, enabled);
 		}

@@ -96,7 +96,7 @@ namespace Dexter.Host.Controllers
 							                            Title = title, 
 						                            };
 
-					this.trackbackService.SaveOrUpdate(trackBackDto, ItemType.Post);
+					await this.trackbackService.SaveOrUpdateAsync(trackBackDto, ItemType.Post);
 
 					this.HttpContext.Response.Write("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?><response><error>0</error></response>");
 					this.HttpContext.Response.End();
@@ -156,7 +156,7 @@ namespace Dexter.Host.Controllers
 
 			try
 			{
-				this.trackbackService.SaveOrUpdate(trackBackDto, itemType);
+				this.trackbackService.SaveOrUpdateAsync(trackBackDto, itemType);
 
 				this.HttpContext.Response.Write("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?><response><error>0</error></response>");
 				this.HttpContext.Response.End();

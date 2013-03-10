@@ -18,6 +18,7 @@ namespace System.Threading.Tasks
 {
 	using System;
 
+	using Dexter.Async;
 	using Dexter.Dependency;
 
 	public static class TaskExtensions

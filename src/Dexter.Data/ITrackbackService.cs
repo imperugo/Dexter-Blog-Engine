@@ -23,7 +23,7 @@ namespace Dexter.Data
 	{
 		#region Public Methods and Operators
 
-		Task SaveOrUpdate(TrackBackDto trackBack, ItemType itemType);
+		Task SaveOrUpdateAsync(TrackBackDto trackBack, ItemType itemType);
 
 		#endregion
 	}
