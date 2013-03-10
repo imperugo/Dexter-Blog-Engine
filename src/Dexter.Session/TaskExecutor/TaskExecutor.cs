@@ -75,7 +75,7 @@ namespace Dexter.Async.TaskExecutor
 
 			if (copy.Length > 0)
 			{
-				Task.Factory.StartNew(() =>
+				Task.Factory.StartNewDexterTask(() =>
 					{
 						foreach (BackgroundTask backgroundTask in copy)
 						{

@@ -119,8 +119,11 @@ namespace Dexter.Services.Implmentation
 
 		private async Task<bool> IsSpam(TrackBackDto trackBack, ItemDto item)
 		{
-			HttpClient client = new HttpClient();
-			string response = await client.GetStringAsync(trackBack.Url);
+			string response;
+			using (HttpClient client = new HttpClient())
+			{
+				response = await client.GetStringAsync(trackBack.Url);
+			}
 
 			if (string.IsNullOrEmpty(response))
 			{

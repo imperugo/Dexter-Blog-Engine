@@ -107,7 +107,7 @@ namespace Dexter.Data.Raven.Services
 
 		public void UpdatePlugin(PluginDto item)
 		{
-			throw new NotImplementedException();
+			this.Session.Store(item);
 		}
 
 		#endregion
