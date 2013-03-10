@@ -243,6 +243,11 @@ namespace Dexter.Data.Raven.Services
 				post.Author = Thread.CurrentPrincipal.Identity.Name;
 			}
 
+			if (string.IsNullOrEmpty(item.Abstract))
+			{
+				post.Excerpt = AbstractHelper.GenerateAbstract(item.Content);
+			}
+
 			bool mustUpdateDenormalizedObject = false;
 
 			if (!item.IsTransient)
