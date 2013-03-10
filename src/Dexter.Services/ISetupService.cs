@@ -29,7 +29,7 @@ namespace Dexter.Services
 
 		#region Public Methods and Operators
 
-		void Initialize(Setup item);
+		Task InitializeAsync(Setup item);
 
 		#endregion
 	}

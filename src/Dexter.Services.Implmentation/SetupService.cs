@@ -18,6 +18,7 @@ namespace Dexter.Services.Implmentation
 {
 	using System;
 	using System.IO;
+	using System.Threading.Tasks;
 	using System.Web.Security;
 
 	using Dexter.Data;
@@ -62,8 +63,12 @@ namespace Dexter.Services.Implmentation
 
 		#region Public Methods and Operators
 
-		public void Initialize(Setup item)
+		public async Task InitializeAsync(Setup item)
 		{
+			string defaultPostPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App_Data/Setup/defaultPost.dxt");
+
+			Task<string> postContentTask = this.GetDefaultPostContentAsync(defaultPostPath, item.SiteDomain.Host);
+
 			BlogConfigurationDto configuration = new BlogConfigurationDto(item.BlogName, item.SiteDomain);
 
 			this.configurationDataService.SaveConfiguration(configuration);
@@ -82,19 +87,23 @@ namespace Dexter.Services.Implmentation
 
 			PostDto defaultPost = new PostDto();
 
-			string defaultPostPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App_Data/Setup/defaultPost.dxt");
-
 			defaultPost.Title = "Welcome to Dexter!";
 			defaultPost.Tags = new[] { "Dexter" };
 			defaultPost.Categories = new[] { "Various" };
 			defaultPost.Status = ItemStatus.Published;
 			defaultPost.PublishAt = DateTimeOffset.Now.AsMinutes();
 			defaultPost.Author = item.AdminUsername;
-			defaultPost.Content = File.ReadAllText(defaultPostPath).Replace("[SiteDomain]", item.SiteDomain.Host);
+
+			defaultPost.Content = await postContentTask;
 
 			this.postDataService.SaveOrUpdate(defaultPost);
 		}
 
 		#endregion
+
+		private Task<string> GetDefaultPostContentAsync(string filePath, string host)
+		{
+			return Task.Run(() => File.ReadAllText(filePath).Replace("[SiteDomain]", host));
+		}
 	}
 }
