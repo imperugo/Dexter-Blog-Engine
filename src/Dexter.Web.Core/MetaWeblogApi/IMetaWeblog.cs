@@ -79,7 +79,7 @@ namespace Dexter.Web.Core.MetaWeblogApi
 
 		[XmlRpcMethod("wp.newCategory", 
 			Description = "Adds a new category to the blog engine.")]
-		int WpNewCategory(
+		string WpNewCategory(
 			string blog_id, 
 			string username, 
 			string password, 

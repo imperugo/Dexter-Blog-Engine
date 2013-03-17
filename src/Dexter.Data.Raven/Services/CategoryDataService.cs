@@ -171,6 +171,7 @@ namespace Dexter.Data.Raven.Services
 										Name = item.Name,
 										IsDefault = item.IsDefault,
 										PostCount = item.PostsId != null ? item.PostsId.Length : 0,
+										ParentId = item.ParentId,
 						                Categories = this.MakeTree(flatObjects, item.MapTo<CategoryDto>())
 					                }).ToList();
 		}

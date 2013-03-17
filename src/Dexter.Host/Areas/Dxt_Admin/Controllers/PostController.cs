@@ -74,6 +74,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 			}
 
 			PostDeleteViewData model = new PostDeleteViewData();
+			model.Post = post;
 
 			return this.View(model);
 		}

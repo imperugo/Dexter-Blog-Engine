@@ -1,9 +1,0 @@
-Todo:
-- Complete Domain
-- Service layer (with events for plugins)
-
-Note:
-
-Warining:
-
-Known Issues

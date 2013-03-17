@@ -45,6 +45,23 @@ namespace Dexter.Data.Raven.Indexes.Updating
 									                                })
 							}
 					});
+
+			store.DatabaseCommands.Patch(
+				item.TrackbacksId,
+				new[]
+					{
+						new PatchRequest
+							{
+								Type = PatchCommandType.Set,
+								Name = "Item",
+								Value = RavenJObject.FromObject(new ItemReference
+									                                {
+										                                Id = item.Id,
+										                                Status = item.Status,
+										                                ItemPublishedAt = item.PublishAt
+									                                })
+							}
+					});
 		}
 
 		#endregion

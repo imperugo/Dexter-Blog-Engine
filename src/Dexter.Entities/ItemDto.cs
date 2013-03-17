@@ -29,6 +29,8 @@ namespace Dexter.Entities
 
 		public string Content { get; set; }
 
+		public DateTimeOffset CreatedAt { get; set; }
+
 		public int Id { get; set; }
 
 		public bool IsTransient

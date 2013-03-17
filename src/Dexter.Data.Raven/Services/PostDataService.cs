@@ -61,7 +61,13 @@ namespace Dexter.Data.Raven.Services
 
 		public void Delete(int id)
 		{
-			Post post = this.Session.Load<Post>(id);
+			Post post = this.Session
+								.Include<Post>(x => x.CommentsId)
+								.Include<Post>(x => x.TrackbacksId)
+								.Load<Post>(id);
+
+			var comments = this.Session.Load<ItemComments>(post.CommentsId);
+			var trackbacks = this.Session.Load<ItemComments>(post.TrackbacksId);
 
 			if (post == null)
 			{
@@ -69,6 +75,8 @@ namespace Dexter.Data.Raven.Services
 			}
 
 			this.Session.Delete(post);
+			this.Session.Delete(comments);
+			this.Session.Delete(trackbacks);
 		}
 
 		public IList<MonthDto> GetMonthsForPublishedPosts()
@@ -259,22 +267,38 @@ namespace Dexter.Data.Raven.Services
 
 			this.Session.Store(post);
 
-			if (item.IsTransient)
+			if (string.IsNullOrEmpty(post.Slug))
 			{
 				post.Slug = SlugHelper.GenerateSlug(post, this.GetPostBySlugInternal);
+			}
 
+			if (post.IsTransient)
+			{
 				ItemComments comments = new ItemComments
-											{
-												Item = new ItemReference
-														   {
-															   Id = post.Id,
-															   Status = post.Status,
-															   ItemPublishedAt = post.PublishAt
-														   }
-											};
+				{
+					Item = new ItemReference
+					{
+						Id = post.Id,
+						Status = post.Status,
+						ItemPublishedAt = post.PublishAt
+					}
+				};
 
 				this.Session.Store(comments);
 				post.CommentsId = comments.Id;
+
+				ItemTrackbacks trackbacks = new ItemTrackbacks
+					                            {
+						                            Item = new ItemReference
+							                                   {
+								                                   Id = post.Id,
+								                                   Status = post.Status,
+								                                   ItemPublishedAt = post.PublishAt
+							                                   }
+					                            };
+
+				this.Session.Store(trackbacks);
+				post.TrackbacksId = trackbacks.Id;
 			}
 
 			if (mustUpdateDenormalizedObject)

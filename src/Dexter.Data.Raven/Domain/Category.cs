@@ -25,6 +25,8 @@ namespace Dexter.Data.Raven.Domain
 
 		public string Name { get; set; }
 
+		public string Description { get; set; }
+
 		public string ParentId { get; set; }
 
 		public int[] PostsId { get; set; }

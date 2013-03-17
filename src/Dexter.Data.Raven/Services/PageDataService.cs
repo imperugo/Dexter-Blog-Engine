@@ -49,7 +49,13 @@ namespace Dexter.Data.Raven.Services
 
 		public void Delete(int id)
 		{
-			Page page = this.Session.Load<Page>(id);
+			Page page = this.Session
+								.Include<Page>(x => x.CommentsId)
+								.Include<Page>(x => x.TrackbacksId)
+								.Load<Page>(id);
+
+			var comments = this.Session.Load<ItemComments>(page.CommentsId);
+			var trackbacks = this.Session.Load<ItemComments>(page.TrackbacksId);
 
 			if (page == null)
 			{
@@ -57,6 +63,15 @@ namespace Dexter.Data.Raven.Services
 			}
 
 			this.Session.Delete(page);
+			this.Session.Delete(comments);
+			this.Session.Delete(trackbacks);
+
+			this.Session.Delete(page);
+		}
+
+		public void SaveOrUpdate(PageDto item)
+		{
+			throw new NotImplementedException();
 		}
 
 		public PageDto GetPageByKey(int id)

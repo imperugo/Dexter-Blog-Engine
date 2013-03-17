@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<manifest xmlns="http://schemas.microsoft.com/wlw/manifest/weblog">
+	<options>
+		<clientType>Metaweblog</clientType>
+		<!-- to be implemented in the near future -->
+		<supportsPostAsDraft>No</supportsPostAsDraft>
+		<supportsFileUpload>Yes</supportsFileUpload>
+		<!-- Supports mt_text_more field of post struct -->
+		<supportsExtendedEntries>No</supportsExtendedEntries>
+		<supportsCustomDate>Yes</supportsCustomDate>
+		<supportsCategories>Yes</supportsCategories>
+		<!-- Supports categories field of post struct -->
+		<supportsCategoriesInline>Yes</supportsCategoriesInline>
+		<supportsMultipleCategories>Yes</supportsMultipleCategories>
+		<supportsHierarchicalCategories>Yes</supportsHierarchicalCategories>
+		<supportsNewCategories>Yes</supportsNewCategories>
+		<supportsNewCategoriesInline>Yes</supportsNewCategoriesInline>
+		<supportsKeywords>Yes</supportsKeywords>
+		<supportsCommentPolicy>Yes</supportsCommentPolicy>
+		<!-- to be implemented in the future: ping to blog update services -->
+		<supportsPingPolicy>No</supportsPingPolicy>
+		<supportsAuthor>Yes</supportsAuthor>
+		<supportsEmbeds>Yes</supportsEmbeds>
+		<supportsEmptyTitles>No</supportsEmptyTitles>
+		<supportsSlug>Yes</supportsSlug>
+		<futurePublishDateWarning>No</futurePublishDateWarning>
+		<supportsScripts>No</supportsScripts>
+		<supportsExcerpt>Yes</supportsExcerpt>
+		<supportsPages>Yes</supportsPages>
+		<supportsPageParent>No</supportsPageParent>
+		<supportsPageOrder>Yes</supportsPageOrder>
+		<supportsGetTags>Yes</supportsGetTags>
+	</options>
+	<weblog>
+		<serviceName>Dexter</serviceName>
+		<homepageLinkText>View site</homepageLinkText>
+		<adminLinkText>Dashboard</adminLinkText>
+		<adminUrl>
+			<![CDATA[
+		{blog-homepage-url}Admin
+	]]>
+		</adminUrl>
+		<postEditingUrl>
+			<![CDATA[
+		{blog-homepage-url}Admin/PostsList
+	]]>
+		</postEditingUrl>
+	</weblog>
+	<buttons>
+		<button>
+			<id>0</id>
+			<text>Manage Comments</text>
+			<imageUrl>wlw/comments.png</imageUrl>
+			<clickUrl>
+				<![CDATA[ 
+				{blog-postapi-url}Admin/PostCommentList
+			]]>
+			</clickUrl>
+		</button>
+	</buttons>
+</manifest>

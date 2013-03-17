@@ -72,6 +72,28 @@ namespace Dexter.Navigation.Concretes
 			return new SiteUrl(this.Domain, this.HttpPort, false, this.Home.Area, "Services", "Pingback", null, null);
 		}
 
+		public string ResolveUrl(string value)
+		{
+			if (value == null)
+			{
+				return null;
+			}
+
+			// *** Absolute path - just return
+			if (value.IndexOf("://") != -1)
+			{
+				return value;
+			}
+
+			// *** Fix up image path for ~ root app dir directory
+			if (value.StartsWith("~"))
+			{
+				return VirtualPathUtility.ToAbsolute(value);
+			}
+
+			return value;
+		}
+
 		#endregion
 	}
 }

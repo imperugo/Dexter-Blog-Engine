@@ -1,45 +1,34 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			IUrlBuilder.cs
+// File:			MetaWeblogApiRouteHandler.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
-// Created:		2012/10/28
-// Last edit:	2013/01/20
+// Created:		2013/03/17
+// Last edit:	2013/03/17
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
-namespace Dexter.Navigation.Contracts
+namespace Dexter.Web.Core.Routing.Routes
 {
 	using System.Web;
+	using System.Web.Routing;
 
-	using Dexter.Navigation.Helpers;
+	using Dexter.Web.Core.HttpHandlers;
 
-	public interface IUrlBuilder
+	public class MetaWeblogApiRouteHandler : IRouteHandler
 	{
-		#region Public Properties
-
-		IAdminUrlBuilder Admin { get; }
-
-		SiteUrl Home { get; }
-
-		IPageUrlBuilder Page { get; }
-
-		IPostUrlBuilder Post { get; }
-
-		#endregion
-
 		#region Public Methods and Operators
 
-		SiteUrl CurrentUrl(HttpContextBase request);
-
-		SiteUrl PingbackUrl();
-
-		string ResolveUrl(string value);
+		public IHttpHandler GetHttpHandler(RequestContext requestContext)
+		{
+			return new MetaWeblogHandler();
+		}
 
 		#endregion
 	}

@@ -16,16 +16,28 @@
 namespace Dexter.Services
 {
 	using System;
+	using System.Security.Permissions;
 	using System.Threading.Tasks;
 
 	using Dexter.Entities;
 	using Dexter.Entities.Filters;
 	using Dexter.Entities.Result;
 	using Dexter.Services.Events;
+	using Dexter.Shared;
 
 	public interface IPageService
 	{
 		#region Public Events
+
+		/// <summary>
+		/// This event will raise after the <see cref="PageDto"/> is saved. The event is raised by by the implementation of <see cref="SaveOrUpdate"/> or the async version.
+		/// </summary>
+		event EventHandler<CancelEventArgsWithoutParameterWithResult<PageDto>> PageSaved;
+
+		/// <summary>
+		/// This event will raise before to save <see cref="PageDto"/>. The event is raised by by the implementation of <see cref="SaveOrUpdate"/> or the async version.
+		/// </summary>
+		event EventHandler<CancelEventArgsWithOneParameterWithoutResult<PageDto>> PageSaving;
 
 		/// <summary>
 		/// This event will raise after to retrieve <see cref="PageDto"/> by specific key. The event is raised by by the implementation of <see cref="GetPageByKey"/> or the async version.
@@ -61,9 +73,17 @@ namespace Dexter.Services
 
 		#region Public Methods and Operators
 
+		[PrincipalPermission(SecurityAction.PermitOnly, Authenticated = true, Role = Constants.Editor)]
+		[PrincipalPermission(SecurityAction.PermitOnly, Authenticated = true, Role = Constants.AdministratorRole)]
+		void SaveOrUpdate(PageDto item);
+
 		PageDto GetPageByKey(int key);
 
 		PageDto GetPageBySlug(string slug);
+
+		[PrincipalPermission(SecurityAction.PermitOnly, Authenticated = true, Role = Constants.Editor)]
+		[PrincipalPermission(SecurityAction.PermitOnly, Authenticated = true, Role = Constants.AdministratorRole)]
+		void Delete(int key);
 
 		IPagedResult<PageDto> GetPages(int pageIndex, int pageSize, ItemQueryFilter filters);
 

@@ -1,48 +1,39 @@
 #region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			CategoryDto.cs
+// File:			RavenIdResolver.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
-// Created:		2012/12/01
-// Last edit:	2013/01/20
+// Created:		2013/03/17
+// Last edit:	2013/03/17
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
-namespace Dexter.Entities
+namespace Dexter.Data.Raven.AutoMapper.Resolvers
 {
-	using System.Collections.Generic;
+	using System;
+	using System.Text.RegularExpressions;
 
-	public class CategoryDto
+	public class RavenIdResolver
 	{
-		#region Constructors and Destructors
+		#region Public Methods and Operators
 
-		public CategoryDto()
+		public static int Resolve(string ravenId)
 		{
-			this.Categories = new List<CategoryDto>();
+			Match match = Regex.Match(ravenId, @"\d+");
+			string idStr = match.Value;
+			int id = int.Parse(idStr);
+			if (id == 0)
+			{
+				throw new InvalidOperationException("Id cannot be zero.");
+			}
+			return id;
 		}
-
-		#endregion
-
-		#region Public Properties
-
-		public IList<CategoryDto> Categories { get; set; }
-
-		public string Id { get; set; }
-
-		public bool IsDefault { get; set; }
-
-		public string Name { get; set; }
-
-		public string Description { get; set; }
-
-		public int PostCount { get; set; }
-
-		public string ParentId { get; set; }
 
 		#endregion
 	}

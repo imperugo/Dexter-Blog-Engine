@@ -1317,6 +1317,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="wlwmanifest.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\db\" />
@@ -1436,6 +1437,7 @@
     <Content Include="Areas\Dxt_Admin\Views\Page\Index.cshtml" />
     <Content Include="Areas\Dxt_Admin\Views\Feedback\Negative.cshtml" />
     <Content Include="Areas\Dxt_Admin\Views\Feedback\Positive.cshtml" />
+    <Content Include="Areas\Dxt_Admin\Views\Post\ConfirmDelete.cshtml" />
     <None Include="Styles\Global\CommonStyles.css.bundle" />
   </ItemGroup>
   <PropertyGroup>

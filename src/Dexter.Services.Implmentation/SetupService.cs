@@ -77,6 +77,7 @@ namespace Dexter.Services.Implmentation
 			var membershipTask = this.CreateMembershipAndRole(item);
 
 			BlogConfigurationDto configuration = new BlogConfigurationDto(item.BlogName, item.SiteDomain);
+			configuration.TimeZone = TimeZoneInfo.FindSystemTimeZoneById("UTC");
 
 			this.configurationDataService.CreateSetupConfiguration(configuration);
 			this.logger.Debug("Created blog configuration.");

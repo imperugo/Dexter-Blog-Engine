@@ -21,11 +21,15 @@ namespace Dexter.Services.Implmentation
 	using Common.Logging;
 
 	using Dexter.Data;
+	using Dexter.Data.Exceptions;
 	using Dexter.Entities;
 	using Dexter.Entities.Filters;
 	using Dexter.Entities.Result;
 	using Dexter.Extensions.Logging;
 	using Dexter.Services.Events;
+	using Dexter.Shared;
+	using Dexter.Shared.Exceptions;
+	using Dexter.Shared.UserContext;
 
 	public class PageService : IPageService
 	{
@@ -35,19 +39,26 @@ namespace Dexter.Services.Implmentation
 
 		private readonly IPageDataService pageDataService;
 
+		private readonly IUserContext userContext;
+
 		#endregion
 
 		#region Constructors and Destructors
 
-		public PageService(IPageDataService pageDataService, ILog logger)
+		public PageService(IPageDataService pageDataService, ILog logger, IUserContext userContext)
 		{
 			this.pageDataService = pageDataService;
 			this.logger = logger;
+			this.userContext = userContext;
 		}
 
 		#endregion
 
 		#region Public Events
+
+		public event EventHandler<CancelEventArgsWithoutParameterWithResult<PageDto>> PageSaved;
+
+		public event EventHandler<CancelEventArgsWithOneParameterWithoutResult<PageDto>> PageSaving;
 
 		public event EventHandler<GenericEventArgs<PageDto>> PageRetrievedById;
 
@@ -64,6 +75,42 @@ namespace Dexter.Services.Implmentation
 		#endregion
 
 		#region Public Methods and Operators
+
+		public void SaveOrUpdate(PageDto item)
+		{
+			if (item == null)
+			{
+				throw new ItemNotFoundException("item");
+			}
+
+			CancelEventArgsWithOneParameterWithoutResult<PageDto> e = new CancelEventArgsWithOneParameterWithoutResult<PageDto>(item);
+
+			this.PageSaving.Raise(this, e);
+
+			if (e.Cancel)
+			{
+				return;
+			}
+
+			if (item.Id > 0)
+			{
+				var post = this.pageDataService.GetPageByKey(item.Id);
+
+				if (post == null)
+				{
+					throw new DexterPostNotFoundException(item.Id);
+				}
+
+				if (!this.userContext.IsInRole(Constants.AdministratorRole) && post.Author != this.userContext.Username)
+				{
+					throw new DexterSecurityException(string.Format("Only the Administrator or the Author can edit the post (item Key '{0}').", post.Id));
+				}
+			}
+
+			this.pageDataService.SaveOrUpdate(item);
+
+			this.PageSaved.Raise(this, new CancelEventArgsWithoutParameterWithResult<PageDto>(item));
+		}
 
 		public PageDto GetPageByKey(int key)
 		{
@@ -116,6 +163,11 @@ namespace Dexter.Services.Implmentation
 			this.PageRetrievedBySlug.Raise(this, new GenericEventArgs<PageDto>(result));
 
 			return result;
+		}
+
+		public void Delete(int key)
+		{
+			throw new NotImplementedException();
 		}
 
 		public IPagedResult<PageDto> GetPages(int pageIndex, int pageSize, ItemQueryFilter filters)

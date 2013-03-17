@@ -60,7 +60,7 @@ namespace Dexter.Web.Core.Routing
 				                                                                               {
 					                                                                               id = RouteParameter.Optional
 				                                                                               });
-
+			routes.Add(new Route("wlw/metaweblog", new MetaWeblogApiRouteHandler()));
 			routes.MapRoute("Default", "{controller}/{action}/{id}", 
 				new
 					{
