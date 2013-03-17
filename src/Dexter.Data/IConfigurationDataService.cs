@@ -15,13 +15,18 @@
 
 namespace Dexter.Data
 {
+	using System.Security.Permissions;
+
 	using Dexter.Entities;
+	using Dexter.Shared;
 
 	public interface IConfigurationDataService
 	{
 		#region Public Methods and Operators
 
 		BlogConfigurationDto GetConfiguration();
+
+		void CreateSetupConfiguration(BlogConfigurationDto configurationDto);
 
 		void SaveConfiguration(BlogConfigurationDto configurationDto);
 

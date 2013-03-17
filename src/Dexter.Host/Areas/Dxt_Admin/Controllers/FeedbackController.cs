@@ -17,11 +17,14 @@
 namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 {
 	using System;
+	using System.Threading;
 	using System.Web.Mvc;
 
 	using Common.Logging;
 
+	using Dexter.Host.Areas.Dxt_Admin.Models.Feedback;
 	using Dexter.Localization;
+	using Dexter.Navigation.Contracts;
 	using Dexter.Services;
 	using Dexter.Web.Core.Controllers.Web;
 
@@ -29,7 +32,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 	{
 		#region Fields
 
-		private ILocalizationProvider localizationProvider;
+		private readonly ILocalizationProvider localizationProvider;
 
 		#endregion
 
@@ -46,21 +49,41 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 		#region Public Methods and Operators
 
 		[AcceptVerbs(HttpVerbs.Get)]
-		public ActionResult Negative(string key, string redirect)
+		public ActionResult Negative(string key, string url)
 		{
-			throw new NotImplementedException();
+			var model = this.CreateModel(key, url, FeedbackType.Negative);
+
+			return this.View(model);
+		}
+
+		private IndexViewModel CreateModel(string key, string url,FeedbackType feedback)
+		{
+			IndexViewModel model = new IndexViewModel();
+
+			model.FeedbackType = feedback;
+
+			if (feedback == FeedbackType.Positive && !string.IsNullOrWhiteSpace(url))
+			{
+				model.Message = this.localizationProvider.GetLocalizedString("Core", key, Thread.CurrentThread.CurrentCulture.Name, url);
+			}
+			else
+			{
+				model.Message = this.localizationProvider.GetLocalizedString(key);
+			}
+
+			if (!string.IsNullOrEmpty(url))
+			{
+				model.Redirect = new Uri(url);
+			}
+			return model;
 		}
 
 		[AcceptVerbs(HttpVerbs.Get)]
-		public ActionResult Positive(string key, string redirect)
+		public ActionResult Positive(string key, string url)
 		{
-			throw new NotImplementedException();
-		}
+			var model = this.CreateModel(key, url, FeedbackType.Positive);
 
-		[AcceptVerbs(HttpVerbs.Get)]
-		public ActionResult Warning(string key, string redirect)
-		{
-			throw new NotImplementedException();
+			return this.View(model);
 		}
 
 		#endregion

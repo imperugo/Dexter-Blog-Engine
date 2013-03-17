@@ -85,6 +85,11 @@ namespace Dexter.Navigation.Helpers
 
 		public static implicit operator string(SiteUrl url)
 		{
+			if (url == null)
+			{
+				return null;
+			}
+
 			return url.ToString();
 		}
 
@@ -122,7 +127,7 @@ namespace Dexter.Navigation.Helpers
 
 			if (this.Parameters != null && this.Parameters.Any())
 			{
-				sb.Append("?d=u&");
+				sb.Append("?d=u");
 				foreach (KeyValuePair<string, string> parameter in this.Parameters)
 				{
 					sb.AppendFormat("&{0}={1}", HttpUtility.UrlEncode(parameter.Key), HttpUtility.UrlEncode(parameter.Value));

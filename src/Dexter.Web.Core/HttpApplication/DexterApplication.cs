@@ -26,6 +26,8 @@ namespace Dexter.Web.Core.HttpApplication
 	using Dexter.Async;
 	using Dexter.Async.TaskExecutor;
 	using Dexter.Dependency;
+	using Dexter.Services;
+	using Dexter.Shared.Exceptions;
 	using Dexter.Web.Core.Routing;
 
 	public class DexterApplication : HttpApplication
@@ -42,25 +44,26 @@ namespace Dexter.Web.Core.HttpApplication
 
 		private readonly ITaskExecutor taskExecutor;
 
+		private readonly IPluginService pluginService;
+
 		#endregion
 
 		#region Constructors and Destructors
-
-		static DexterApplication()
-		{
-			DexterContainer.StartUp();
-		}
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:System.Web.HttpApplication"/> class.
 		/// </summary>
 		public DexterApplication()
 		{
+			this.logger = LogManager.GetCurrentClassLogger();
+
+			DexterContainer.StartUp();
 			this.container = DexterContainer.Resolve<IDexterContainer>();
 			this.dexterCall = DexterContainer.Resolve<IDexterCall>();
 			this.routingService = DexterContainer.Resolve<IRoutingService>();
 			this.taskExecutor = DexterContainer.Resolve<ITaskExecutor>();
-			this.logger = LogManager.GetCurrentClassLogger();
+			this.pluginService = DexterContainer.Resolve<IPluginService>();
+			this.pluginService.LoadAllEnabledPlugins();
 
 			base.BeginRequest += (o, args) => this.BeginRequest();
 			base.EndRequest += (o, args) => this.EndRequest();
@@ -80,7 +83,7 @@ namespace Dexter.Web.Core.HttpApplication
 		{
 			Exception errors = this.Server.GetLastError();
 
-			bool succesfully = errors == null;
+			bool succesfully = errors == null || errors is DexterRestartRequiredException;
 			this.dexterCall.Complete(succesfully);
 
 			if (succesfully)
@@ -93,11 +96,26 @@ namespace Dexter.Web.Core.HttpApplication
 			}
 
 			this.logger.DebugFormat("Ending request for url '{0}'", HttpContext.Current.Request.Url);
+
+			var exception = errors as DexterRestartRequiredException;
+			
+			if (exception != null)
+			{
+				this.logger.DebugFormat("Restart required by '{0}' with reason '{1}'.", exception.Caller, exception.Message);
+				HttpRuntime.UnloadAppDomain();
+			}
 		}
 
 		public new void Error()
 		{
 			Exception exception = this.Server.GetLastError();
+
+			if (exception is DexterDatabaseConnectionException)
+			{
+				this.logger.Fatal(exception.Message, exception);
+				HttpContext.Current.Response.Redirect("~/Dxt-Admin/Error/DatatabaseConnectionError");
+				return;
+			}
 
 			if (exception is HttpException)
 			{

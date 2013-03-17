@@ -35,6 +35,7 @@ namespace Dexter.Services.Implmentation
 			container.Register<ICommentService, CommentService>(LifeCycle.Singleton);
 			container.Register<ISetupService, SetupService>(LifeCycle.Singleton);
 			container.Register<ICategoryService, CategoryService>(LifeCycle.Singleton);
+			container.Register<IPluginService, PluginService>(LifeCycle.Singleton);
 		}
 
 		public void ServiceRegistrationComplete(IDexterContainer container)

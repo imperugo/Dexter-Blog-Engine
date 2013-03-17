@@ -56,24 +56,14 @@ namespace Dexter.Host.Areas.Dxt_Admin.Models.Post
 
 	public class PostBinder
 	{
-		#region Constructors and Destructors
-
-		public PostBinder()
-		{
-		}
-
-		#endregion
-
 		#region Public Properties
 
-		public string Abstract { get; set; }
-
-		public bool BreakOnAggregate { get; set; }
+		public string Excerpt { get; set; }
 
 		[SimplyCategoryValidation]
 		public string[] Categories { get; set; }
 
-		public bool CommentEnabled { get; set; }
+		public bool AllowComments { get; set; }
 
 		[Required]
 		[AllowHtml]
@@ -81,10 +71,8 @@ namespace Dexter.Host.Areas.Dxt_Admin.Models.Post
 
 		public int Id { get; set; }
 
-		public bool Publish { get; set; }
-
 		[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd MMMM yyyy}")]
-		public DateTime PublishDate { get; set; }
+		public DateTimeOffset PublishAt { get; set; }
 
 		public int PublishHour { get; set; }
 
@@ -98,7 +86,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Models.Post
 		[Required]
 		public string Title { get; set; }
 
-		public int ItemStatus { get; set; }
+		public ItemStatus Status { get; set; }
 
 		#endregion
 
@@ -108,11 +96,10 @@ namespace Dexter.Host.Areas.Dxt_Admin.Models.Post
 		{
 			return new PostBinder
 				       {
-					       PublishDate = DateTime.Now, 
-					       PublishHour = DateTime.Now.Hour, 
-					       PublishMinutes = DateTime.Now.Minute, 
-					       Publish = true, 
-					       CommentEnabled = true
+					       PublishAt = DateTimeOffset.Now,
+						   PublishHour = DateTimeOffset.Now.Hour,
+						   PublishMinutes = DateTimeOffset.Now.Minute,
+						   AllowComments = true
 				       };
 		}
 

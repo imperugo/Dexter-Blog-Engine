@@ -150,8 +150,8 @@ namespace Dexter.Web.Mvc.Helpers
 			for (int page = pageIndex; page < Math.Round(totalCounts / pageSize + 0.5) && page < pageIndex + pageSize; page++)
 			{
 				sb.AppendFormat(page == pageIndex
-					                ? "<li><a href=\"{0}\" title=\"Page {1}\"><b>{1}</b></a></li>"
-					                : "<li><a href=\"{0}\" title=\"Page {1}\" class=\"current\"><b>{1}</b></a></li>", "#", page + 1);
+									? "<li><a href=\"{0}\" title=\"Page {1}\"><b>{1}</b></a></li>"
+									: "<li><a href=\"{0}\" title=\"Page {1}\" class=\"current\"><b>{1}</b></a></li>", "#", page + 1);
 			}
 
 			if ((pageIndex * pageSize) <= totalCounts)
@@ -169,14 +169,14 @@ namespace Dexter.Web.Mvc.Helpers
 			string prevImageString = string.Format("<img src=\"{0}\" width=\"16\" height=\"16\"> Prev", VirtualPathUtility.ToAbsolute("~/admin/Resources/images/Icons/Fugue/navigation-180.png"));
 			string nextImageString = string.Format("Next <img src=\"{0}\" width=\"16\" height=\"16\">", VirtualPathUtility.ToAbsolute("~/admin/Resources/images/Icons/Fugue/navigation.png"));
 
-			return Render(helper, pageSize, 
-				pageIndex, 
-				totalCounts, 
-				"controls-buttons", 
-				true, 
-				prevImageString, 
-				nextImageString, 
-				"current", 
+			return Render(helper, pageSize,
+				pageIndex,
+				totalCounts,
+				"controls-buttons",
+				true,
+				prevImageString,
+				nextImageString,
+				"current",
 				baseUrl);
 		}
 
@@ -244,14 +244,13 @@ namespace Dexter.Web.Mvc.Helpers
 				sb.Append("<li class=\"closed\">");
 
 				sb.Append(category.Categories.Any()
-					          ? "<b class=\"toggle\"></b>"
-					          : "<b></b>");
+							  ? "<b class=\"toggle\"></b>"
+							  : "<b></b>");
 
 				sb.Append("<span>");
-				sb.AppendFormat("<input type=\"hidden\" name=\"{2}.Categories[{0}].ID\" value=\"{1}\" />", categoryNumber, category.Id, bindePrefix);
-				sb.AppendFormat("<input type=\"checkbox\" name=\"{2}.Categories[{0}].Name\" value=\"{1}\" {3} /> ", categoryNumber, category.Name, bindePrefix, selectedValues != null && selectedValues.Contains(category.Name)
-					                                                                                                                                                ? "checked=\"checked\""
-					                                                                                                                                                : string.Empty);
+				sb.AppendFormat("<input type=\"checkbox\" name=\"{1}.Categories\" value=\"{0}\" {2} /> ", category.Name, bindePrefix, selectedValues != null && selectedValues.Contains(category.Name)
+																																									? "checked=\"checked\""
+																																									: string.Empty);
 				sb.Append(category.Name);
 				sb.Append("</span>");
 

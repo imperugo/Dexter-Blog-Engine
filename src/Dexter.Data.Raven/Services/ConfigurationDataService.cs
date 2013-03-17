@@ -16,6 +16,7 @@
 namespace Dexter.Data.Raven.Services
 {
 	using System.Linq;
+	using System.Security;
 
 	using Common.Logging;
 
@@ -45,6 +46,16 @@ namespace Dexter.Data.Raven.Services
 			}
 
 			return configuration;
+		}
+
+		public void CreateSetupConfiguration(BlogConfigurationDto configurationDto)
+		{
+			if (this.GetConfiguration() != null)
+			{
+				throw new SecurityException("This method could be called only during the setup procedure");
+			}
+
+			this.SaveConfiguration(configurationDto);
 		}
 
 		public void SaveConfiguration(BlogConfigurationDto configurationDto)

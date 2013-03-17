@@ -108,6 +108,10 @@
       <Project>{93F94260-4A10-41FD-AB0F-C1C22BFE3E78}</Project>
       <Name>Dexter.Async</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dexter.Shared\Dexter.Shared.csproj">
+      <Project>{43C6E51E-D066-4BD3-8182-ACA95096CB37}</Project>
+      <Name>Dexter.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

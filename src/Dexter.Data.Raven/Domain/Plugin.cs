@@ -36,6 +36,8 @@ namespace Dexter.Data.Raven.Domain
 
 		public string Title { get; set; }
 
+		public bool IsInstalled { get; set; }
+
 		#endregion
 	}
 }

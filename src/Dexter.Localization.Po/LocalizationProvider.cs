@@ -5,7 +5,7 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
 // Created:		2012/10/27
-// Last edit:	2013/02/10
+// Last edit:	2013/03/17
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -21,6 +21,7 @@ namespace Dexter.Localization.Po
 	using System.Globalization;
 	using System.IO;
 	using System.Text;
+	using System.Threading;
 
 	using Common.Logging;
 
@@ -37,6 +38,8 @@ namespace Dexter.Localization.Po
 				                                                                    { 'r', '\r' }, 
 				                                                                    { 't', '\t' }
 			                                                                    };
+
+		private static readonly string modulesLocalizationFilePathFormat = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App_Data/Localization/{0}/{1}.po");
 
 		#endregion
 
@@ -59,20 +62,6 @@ namespace Dexter.Localization.Po
 		{
 			this.logger = logger;
 			this.cacheProvider = cacheProvider;
-		}
-
-		#endregion
-
-		#region Properties
-
-		protected string ModulesLocalizationFilePathFormat
-		{
-			get
-			{
-				return IsHostedInAspnet()
-					       ? "App_Data/Localization/{0}/{1}.po"
-					       : "Localization/{0}/{1}.po";
-			}
 		}
 
 		#endregion
@@ -112,7 +101,7 @@ namespace Dexter.Localization.Po
 				throw new ArgumentNullException();
 			}
 
-			string filePath = string.Format(this.ModulesLocalizationFilePathFormat, cultureName, moduleName);
+			string filePath = string.Format(modulesLocalizationFilePathFormat, cultureName, moduleName);
 
 			if (File.Exists(filePath))
 			{
@@ -122,6 +111,11 @@ namespace Dexter.Localization.Po
 			{
 				throw new LocalizationModuleNotFoundException("Unable to find the specified localization module");
 			}
+		}
+
+		public LocalizedString GetLocalizedString(string msgId)
+		{
+			return this.GetLocalizedString(msgId, Thread.CurrentThread.CurrentCulture.Name);
 		}
 
 		/// <summary>
@@ -235,11 +229,6 @@ namespace Dexter.Localization.Po
 
 		#region Methods
 
-		private static bool IsHostedInAspnet()
-		{
-			return (AppDomain.CurrentDomain.GetData(".appDomain") != null);
-		}
-
 		private static string ParseId(string fileLine)
 		{
 			return Unescape(fileLine.Substring(5).Trim().Trim('"'));
@@ -352,7 +341,7 @@ namespace Dexter.Localization.Po
 
 		private IDictionary<string, string> LoadTranslations(string moduleName, CultureInfo culture)
 		{
-			string filePath = string.Format(this.ModulesLocalizationFilePathFormat, culture.Name, moduleName);
+			string filePath = string.Format(modulesLocalizationFilePathFormat, culture.Name, moduleName);
 
 			using (StreamReader sr = new StreamReader(filePath))
 			{
@@ -392,7 +381,7 @@ namespace Dexter.Localization.Po
 				throw new ArgumentNullException();
 			}
 
-			string filePath = string.Format(this.ModulesLocalizationFilePathFormat, cultureName, moduleName);
+			string filePath = string.Format(modulesLocalizationFilePathFormat, cultureName, moduleName);
 
 			if (File.Exists(filePath))
 			{

@@ -22,9 +22,7 @@ namespace Dexter.Navigation.Contracts
 	{
 		Positive, 
 
-		Negative, 
-
-		Warning
+		Negative
 	}
 
 	public interface IAdminUrlBuilder

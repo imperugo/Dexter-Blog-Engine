@@ -22,12 +22,16 @@ namespace Dexter.Services.Implmentation
 	using Common.Logging;
 
 	using Dexter.Data;
-	using Dexter.Data.Exceptions;
 	using Dexter.Entities;
 	using Dexter.Entities.Filters;
 	using Dexter.Entities.Result;
 	using Dexter.Extensions.Logging;
 	using Dexter.Services.Events;
+	using Dexter.Shared;
+	using Dexter.Shared.Exceptions;
+	using Dexter.Shared.UserContext;
+
+	using ItemNotFoundException = Dexter.Data.Exceptions.ItemNotFoundException;
 
 	public class PostService : IPostService
 	{
@@ -37,14 +41,17 @@ namespace Dexter.Services.Implmentation
 
 		private readonly IPostDataService postDataService;
 
+		private readonly IUserContext userContext;
+
 		#endregion
 
 		#region Constructors and Destructors
 
-		public PostService(IPostDataService postDataService, ILog logger)
+		public PostService(IPostDataService postDataService, ILog logger, IUserContext userContext)
 		{
 			this.postDataService = postDataService;
 			this.logger = logger;
+			this.userContext = userContext;
 		}
 
 		#endregion
@@ -111,6 +118,18 @@ namespace Dexter.Services.Implmentation
 				return;
 			}
 
+			var post = this.postDataService.GetPostByKey(key);
+
+			if (post == null)
+			{
+				throw new DexterPostNotFoundException(key);
+			}
+
+			if (!this.userContext.IsInRole(Constants.AdministratorRole) && post.Author != this.userContext.Username)
+			{
+				throw new DexterSecurityException(string.Format("Only the Administrator or the Author can delete the post (item Key '{0}').", post.Id));
+			}
+			
 			this.postDataService.Delete(key);
 
 			this.PostDeleted.Raise(this, new EventArgs());
@@ -356,6 +375,21 @@ namespace Dexter.Services.Implmentation
 			if (e.Cancel)
 			{
 				return;
+			}
+
+			if (item.Id > 0)
+			{
+				var post = this.postDataService.GetPostByKey(item.Id);
+
+				if (post == null)
+				{
+					throw new DexterPostNotFoundException(item.Id);
+				}
+
+				if (!this.userContext.IsInRole(Constants.AdministratorRole) && post.Author != this.userContext.Username)
+				{
+					throw new DexterSecurityException(string.Format("Only the Administrator or the Author can edit the post (item Key '{0}').", post.Id));
+				}
 			}
 
 			this.postDataService.SaveOrUpdate(item);

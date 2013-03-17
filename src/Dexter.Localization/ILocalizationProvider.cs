@@ -26,44 +26,59 @@ namespace Dexter.Localization
 		#region Public Methods and Operators
 
 		/// <summary>
-		/// 	Deletes the module.
+		/// Deletes the module.
 		/// </summary>
-		/// <param name="cultureName"> Name of the culture. </param>
-		/// <param name="moduleName"> Name of the module. </param>
+		/// <param name="cultureName">Name of the culture.</param>
+		/// <param name="moduleName">Name of the module.</param>
 		/// <exception cref="ArgumentException">Will be throw if there is an existing module with the same specified name for the same specified culture.</exception>
 		/// <exception cref="ArgumentNullException">Will be throw if
-		/// 	<paramref name="moduleName" />
-		/// 	is null.</exception>
-		/// <exception cref="ArgumentException">Will be throw if
-		/// 	<paramref name="moduleName" />
-		/// 	is empty.</exception>
+		/// <paramref name="moduleName" />
+		/// is null.</exception>
+		/// <exception cref="ArgumentException">Will be throw if there is an existing module with the same specified name for the same specified culture.</exception>
 		/// <exception cref="ArgumentNullException">Will be throw if
-		/// 	<paramref name="cultureName" />
-		/// 	is null.</exception>
-		/// <exception cref="ArgumentException">Will be throw if
-		/// 	<paramref name="cultureName" />
-		/// 	is empty.</exception>
+		/// <paramref name="moduleName" />
+		/// is null.</exception>
+		/// <exception cref="ArgumentException">Will be throw if there is an existing module with the same specified name for the same specified culture.</exception>
 		/// <exception cref="LocalizationModuleNotFoundException">Will be throw if there isn't an existing module with the same specified name for the same specified culture.</exception>
 		void DeleteModule(string cultureName, string moduleName);
 
 		/// <summary>
-		/// 	Gets the localized string.
+		/// Gets the localized string using the current culture.
 		/// </summary>
-		/// <param name="msgId"> The MSG id. </param>
-		/// <param name="cultureName"> Name of the culture. </param>
-		/// <returns> The result will never be null. </returns>
-		/// <exception cref="ArgumentNullException">Will be throw if
-		/// 	<paramref name="msgId" />
-		/// 	is null.</exception>
+		/// <param name="msgId">The MSG id.</param>
+		/// <returns>
+		///		The result will never be null.
+		/// </returns>
+		/// <exception cref="ArgumentNullException">Will be throw if <paramref name="msgId" />
+		/// is null.</exception>
 		/// <exception cref="ArgumentException">Will be throw if
-		/// 	<paramref name="msgId" />
-		/// 	is empty.</exception>
-		/// <exception cref="ArgumentNullException">Will be throw if
-		/// 	<paramref name="cultureName" />
-		/// 	is null.</exception>
+		/// <paramref name="msgId" />
+		/// is empty.</exception>
+		/// <exception cref="ArgumentNullException">Will be throw if <paramref name="msgId" />
+		/// is null.</exception>
 		/// <exception cref="ArgumentException">Will be throw if
-		/// 	<paramref name="cultureName" />
-		/// 	is empty.</exception>
+		/// <paramref name="msgId" />
+		/// is empty.</exception>
+		LocalizedString GetLocalizedString(string msgId);
+
+		/// <summary>
+		/// Gets the localized string.
+		/// </summary>
+		/// <param name="msgId">The MSG id.</param>
+		/// <param name="cultureName">Name of the culture.</param>
+		/// <returns>
+		///		The result will never be null.
+		/// </returns>
+		/// <exception cref="ArgumentNullException">Will be throw if <paramref name="msgId" />
+		/// is null.</exception>
+		/// <exception cref="ArgumentException">Will be throw if
+		/// <paramref name="msgId" />
+		/// is empty.</exception>
+		/// <exception cref="ArgumentNullException">Will be throw if <paramref name="msgId" />
+		/// is null.</exception>
+		/// <exception cref="ArgumentException">Will be throw if
+		/// <paramref name="msgId" />
+		/// is empty.</exception>
 		LocalizedString GetLocalizedString(string msgId, string cultureName);
 
 		/// <summary>

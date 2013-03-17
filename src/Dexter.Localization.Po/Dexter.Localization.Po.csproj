@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CultureDictionary.cs" />
+    <Compile Include="Installer.cs" />
     <Compile Include="LocalizationProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -50,6 +51,10 @@
     <ProjectReference Include="..\Dexter.Caching\Dexter.Caching.csproj">
       <Project>{FF50D350-E3A2-4BD8-9BBC-58166891E0C2}</Project>
       <Name>Dexter.Caching</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Dependency\Dexter.Dependency.csproj">
+      <Project>{07FF041C-FC20-49A3-8BC4-A38E7F72ABAA}</Project>
+      <Name>Dexter.Dependency</Name>
     </ProjectReference>
     <ProjectReference Include="..\Dexter.Extensions\Dexter.Extensions.csproj">
       <Project>{408d067c-933b-4987-b76f-481708f08470}</Project>

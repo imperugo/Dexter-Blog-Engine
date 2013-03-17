@@ -152,7 +152,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 			{
 				this.Logger.Error("Error during saving the post", e);
 
-				return this.urlBuilder.Admin.FeedbackPage(FeedbackType.Negative, "GenericError", null).Redirect();
+				return this.urlBuilder.Admin.FeedbackPage(FeedbackType.Negative, "UnableToSaveThePost", null).Redirect();
 			}
 
 			return this.urlBuilder.Admin.FeedbackPage(FeedbackType.Positive, "PostSaved", this.urlBuilder.Admin.Post.List()).Redirect();

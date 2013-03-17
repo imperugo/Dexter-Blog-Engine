@@ -58,6 +58,11 @@ namespace Dexter.Services.Implmentation
 			return result;
 		}
 
+		public void SaveOrUpdateConfiguration(BlogConfigurationDto item)
+		{
+			this.configurationDataService.SaveConfiguration(item);
+		}
+
 		#endregion
 	}
 }

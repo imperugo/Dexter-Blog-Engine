@@ -42,6 +42,8 @@ namespace Dexter.Entities
 
 		public Version Version { get; set; }
 
+		public bool IsInstalled { get; set; }
+
 		#endregion
 	}
 }

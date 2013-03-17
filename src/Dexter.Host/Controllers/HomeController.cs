@@ -51,7 +51,7 @@ namespace Dexter.Host.Controllers
 
 			model.Posts = this.postService.GetPosts(page, 10, new ItemQueryFilter
 				                                                                                  {
-					                                                                                  MaxPublishAt = DateTimeOffset.Now.AsMinutes(), 
+					                                                                                  MaxPublishAt = DateTimeOffset.Now, 
 					                                                                                  Status = ItemStatus.Published
 				                                                                                  });
 

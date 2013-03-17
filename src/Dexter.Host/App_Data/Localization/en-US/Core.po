@@ -1,2 +1,9 @@
-msgid "StringID"
-msgstr "StringValue"
+msgid "GenericError"
+msgstr "Ops....Something wrong."
+
+msgid "UnableToSaveThePost"
+msgstr "Unable to save the specified post. Something wrong is happend. Take a look to the log or try later."
+
+msgid "PostSaved"
+msgstr "The specified post has been saved correctly. Take a look <a href="{0}">here</a>"
+

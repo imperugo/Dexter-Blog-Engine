@@ -122,6 +122,16 @@ namespace Dexter.Localization
 			return string.Format(this.localized, this.args);
 		}
 
+		public static implicit operator string(LocalizedString localizedString)
+		{
+			if (localizedString == null)
+			{
+				return null;
+			}
+
+			return localizedString.ToString();
+		}
+
 		#endregion
 	}
 }

@@ -20,6 +20,7 @@ namespace Dexter.Dependency
 	using System.Configuration;
 	using System.Linq;
 	using System.Reflection;
+	using System.Web;
 	using System.Web.Compilation;
 
 	using Dexter.Dependency.Extensions;
@@ -213,6 +214,7 @@ namespace Dexter.Dependency
 			alpAssemblies.ForEach(x => Engine.Register<ILayerInstaller>(x, LifeCycle.Singleton));
 
 			ILayerInstaller[] coreInstaller = Engine.ResolveAll<ILayerInstaller>();
+			
 			coreInstaller.ForEach(x => x.ServiceRegistration(Engine));
 			coreInstaller.ForEach(x => x.ServiceRegistrationComplete(Engine));
 			coreInstaller.ForEach(x => x.ApplicationStarted(Engine));

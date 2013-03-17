@@ -35,29 +35,5 @@ namespace Dexter.Data.Exceptions
 		#endregion
 	}
 
-	public class DexterException : ApplicationException
-	{
-		#region Constructors and Destructors
-
-		public DexterException()
-		{
-		}
-
-		public DexterException(string message)
-			: base(message)
-		{
-		}
-
-		public DexterException(string message, Exception innerException)
-			: base(message, innerException)
-		{
-		}
-
-		protected DexterException(SerializationInfo info, StreamingContext context)
-			: base(info, context)
-		{
-		}
-
-		#endregion
-	}
+	
 }

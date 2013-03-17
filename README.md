@@ -1,6 +1,6 @@
 ## Welcome to Dexter Blog Engine ##
 
-**[Dexter](http://dexterblogengine.com "Dexter Blog Engine Official Web Site")** is a free and open source project totally developed with Microsoft technologies.
+**[Dexter](http://dexterblogengine.com "Dexter Blog Engine Official Web Site")** is a free and open source project totally developed with Microsoft technologies release under [Microsoft Public License (Ms-PL)](https://github.com/imperugo/Dexter-Blog-Engine/wiki/License).
 
 ### History ###
 

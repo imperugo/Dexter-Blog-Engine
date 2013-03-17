@@ -15,6 +15,8 @@
 
 namespace Dexter.Data.Raven.Session
 {
+	using System.Threading.Tasks;
+
 	using global::Raven.Client;
 
 	public interface ISessionFactory

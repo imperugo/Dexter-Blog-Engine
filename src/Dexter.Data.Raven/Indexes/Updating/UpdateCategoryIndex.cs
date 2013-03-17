@@ -31,19 +31,19 @@ namespace Dexter.Data.Raven.Indexes.Updating
 		{
 			if (deletedCategory.ChildrenIds != null)
 			{
-				store.DatabaseCommands.UpdateByIndex("Category/ById", 
+				store.DatabaseCommands.UpdateByIndex("Category/ById",
 					new IndexQuery
 						{
 							Query = session.Query<Category>()
 							               .Where(x => x.Id.In(deletedCategory.ChildrenIds))
 							               .ToString()
-						}, 
+						},
 					new[]
 						{
 							new PatchRequest
 								{
-									Type = PatchCommandType.Set, 
-									Name = "ParentId", 
+									Type = PatchCommandType.Set,
+									Name = "ParentId",
 									Value = newCategory.Id
 								}
 						}, allowStale: true);
@@ -103,7 +103,7 @@ namespace Dexter.Data.Raven.Indexes.Updating
 								Name = "IsDefault", 
 								Value = false
 							}
-					}, allowStale: true);
+					},allowStale:true);
 		}
 
 		#endregion

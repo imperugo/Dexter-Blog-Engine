@@ -15,15 +15,20 @@
 
 namespace Dexter.Services
 {
+	using System.Security.Permissions;
 	using System.Threading.Tasks;
 
 	using Dexter.Entities;
+	using Dexter.Shared;
 
 	public interface IConfigurationService
 	{
 		#region Public Methods and Operators
 
 		BlogConfigurationDto GetConfiguration();
+
+		[PrincipalPermission(SecurityAction.PermitOnly, Authenticated = true, Role = Constants.AdministratorRole)]
+		void SaveOrUpdateConfiguration(BlogConfigurationDto item);
 
 		#endregion
 	}

@@ -5,12 +5,13 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
 // Created:		2013/01/07
-// Last edit:	2013/01/20
+// Last edit:	2013/03/13
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Data.Raven.Services
@@ -20,12 +21,12 @@ namespace Dexter.Data.Raven.Services
 
 	using Common.Logging;
 
-	using Dexter.Data.Exceptions;
 	using Dexter.Data.Raven.Domain;
 	using Dexter.Data.Raven.Extensions;
 	using Dexter.Data.Raven.Session;
 	using Dexter.Entities;
 	using Dexter.Entities.Result;
+	using Dexter.Shared.Exceptions;
 
 	using global::Raven.Client;
 
@@ -53,7 +54,7 @@ namespace Dexter.Data.Raven.Services
 
 			if (plugin == null)
 			{
-				throw new DexterException("Unable to find the specified package");
+				throw new DexterPluginException("Unable to find the specified package", item.Title);
 			}
 
 			plugin.Enabled = false;
@@ -72,7 +73,7 @@ namespace Dexter.Data.Raven.Services
 
 			if (plugin == null)
 			{
-				throw new DexterException("Unable to find the specified package");
+				throw new DexterPluginException("Unable to find the specified package", item.Title);
 			}
 
 			plugin.Enabled = true;

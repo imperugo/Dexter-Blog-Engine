@@ -71,7 +71,7 @@ namespace Dexter.Data.Raven.Session
 
 				if (currentContext[SessionStateKey] == null)
 				{
-					session = this.documentStore.OpenSession();
+					session = this.documentStore.OpenSession("Dexter");
 					currentContext[SessionStateKey] = session;
 					this.logger.Debug("Session·Created");
 				}

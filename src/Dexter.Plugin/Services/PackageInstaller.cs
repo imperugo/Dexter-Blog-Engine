@@ -27,6 +27,7 @@ namespace Dexter.PackageInstaller.Services
 	using Dexter.PackageInstaller.Extensions;
 	using Dexter.PackageInstaller.Logger;
 	using Dexter.Services;
+	using Dexter.Shared.Exceptions;
 
 	using NuGet;
 
@@ -207,7 +208,7 @@ namespace Dexter.PackageInstaller.Services
 
 			if (package == null)
 			{
-				throw new DexterException("Unable to locate the specified package");
+				throw new DexterPluginException("Unable to locate the specified package.", packageId);
 			}
 
 			return !package.IsLatestVersion;

@@ -18,6 +18,7 @@ namespace Dexter.PackageInstaller
 	using Dexter.Dependency;
 	using Dexter.Dependency.Installation;
 	using Dexter.PackageInstaller.Automapper;
+	using Dexter.Services;
 
 	using NuGet;
 
@@ -33,7 +34,7 @@ namespace Dexter.PackageInstaller
 		public void ServiceRegistration(IDexterContainer container)
 		{
 			container.Register<IPackageManager, PackageManager>(LifeCycle.Singleton);
-			
+			container.Register<IPackageInstaller, Services.PackageInstaller>(LifeCycle.Singleton);
 		}
 
 		public void ServiceRegistrationComplete(IDexterContainer container)

@@ -87,6 +87,10 @@
       <Project>{BE578436-AD00-48FA-A16D-245044F109C2}</Project>
       <Name>Dexter.Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dexter.Shared\Dexter.Shared.csproj">
+      <Project>{43C6E51E-D066-4BD3-8182-ACA95096CB37}</Project>
+      <Name>Dexter.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

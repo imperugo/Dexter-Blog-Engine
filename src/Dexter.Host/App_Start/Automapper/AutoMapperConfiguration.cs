@@ -5,7 +5,7 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
 // Created:		2012/12/23
-// Last edit:	2013/01/20
+// Last edit:	2013/03/17
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -33,13 +33,23 @@ namespace Dexter.Host.App_Start.Automapper
 			Mapper.CreateMap<SetupBinder, Setup>();
 
 			Mapper.CreateMap<PostBinder, PostDto>()
-			      .ForMember(dest => dest.Status, source => source.MapFrom(p => new DateTimeOffset(p.PublishDate).AsMinutes() > DateTimeOffset.Now.AsMinutes() ? ItemStatus.Scheduled : ItemStatus.Published));
+			      .ForMember(dest => dest.Content, source => source.MapFrom(p => p.FormattedBody))
+			      .ForMember(dest => dest.Tags, source => source.MapFrom(p => p.Tags.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)))
+				  .ForMember(dest => dest.PublishAt, source => source.MapFrom(p => ConvertPusblishAt(p.PublishAt, p.PublishHour, p.PublishMinutes)));
 
 			Mapper.CreateMap<PostDto, PostBinder>()
+			      .ForMember(dest => dest.PublishHour, source => source.MapFrom(p => p.PublishAt.Hour))
+			      .ForMember(dest => dest.PublishMinutes, source => source.MapFrom(p => p.PublishAt.Minute))
 			      .ForMember(dest => dest.FormattedBody, source => source.MapFrom(p => p.Content))
 			      .ForMember(dest => dest.Tags, source => source.MapFrom(p => string.Join(",", p.Tags)));
 		}
 
 		#endregion
+		
+		private static DateTimeOffset ConvertPusblishAt(DateTimeOffset source, int hour, int minutes)
+		{
+			DateTime utc = source.DateTime.ToUniversalTime().Date;
+			return new DateTimeOffset(utc.Year, utc.Month, utc.Day, hour, minutes, 0, TimeSpan.Zero);
+		}
 	}
 }

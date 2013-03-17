@@ -17,8 +17,6 @@ namespace Dexter.PackageInstaller.Logger
 {
 	using Common.Logging;
 
-	using Dexter.Extensions.Logging;
-
 	using NuGet;
 
 	public class NugetLogger : ILogger
@@ -36,15 +34,16 @@ namespace Dexter.PackageInstaller.Logger
 			switch (level)
 			{
 				case MessageLevel.Debug:
+					this.logger.DebugFormat(message, args);
 					break;
 				case MessageLevel.Info:
-					this.logger.InfoFormatAsync(message, args);
+					this.logger.InfoFormat(message, args);
 					break;
 				case MessageLevel.Warning:
-					this.logger.WarnFormatAsync(message, args);
+					this.logger.WarnFormat(message, args);
 					break;
 				case MessageLevel.Error:
-					this.logger.ErrorFormatAsync(message, args);
+					this.logger.ErrorFormat(message, args);
 					break;
 			}
 		}

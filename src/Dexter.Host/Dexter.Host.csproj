@@ -32,7 +32,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-	  <MvcBuildViews>true</MvcBuildViews>
+    <MvcBuildViews>true</MvcBuildViews>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -41,7 +41,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-	<MvcBuildViews>true</MvcBuildViews>
+    <MvcBuildViews>true</MvcBuildViews>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime, Version=3.3.1.7705, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -202,11 +202,20 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Extensions\Plugins\SamplePlugin\Assemblies\readme.txt" />
+    <Content Include="App_Data\Extensions\Plugins\SamplePlugin\Contents\readme.txt" />
+    <Content Include="App_Data\Extensions\Plugins\SamplePlugin\Javascripts\readme.txt" />
+    <Content Include="App_Data\Extensions\Plugins\SamplePlugin\Styles\readme.txt" />
+    <Content Include="App_Data\Extensions\Plugins\SamplePlugin\Views\readme.txt" />
     <Content Include="App_Data\Extensions\Themes\Default\Assemblies\readme.txt" />
-    <Content Include="App_Data\Extensions\Themes\Default\Contents\readme.txt" />
-    <Content Include="App_Data\Extensions\Themes\Default\Javascripts\readme.txt" />
-    <Content Include="App_Data\Extensions\Themes\Default\Styles\readme.txt" />
-    <Content Include="App_Data\Extensions\Themes\Default\Views\readme.txt" />
+    <Content Include="App_Data\Extensions\Themes\Default\Backoffice\Contents\readme.txt" />
+    <Content Include="App_Data\Extensions\Themes\Default\Backoffice\Javascripts\readme.txt" />
+    <Content Include="App_Data\Extensions\Themes\Default\Backoffice\Styles\readme.txt" />
+    <Content Include="App_Data\Extensions\Themes\Default\Backoffice\Views\readme.txt" />
+    <Content Include="App_Data\Extensions\Themes\Default\Frontend\Contents\readme.txt" />
+    <Content Include="App_Data\Extensions\Themes\Default\Frontend\Javascripts\readme.txt" />
+    <Content Include="App_Data\Extensions\Themes\Default\Frontend\Styles\readme.txt" />
+    <Content Include="App_Data\Extensions\Themes\Default\Frontend\Views\readme.txt" />
     <Content Include="favicon-large.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -1311,10 +1320,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\db\" />
-    <Folder Include="App_Data\Extensions\Plugins\" />
     <Folder Include="App_Data\Logs\Log4net\" />
     <Folder Include="App_Data\Temp\" />
-    <Folder Include="Areas\Dxt_Admin\Views\Feedback\" />
     <Folder Include="Areas\Dxt_Setup\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
@@ -1375,6 +1382,10 @@
       <Project>{d84ad077-7a5c-43d9-b09a-4f750bfadb6b}</Project>
       <Name>Dexter.Navigation</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dexter.Plugin\Dexter.PackageInstaller.csproj">
+      <Project>{70be4f00-3f08-40da-b6ba-58cbeaaa1b62}</Project>
+      <Name>Dexter.PackageInstaller</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dexter.Services.Implmentation\Dexter.Services.Implmentation.csproj">
       <Project>{cbc7440d-f0c3-418e-b733-ab2f68cf0db5}</Project>
       <Name>Dexter.Services.Implmentation</Name>
@@ -1423,6 +1434,8 @@
     <Content Include="Areas\Dxt_Admin\Views\Post\Index.cshtml" />
     <Content Include="Areas\Dxt_Admin\Views\Widget\PageList.cshtml" />
     <Content Include="Areas\Dxt_Admin\Views\Page\Index.cshtml" />
+    <Content Include="Areas\Dxt_Admin\Views\Feedback\Negative.cshtml" />
+    <Content Include="Areas\Dxt_Admin\Views\Feedback\Positive.cshtml" />
     <None Include="Styles\Global\CommonStyles.css.bundle" />
   </ItemGroup>
   <PropertyGroup>

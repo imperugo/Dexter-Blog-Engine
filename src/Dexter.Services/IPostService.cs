@@ -17,12 +17,14 @@ namespace Dexter.Services
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Security.Permissions;
 	using System.Threading.Tasks;
 
 	using Dexter.Entities;
 	using Dexter.Entities.Filters;
 	using Dexter.Entities.Result;
 	using Dexter.Services.Events;
+	using Dexter.Shared;
 
 	public interface IPostService
 	{
@@ -132,6 +134,8 @@ namespace Dexter.Services
 
 		#region Public Methods and Operators
 
+		[PrincipalPermission(SecurityAction.PermitOnly, Authenticated = true, Role = Constants.Editor)]
+		[PrincipalPermission(SecurityAction.PermitOnly, Authenticated = true, Role = Constants.AdministratorRole)]
 		void Delete(int key);
 
 		IList<MonthDto> GetMonthsForPublishedPosts();
@@ -148,6 +152,8 @@ namespace Dexter.Services
 
 		IList<TagDto> GetTopTagsForPublishedPosts(int maxNumberOfTags);
 
+		[PrincipalPermission(SecurityAction.PermitOnly, Authenticated = true, Role = Constants.Editor)]
+		[PrincipalPermission(SecurityAction.PermitOnly, Authenticated = true, Role = Constants.AdministratorRole)]
 		void SaveOrUpdate(PostDto item);
 
 		IPagedResult<PostDto> Search(string term, int pageIndex, int pageSize, ItemQueryFilter filters);

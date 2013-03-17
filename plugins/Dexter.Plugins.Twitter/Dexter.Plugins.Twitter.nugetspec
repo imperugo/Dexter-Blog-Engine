@@ -1,0 +1,18 @@
+﻿<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Dexter.Plugins.Twitter</id>
+    <version>1.0.0.0</version>
+    <authors>Ugo Lattanzi</authors>
+    <owners>Ugo Lattanzi</owners>
+    <licenseUrl></licenseUrl>
+    <projectUrl>http://dexterblogengine.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Integrate twitter with Dexter</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2012</copyright>
+    <dependencies>
+      <dependency id="Common.Logging" version="[2.0.0, 2.1.2]" />
+    </dependencies>
+  </metadata>
+</package>

@@ -79,9 +79,9 @@ namespace Dexter.Host.App_Start.Validators
 				return false;
 			}
 
-			IEnumerable<string> selectedCat = categories.Where(x => !string.IsNullOrEmpty(x));
+			IEnumerable<string> selectedCat = categories.Where(string.IsNullOrEmpty);
 
-			return selectedCat.Any();
+			return !selectedCat.Any();
 		}
 
 		#endregion

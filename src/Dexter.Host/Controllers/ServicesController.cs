@@ -30,7 +30,6 @@ namespace Dexter.Host.Controllers
 
 	using Dexter.Data;
 	using Dexter.Entities;
-	using Dexter.Extensions.Logging;
 	using Dexter.Services;
 	using Dexter.Services.Implmentation;
 	using Dexter.Web.Core.Controllers.Web;
@@ -156,7 +155,7 @@ namespace Dexter.Host.Controllers
 
 			try
 			{
-				this.trackbackService.SaveOrUpdateAsync(trackBackDto, itemType);
+				await this.trackbackService.SaveOrUpdateAsync(trackBackDto, itemType);
 
 				this.HttpContext.Response.Write("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?><response><error>0</error></response>");
 				this.HttpContext.Response.End();

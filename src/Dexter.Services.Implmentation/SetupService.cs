@@ -25,6 +25,7 @@ namespace Dexter.Services.Implmentation
 
 	using Dexter.Data;
 	using Dexter.Entities;
+	using Dexter.Shared;
 
 	public class SetupService : ISetupService
 	{
@@ -68,30 +69,21 @@ namespace Dexter.Services.Implmentation
 
 		#region Public Methods and Operators
 
-		public void Initialize(Setup item)
+		public async Task InitializeAsync(Setup item)
 		{
 			string defaultPostPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App_Data/Setup/defaultPost.dxt");
 
+			var defaultPostTask = this.GetDefaultPostContent(defaultPostPath, item.SiteDomain.Host);
+			var membershipTask = this.CreateMembershipAndRole(item);
+
 			BlogConfigurationDto configuration = new BlogConfigurationDto(item.BlogName, item.SiteDomain);
 
-			this.configurationDataService.SaveConfiguration(configuration);
+			this.configurationDataService.CreateSetupConfiguration(configuration);
 			this.logger.Debug("Created blog configuration.");
 
 			//Creating default category
 			this.categoryService.SaveOrUpdate("Various", true, null);
 			this.logger.Debug("Created default category.");
-
-			// Creating user
-			Membership.CreateUser(item.AdminUsername, item.AdminPassword, item.Email.Address);
-			this.logger.Debug("Created admin user.");
-
-			// Creating administrator role
-			Roles.CreateRole("Administrator");
-			this.logger.Debug("Created administrator role.");
-
-			// Adding user to role
-			Roles.AddUserToRole(item.AdminUsername, "Administrator");
-			this.logger.Debug("Assigned user to administration role.");
 
 			PostDto defaultPost = new PostDto();
 
@@ -99,15 +91,49 @@ namespace Dexter.Services.Implmentation
 			defaultPost.Tags = new[] { "Dexter" };
 			defaultPost.Categories = new[] { "Various" };
 			defaultPost.Status = ItemStatus.Published;
-			defaultPost.PublishAt = DateTimeOffset.Now;
+			defaultPost.PublishAt = DateTimeOffset.Now.AsMinutes();
 			defaultPost.Author = item.AdminUsername;
 			defaultPost.AllowComments = true;
-			defaultPost.Content = File.ReadAllText(defaultPostPath).Replace("[SiteDomain]", item.SiteDomain.Host);
+
+			await Task.WhenAll(defaultPostTask, membershipTask);
+
+			defaultPost.Content = defaultPostTask.Result;
 
 			this.postDataService.SaveOrUpdate(defaultPost);
 			this.logger.Debug("Created default post.");
 		}
 
 		#endregion
+
+		public Task CreateMembershipAndRole(Setup item)
+		{
+			//NOTE:The membership use a different session, so it could be runned in an async thread. Unluckily this request is not under transaction
+
+			return Task.Run(() =>
+				{
+					// Creating user
+					Membership.CreateUser(item.AdminUsername, item.AdminPassword, item.Email.Address);
+					this.logger.Debug("Created admin user.");
+
+					// Creating administrator role
+					Roles.CreateRole(Constants.AdministratorRole);
+					this.logger.Debug("Created administrator role.");
+
+					Roles.CreateRole(Constants.Editor);
+					this.logger.Debug("Created editor role.");
+
+					Roles.CreateRole(Constants.Moderator);
+					this.logger.Debug("Created moderator role.");
+
+					// Adding user to role
+					Roles.AddUserToRole(item.AdminUsername, Constants.AdministratorRole);
+					this.logger.Debug("Assigned user to administration role.");
+				});
+		}
+
+		public Task<string> GetDefaultPostContent(string defaultPostPath, string host)
+		{
+			return Task.Run(() => File.ReadAllText(defaultPostPath).Replace("[SiteDomain]", host));
+		}
 	}
 }

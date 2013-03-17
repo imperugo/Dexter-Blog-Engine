@@ -54,11 +54,13 @@ namespace Dexter.Navigation.Concretes
 
 		public SiteUrl FeedbackPage(FeedbackType feedback, string localizationKey, SiteUrl redirect)
 		{
-			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Feedback", feedback.ToString(), null, new Dictionary<string, string>
-				                                                                                                          {
-					                                                                                                          { "key", localizationKey }, 
-					                                                                                                          { "url", redirect }
-				                                                                                                          });
+			var parameters = new Dictionary<string, string>
+				                 {
+					                 { "key", localizationKey },
+					                 { "url", redirect }
+				                 };
+
+			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Feedback", feedback.ToString(), null, parameters);
 		}
 
 		public SiteUrl Home()

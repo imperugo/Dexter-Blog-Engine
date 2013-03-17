@@ -1,0 +1,34 @@
+﻿@model Dexter.Host.Areas.Dxt_Admin.Models.Feedback.IndexViewModel
+@{
+	Layout = "~/Areas/Dxt_Admin/Views/Shared/_layout.cshtml";
+}
+
+<!-- the 'special-page' class is only an identifier for scripts -->
+	<body class="special-page error-bg red dark">
+		<!-- The template uses conditional comments to add wrappers div for ie8 and ie7 - just add .ie, .ie7 or .ie6 prefix to your css selectors when needed -->
+		<!--[if lt IE 9]><div class="ie"><![endif]-->
+		<!--[if lt IE 8]><div class="ie7"><![endif]-->
+
+
+		<section id="error-desc">
+				<ul class="action-tabs with-children-tip children-tip-left">
+					<li title="Go back">
+						<a href="@Html.Raw(Model.Redirect == null ? "javascript:history.back()" : Model.Redirect.ToString())" title="Go back">
+							<img src="~/Images/Icons/Fugue/navigation-180.png" width="16" height="16">
+						</a>
+					</li>
+				</ul>
+
+			<div class="block-border">
+				<div class="block-content">
+					<div class="block-header">Operation Complete</div>
+
+					<h5>@Model.Message</h5>
+				</div>
+			</div>
+		</section>
+
+	<!--[if lt IE 8]></div><![endif]-->
+	<!--[if lt IE 9]></div><![endif]-->
+
+	</body>

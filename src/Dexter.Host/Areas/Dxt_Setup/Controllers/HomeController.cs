@@ -15,6 +15,7 @@
 
 namespace Dexter.Host.Areas.Dxt_Setup.Controllers
 {
+	using System.Threading.Tasks;
 	using System.Web.Mvc;
 
 	using AutoMapper;
@@ -63,7 +64,7 @@ namespace Dexter.Host.Areas.Dxt_Setup.Controllers
 		}
 
 		[AcceptVerbs(HttpVerbs.Post)]
-		public ActionResult Index(SetupBinder setup)
+		public async Task<ActionResult> Index(SetupBinder setup)
 		{
 			if (!this.ModelState.IsValid)
 			{
@@ -73,7 +74,7 @@ namespace Dexter.Host.Areas.Dxt_Setup.Controllers
 				return this.View(model);
 			}
 
-			this.setupService.Initialize(setup.MapTo<Setup>());
+			await this.setupService.InitializeAsync(setup.MapTo<Setup>());
 
 			this.routingService.UpdateRoutes();
 

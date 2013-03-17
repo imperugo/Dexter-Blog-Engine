@@ -1,4 +1,5 @@
-﻿@model Dexter.Host.Areas.Dxt_Admin.Models.Post.ManageViewModel
+﻿@using Dexter.Entities
+@model Dexter.Host.Areas.Dxt_Admin.Models.Post.ManageViewModel
 @{
 	Layout = "~/Areas/Dxt_Admin/Views/Shared/_layoutWithMenu.cshtml";
 }
@@ -62,10 +63,12 @@
 			
 			<p>
 				<label for="simple-required">Tags</label>
-				@Html.DropDownListFor(x => x.Post.ItemStatus, new []
+				@Html.DropDownListFor(x => x.Post.Status, new []
 					                                              {
-						                                              new SelectListItem(){Selected = true,Text = "Published",Value = "1"},
-						                                              new SelectListItem(){Selected = true,Text = "Published",Value = "1"},
+						                                              new SelectListItem{Selected = (Model.Post.Status == ItemStatus.Draft) ,Text = "Draft",Value = "Draft"},
+						                                              new SelectListItem{Selected = (Model.Post.Status == ItemStatus.PendingReview),Text = "PendingReview",Value = "PendingReview"},
+						                                              new SelectListItem{Selected = (Model.Post.Status == ItemStatus.Published),Text = "Published",Value = "Published"},
+						                                              new SelectListItem{Selected = (Model.Post.Status == ItemStatus.Scheduled),Text = "Scheduled",Value = "Scheduled"},
 					                                              } )
 			</p>
 
@@ -91,21 +94,16 @@
 					<p>
 						<label for="simple-required">Publish Date</label>
 						<span class="input-type-text margin-right">
-							@Html.EditorFor(x => x.Post.PublishDate)
+							@Html.EditorFor(x => x.Post.PublishAt)
 							<img height="16" width="16" src="~/images/Icons/Fugue/calendar-month.png" alt="calendar" />
 							@Html.DropDownListFor(x => x.Post.PublishHour, new SelectList(Model.Hours, Model.Post.PublishHour))
 							@Html.DropDownListFor(x => x.Post.PublishMinutes, new SelectList(Model.Minutes, Model.Post.PublishMinutes))
 						</span>
 						<button class="grey" type="button" id="publishToday">Now</button>
-						&nbsp;
-						<label for="table-display" style="display:inline">Publish</label>
-						@Html.CheckBoxFor( x => x.Post.Publish, new { @class = "mini-switch"} )
-								
-						<label for="table-display" style="display:inline">Break Post</label>
-						@Html.CheckBoxFor( x => x.Post.BreakOnAggregate, new { @class = "mini-switch"} )
-						&nbsp;
+
+
 						<label for="table-display" style="display:inline">Enable Comments</label>
-						@Html.CheckBoxFor( x => x.Post.CommentEnabled, new { @class = "mini-switch"} )
+						@Html.CheckBoxFor( x => x.Post.AllowComments, new { @class = "mini-switch"} )
 					</p>
 							
 					<p>
@@ -115,7 +113,7 @@
 
 					<p>
 						<label for="simple-required">Excerpt</label>
-						@Html.TextBoxFor(x => x.Post.Abstract, new { @class = "full-width", placeholder = "Write the abstract of the post" })
+						@Html.TextBoxFor(x => x.Post.Excerpt, new { @class = "full-width", placeholder = "Write the abstract of the post" })
 					</p>
 			</fieldset>
 
