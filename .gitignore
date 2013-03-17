@@ -1,6 +1,6 @@
 src/Dexter.Host/App_Data/db
 src/Dexter.Host/App_Data/temp
-src/Dexter.Host/App_Data/Logs/Log4net
+src/Dexter.Host/App_Data/Logs
 
 #################
 ## Eclipse
