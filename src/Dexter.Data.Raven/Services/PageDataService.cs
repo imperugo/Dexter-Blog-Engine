@@ -184,8 +184,6 @@ namespace Dexter.Data.Raven.Services
 				page.Slug = SlugHelper.GenerateSlug(page, this.GetPostBySlugInternal);
 			}
 
-			this.Session.Store(page);
-
 			if (page.IsTransient)
 			{
 				ItemComments comments = new ItemComments
@@ -214,6 +212,8 @@ namespace Dexter.Data.Raven.Services
 				this.Session.Store(trackbacks);
 				page.TrackbacksId = trackbacks.Id;
 			}
+
+			this.Session.Store(page);
 
 			if (mustUpdateDenormalizedObject)
 			{
