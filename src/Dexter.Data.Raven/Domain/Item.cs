@@ -19,7 +19,7 @@ namespace Dexter.Data.Raven.Domain
 
 	using Dexter.Entities;
 
-	public abstract class Item : EntityBase<int>
+	public abstract class Item : EntityBase<string>
 	{
 		#region Public Properties
 

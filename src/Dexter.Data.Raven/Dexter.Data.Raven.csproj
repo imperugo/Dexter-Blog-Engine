@@ -142,7 +142,7 @@
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
     <Compile Include="AutoMapper\AutoMapperConfiguration.cs" />
-    <Compile Include="AutoMapper\Resolvers\RavenIdResolver.cs" />
+    <Compile Include="Helpers\RavenIdHelper.cs" />
     <Compile Include="DexterCall.cs" />
     <Compile Include="Domain\EmailMessage.cs" />
     <Compile Include="Domain\ItemReference.cs" />
@@ -151,7 +151,7 @@
     <Compile Include="Domain\Plugin.cs" />
     <Compile Include="Domain\PluginInfo.cs" />
     <Compile Include="Domain\Trackback.cs" />
-    <Compile Include="Extensions\PostExtensions.cs" />
+    <Compile Include="Extensions\ItemExtensions.cs" />
     <Compile Include="Helpers\AbstractHelper.cs" />
     <Compile Include="Helpers\SlugHelper.cs" />
     <Compile Include="Indexes\Reading\PostFullTextIndex.cs" />

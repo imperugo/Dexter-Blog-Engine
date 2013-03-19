@@ -16,7 +16,6 @@
 namespace Dexter.Services.Implmentation
 {
 	using System;
-	using System.Threading.Tasks;
 
 	using Common.Logging;
 
@@ -71,6 +70,10 @@ namespace Dexter.Services.Implmentation
 		public event EventHandler<GenericEventArgs<IPagedResult<PageDto>>> PagesRetrievedWithFilters;
 
 		public event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, ItemQueryFilter>, IPagedResult<PageDto>>> PagesRetrievingWithFilters;
+
+		public event EventHandler<EventArgs> PageDeleted;
+
+		public event EventHandler<CancelEventArgsWithOneParameterWithoutResult<int>> PageDeleting;
 
 		#endregion
 
@@ -167,7 +170,35 @@ namespace Dexter.Services.Implmentation
 
 		public void Delete(int key)
 		{
-			throw new NotImplementedException();
+			if (key < 1)
+			{
+				throw new ArgumentException("The Key must be greater than 0", "key");
+			}
+
+			CancelEventArgsWithOneParameterWithoutResult<int> e = new CancelEventArgsWithOneParameterWithoutResult<int>(key);
+
+			this.PageDeleting.Raise(this, e);
+
+			if (e.Cancel)
+			{
+				return;
+			}
+
+			var page = this.pageDataService.GetPageByKey(key);
+
+			if (page == null)
+			{
+				throw new DexterPostNotFoundException(key);
+			}
+
+			if (!this.userContext.IsInRole(Constants.AdministratorRole) && page.Author != this.userContext.Username)
+			{
+				throw new DexterSecurityException(string.Format("Only the Administrator or the Author can delete the page (item Key '{0}').", page.Id));
+			}
+
+			this.pageDataService.Delete(key);
+
+			this.PageDeleted.Raise(this, new EventArgs());
 		}
 
 		public IPagedResult<PageDto> GetPages(int pageIndex, int pageSize, ItemQueryFilter filters)

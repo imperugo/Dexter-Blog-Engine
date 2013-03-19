@@ -265,12 +265,12 @@ namespace Dexter.Data.Raven.Services
 				post.Excerpt = AbstractHelper.GenerateAbstract(post.Content);
 			}
 
-			this.Session.Store(post);
-
 			if (string.IsNullOrEmpty(post.Slug))
 			{
 				post.Slug = SlugHelper.GenerateSlug(post, this.GetPostBySlugInternal);
 			}
+
+			this.Session.Store(post);
 
 			if (post.IsTransient)
 			{
@@ -306,7 +306,7 @@ namespace Dexter.Data.Raven.Services
 				UpdateDenormalizedItemIndex.UpdateIndexes(this.store, this.Session, post);
 			}
 
-			item.Id = post.Id;
+			item.Id = RavenIdHelper.Resolve(post.Id);
 		}
 
 		public void SaveTrackback(TrackBackDto trackBack, int itemId)

@@ -153,6 +153,8 @@
     <Compile Include="App_Start\Constants.cs" />
     <Compile Include="App_Start\Installer.cs" />
     <Compile Include="App_Start\Validators\SimplyCategoryValidationAttribute.cs" />
+    <Compile Include="Areas\Dxt_Admin\Binders\ItemBinder.cs" />
+    <Compile Include="Areas\Dxt_Admin\Binders\PageBinder.cs" />
     <Compile Include="Areas\Dxt_Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Dxt_Admin\Controllers\ErrorController.cs" />
     <Compile Include="Areas\Dxt_Admin\Controllers\FeedbackController.cs" />
@@ -165,6 +167,7 @@
     <Compile Include="Areas\Dxt_Admin\Models\Category\IndexViewModel.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Error\IndexViewModel.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Feedback\IndexViewModel.cs" />
+    <Compile Include="Areas\Dxt_Admin\Binders\PostBinder.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Post\PostDeleteViewData.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Post\IndexViewModel.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Page\IndexViewModel.cs" />
@@ -1276,6 +1279,7 @@
     <Content Include="js\Validation\jquery.validate.custom-methods.js" />
     <Content Include="js\Validation\jquery.validate.min.js" />
     <Content Include="js\Validation\jquery.validate.unobtrusive.min.js" />
+    <Content Include="robots.txt" />
     <Content Include="Styles\Global\CommonStyles.css">
       <DependentUpon>CommonStyles.css.bundle</DependentUpon>
     </Content>

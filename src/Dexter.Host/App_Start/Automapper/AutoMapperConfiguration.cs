@@ -21,7 +21,7 @@ namespace Dexter.Host.App_Start.Automapper
 	using AutoMapper;
 
 	using Dexter.Entities;
-	using Dexter.Host.Areas.Dxt_Admin.Models.Post;
+	using Dexter.Host.Areas.Dxt_Admin.Binders;
 	using Dexter.Host.Areas.Dxt_Setup.Models;
 
 	public class AutoMapperConfiguration
@@ -32,16 +32,23 @@ namespace Dexter.Host.App_Start.Automapper
 		{
 			Mapper.CreateMap<SetupBinder, Setup>();
 
-			Mapper.CreateMap<PostBinder, PostDto>()
+			Mapper.CreateMap<ItemBinder, ItemDto>()
 			      .ForMember(dest => dest.Content, source => source.MapFrom(p => p.FormattedBody))
 			      .ForMember(dest => dest.Tags, source => source.MapFrom(p => p.Tags.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)))
-				  .ForMember(dest => dest.PublishAt, source => source.MapFrom(p => ConvertPusblishAt(p.PublishAt, p.PublishHour, p.PublishMinutes)));
+			      .ForMember(dest => dest.PublishAt, source => source.MapFrom(p => ConvertPusblishAt(p.PublishAt, p.PublishHour, p.PublishMinutes)))
+			      .Include<PostBinder, PostDto>()
+			      .Include<PageBinder, PageDto>();
 
-			Mapper.CreateMap<PostDto, PostBinder>()
+			Mapper.CreateMap<ItemDto, ItemBinder>()
 			      .ForMember(dest => dest.PublishHour, source => source.MapFrom(p => p.PublishAt.Hour))
 			      .ForMember(dest => dest.PublishMinutes, source => source.MapFrom(p => p.PublishAt.Minute))
 			      .ForMember(dest => dest.FormattedBody, source => source.MapFrom(p => p.Content))
-			      .ForMember(dest => dest.Tags, source => source.MapFrom(p => string.Join(",", p.Tags)));
+			      .ForMember(dest => dest.Tags, source => source.MapFrom(p => string.Join(",", p.Tags)))
+				  .Include<PostDto, PostBinder>()
+				  .Include<PageDto, PageBinder>();
+
+			Mapper.CreateMap<PostBinder, PostDto>().ReverseMap();
+			Mapper.CreateMap<PageBinder, PageDto>().ReverseMap();
 		}
 
 		#endregion

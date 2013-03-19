@@ -30,7 +30,7 @@ namespace Dexter.Data.Raven.Test.Helpers
 		{
 			return Builder<Post>.CreateListOfSize(numberOfDocument)
 			                    .All()
-			                    .With(x => x.Id = 0)
+			                    .With(x => x.Id = null)
 			                    .With(x => x.CommentsId = null)
 			                    .Build();
 		}

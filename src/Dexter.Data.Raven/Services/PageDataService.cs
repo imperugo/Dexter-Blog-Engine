@@ -5,18 +5,20 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
 // Created:		2012/11/02
-// Last edit:	2013/01/20
+// Last edit:	2013/03/18
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Data.Raven.Services
 {
 	using System;
 	using System.Linq;
+	using System.Threading;
 
 	using global::AutoMapper;
 
@@ -25,6 +27,8 @@ namespace Dexter.Data.Raven.Services
 	using Dexter.Data.Exceptions;
 	using Dexter.Data.Raven.Domain;
 	using Dexter.Data.Raven.Extensions;
+	using Dexter.Data.Raven.Helpers;
+	using Dexter.Data.Raven.Indexes.Updating;
 	using Dexter.Data.Raven.Session;
 	using Dexter.Entities;
 	using Dexter.Entities.Filters;
@@ -36,11 +40,18 @@ namespace Dexter.Data.Raven.Services
 
 	public class PageDataService : ServiceBase, IPageDataService
 	{
+		#region Fields
+
+		private readonly IDocumentStore store;
+
+		#endregion
+
 		#region Constructors and Destructors
 
-		public PageDataService(ILog logger, ISessionFactory sessionFactory)
+		public PageDataService(ILog logger, ISessionFactory sessionFactory, IDocumentStore store)
 			: base(logger, sessionFactory)
 		{
+			this.store = store;
 		}
 
 		#endregion
@@ -50,12 +61,12 @@ namespace Dexter.Data.Raven.Services
 		public void Delete(int id)
 		{
 			Page page = this.Session
-								.Include<Page>(x => x.CommentsId)
-								.Include<Page>(x => x.TrackbacksId)
-								.Load<Page>(id);
+			                .Include<Page>(x => x.CommentsId)
+			                .Include<Page>(x => x.TrackbacksId)
+			                .Load<Page>(id);
 
-			var comments = this.Session.Load<ItemComments>(page.CommentsId);
-			var trackbacks = this.Session.Load<ItemComments>(page.TrackbacksId);
+			ItemComments comments = this.Session.Load<ItemComments>(page.CommentsId);
+			ItemComments trackbacks = this.Session.Load<ItemComments>(page.TrackbacksId);
 
 			if (page == null)
 			{
@@ -65,13 +76,6 @@ namespace Dexter.Data.Raven.Services
 			this.Session.Delete(page);
 			this.Session.Delete(comments);
 			this.Session.Delete(trackbacks);
-
-			this.Session.Delete(page);
-		}
-
-		public void SaveOrUpdate(PageDto item)
-		{
-			throw new NotImplementedException();
 		}
 
 		public PageDto GetPageByKey(int id)
@@ -141,6 +145,107 @@ namespace Dexter.Data.Raven.Services
 			           .ApplyFilterItem(filter)
 			           .OrderByDescending(post => post.PublishAt)
 			           .ToPagedResult<Page, PageDto>(pageIndex, pageSize, stats);
+		}
+
+		public void SaveOrUpdate(PageDto item)
+		{
+			if (item == null)
+			{
+				throw new ArgumentNullException("item", "The post must be contains a valid instance");
+			}
+
+			Page page = this.Session.Load<Page>(item.Id)
+			            ?? new Page
+				               {
+					               CreatedAt = DateTimeOffset.Now
+				               };
+
+			if (string.IsNullOrEmpty(item.Author))
+			{
+				page.Author = Thread.CurrentPrincipal.Identity.Name;
+			}
+
+			bool mustUpdateDenormalizedObject = false;
+
+			if (!item.IsTransient)
+			{
+				mustUpdateDenormalizedObject = page.MustUpdateDenormalizedObject(item);
+			}
+
+			item.MapPropertiesToInstance(page);
+
+			if (string.IsNullOrEmpty(page.Excerpt))
+			{
+				page.Excerpt = AbstractHelper.GenerateAbstract(page.Content);
+			}
+
+			if (string.IsNullOrEmpty(page.Slug))
+			{
+				page.Slug = SlugHelper.GenerateSlug(page, this.GetPostBySlugInternal);
+			}
+
+			this.Session.Store(page);
+
+			if (page.IsTransient)
+			{
+				ItemComments comments = new ItemComments
+					                        {
+						                        Item = new ItemReference
+							                               {
+								                               Id = page.Id, 
+								                               Status = page.Status, 
+								                               ItemPublishedAt = page.PublishAt
+							                               }
+					                        };
+
+				this.Session.Store(comments);
+				page.CommentsId = comments.Id;
+
+				ItemTrackbacks trackbacks = new ItemTrackbacks
+					                            {
+						                            Item = new ItemReference
+							                                   {
+								                                   Id = page.Id, 
+								                                   Status = page.Status, 
+								                                   ItemPublishedAt = page.PublishAt
+							                                   }
+					                            };
+
+				this.Session.Store(trackbacks);
+				page.TrackbacksId = trackbacks.Id;
+			}
+
+			if (mustUpdateDenormalizedObject)
+			{
+				UpdateDenormalizedItemIndex.UpdateIndexes(this.store, this.Session, page);
+			}
+
+			item.Id = RavenIdHelper.Resolve(page.Id);
+		}
+
+		#endregion
+
+		#region Methods
+
+		private Page GetPostBySlugInternal(string slug)
+		{
+			if (slug == null)
+			{
+				throw new ArgumentNullException("slug");
+			}
+
+			if (slug == string.Empty)
+			{
+				throw new ArgumentException("The string must have a value.", "slug");
+			}
+
+			Page page = this.Session.Query<Page>()
+			                .Where(x => x.Slug == slug)
+			                .Include(x => x.CommentsId)
+			                .Include(x => x.TrackbacksId)
+			                .FirstOrDefault();
+
+			return page;
 		}
 
 		#endregion

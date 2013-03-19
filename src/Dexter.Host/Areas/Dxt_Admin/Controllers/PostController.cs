@@ -26,6 +26,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 
 	using Dexter.Entities;
 	using Dexter.Entities.Filters;
+	using Dexter.Host.Areas.Dxt_Admin.Binders;
 	using Dexter.Host.Areas.Dxt_Admin.Models.Post;
 	using Dexter.Navigation.Contracts;
 	using Dexter.Services;

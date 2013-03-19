@@ -16,15 +16,12 @@
 
 namespace Dexter.Host.Areas.Dxt_Admin.Models.Post
 {
-	using System;
 	using System.Collections.Generic;
 	using System.Collections.ObjectModel;
-	using System.ComponentModel.DataAnnotations;
-	using System.Web.Mvc;
 
 	using Dexter.Entities;
 	using Dexter.Host.App_Start;
-	using Dexter.Host.App_Start.Validators;
+	using Dexter.Host.Areas.Dxt_Admin.Binders;
 	using Dexter.Web.Core.Models;
 
 	public class ManageViewModel : DexterBackofficeModelBase
@@ -50,58 +47,6 @@ namespace Dexter.Host.Areas.Dxt_Admin.Models.Post
 		}
 
 		public PostBinder Post { get; set; }
-
-		#endregion
-	}
-
-	public class PostBinder
-	{
-		#region Public Properties
-
-		public string Excerpt { get; set; }
-
-		[SimplyCategoryValidation]
-		public string[] Categories { get; set; }
-
-		public bool AllowComments { get; set; }
-
-		[Required]
-		[AllowHtml]
-		public string FormattedBody { get; set; }
-
-		public int Id { get; set; }
-
-		[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd MMMM yyyy}")]
-		public DateTimeOffset PublishAt { get; set; }
-
-		public int PublishHour { get; set; }
-
-		public int PublishMinutes { get; set; }
-
-		public string Slug { get; set; }
-
-		[Required]
-		public string Tags { get; set; }
-
-		[Required]
-		public string Title { get; set; }
-
-		public ItemStatus Status { get; set; }
-
-		#endregion
-
-		#region Public Methods and Operators
-
-		public static PostBinder EmptyInstance()
-		{
-			return new PostBinder
-				       {
-					       PublishAt = DateTimeOffset.Now,
-						   PublishHour = DateTimeOffset.Now.Hour,
-						   PublishMinutes = DateTimeOffset.Now.Minute,
-						   AllowComments = true
-				       };
-		}
 
 		#endregion
 	}

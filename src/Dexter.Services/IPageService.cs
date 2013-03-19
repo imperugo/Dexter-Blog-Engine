@@ -69,6 +69,17 @@ namespace Dexter.Services
 		/// </summary>
 		event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, ItemQueryFilter>, IPagedResult<PageDto>>> PagesRetrievingWithFilters;
 
+
+		/// <summary>
+		/// This event will raise after the <see cref="PageDto"/> is delete. The event is raised by by the implementation of <see cref="Delete"/> or the async version.
+		/// </summary>
+		event EventHandler<EventArgs> PageDeleted;
+
+		/// <summary>
+		/// This event will raise before to delete <see cref="PageDto"/>. The event is raised by by the implementation of <see cref="Delete"/> or the async version.
+		/// </summary>
+		event EventHandler<CancelEventArgsWithOneParameterWithoutResult<int>> PageDeleting;
+
 		#endregion
 
 		#region Public Methods and Operators

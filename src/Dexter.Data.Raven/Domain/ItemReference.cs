@@ -23,7 +23,7 @@ namespace Dexter.Data.Raven.Domain
 	{
 		#region Public Properties
 
-		public int Id { get; set; }
+		public string Id { get; set; }
 
 		public DateTimeOffset ItemPublishedAt { get; set; }
 

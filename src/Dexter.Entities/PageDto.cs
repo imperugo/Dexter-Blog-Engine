@@ -17,5 +17,10 @@ namespace Dexter.Entities
 {
 	public class PageDto : ItemDto
 	{
+		public int ParentId { get; set; }
+
+		public int SortId { get; set; }
+
+		public int[] PagesId { get; set; }
 	}
 }

@@ -1,38 +1,45 @@
-#region Disclaimer/Info
+﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			RavenIdResolver.cs
+// File:			ItemExtensions.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
-// Created:		2013/03/17
-// Last edit:	2013/03/17
+// Created:		2012/11/03
+// Last edit:	2013/01/20
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-
 #endregion
 
-namespace Dexter.Data.Raven.AutoMapper.Resolvers
+namespace Dexter.Data.Raven.Extensions
 {
-	using System;
-	using System.Text.RegularExpressions;
+	using Dexter.Data.Raven.Domain;
+	using Dexter.Entities;
 
-	public class RavenIdResolver
+	internal static class ItemExtensions
 	{
 		#region Public Methods and Operators
 
-		public static int Resolve(string ravenId)
+		public static bool MustUpdateDenormalizedObject(this Item target, ItemDto source)
 		{
-			Match match = Regex.Match(ravenId, @"\d+");
-			string idStr = match.Value;
-			int id = int.Parse(idStr);
-			if (id == 0)
+			if (!target.Slug.Equals(source.Slug))
 			{
-				throw new InvalidOperationException("Id cannot be zero.");
+				return true;
 			}
-			return id;
+
+			if (!target.Title.Equals(source.Title))
+			{
+				return true;
+			}
+
+			if (!target.PublishAt.Equals(source.PublishAt))
+			{
+				return true;
+			}
+
+			return false;
 		}
 
 		#endregion

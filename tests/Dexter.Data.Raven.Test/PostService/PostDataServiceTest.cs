@@ -19,6 +19,8 @@ namespace Dexter.Data.Raven.Test.PostService
 	using System.Collections.Generic;
 	using System.Linq;
 
+	using Dexter.Data.Raven.Helpers;
+
 	using global::AutoMapper;
 
 	using Common.Logging;
@@ -80,7 +82,7 @@ namespace Dexter.Data.Raven.Test.PostService
 
 			this.sut.Session.SaveChanges();
 
-			PostDto expectedPost = this.sut.GetPostByKey(posts[2].Id);
+			PostDto expectedPost = this.sut.GetPostByKey(RavenIdHelper.Resolve(posts[2].Id));
 
 			expectedPost.Should().Not.Be.Null();
 			expectedPost.Title.Should().Be.EqualTo(posts[2].Title);

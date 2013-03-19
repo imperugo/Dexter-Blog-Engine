@@ -49,6 +49,8 @@ namespace Dexter.Web.Core.Routing
 			HttpConfiguration webApiConfiguration = GlobalConfiguration.Configuration;
 
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+			routes.IgnoreRoute("robots.txt");
+			routes.IgnoreRoute("wlwmanifest.xml");
 
 			if (!this.setupService.IsInstalled)
 			{
@@ -60,6 +62,7 @@ namespace Dexter.Web.Core.Routing
 				                                                                               {
 					                                                                               id = RouteParameter.Optional
 				                                                                               });
+
 			routes.Add(new Route("wlw/metaweblog", new MetaWeblogApiRouteHandler()));
 			routes.MapRoute("Default", "{controller}/{action}/{id}", 
 				new
