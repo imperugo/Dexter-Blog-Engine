@@ -1,10 +1,10 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			IndexViewModel.cs
+// File:			PostDeleteViewData.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/12/24
+// Created:		2012/12/26
 // Last edit:	2012/12/26
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
@@ -17,14 +17,13 @@
 namespace Dexter.Host.Areas.Dxt_Admin.Models.Page
 {
 	using Dexter.Entities;
-	using Dexter.Entities.Result;
 	using Dexter.Web.Core.Models;
 
-	public class IndexViewModel : DexterBackofficeModelBase
+	public class PageDeleteViewData : DexterBackofficeModelBase
 	{
 		#region Public Properties
 
-		public IPagedResult<PageDto> Pages { get; set; }
+		public PageDto Page { get; set; }
 
 		#endregion
 	}

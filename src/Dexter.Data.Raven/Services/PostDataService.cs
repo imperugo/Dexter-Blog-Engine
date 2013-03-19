@@ -240,11 +240,15 @@ namespace Dexter.Data.Raven.Services
 				throw new ArgumentNullException("item", "The post must be contains a valid instance");
 			}
 
-			Post post = this.Session.Load<Post>(item.Id)
-						?? new Post
+			Post post = this.Session.Load<Post>(item.Id);
+
+			if (post == null)
+			{
+				post = new Post
 							   {
 								   CreatedAt = DateTimeOffset.Now
 							   };
+			}
 
 			if (string.IsNullOrEmpty(item.Author))
 			{
@@ -269,8 +273,6 @@ namespace Dexter.Data.Raven.Services
 			{
 				post.Slug = SlugHelper.GenerateSlug(post, this.GetPostBySlugInternal);
 			}
-
-			this.Session.Store(post);
 
 			if (post.IsTransient)
 			{
@@ -300,6 +302,8 @@ namespace Dexter.Data.Raven.Services
 				this.Session.Store(trackbacks);
 				post.TrackbacksId = trackbacks.Id;
 			}
+
+			this.Session.Store(post);
 
 			if (mustUpdateDenormalizedObject)
 			{

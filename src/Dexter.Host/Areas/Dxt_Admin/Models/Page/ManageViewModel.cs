@@ -1,10 +1,10 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			IndexViewModel.cs
+// File:			ManageViewModel.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/About.ashx
-// Created:		2012/12/24
+// Created:		2012/12/26
 // Last edit:	2012/12/26
 // License:		GNU Library General Public License (LGPL)
 // For updated news and information please visit http://dexterblogengine.com/
@@ -16,15 +16,34 @@
 
 namespace Dexter.Host.Areas.Dxt_Admin.Models.Page
 {
+	using System.Collections.Generic;
+
 	using Dexter.Entities;
-	using Dexter.Entities.Result;
+	using Dexter.Host.App_Start;
+	using Dexter.Host.Areas.Dxt_Admin.Binders;
 	using Dexter.Web.Core.Models;
 
-	public class IndexViewModel : DexterBackofficeModelBase
+	public class ManageViewModel : DexterBackofficeModelBase
 	{
 		#region Public Properties
 
-		public IPagedResult<PageDto> Pages { get; set; }
+		public string[] Hours
+		{
+			get
+			{
+				return Constants.HoursValues;
+			}
+		}
+
+		public string[] Minutes
+		{
+			get
+			{
+				return Constants.MinutesValues;
+			}
+		}
+
+		public PageBinder Page { get; set; }
 
 		#endregion
 	}

@@ -168,9 +168,11 @@
     <Compile Include="Areas\Dxt_Admin\Models\Error\IndexViewModel.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Feedback\IndexViewModel.cs" />
     <Compile Include="Areas\Dxt_Admin\Binders\PostBinder.cs" />
+    <Compile Include="Areas\Dxt_Admin\Models\Page\IndexViewModel.cs" />
+    <Compile Include="Areas\Dxt_Admin\Models\Page\ManageViewModel.cs" />
+    <Compile Include="Areas\Dxt_Admin\Models\Page\PageDeleteViewData.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Post\PostDeleteViewData.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Post\IndexViewModel.cs" />
-    <Compile Include="Areas\Dxt_Admin\Models\Page\IndexViewModel.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Widget\FastPostBinder.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Home\IndexViewModel.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Login\CredentialLoginBinder.cs" />

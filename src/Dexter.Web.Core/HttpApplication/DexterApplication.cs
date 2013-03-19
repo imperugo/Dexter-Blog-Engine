@@ -93,6 +93,7 @@ namespace Dexter.Web.Core.HttpApplication
 			else
 			{
 				this.taskExecutor.Discard();
+				this.logger.Error(errors.Message, errors);
 			}
 
 			this.logger.DebugFormat("Ending request for url '{0}'", HttpContext.Current.Request.Url);
