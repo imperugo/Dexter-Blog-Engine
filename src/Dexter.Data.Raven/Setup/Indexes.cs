@@ -33,6 +33,7 @@ namespace Dexter.Data.Raven.Setup
 		{
 			IndexDefinition postsBySlugIndex = store.DatabaseCommands.GetIndex("BlogPosts/BySlug");
 			IndexDefinition categoryByDefault = store.DatabaseCommands.GetIndex("Category/ById");
+			IndexDefinition postsIdsInCategoryByDefault = store.DatabaseCommands.GetIndex("Category/PostIds");
 
 			if (postsBySlugIndex == null)
 			{
@@ -56,6 +57,18 @@ namespace Dexter.Data.Raven.Setup
 									                                                  category.Id
 								                                                  })
 						});
+			}
+
+			if (postsIdsInCategoryByDefault == null)
+			{
+				store.DatabaseCommands.PutIndex("Category/PostIds",
+					new IndexDefinitionBuilder<Category>
+					{
+						Map = categories => categories.Select(category => new
+						{
+							category.Name
+						})
+					});
 			}
 		}
 

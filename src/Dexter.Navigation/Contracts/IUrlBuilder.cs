@@ -31,6 +31,8 @@ namespace Dexter.Navigation.Contracts
 
 		IPostUrlBuilder Post { get; }
 
+		ICategoryUrlBuilder Category { get; }
+
 		#endregion
 
 		#region Public Methods and Operators

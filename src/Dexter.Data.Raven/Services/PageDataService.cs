@@ -167,13 +167,6 @@ namespace Dexter.Data.Raven.Services
 				item.Author = Thread.CurrentPrincipal.Identity.Name;
 			}
 
-			bool mustUpdateDenormalizedObject = false;
-
-			if (!item.IsTransient)
-			{
-				mustUpdateDenormalizedObject = page.MustUpdateDenormalizedObject(item);
-			}
-
 			item.MapPropertiesToInstance(page);
 
 			if (string.IsNullOrEmpty(page.Excerpt))
@@ -183,7 +176,7 @@ namespace Dexter.Data.Raven.Services
 
 			if (string.IsNullOrEmpty(page.Slug))
 			{
-				page.Slug = SlugHelper.GenerateSlug(page, this.GetPostBySlugInternal);
+				page.Slug = SlugHelper.GenerateSlug(page.Title, page.Id, this.GetPostBySlugInternal);
 			}
 
 			if (page.IsTransient)
@@ -217,10 +210,7 @@ namespace Dexter.Data.Raven.Services
 
 			this.Session.Store(page);
 
-			if (mustUpdateDenormalizedObject)
-			{
-				UpdateDenormalizedItemIndex.UpdateIndexes(this.store, this.Session, page);
-			}
+			UpdateDenormalizedItemIndex.UpdateIndexes(this.store, this.Session, page);
 
 			item.Id = RavenIdHelper.Resolve(page.Id);
 		}

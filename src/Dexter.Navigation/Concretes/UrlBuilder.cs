@@ -16,7 +16,6 @@
 namespace Dexter.Navigation.Concretes
 {
 	using System.Collections;
-	using System.Collections.Generic;
 	using System.Web;
 
 	using Dexter.Entities;
@@ -28,12 +27,13 @@ namespace Dexter.Navigation.Concretes
 	{
 		#region Constructors and Destructors
 
-		public UrlBuilder(IConfigurationService configurationService, IAdminUrlBuilder admin, IPostUrlBuilder post, IPageUrlBuilder page)
+		public UrlBuilder(IConfigurationService configurationService, IAdminUrlBuilder admin, IPostUrlBuilder post, IPageUrlBuilder page, ICategoryUrlBuilder categoryUrlBuilder)
 			: base(configurationService)
 		{
 			this.Admin = admin;
 			this.Post = post;
 			this.Page = page;
+			this.Category = categoryUrlBuilder;
 		}
 
 		#endregion
@@ -53,6 +53,8 @@ namespace Dexter.Navigation.Concretes
 		public IPageUrlBuilder Page { get; private set; }
 
 		public IPostUrlBuilder Post { get; private set; }
+
+		public ICategoryUrlBuilder Category { get; private set; }
 
 		#endregion
 

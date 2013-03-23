@@ -17,6 +17,11 @@ namespace Dexter.Data.Raven.Domain
 {
 	public class Category : EntityBase<string>
 	{
+		public Category()
+		{
+			this.PostsId = new string[0];
+		}
+
 		#region Public Properties
 
 		public string[] ChildrenIds { get; set; }
@@ -25,11 +30,13 @@ namespace Dexter.Data.Raven.Domain
 
 		public string Name { get; set; }
 
+		public string Slug { get; set; }
+
 		public string Description { get; set; }
 
 		public string ParentId { get; set; }
 
-		public int[] PostsId { get; set; }
+		public string[] PostsId { get; set; }
 
 		#endregion
 	}

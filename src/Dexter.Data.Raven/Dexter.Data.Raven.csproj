@@ -151,7 +151,6 @@
     <Compile Include="Domain\Plugin.cs" />
     <Compile Include="Domain\PluginInfo.cs" />
     <Compile Include="Domain\Trackback.cs" />
-    <Compile Include="Extensions\ItemExtensions.cs" />
     <Compile Include="Helpers\AbstractHelper.cs" />
     <Compile Include="Helpers\SlugHelper.cs" />
     <Compile Include="Indexes\Reading\PageSlugs.cs" />

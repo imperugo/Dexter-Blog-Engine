@@ -15,21 +15,26 @@
 
 namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 {
+	using System.Linq;
 	using System.Web.Mvc;
 
 	using Common.Logging;
 
+	using Dexter.Host.Areas.Dxt_Admin.Models.Category;
 	using Dexter.Services;
 	using Dexter.Web.Core.Controllers.Web;
 
 	[Authorize]
 	public class CategoryController : DexterControllerBase
 	{
+		private ICategoryService categoryService;
+
 		#region Constructors and Destructors
 
-		public CategoryController(ILog logger, IConfigurationService configurationService)
+		public CategoryController(ILog logger, IConfigurationService configurationService, ICategoryService categoryService)
 			: base(logger, configurationService)
 		{
+			this.categoryService = categoryService;
 		}
 
 		#endregion
@@ -39,7 +44,10 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 		[AcceptVerbs(HttpVerbs.Get)]
 		public ActionResult Index()
 		{
-			return this.View();
+			IndexViewModel model = new IndexViewModel();
+			model.Categories = this. categoryService.GetCategories().ToFlat(x => x.Categories).ToList();
+
+			return this.View(model);
 		}
 
 		#endregion

@@ -210,7 +210,7 @@ namespace Dexter.Web.Core.HttpHandlers
 				CategoryDto cat = categories.Single(c => c.Name.ToLowerInvariant() == item.Categories[i]);
 				cats[i] = new MtCategory
 					          {
-						          categoryId = cat.Id, 
+						          categoryId = cat.Id.ToString(CultureInfo.InvariantCulture), 
 						          categoryName = cat.Name, 
 						          
 						          
@@ -331,7 +331,7 @@ namespace Dexter.Web.Core.HttpHandlers
 			CategoryDto parentCategory = null;
 			if (category.parent_id > 0)
 			{
-				parentCategory = categories.FirstOrDefault(c => c.ParentId == category.parent_id.ToString());
+				parentCategory = categories.FirstOrDefault(c => c.ParentId == category.parent_id);
 			}
 
 			if (cat == null)
@@ -352,7 +352,7 @@ namespace Dexter.Web.Core.HttpHandlers
 				}
 			}
 
-			return cat.Id;
+			return cat.Id.ToString(CultureInfo.InvariantCulture);
 		}
 
 		public bool deletePage(string blog_id, string username, string password, string page_id)

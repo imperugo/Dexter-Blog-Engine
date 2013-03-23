@@ -1,46 +1,37 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			ItemExtensions.cs
+// File:			ICategoryUrlBuilder.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
-// Created:		2012/11/03
-// Last edit:	2013/01/20
+// Created:		2013/03/23
+// Last edit:	2013/03/23
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
-namespace Dexter.Data.Raven.Extensions
+namespace Dexter.Navigation.Contracts
 {
-	using Dexter.Data.Raven.Domain;
 	using Dexter.Entities;
+	using Dexter.Navigation.Helpers;
 
-	internal static class ItemExtensions
+	public interface ICategoryUrlBuilder
 	{
 		#region Public Methods and Operators
 
-		public static bool MustUpdateDenormalizedObject(this Item target, ItemDto source)
-		{
-			if (!target.Slug.Equals(source.Slug))
-			{
-				return true;
-			}
+		SiteUrl Permalink(CategoryDto item);
 
-			if (!target.Title.Equals(source.Title))
-			{
-				return true;
-			}
+		SiteUrl Feed(CategoryDto item);
 
-			if (!target.PublishAt.Equals(source.PublishAt))
-			{
-				return true;
-			}
+		SiteUrl Delete(CategoryDto item);
 
-			return false;
-		}
+		SiteUrl Edit(CategoryDto item);
+
+		SiteUrl Create();
 
 		#endregion
 	}

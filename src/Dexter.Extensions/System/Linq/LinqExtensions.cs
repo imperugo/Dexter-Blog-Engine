@@ -27,6 +27,30 @@ namespace System.Linq
 			return list.OrderBy(x => Guid.NewGuid()).FirstOrDefault();
 		}
 
+		/// <summary>
+		/// 	Toes the flat.
+		/// </summary>
+		/// <typeparam name = "T"></typeparam>
+		/// <param name = "source">The source.</param>
+		/// <param name = "childPredicate">The child predicate.</param>
+		/// <returns></returns>
+		public static IEnumerable<T> ToFlat<T>(this IEnumerable<T> source, Func<T, IEnumerable<T>> childPredicate)
+		{
+			foreach (T t in source)
+			{
+				yield return t;
+				IEnumerable<T> children = childPredicate(t);
+				
+				if (children != null)
+				{
+					foreach (T child in ToFlat(children, childPredicate))
+					{
+						yield return child;
+					}
+				}
+			}
+		}
+
 		#endregion
 	}
 }

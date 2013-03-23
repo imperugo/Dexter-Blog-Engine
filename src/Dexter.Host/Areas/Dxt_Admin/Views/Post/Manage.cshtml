@@ -10,13 +10,13 @@
 	<script type="text/javascript">
 
 		$(document).ready(function () {
-			$("#Post_PublishDate").dateinput({
+			$("#Post_PublishAt").dateinput({
 				trigger: true,
 				format: 'dd mmmm yyyy',
 			});
 
 			$('#publishToday').click(function () {
-				$('#Post_PublishDate').data("dateinput").today();
+				$('#Post_PublishAt').data("dateinput").today();
 				var date = new Date();
 
 				var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();

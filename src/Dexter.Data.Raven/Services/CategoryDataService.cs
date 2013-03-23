@@ -5,12 +5,13 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
 // Created:		2012/12/01
-// Last edit:	2013/01/20
+// Last edit:	2013/03/23
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Data.Raven.Services
@@ -25,6 +26,7 @@ namespace Dexter.Data.Raven.Services
 
 	using Dexter.Data.Exceptions;
 	using Dexter.Data.Raven.Domain;
+	using Dexter.Data.Raven.Helpers;
 	using Dexter.Data.Raven.Indexes.Updating;
 	using Dexter.Data.Raven.Session;
 	using Dexter.Entities;
@@ -145,6 +147,11 @@ namespace Dexter.Data.Raven.Services
 			category.IsDefault = isDefault;
 			category.ParentId = parentCategoryId;
 
+			if (string.IsNullOrEmpty(category.Slug))
+			{
+				category.Slug = SlugHelper.GenerateSlug(category.Name, category.Id, this.GetCategoryBySlug);
+			}
+
 			this.Session.Store(category);
 
 			UpdateCategoryIndex.UpdateCategoryIndexes(this.store, this.Session, category);
@@ -156,7 +163,22 @@ namespace Dexter.Data.Raven.Services
 
 		#region Methods
 
-		private List<CategoryDto> MakeTree(List<Category> flatObjects, CategoryDto parent)
+		private Category GetCategoryBySlug(string slug)
+		{
+			if (slug == null)
+			{
+				throw new ArgumentNullException("slug");
+			}
+
+			if (slug == string.Empty)
+			{
+				throw new ArgumentException("The string must have a value.", "slug");
+			}
+
+			return this.Session.Query<Category>().FirstOrDefault(x => x.Slug == slug);
+		}
+
+		private List<CategoryDto> MakeTree(IList<Category> flatObjects, CategoryDto parent)
 		{
 			if (parent == null)
 			{
@@ -164,14 +186,15 @@ namespace Dexter.Data.Raven.Services
 			}
 
 			return flatObjects
-				.Where(x => x.ParentId == parent.Id)
+				.Where(x => x.ParentId == RavenIdHelper.Resolve<Category>(parent.Id))
 				.Select(item => new CategoryDto
 					                {
-						                Id = item.Id, 
-										Name = item.Name,
-										IsDefault = item.IsDefault,
-										PostCount = item.PostsId != null ? item.PostsId.Length : 0,
-										ParentId = item.ParentId,
+						                Id = RavenIdHelper.Resolve(item.Id), 
+						                Name = item.Name, 
+						                IsDefault = item.IsDefault, 
+						                PostCount = item.PostsId != null ? item.PostsId.Length : 0, 
+						                ParentId = RavenIdHelper.Resolve(item.ParentId), 
+										Slug = item.Slug,
 						                Categories = this.MakeTree(flatObjects, item.MapTo<CategoryDto>())
 					                }).ToList();
 		}

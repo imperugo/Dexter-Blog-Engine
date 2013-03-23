@@ -18,6 +18,7 @@ namespace Dexter.Services.Implmentation
 {
 	using System;
 	using System.IO;
+	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Web.Security;
 
@@ -112,19 +113,37 @@ namespace Dexter.Services.Implmentation
 
 			return Task.Run(() =>
 				{
-					// Creating user
-					Membership.CreateUser(item.AdminUsername, item.AdminPassword, item.Email.Address);
-					this.logger.Debug("Created admin user.");
+					var user = Membership.GetUser(item.AdminUsername);
 
-					// Creating administrator role
-					Roles.CreateRole(Constants.AdministratorRole);
-					this.logger.Debug("Created administrator role.");
+					if (user == null)
+					{
+						// Creating user
+						Membership.CreateUser(item.AdminUsername, item.AdminPassword, item.Email.Address);
+						this.logger.Debug("Created admin user.");
+					}
 
-					Roles.CreateRole(Constants.Editor);
-					this.logger.Debug("Created editor role.");
+					var roles = Roles.GetAllRoles();
 
-					Roles.CreateRole(Constants.Moderator);
-					this.logger.Debug("Created moderator role.");
+					if (!roles.Contains(Constants.AdministratorRole))
+					{
+						// Creating administrator role
+						Roles.CreateRole(Constants.AdministratorRole);
+						this.logger.Debug("Created administrator role.");
+					}
+
+					if (!roles.Contains(Constants.Editor))
+					{
+						// Creating administrator role
+						Roles.CreateRole(Constants.Editor);
+						this.logger.Debug("Created editor role.");
+					}
+
+					if (!roles.Contains(Constants.Moderator))
+					{
+						// Creating administrator role
+						Roles.CreateRole(Constants.Moderator);
+						this.logger.Debug("Created moderator role.");
+					}
 
 					// Adding user to role
 					Roles.AddUserToRole(item.AdminUsername, Constants.AdministratorRole);

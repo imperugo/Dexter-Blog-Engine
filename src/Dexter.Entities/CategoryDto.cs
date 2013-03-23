@@ -32,17 +32,24 @@ namespace Dexter.Entities
 
 		public IList<CategoryDto> Categories { get; set; }
 
-		public string Id { get; set; }
+		public int Id { get; set; }
 
 		public bool IsDefault { get; set; }
 
 		public string Name { get; set; }
 
+		public string Slug { get; set; }
+
 		public string Description { get; set; }
 
 		public int PostCount { get; set; }
 
-		public string ParentId { get; set; }
+		public int ParentId { get; set; }
+
+		public bool IsChild
+		{
+			get { return ParentId > 0; }
+		}
 
 		#endregion
 	}

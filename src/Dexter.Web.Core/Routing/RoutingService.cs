@@ -5,17 +5,17 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
 // Created:		2012/11/01
-// Last edit:	2013/01/20
+// Last edit:	2013/03/23
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Web.Core.Routing
 {
-	using System.Collections.Generic;
 	using System.Web.Http;
 	using System.Web.Mvc;
 	using System.Web.Routing;
@@ -32,9 +32,9 @@ namespace Dexter.Web.Core.Routing
 
 		private readonly ILog logger;
 
-		private readonly ISetupService setupService;
-
 		private readonly IPageService pageService;
+
+		private readonly ISetupService setupService;
 
 		#endregion
 
@@ -68,21 +68,22 @@ namespace Dexter.Web.Core.Routing
 				return;
 			}
 
-			string[] slugs = pageService.GetAllSlugs();
+			string[] slugs = this.pageService.GetAllSlugs();
 
 			slugs.ForEach(x =>
-			{
-				logger.DebugFormat("Registering route for dynamic page '{0}'", x);
-				routes.MapRoute(string.Concat("Page_", x),
-								  x,
-								  new
-								  {
-									  controller = "Page",
-									  action = "Index",
-									  id = x
-								  }, new [] { "Dexter.Host.Controllers" });
-				logger.DebugFormat("Registered route for dynamic page '{0}'", x);
-			});
+				{
+					this.logger.DebugFormat("Registering route for dynamic page '{0}'", x);
+					routes.MapRoute(string.Concat("Page_", x), 
+						x, 
+						new
+							{
+								controller = "Page", 
+								action = "Index", 
+								id = x
+							}, 
+						new[] { "Dexter.Host.Controllers" });
+					this.logger.DebugFormat("Registered route for dynamic page '{0}'", x);
+				});
 
 			webApiConfiguration.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{id}", new
 				                                                                               {

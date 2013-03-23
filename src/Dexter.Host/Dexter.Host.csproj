@@ -14,7 +14,7 @@
     <RootNamespace>Dexter.Host</RootNamespace>
     <AssemblyName>Dexter.Host</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <MvcBuildViews>true</MvcBuildViews>
+    <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -32,7 +32,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <MvcBuildViews>true</MvcBuildViews>
+    <MvcBuildViews>false</MvcBuildViews>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -1446,6 +1446,7 @@
     <Content Include="Areas\Dxt_Admin\Views\Post\ConfirmDelete.cshtml" />
     <Content Include="Areas\Dxt_Admin\Views\Page\Manage.cshtml" />
     <Content Include="Areas\Dxt_Admin\Views\Page\ConfirmDelete.cshtml" />
+    <Content Include="Areas\Dxt_Admin\Views\Category\Index.cshtml" />
     <None Include="Styles\Global\CommonStyles.css.bundle" />
   </ItemGroup>
   <PropertyGroup>

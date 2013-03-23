@@ -28,16 +28,16 @@ namespace Dexter.Data.Raven.Helpers
 	{
 		#region Public Methods and Operators
 
-		public static string GenerateSlug(Item item, Func<string, Item> getbyslug)
+		public static string GenerateSlug<T>(string title, string key, Func<string, T> getbyslug) where T : EntityBase<string>
 		{
-			if (item == null)
+			if (string.IsNullOrEmpty(title))
 			{
-				throw new ArgumentNullException("item");
+				throw new ArgumentNullException("title");
 			}
 
 			const char WordSeparator = '-';
 
-			string entryName = RemoveNonWordCharacters(item.Title);
+			string entryName = RemoveNonWordCharacters(title);
 			entryName = ReplaceSpacesWithSeparator(entryName, WordSeparator);
 			entryName = ReplaceUnicodeCharacters(entryName);
 			entryName = HttpUtility.UrlEncode(entryName);
@@ -56,12 +56,12 @@ namespace Dexter.Data.Raven.Helpers
 
 			entryName = entryName.ToLower(CultureInfo.InvariantCulture);
 
-			Item element = getbyslug(entryName);
+			T element = getbyslug(entryName);
 			int tryCount = 0;
 
 			while (element != null)
 			{
-				if (element.Id == item.Id)
+				if (element.Id == key)
 				{
 					break;
 				}

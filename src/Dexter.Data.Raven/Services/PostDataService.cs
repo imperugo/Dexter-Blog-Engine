@@ -240,26 +240,15 @@ namespace Dexter.Data.Raven.Services
 				throw new ArgumentNullException("item", "The post must be contains a valid instance");
 			}
 
-			Post post = this.Session.Load<Post>(item.Id);
-
-			if (post == null)
-			{
-				post = new Post
-							   {
-								   CreatedAt = DateTimeOffset.Now
-							   };
-			}
+			Post post = this.Session.Load<Post>(item.Id) 
+								?? new Post
+				                            {
+					                            CreatedAt = DateTimeOffset.Now
+				                            };
 
 			if (string.IsNullOrEmpty(item.Author))
 			{
 				item.Author = Thread.CurrentPrincipal.Identity.Name;
-			}
-
-			bool mustUpdateDenormalizedObject = false;
-
-			if (!item.IsTransient)
-			{
-				mustUpdateDenormalizedObject = post.MustUpdateDenormalizedObject(item);
 			}
 
 			item.MapPropertiesToInstance(post);
@@ -271,7 +260,7 @@ namespace Dexter.Data.Raven.Services
 
 			if (string.IsNullOrEmpty(post.Slug))
 			{
-				post.Slug = SlugHelper.GenerateSlug(post, this.GetPostBySlugInternal);
+				post.Slug = SlugHelper.GenerateSlug(post.Title, post.Id, this.GetPostBySlugInternal);
 			}
 
 			if (post.IsTransient)
@@ -305,10 +294,7 @@ namespace Dexter.Data.Raven.Services
 
 			this.Session.Store(post);
 
-			if (mustUpdateDenormalizedObject)
-			{
-				UpdateDenormalizedItemIndex.UpdateIndexes(this.store, this.Session, post);
-			}
+			UpdateDenormalizedItemIndex.UpdateIndexes(this.store, this.Session, post);
 
 			item.Id = RavenIdHelper.Resolve(post.Id);
 		}

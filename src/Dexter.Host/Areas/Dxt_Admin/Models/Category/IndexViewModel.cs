@@ -15,9 +15,13 @@
 
 namespace Dexter.Host.Areas.Dxt_Admin.Models.Category
 {
+	using System.Collections.Generic;
+
+	using Dexter.Entities;
 	using Dexter.Web.Core.Models;
 
 	public class IndexViewModel : DexterBackofficeModelBase
 	{
+		public IList<CategoryDto> Categories { get; set; }
 	}
 }
