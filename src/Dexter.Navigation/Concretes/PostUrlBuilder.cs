@@ -49,12 +49,10 @@ namespace Dexter.Navigation.Concretes
 
 		public SiteUrl Delete(ItemDto item)
 		{
-			string id = item != null ? item.Id.ToString(CultureInfo.InvariantCulture) : null;
-
-			string[] segments = new[]
-				                    {
-					                    id
-				                    };
+			string[] segments = item == null ? null : new[]
+				                                          {
+					                                          item.Id.ToString(CultureInfo.InvariantCulture)
+				                                          };
 
 			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Post", "ConfirmDelete", segments, null);
 		}

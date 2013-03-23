@@ -29,11 +29,21 @@ namespace Dexter.Data.Raven.Helpers
 
 		public static int[] Resolve(string[] ravenId)
 		{
+			if (ravenId == null || !ravenId.Any())
+			{
+				return new int[0];
+			}
+
 			return ravenId.Select(Resolve).ToArray();
 		}
 
 		public static int Resolve(string ravenId)
 		{
+			if (string.IsNullOrEmpty(ravenId))
+			{
+				return 0;
+			}
+
 			Match match = Regex.Match(ravenId, @"\d+");
 			string idStr = match.Value;
 			int id = int.Parse(idStr);
@@ -46,6 +56,11 @@ namespace Dexter.Data.Raven.Helpers
 
 		public static string[] Resolve<T>(int[] ravenId)
 		{
+			if (ravenId == null || !ravenId.Any())
+			{
+				return new string[0];
+			}
+
 			return ravenId.Select(Resolve<T>).ToArray();
 		}
 

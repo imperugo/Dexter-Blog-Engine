@@ -14,11 +14,13 @@
 
 <div class="block-content">
 	<div class="task with-legend">
-		<div class="legend"><img src="~/Images/Icons/Fugue/status.png" width="16" height="16">Delete Post</div>
+		<div class="legend">
+			<img src="~/Images/Icons/Fugue/status.png" width="16" height="16">Delete Post
+		</div>
 					
 		<div class="task-description">
 			<ul class="floating-tags float-left">
-				<li class="tag-time">@Model.Post.PublishAt</li>
+				<li class="tag-time">@Model.Post.PublishAt.DateTime.ToShortDateString()</li>
 				<li class="tag-user">@Model.Post.Author</li>
 			</ul>
 						
@@ -36,7 +38,7 @@
 			<p>
 				<strong>Tags :</strong>
 				<ul class="keywords">
-						@foreach(var category in Model.Post.Categories) {
+						@foreach(var category in Model.Post.Tags) {
 							@GetRowColor(category)
 						}
 				</ul>

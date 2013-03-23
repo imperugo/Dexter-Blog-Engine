@@ -23,8 +23,6 @@ namespace Dexter.Data.Raven.Domain
 
 		public IEnumerable<string> Categories { get; set; }
 
-		public ICollection<string> Tags { get; set; }
-
 		public string[] Results { get; set; }
 
 		#endregion

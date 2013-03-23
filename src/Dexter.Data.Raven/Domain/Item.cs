@@ -16,6 +16,7 @@
 namespace Dexter.Data.Raven.Domain
 {
 	using System;
+	using System.Collections.Generic;
 
 	using Dexter.Entities;
 
@@ -48,6 +49,8 @@ namespace Dexter.Data.Raven.Domain
 		public string TrackbacksId { get; set; }
 
 		public string Author { get; set; }
+
+		public ICollection<string> Tags { get; set; }
 
 		#endregion
 	}

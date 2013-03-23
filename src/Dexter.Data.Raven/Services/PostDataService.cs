@@ -66,8 +66,8 @@ namespace Dexter.Data.Raven.Services
 								.Include<Post>(x => x.TrackbacksId)
 								.Load<Post>(id);
 
-			var comments = this.Session.Load<ItemComments>(post.CommentsId);
-			var trackbacks = this.Session.Load<ItemComments>(post.TrackbacksId);
+			ItemComments comments = this.Session.Load<ItemComments>(post.CommentsId);
+			ItemTrackbacks trackbacks = this.Session.Load<ItemTrackbacks>(post.TrackbacksId);
 
 			if (post == null)
 			{

@@ -66,7 +66,7 @@ namespace Dexter.Data.Raven.Services
 			                .Load<Page>(id);
 
 			ItemComments comments = this.Session.Load<ItemComments>(page.CommentsId);
-			ItemComments trackbacks = this.Session.Load<ItemComments>(page.TrackbacksId);
+			ItemTrackbacks trackbacks = this.Session.Load<ItemTrackbacks>(page.TrackbacksId);
 
 			if (page == null)
 			{

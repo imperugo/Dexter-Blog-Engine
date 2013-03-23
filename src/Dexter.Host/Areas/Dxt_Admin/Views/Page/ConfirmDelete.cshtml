@@ -1,0 +1,56 @@
+﻿@model Dexter.Host.Areas.Dxt_Admin.Models.Page.PageDeleteViewData
+@{
+    Layout = "~/Areas/Dxt_Admin/Views/Shared/_layoutWithMenu.cshtml";
+}
+
+@helper GetRowColor(string text){
+	string[] cssStyles = new[] { "", "orange-keyword", "purple-keyword", "green-keyword" };
+	var css = cssStyles.GetRandom();
+
+	<text>
+		<li class="@css">@text</li>
+	</text>
+}
+
+<div class="block-content">
+	<div class="task with-legend">
+		<div class="legend">
+			<img src="~/Images/Icons/Fugue/status.png" width="16" height="16">Delete Page
+		</div>
+					
+		<div class="task-description">
+			<ul class="floating-tags float-left">
+				<li class="tag-time">@Model.Page.PublishAt.DateTime.ToShortDateString()</li>
+				<li class="tag-user">@Model.Page.Author</li>
+			</ul>
+						
+			<p><strong>Title :</strong>@Model.Page.Title</p>
+			<p><strong>Abstract :</strong>@Model.Page.Excerpt</p>
+			<p><strong>Published :</strong> @Model.Page.Status</p>
+			<p><strong>Url: </strong><a href="@U.Post.Permalink(Model.Page)"> Click Here</a></p>
+			<p><strong>Comments :</strong> @Model.Page.TotalComments</p>
+			<p><strong>Trackback :</strong> @Model.Page.TotalTrackback</p>
+			<p>
+				<strong>Tags :</strong>
+				<ul class="keywords">
+						@foreach(var category in Model.Page.Tags) {
+							@GetRowColor(category)
+						}
+				</ul>
+			</p>
+						
+		</div>
+					
+		<ul class="task-dialog">
+			<li>
+				<form method="post" action="../../Delete">
+					@Html.AntiForgeryToken()
+					@Html.Hidden("id", Model.Page.Id )
+					<button type="button" onclick="location.href='@U.Page.Permalink(Model.Page)'">View</button>
+					<button type="button" onclick="location.href='@U.Page.Edit(Model.Page)'">Edit</button>
+					<button type="submit">Confirm Delete</button>
+				</form>
+			</li>
+		</ul>
+	</div>
+</div>

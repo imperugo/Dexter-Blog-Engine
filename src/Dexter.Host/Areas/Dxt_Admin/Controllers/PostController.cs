@@ -122,7 +122,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 		{
 			IList<CategoryDto> categories = this.categoryService.GetCategories();
 
-			PostBinder post = id.HasValue
+			PostBinder post = id.HasValue && id > 0
 				                  ? (this.postService.GetPostByKey(id.Value)).MapTo<PostBinder>()
 				                  : PostBinder.EmptyInstance();
 

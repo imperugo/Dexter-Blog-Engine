@@ -31,7 +31,6 @@ namespace Dexter.Data.Raven.AutoMapper
 		public static void Configure()
 		{
 			Mapper.CreateMap<ItemDto, Item>()
-			      .ForMember(dest => dest.Id, opt => opt.MapFrom(x => RavenIdHelper.Resolve<Post>(x.Id)))
 			      .ForMember(dest => dest.SearchContent, opt => opt.MapFrom(x => x.Content.CleanHtmlText()))
 			      .Include<PostDto, Post>()
 			      .Include<PageDto, Page>();
@@ -43,9 +42,17 @@ namespace Dexter.Data.Raven.AutoMapper
 
 			Mapper.CreateMap<PostDto, Post>().ReverseMap();
 
+			Mapper.CreateMap<Page, PageDto>()
+			      .ForMember(dest => dest.PagesId, opt => opt.MapFrom(x => RavenIdHelper.Resolve(x.PagesId)))
+			      .ForMember(dest => dest.ParentId, opt => opt.MapFrom(x => RavenIdHelper.Resolve(x.ParentId)));
+
 			Mapper.CreateMap<PageDto, Page>()
-			      .ForMember(dest => dest.ParentId, opt => opt.MapFrom(x => RavenIdHelper.Resolve<Page>(x.ParentId)))
-			      .ForMember(dest => dest.PagesId, opt => opt.MapFrom(x => RavenIdHelper.Resolve<Page>(x.PagesId)));
+					.ForMember(dest => dest.Id, opt => opt.MapFrom(x => RavenIdHelper.Resolve<Page>(x.Id)))
+					.ForMember(dest => dest.ParentId, opt => opt.MapFrom(x => RavenIdHelper.Resolve<Page>(x.ParentId)))
+					.ForMember(dest => dest.PagesId, opt => opt.MapFrom(x => RavenIdHelper.Resolve<Page>(x.PagesId)));
+
+			Mapper.CreateMap<PostDto, Page>()
+			      .ForMember(dest => dest.Id, opt => opt.MapFrom(x => RavenIdHelper.Resolve<Post>(x.Id)));
 
 			Mapper.CreateMap<Comment, CommentDto>().ReverseMap();
 			Mapper.CreateMap<Category, CategoryDto>().ReverseMap();

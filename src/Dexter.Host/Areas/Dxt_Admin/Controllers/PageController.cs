@@ -99,7 +99,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 				return this.urlBuilder.Admin.FeedbackPage(FeedbackType.Negative, "GenericError", null).Redirect();
 			}
 
-			return this.urlBuilder.Admin.FeedbackPage(FeedbackType.Positive, "PageDeleted", this.urlBuilder.Admin.Post.List()).Redirect();
+			return this.urlBuilder.Admin.FeedbackPage(FeedbackType.Positive, "PageDeleted", this.urlBuilder.Admin.Page.List()).Redirect();
 		}
 
 		[AcceptVerbs(HttpVerbs.Get)]
@@ -120,7 +120,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 		[AcceptVerbs(HttpVerbs.Get)]
 		public ActionResult Manage(int? id, int? month, int? day, int? year)
 		{
-			PageBinder post = id.HasValue
+			PageBinder post = id.HasValue && id > 0
 								  ? (this.pageService.GetPageByKey(id.Value)).MapTo<PageBinder>()
 								  : PageBinder.EmptyInstance();
 
@@ -153,7 +153,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 				return this.urlBuilder.Admin.FeedbackPage(FeedbackType.Negative, "UnableToSaveThePost", null).Redirect();
 			}
 
-			return this.urlBuilder.Admin.FeedbackPage(FeedbackType.Positive, "PostSaved", this.urlBuilder.Admin.Post.List()).Redirect();
+			return this.urlBuilder.Admin.FeedbackPage(FeedbackType.Positive, "PostSaved", this.urlBuilder.Admin.Page.List()).Redirect();
 		}
 
 		#endregion

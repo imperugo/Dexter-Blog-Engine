@@ -37,25 +37,20 @@ namespace Dexter.Navigation.Concretes
 
 		public SiteUrl Delete(ItemDto item)
 		{
-			string[] segments = new[]
-				                    {
-					                    item.PublishAt.Date.Year.ToString(CultureInfo.InvariantCulture), 
-					                    item.PublishAt.Date.Month.ToString(CultureInfo.InvariantCulture), 
-					                    item.PublishAt.Date.Day.ToString(CultureInfo.InvariantCulture), 
-					                    item.Slug
-				                    };
+			string[] segments = item == null ? null : new[]
+				                                          {
+					                                          item.Id.ToString(CultureInfo.InvariantCulture)
+				                                          };
 
-			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Page", "Detele", segments, null);
+			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Page", "ConfirmDelete", segments, null);
 		}
 
 		public SiteUrl Edit(ItemDto item)
 		{
-			string id = item != null ? item.Id.ToString(CultureInfo.InvariantCulture) : "0";
-
-			string[] segments = new[]
-				                    {
-					                    id
-				                    };
+			string[] segments = item == null ? null : new[]
+				                                          {
+					                                          item.Id.ToString(CultureInfo.InvariantCulture)
+				                                          };
 
 			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Page", "Manage", segments, null);
 		}

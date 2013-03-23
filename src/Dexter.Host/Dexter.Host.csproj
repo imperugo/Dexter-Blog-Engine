@@ -1444,6 +1444,8 @@
     <Content Include="Areas\Dxt_Admin\Views\Feedback\Negative.cshtml" />
     <Content Include="Areas\Dxt_Admin\Views\Feedback\Positive.cshtml" />
     <Content Include="Areas\Dxt_Admin\Views\Post\ConfirmDelete.cshtml" />
+    <Content Include="Areas\Dxt_Admin\Views\Page\Manage.cshtml" />
+    <Content Include="Areas\Dxt_Admin\Views\Page\ConfirmDelete.cshtml" />
     <None Include="Styles\Global\CommonStyles.css.bundle" />
   </ItemGroup>
   <PropertyGroup>

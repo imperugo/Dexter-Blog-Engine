@@ -1,0 +1,117 @@
+﻿@using Dexter.Entities
+@model Dexter.Host.Areas.Dxt_Admin.Models.Page.ManageViewModel
+@{
+	Layout = "~/Areas/Dxt_Admin/Views/Shared/_layoutWithMenu.cshtml";
+}
+
+@section header
+{
+	<script src="~/js/ckeditor/ckeditor.js"></script>
+	<script type="text/javascript">
+
+		$(document).ready(function () {
+			$("#Page_PublishDate").dateinput({
+				trigger: true,
+				format: 'dd mmmm yyyy',
+			});
+
+			$('#publishToday').click(function () {
+				$('#Page_PublishDate').data("dateinput").today();
+				var date = new Date();
+
+				var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+				var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+
+				$('#Page_PublishHour').val(hours);
+				$('#Page_PublishMinutes').val(minutes);
+			});
+
+			
+			CKEDITOR.editorConfig = function (config) {
+				config.toolbar = 'Full';
+			};
+
+			CKEDITOR.replace('Page_FormattedBody');
+		});
+	</script>
+}
+
+<section class="grid_12">
+	@if (!ViewData.ModelState.IsValid) {
+		<ul class="message error no-margin">
+			@Html.ValidationSummary()
+		</ul>	
+	}
+
+	<div class="block-border">
+		<form method="post" id="simple_form" class="block-content form">
+		<h1>Create Page</h1>
+
+		@Html.AntiForgeryToken()
+		@Html.HiddenFor(x => Model.Page.Id)
+
+		<fieldset class="grey-bg required">
+			<legend>Required Fields</legend>
+			<p>
+				<label for="simple-required">Title</label>
+				@Html.TextBoxFor(x => x.Page.Title, new { @class = "full-width", placeholder = "Write here the title of the post" })
+			</p>
+			<p>
+				<label for="simple-required">Tags</label>
+				@Html.TextBoxFor(x => x.Page.Tags, new { @class = "full-width", placeholder = "Write here tags separeted by comma" })
+			</p>
+			
+			<p>
+				<label for="simple-required">Tags</label>
+				@Html.DropDownListFor(x => x.Page.Status, new []
+					                                              {
+						                                              new SelectListItem{Selected = (Model.Page.Status == ItemStatus.Draft) ,Text = "Draft",Value = "Draft"},
+						                                              new SelectListItem{Selected = (Model.Page.Status == ItemStatus.PendingReview),Text = "PendingReview",Value = "PendingReview"},
+						                                              new SelectListItem{Selected = (Model.Page.Status == ItemStatus.Published),Text = "Published",Value = "Published"},
+						                                              new SelectListItem{Selected = (Model.Page.Status == ItemStatus.Scheduled),Text = "Scheduled",Value = "Scheduled"},
+					                                              } )
+			</p>
+			<p>
+				@Html.TextAreaFor(x => x.Page.FormattedBody, new { cols = "80", rows = "20"})
+			</p>
+
+		</fieldset>
+
+				
+		<fieldset class="grey-bg collapsed">
+				<legend><a href="#">Optional</a></legend>
+					<p>
+						<label for="simple-required">Publish Date</label>
+						<span class="input-type-text margin-right">
+							@Html.EditorFor(x => x.Page.PublishAt)
+							<img height="16" width="16" src="~/images/Icons/Fugue/calendar-month.png" alt="calendar" />
+							@Html.DropDownListFor(x => x.Page.PublishHour, new SelectList(Model.Hours, Model.Page.PublishHour))
+							@Html.DropDownListFor(x => x.Page.PublishMinutes, new SelectList(Model.Minutes, Model.Page.PublishMinutes))
+						</span>
+						<button class="grey" type="button" id="publishToday">Now</button>
+
+
+						<label for="table-display" style="display:inline">Enable Comments</label>
+						@Html.CheckBoxFor( x => x.Page.AllowComments, new { @class = "mini-switch"} )
+					</p>
+							
+					<p>
+						<label for="simple-required">Slug</label>
+						@Html.TextBoxFor(x => x.Page.Slug, new { @class = "full-width", placeholder = "Write the slug of the post" })
+					</p>
+
+					<p>
+						<label for="simple-required">Excerpt</label>
+						@Html.TextBoxFor(x => x.Page.Excerpt, new { @class = "full-width", placeholder = "Write the abstract of the post" })
+					</p>
+			</fieldset>
+
+
+			<p class="input-with-button">
+				<button type="submit">Save</button>
+			</p>
+
+		</form>
+	</div>
+</section>
+
