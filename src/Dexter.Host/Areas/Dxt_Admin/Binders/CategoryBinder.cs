@@ -1,46 +1,47 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			Category.cs
+// File:			CategoryBinder.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
-// Created:		2012/10/27
-// Last edit:	2013/01/20
+// Created:		2013/03/23
+// Last edit:	2013/03/23
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
-namespace Dexter.Data.Raven.Domain
+namespace Dexter.Host.Areas.Dxt_Admin.Binders
 {
-	using System;
+	using System.ComponentModel.DataAnnotations;
 
-	public class Category : EntityBase<string>
+	public class CategoryBinder
 	{
-		public Category()
-		{
-			this.PostsId = new string[0];
-		}
-
 		#region Public Properties
 
-		public string[] ChildrenIds { get; set; }
+		[StringLength(250)]
+		public string Description { get; set; }
 
-		public bool IsDefault { get; set; }
+		[StringLength(1000)]
+		[RegularExpression(@"^(http|https)://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?$")]
+		public string FeedBurnerUrl { get; set; }
 
+		[Required]
 		public string Name { get; set; }
 
-		public string Slug { get; set; }
+		public int? ParentId { get; set; }
 
-		public string Description { get; set; }
-		
-		public Uri FeedBurnerUrl { get; set; }
+		#endregion
 
-		public string ParentId { get; set; }
+		#region Public Methods and Operators
 
-		public string[] PostsId { get; set; }
+		public static CategoryBinder EmptyInstance()
+		{
+			return new CategoryBinder();
+		}
 
 		#endregion
 	}

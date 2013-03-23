@@ -24,8 +24,6 @@ namespace Dexter.Automapper.Extensions
 	using Dexter.Dependency;
 	using Dexter.Dependency.Installation;
 
-	using UriTypeConverter = Dexter.Automapper.Extensions.Resolvers.UriTypeConverter;
-
 	public class Installer : ILayerInstaller
 	{
 		#region Public Methods and Operators
@@ -41,7 +39,8 @@ namespace Dexter.Automapper.Extensions
 		public void ServiceRegistrationComplete(IDexterContainer container)
 		{
 			Mapper.CreateMap<DateTimeOffset, DateTime>().ConvertUsing<DateTimeTypeConverter>();
-			Mapper.CreateMap<string, Uri>().ConvertUsing<UriTypeConverter>();
+			Mapper.CreateMap<Uri, string>().ConvertUsing<UriToStringTypeConverter>();
+			Mapper.CreateMap<string, Uri>().ConvertUsing<StringToUriTypeConverter>();
 			Mapper.CreateMap<string, MailAddress>().ConvertUsing<MailAddressypeConverter>();
 		}
 

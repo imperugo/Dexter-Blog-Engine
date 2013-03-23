@@ -17,6 +17,7 @@ namespace Dexter.Services.Implmentation
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Linq;
 	using System.Threading.Tasks;
 
 	using Dexter.Data;
@@ -66,6 +67,11 @@ namespace Dexter.Services.Implmentation
 			this.CategoriesRetrieved.Raise(this, new GenericEventArgs<IList<CategoryDto>>(data));
 
 			return data;
+		}
+
+		public CategoryDto GetCategoryById(int id)
+		{
+			return this.GetCategories().FirstOrDefault(x => x.Id == id);
 		}
 
 		public void SaveOrUpdate(CategoryDto category)

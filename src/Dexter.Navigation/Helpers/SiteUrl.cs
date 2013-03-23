@@ -15,6 +15,7 @@
 
 namespace Dexter.Navigation.Helpers
 {
+	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text;
@@ -91,6 +92,16 @@ namespace Dexter.Navigation.Helpers
 			}
 
 			return url.ToString();
+		}
+
+		public static implicit operator Uri(SiteUrl url)
+		{
+			if (url == null)
+			{
+				return null;
+			}
+
+			return new Uri(url.ToString());
 		}
 
 		public SiteUrl ForceToHttps(int httpsPort = 443)

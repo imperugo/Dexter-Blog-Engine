@@ -43,6 +43,8 @@ namespace Dexter.Services
 
 		IList<CategoryDto> GetCategories();
 
+		CategoryDto GetCategoryById(int id);
+
 		void SaveOrUpdate(CategoryDto category);
 
 		#endregion

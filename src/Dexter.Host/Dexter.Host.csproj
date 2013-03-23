@@ -153,6 +153,7 @@
     <Compile Include="App_Start\Constants.cs" />
     <Compile Include="App_Start\Installer.cs" />
     <Compile Include="App_Start\Validators\SimplyCategoryValidationAttribute.cs" />
+    <Compile Include="Areas\Dxt_Admin\Binders\CategoryBinder.cs" />
     <Compile Include="Areas\Dxt_Admin\Binders\ItemBinder.cs" />
     <Compile Include="Areas\Dxt_Admin\Binders\PageBinder.cs" />
     <Compile Include="Areas\Dxt_Admin\Controllers\CategoryController.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="Areas\Dxt_Admin\Controllers\WidgetController.cs" />
     <Compile Include="Areas\Dxt_Admin\Dxt_AdminAreaRegistration.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Category\IndexViewModel.cs" />
+    <Compile Include="Areas\Dxt_Admin\Models\Category\ManageViewModel.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Error\IndexViewModel.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Feedback\IndexViewModel.cs" />
     <Compile Include="Areas\Dxt_Admin\Binders\PostBinder.cs" />
@@ -1447,6 +1449,7 @@
     <Content Include="Areas\Dxt_Admin\Views\Page\Manage.cshtml" />
     <Content Include="Areas\Dxt_Admin\Views\Page\ConfirmDelete.cshtml" />
     <Content Include="Areas\Dxt_Admin\Views\Category\Index.cshtml" />
+    <Content Include="Areas\Dxt_Admin\Views\Category\Manage.cshtml" />
     <None Include="Styles\Global\CommonStyles.css.bundle" />
   </ItemGroup>
   <PropertyGroup>

@@ -37,9 +37,18 @@
 							@category.PostCount
 						</td>
 						<td>
-							<a href="@U.Category.Feed(category)" alt="Feed url" target="_blank">
-								@U.Category.Feed(category)
-							</a>
+							@if(category.FeedBurnerUrl != null)
+							{
+								<a href="@category.FeedBurnerUrl" alt="Feedburner url" target="_blank">
+									category.FeedBurnerUrl
+								</a>
+							}
+							else
+							{
+								<a href="@U.Category.Feed(category)" alt="Feed url" target="_blank">
+									@U.Category.Feed(category)
+								</a>
+							}
 						</td>
 						<td class="table-actions">
 							<a href="@U.Category.Permalink(category)" title="View" class="with-tip" target="_blank">

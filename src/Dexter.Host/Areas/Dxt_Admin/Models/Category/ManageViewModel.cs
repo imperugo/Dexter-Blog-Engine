@@ -1,32 +1,34 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			UriTypeConverter.cs
+// File:			ManageViewModel.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
-// Created:		2012/12/23
-// Last edit:	2013/01/20
+// Created:		2013/03/23
+// Last edit:	2013/03/23
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
-namespace Dexter.Automapper.Extensions.Resolvers
+namespace Dexter.Host.Areas.Dxt_Admin.Models.Category
 {
-	using System;
+	using System.Collections.Generic;
 
-	using AutoMapper;
+	using Dexter.Entities;
+	using Dexter.Host.Areas.Dxt_Admin.Binders;
+	using Dexter.Web.Core.Models;
 
-	public class UriTypeConverter : TypeConverter<string, Uri>
+	public class ManageViewModel : DexterBackofficeModelBase
 	{
-		#region Methods
+		#region Public Properties
 
-		protected override Uri ConvertCore(string source)
-		{
-			return new Uri(source);
-		}
+		public IEnumerable<CategoryDto> Categories { get; set; }
+
+		public CategoryBinder Category { get; set; }
 
 		#endregion
 	}

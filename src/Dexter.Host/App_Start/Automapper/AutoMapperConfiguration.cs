@@ -49,6 +49,8 @@ namespace Dexter.Host.App_Start.Automapper
 
 			Mapper.CreateMap<PostBinder, PostDto>().ReverseMap();
 			Mapper.CreateMap<PageBinder, PageDto>().ReverseMap();
+
+			Mapper.CreateMap<CategoryBinder, CategoryDto>().ReverseMap();
 		}
 
 		#endregion

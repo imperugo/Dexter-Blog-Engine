@@ -1,0 +1,54 @@
+﻿@model Dexter.Host.Areas.Dxt_Admin.Models.Category.ManageViewModel
+
+@{
+    Layout = "~/Areas/Dxt_Admin/Views/Shared/_layoutWithMenu.cshtml";
+}
+
+<section class="grid_12">
+	@if (!ViewData.ModelState.IsValid) {
+		<ul class="message error no-margin">
+			@Html.ValidationSummary()
+		</ul>	
+	}
+
+	<div class="block-border">
+			<form method="post" id="simple_form" class="block-content form">
+				<h1>Create Category</h1>
+			
+				@Html.AntiForgeryToken()
+
+				<fieldset class="grey-bg required">
+					<legend>Required Fields</legend>
+					<p>
+						<label for="simple-required">Name</label>
+						@Html.TextBoxFor(x => x.Category.Name, new { @class = "full-width", placeholder = "Write here the title of the post" })
+					</p>
+				</fieldset>
+
+				<fieldset class="grey-bg">
+					<legend><a href="#">Optional</a></legend>
+					<p>
+						<label for="simple-required">FeedBurner url</label>
+						@Html.TextBoxFor(x => x.Category.FeedBurnerUrl, new { @class = "full-width", placeholder = "Write here the title of the post" })
+					</p>
+					@if (Model.Categories.Any())
+					{
+						<p>
+							<label for="simple-required">Parent Category</label>
+							@Html.DropDownListFor(x => x.Category.ParentId, new SelectList ( Model.Categories, "Id", "Name",Model.Category.ParentId ), "-- Select Parent Category --" )
+						</p>
+					}
+					<p>
+						@Html.TextAreaFor(x => x.Category.Description, new { cols = "120", rows = "10"})
+					</p>
+				</fieldset>
+
+				<p class="input-with-button">
+					<button type="submit">Save</button>
+				</p>
+			
+			</form>
+	</div>
+
+
+</section>

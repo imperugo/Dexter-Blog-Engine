@@ -15,6 +15,7 @@
 
 namespace Dexter.Entities
 {
+	using System;
 	using System.Collections.Generic;
 
 	public class CategoryDto
@@ -37,6 +38,8 @@ namespace Dexter.Entities
 		public bool IsDefault { get; set; }
 
 		public string Name { get; set; }
+
+		public Uri FeedBurnerUrl { get; set; }
 
 		public string Slug { get; set; }
 
