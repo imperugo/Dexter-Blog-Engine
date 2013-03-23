@@ -31,6 +31,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 	using Dexter.Navigation.Contracts;
 	using Dexter.Services;
 	using Dexter.Web.Core.Controllers.Web;
+	using Dexter.Web.Core.Routing;
 
 	using IndexViewModel = Dexter.Host.Areas.Dxt_Admin.Models.Page.IndexViewModel;
 	using ManageViewModel = Dexter.Host.Areas.Dxt_Admin.Models.Page.ManageViewModel;
@@ -42,17 +43,20 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 
 		private readonly IPageService pageService;
 
+		private readonly IRoutingService routingService;
+
 		private readonly IUrlBuilder urlBuilder;
 
 		#endregion
 
 		#region Constructors and Destructors
 
-		public PageController(ILog logger, IConfigurationService configurationService, IPageService pageService, IUrlBuilder urlBuilder)
+		public PageController(ILog logger, IConfigurationService configurationService, IPageService pageService, IUrlBuilder urlBuilder, IRoutingService routingService)
 			: base(logger, configurationService)
 		{
 			this.pageService = pageService;
 			this.urlBuilder = urlBuilder;
+			this.routingService = routingService;
 		}
 
 		#endregion
@@ -91,6 +95,8 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 			try
 			{
 				this.pageService.Delete(id);
+
+				this.routingService.UpdateRoutes();
 			}
 			catch (Exception e)
 			{
@@ -145,6 +151,8 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 			try
 			{
 				this.pageService.SaveOrUpdate(page.MapTo<PageDto>());
+
+				this.routingService.UpdateRoutes();
 			}
 			catch (Exception e)
 			{

@@ -28,6 +28,8 @@ namespace Dexter.Navigation.Contracts
 
 		SiteUrl Create();
 
+		SiteUrl Permalink(string slug);
+
 		SiteUrl Permalink(ItemDto item);
 
 		#endregion

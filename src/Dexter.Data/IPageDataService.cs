@@ -27,6 +27,8 @@ namespace Dexter.Data
 
 		void SaveOrUpdate(PageDto item);
 
+		string[] GetAllSlugs();
+
 		PageDto GetPageByKey(int id);
 
 		PageDto GetPageBySlug(string slug);

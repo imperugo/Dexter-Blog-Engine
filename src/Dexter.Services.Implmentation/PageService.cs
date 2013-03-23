@@ -115,6 +115,11 @@ namespace Dexter.Services.Implmentation
 			this.PageSaved.Raise(this, new CancelEventArgsWithoutParameterWithResult<PageDto>(item));
 		}
 
+		public string[] GetAllSlugs()
+		{
+			return this.pageDataService.GetAllSlugs();
+		}
+
 		public PageDto GetPageByKey(int key)
 		{
 			if (key < 1)

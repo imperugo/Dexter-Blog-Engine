@@ -252,7 +252,7 @@ namespace Dexter.Data.Raven.Services
 
 			if (string.IsNullOrEmpty(item.Author))
 			{
-				post.Author = Thread.CurrentPrincipal.Identity.Name;
+				item.Author = Thread.CurrentPrincipal.Identity.Name;
 			}
 
 			bool mustUpdateDenormalizedObject = false;

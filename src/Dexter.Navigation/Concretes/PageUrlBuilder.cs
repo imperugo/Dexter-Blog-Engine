@@ -60,6 +60,11 @@ namespace Dexter.Navigation.Concretes
 			return this.Edit(null);
 		}
 
+		public SiteUrl Permalink(string slug)
+		{
+			return new SiteUrl(this.Domain, this.HttpPort, false, null, "Blog", "Page", new[] { slug }, null);
+		}
+
 		public SiteUrl Permalink(ItemDto item)
 		{
 			return new SiteUrl(this.Domain, this.HttpPort, false, null, "Blog", "Page", new[] { item.Slug }, null);

@@ -20,6 +20,8 @@ namespace Dexter.Data.Raven.Services
 	using System.Linq;
 	using System.Threading;
 
+	using Dexter.Data.Raven.Indexes.Reading;
+
 	using global::AutoMapper;
 
 	using Common.Logging;
@@ -162,7 +164,7 @@ namespace Dexter.Data.Raven.Services
 
 			if (string.IsNullOrEmpty(item.Author))
 			{
-				page.Author = Thread.CurrentPrincipal.Identity.Name;
+				item.Author = Thread.CurrentPrincipal.Identity.Name;
 			}
 
 			bool mustUpdateDenormalizedObject = false;
@@ -221,6 +223,11 @@ namespace Dexter.Data.Raven.Services
 			}
 
 			item.Id = RavenIdHelper.Resolve(page.Id);
+		}
+
+		public string[] GetAllSlugs()
+		{
+			return this.Session.Query<PageSlugs.ReduceResult, PageSlugs>().Select(x => x.Slug).ToArray();
 		}
 
 		#endregion

@@ -15,10 +15,14 @@
 
 namespace Dexter.Web.Core.Routing
 {
+	using System.Collections.Generic;
 	using System.Web.Http;
 	using System.Web.Mvc;
 	using System.Web.Routing;
 
+	using Common.Logging;
+
+	using Dexter.Dependency.Extensions;
 	using Dexter.Services;
 	using Dexter.Web.Core.Routing.Routes;
 
@@ -26,15 +30,21 @@ namespace Dexter.Web.Core.Routing
 	{
 		#region Fields
 
+		private readonly ILog logger;
+
 		private readonly ISetupService setupService;
+
+		private readonly IPageService pageService;
 
 		#endregion
 
 		#region Constructors and Destructors
 
-		public RoutingService(ISetupService setupService)
+		public RoutingService(ISetupService setupService, IPageService pageService, ILog logger)
 		{
 			this.setupService = setupService;
+			this.pageService = pageService;
+			this.logger = logger;
 		}
 
 		#endregion
@@ -57,6 +67,22 @@ namespace Dexter.Web.Core.Routing
 				routes.Add(new SetupRoute());
 				return;
 			}
+
+			string[] slugs = pageService.GetAllSlugs();
+
+			slugs.ForEach(x =>
+			{
+				logger.DebugFormat("Registering route for dynamic page '{0}'", x);
+				routes.MapRoute(string.Concat("Page_", x),
+								  x,
+								  new
+								  {
+									  controller = "Page",
+									  action = "Index",
+									  id = x
+								  }, new [] { "Dexter.Host.Controllers" });
+				logger.DebugFormat("Registered route for dynamic page '{0}'", x);
+			});
 
 			webApiConfiguration.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{id}", new
 				                                                                               {

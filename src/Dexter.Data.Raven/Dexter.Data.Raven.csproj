@@ -154,6 +154,7 @@
     <Compile Include="Extensions\ItemExtensions.cs" />
     <Compile Include="Helpers\AbstractHelper.cs" />
     <Compile Include="Helpers\SlugHelper.cs" />
+    <Compile Include="Indexes\Reading\PageSlugs.cs" />
     <Compile Include="Indexes\Reading\PostFullTextIndex.cs" />
     <Compile Include="Indexes\Reading\PostTrackbacksCreationDateIndex.cs" />
     <Compile Include="Indexes\Reading\MonthOfPublishedPostsWithCountIndex.cs" />
