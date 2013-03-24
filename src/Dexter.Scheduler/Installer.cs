@@ -65,6 +65,7 @@ namespace Dexter.Scheduler
 			container.Resolve<IScheduler>().StartDelayed(TimeSpan.FromSeconds(10));
 
 			container.RegisterMinutesIntervalJob<EmailNotificationJob>(5);
+			container.RegisterMinutesIntervalJob<PluginUpdateJob>(5);
 			container.RegisterDailyJob<PluginUpdateJob>(TimeOfDay.HourAndMinuteOfDay(01, 30));
 		}
 

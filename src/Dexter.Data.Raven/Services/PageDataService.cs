@@ -21,12 +21,12 @@ namespace Dexter.Data.Raven.Services
 	using System.Threading;
 
 	using Dexter.Data.Raven.Indexes.Reading;
+	using Dexter.Shared.Exceptions;
 
 	using global::AutoMapper;
 
 	using Common.Logging;
 
-	using Dexter.Data.Exceptions;
 	using Dexter.Data.Raven.Domain;
 	using Dexter.Data.Raven.Extensions;
 	using Dexter.Data.Raven.Helpers;
@@ -72,7 +72,7 @@ namespace Dexter.Data.Raven.Services
 
 			if (page == null)
 			{
-				throw new ItemNotFoundException("id");
+				throw new DexterPageNotFoundException(id);
 			}
 
 			this.Session.Delete(page);
@@ -93,7 +93,7 @@ namespace Dexter.Data.Raven.Services
 
 			if (page == null)
 			{
-				throw new ItemNotFoundException("id");
+				throw new DexterPageNotFoundException(id);
 			}
 
 			PageDto result = page.MapTo<PageDto>();
@@ -120,7 +120,7 @@ namespace Dexter.Data.Raven.Services
 
 			if (page == null)
 			{
-				throw new ItemNotFoundException("slug");
+				throw new DexterPageNotFoundException(slug);
 			}
 
 			PageDto result = page.MapTo<PageDto>();

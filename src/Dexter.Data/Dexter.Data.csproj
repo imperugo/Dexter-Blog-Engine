@@ -38,12 +38,10 @@
     <Compile Include="..\..\doc\Dexter.Build.cs">
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
-    <Compile Include="Exceptions\CategoryNotFoundException.cs" />
     <Compile Include="ICategoryDataService.cs" />
     <Compile Include="IEmailNotificationDataService.cs" />
     <Compile Include="ILinkDataService.cs" />
     <Compile Include="IPageDataService.cs" />
-    <Compile Include="Exceptions\ItemNotFoundException.cs" />
     <Compile Include="IConfigurationDataService.cs" />
     <Compile Include="ICommentDataService.cs" />
     <Compile Include="IPingDataService.cs" />

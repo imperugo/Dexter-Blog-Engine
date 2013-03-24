@@ -22,10 +22,10 @@ namespace Dexter.Services.Implmentation
 	using Common.Logging;
 
 	using Dexter.Data;
-	using Dexter.Data.Exceptions;
 	using Dexter.Entities;
 	using Dexter.Navigation.Contracts;
 	using Dexter.Navigation.Helpers;
+	using Dexter.Shared.Exceptions;
 
 	public class TrackbackService : ITrackbackService
 	{
@@ -94,7 +94,7 @@ namespace Dexter.Services.Implmentation
 
 				if (item == null)
 				{
-					throw new ItemNotFoundException("trackBack.ItemId");
+					throw new DexterItemNotFoundException(trackBack.ItemId);
 				}
 
 				bool firstPingBack = this.trackBackDataService.IsFirstTrackbackBack(trackBack.ItemId, trackBack.Url);

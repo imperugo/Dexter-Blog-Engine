@@ -17,21 +17,20 @@ namespace Dexter.Services.Implmentation
 {
 	using System;
 	using System.Collections.Generic;
-	using System.Threading.Tasks;
 
 	using Common.Logging;
 
+	using Dexter.Async.TaskExecutor;
 	using Dexter.Data;
 	using Dexter.Entities;
 	using Dexter.Entities.Filters;
 	using Dexter.Entities.Result;
 	using Dexter.Extensions.Logging;
 	using Dexter.Services.Events;
+	using Dexter.Services.Implmentation.BackgroundTasks;
 	using Dexter.Shared;
 	using Dexter.Shared.Exceptions;
 	using Dexter.Shared.UserContext;
-
-	using ItemNotFoundException = Dexter.Data.Exceptions.ItemNotFoundException;
 
 	public class PostService : IPostService
 	{
@@ -43,15 +42,18 @@ namespace Dexter.Services.Implmentation
 
 		private readonly IUserContext userContext;
 
+		private readonly ITaskExecutor taskExecutor;
+
 		#endregion
 
 		#region Constructors and Destructors
 
-		public PostService(IPostDataService postDataService, ILog logger, IUserContext userContext)
+		public PostService(IPostDataService postDataService, ILog logger, IUserContext userContext, ITaskExecutor taskExecutor)
 		{
 			this.postDataService = postDataService;
 			this.logger = logger;
 			this.userContext = userContext;
+			this.taskExecutor = taskExecutor;
 		}
 
 		#endregion
@@ -73,6 +75,8 @@ namespace Dexter.Services.Implmentation
 		public event EventHandler<CancelEventArgsWithOneParameter<int, PostDto>> PostRetrievingById;
 
 		public event EventHandler<CancelEventArgsWithOneParameter<string, PostDto>> PostRetrievingBySlug;
+
+		public event EventHandler<CancelEventArgsWithoutParameterWithResult<PostDto>> PostPublished;
 
 		public event EventHandler<CancelEventArgsWithoutParameterWithResult<PostDto>> PostSaved;
 
@@ -365,7 +369,7 @@ namespace Dexter.Services.Implmentation
 		{
 			if (item == null)
 			{
-				throw new ItemNotFoundException("item");
+				throw new DexterPostNotFoundException();
 			}
 
 			CancelEventArgsWithOneParameterWithoutResult<PostDto> e = new CancelEventArgsWithOneParameterWithoutResult<PostDto>(item);
@@ -393,6 +397,12 @@ namespace Dexter.Services.Implmentation
 			}
 
 			this.postDataService.SaveOrUpdate(item);
+
+			if (item.Status == ItemStatus.Published)
+			{
+				this.PostPublished.Raise(this, new CancelEventArgsWithoutParameterWithResult<PostDto>(item));
+				this.taskExecutor.ExcuteLater(new PublishedBackgroundTask());
+			}
 
 			this.PostSaved.Raise(this, new CancelEventArgsWithoutParameterWithResult<PostDto>(item));
 		}

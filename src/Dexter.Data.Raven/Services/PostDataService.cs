@@ -5,12 +5,13 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
 // Created:		2012/11/02
-// Last edit:	2013/01/20
+// Last edit:	2013/03/24
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Data.Raven.Services
@@ -24,7 +25,6 @@ namespace Dexter.Data.Raven.Services
 
 	using Common.Logging;
 
-	using Dexter.Data.Exceptions;
 	using Dexter.Data.Raven.Domain;
 	using Dexter.Data.Raven.Extensions;
 	using Dexter.Data.Raven.Helpers;
@@ -34,6 +34,7 @@ namespace Dexter.Data.Raven.Services
 	using Dexter.Entities;
 	using Dexter.Entities.Filters;
 	using Dexter.Entities.Result;
+	using Dexter.Shared.Exceptions;
 
 	using global::Raven.Client;
 
@@ -62,16 +63,16 @@ namespace Dexter.Data.Raven.Services
 		public void Delete(int id)
 		{
 			Post post = this.Session
-								.Include<Post>(x => x.CommentsId)
-								.Include<Post>(x => x.TrackbacksId)
-								.Load<Post>(id);
+			                .Include<Post>(x => x.CommentsId)
+			                .Include<Post>(x => x.TrackbacksId)
+			                .Load<Post>(id);
 
 			ItemComments comments = this.Session.Load<ItemComments>(post.CommentsId);
 			ItemTrackbacks trackbacks = this.Session.Load<ItemTrackbacks>(post.TrackbacksId);
 
 			if (post == null)
 			{
-				throw new ItemNotFoundException("id");
+				throw new DexterPostNotFoundException(id);
 			}
 
 			this.Session.Delete(post);
@@ -84,10 +85,10 @@ namespace Dexter.Data.Raven.Services
 			DateTime now = DateTime.Now;
 
 			List<MonthDto> dates = this.Session.Query<MonthDto, MonthOfPublishedPostsWithCountIndex>()
-									   .OrderByDescending(x => x.Year)
-									   .ThenByDescending(x => x.Month)
-									   .Where(x => (x.Year < now.Year || x.Year == now.Year) && x.Month <= now.Month)
-									   .ToList();
+			                           .OrderByDescending(x => x.Year)
+			                           .ThenByDescending(x => x.Month)
+			                           .Where(x => (x.Year < now.Year || x.Year == now.Year) && x.Month <= now.Month)
+			                           .ToList();
 
 			return dates;
 		}
@@ -100,9 +101,9 @@ namespace Dexter.Data.Raven.Services
 			}
 
 			Post post = this.Session
-							.Include<Post>(x => x.CommentsId)
-							.Include<Post>(x => x.TrackbacksId)
-							.Load(id);
+			                .Include<Post>(x => x.CommentsId)
+			                .Include<Post>(x => x.TrackbacksId)
+			                .Load(id);
 
 			if (post == null)
 			{
@@ -120,7 +121,7 @@ namespace Dexter.Data.Raven.Services
 
 			if (post == null)
 			{
-				throw new ItemNotFoundException("slug");
+				throw new DexterPostNotFoundException(slug);
 			}
 
 			PostDto result = post.MapTo<PostDto>();
@@ -143,10 +144,10 @@ namespace Dexter.Data.Raven.Services
 			RavenQueryStatistics stats;
 
 			return this.Session.Query<Post>()
-					   .Statistics(out stats)
-					   .ApplyFilterItem(filters)
-					   .OrderByDescending(post => post.PublishAt)
-					   .ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
+			           .Statistics(out stats)
+			           .ApplyFilterItem(filters)
+			           .OrderByDescending(post => post.PublishAt)
+			           .ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
 		}
 
 		public IPagedResult<PostDto> GetPostsByDate(int pageIndex, int pageSize, int year, int? month, int? day, ItemQueryFilter filters)
@@ -179,9 +180,9 @@ namespace Dexter.Data.Raven.Services
 			RavenQueryStatistics stats;
 
 			IQueryable<Post> query = this.Session.Query<Post>()
-										 .Statistics(out stats)
-										 .Where(post => post.PublishAt.Year == year)
-										 .ApplyFilterItem(filters);
+			                             .Statistics(out stats)
+			                             .Where(post => post.PublishAt.Year == year)
+			                             .ApplyFilterItem(filters);
 
 			if (month.HasValue)
 			{
@@ -213,11 +214,11 @@ namespace Dexter.Data.Raven.Services
 			RavenQueryStatistics stats;
 
 			return this.Session.Query<Post>()
-					   .Statistics(out stats)
-					   .ApplyFilterItem(filters)
-					   .Where(post => post.Tags.Any(postTag => postTag == tag))
-					   .OrderByDescending(post => post.PublishAt)
-					   .ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
+			           .Statistics(out stats)
+			           .ApplyFilterItem(filters)
+			           .Where(post => post.Tags.Any(postTag => postTag == tag))
+			           .OrderByDescending(post => post.PublishAt)
+			           .ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
 		}
 
 		public IList<TagDto> GetTopTagsForPublishedPosts(int numberOfTags)
@@ -228,9 +229,9 @@ namespace Dexter.Data.Raven.Services
 			}
 
 			return this.Session.Query<TagDto, TagsForPublishedPostsWithCountIndex>()
-					   .OrderBy(x => x.Count)
-					   .Take(numberOfTags)
-					   .ToList();
+			           .OrderBy(x => x.Count)
+			           .Take(numberOfTags)
+			           .ToList();
 		}
 
 		public void SaveOrUpdate(PostDto item)
@@ -240,11 +241,11 @@ namespace Dexter.Data.Raven.Services
 				throw new ArgumentNullException("item", "The post must be contains a valid instance");
 			}
 
-			Post post = this.Session.Load<Post>(item.Id) 
-								?? new Post
-				                            {
-					                            CreatedAt = DateTimeOffset.Now
-				                            };
+			Post post = this.Session.Load<Post>(item.Id)
+			            ?? new Post
+				               {
+					               CreatedAt = DateTimeOffset.Now
+				               };
 
 			if (string.IsNullOrEmpty(item.Author))
 			{
@@ -255,7 +256,8 @@ namespace Dexter.Data.Raven.Services
 
 			if (string.IsNullOrEmpty(post.Excerpt))
 			{
-				post.Excerpt = AbstractHelper.GenerateAbstract(post.Content);
+				string generateAbstract = AbstractHelper.GenerateAbstract(post.Content);
+				post.Excerpt = generateAbstract;
 			}
 
 			if (string.IsNullOrEmpty(post.Slug))
@@ -266,14 +268,14 @@ namespace Dexter.Data.Raven.Services
 			if (post.IsTransient)
 			{
 				ItemComments comments = new ItemComments
-				{
-					Item = new ItemReference
-					{
-						Id = post.Id,
-						Status = post.Status,
-						ItemPublishedAt = post.PublishAt
-					}
-				};
+					                        {
+						                        Item = new ItemReference
+							                               {
+								                               Id = post.Id, 
+								                               Status = post.Status, 
+								                               ItemPublishedAt = post.PublishAt
+							                               }
+					                        };
 
 				this.Session.Store(comments);
 				post.CommentsId = comments.Id;
@@ -282,8 +284,8 @@ namespace Dexter.Data.Raven.Services
 					                            {
 						                            Item = new ItemReference
 							                                   {
-								                                   Id = post.Id,
-								                                   Status = post.Status,
+								                                   Id = post.Id, 
+								                                   Status = post.Status, 
 								                                   ItemPublishedAt = post.PublishAt
 							                                   }
 					                            };
@@ -312,24 +314,24 @@ namespace Dexter.Data.Raven.Services
 			}
 
 			Post post = this.Session
-							.Include<Post>(x => x.TrackbacksId)
-							.Load<Post>(itemId);
+			                .Include<Post>(x => x.TrackbacksId)
+			                .Load<Post>(itemId);
 
 			if (post == null)
 			{
-				throw new ItemNotFoundException("itemId");
+				throw new DexterPostNotFoundException(itemId);
 			}
 
 			ItemTrackbacks trackbacks = this.Session.Load<ItemTrackbacks>(post.TrackbacksId)
-										?? new ItemTrackbacks
-											   {
-												   Item = new ItemReference
-															  {
-																  Id = post.Id,
-																  Status = post.Status,
-																  ItemPublishedAt = post.PublishAt
-															  }
-											   };
+			                            ?? new ItemTrackbacks
+				                               {
+					                               Item = new ItemReference
+						                                      {
+							                                      Id = post.Id, 
+							                                      Status = post.Status, 
+							                                      ItemPublishedAt = post.PublishAt
+						                                      }
+				                               };
 
 			trackbacks.AddTrackback(trackBack.MapTo<Trackback>(), trackBack.Status);
 
@@ -370,10 +372,10 @@ namespace Dexter.Data.Raven.Services
 			}
 
 			Post post = this.Session.Query<Post>()
-							.Where(x => x.Slug == slug)
-							.Include(x => x.CommentsId)
-							.Include(x => x.TrackbacksId)
-							.FirstOrDefault();
+			                .Where(x => x.Slug == slug)
+			                .Include(x => x.CommentsId)
+			                .Include(x => x.TrackbacksId)
+			                .FirstOrDefault();
 
 			return post;
 		}

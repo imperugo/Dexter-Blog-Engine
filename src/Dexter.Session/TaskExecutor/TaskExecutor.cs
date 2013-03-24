@@ -26,7 +26,7 @@ namespace Dexter.Async.TaskExecutor
 	{
 		#region Static Fields
 
-		private static readonly ThreadLocal<List<BackgroundTask>> TasksToExecute = new ThreadLocal<List<BackgroundTask>>(() => new List<BackgroundTask>());
+		private static readonly ThreadLocal<List<BackgroundTask>> tasksToExecute = new ThreadLocal<List<BackgroundTask>>(() => new List<BackgroundTask>());
 
 		#endregion
 
@@ -55,13 +55,13 @@ namespace Dexter.Async.TaskExecutor
 
 		public void Discard()
 		{
-			TasksToExecute.Value.Clear();
+			tasksToExecute.Value.Clear();
 			this.logger.Debug("Cleaning the Task Excecutor");
 		}
 
 		public void ExcuteLater(BackgroundTask task)
 		{
-			TasksToExecute.Value.Add(task);
+			tasksToExecute.Value.Add(task);
 			this.logger.DebugFormat("Adding '{0}' to the Task Executor", task);
 		}
 
@@ -69,7 +69,7 @@ namespace Dexter.Async.TaskExecutor
 		{
 			logger.Debug("Starting Task Executor");
 
-			List<BackgroundTask> value = TasksToExecute.Value;
+			List<BackgroundTask> value = tasksToExecute.Value;
 			BackgroundTask[] copy = value.ToArray();
 			value.Clear();
 
@@ -80,7 +80,7 @@ namespace Dexter.Async.TaskExecutor
 						foreach (BackgroundTask backgroundTask in copy)
 						{
 							this.logger.DebugFormat("Running '{0}'", backgroundTask);
-							backgroundTask.Run();
+							backgroundTask.Execute();
 						}
 					}, TaskCreationOptions.LongRunning)
 				    .ContinueWith(task =>

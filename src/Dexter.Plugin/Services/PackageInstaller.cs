@@ -21,7 +21,6 @@ namespace Dexter.PackageInstaller.Services
 
 	using AutoMapper;
 
-	using Dexter.Data.Exceptions;
 	using Dexter.Entities;
 	using Dexter.Entities.Result;
 	using Dexter.PackageInstaller.Extensions;

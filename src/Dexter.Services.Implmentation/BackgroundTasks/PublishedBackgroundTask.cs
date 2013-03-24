@@ -1,33 +1,30 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			CategoryNotFoundException.cs
+// File:			PublishedBackgroundTask.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
-// Created:		2012/12/01
-// Last edit:	2013/01/20
+// Created:		2013/03/24
+// Last edit:	2013/03/24
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
-namespace Dexter.Data.Exceptions
+namespace Dexter.Services.Implmentation.BackgroundTasks
 {
-	using System;
+	using Common.Logging;
 
-	public class CategoryNotFoundException : ArgumentException
+	using Dexter.Async.TaskExecutor;
+
+	public class PublishedBackgroundTask : BackgroundTask
 	{
-		#region Constructors and Destructors
+		#region Public Methods and Operators
 
-		public CategoryNotFoundException(string categoryId)
-			: base("Unable to find the Category with the specified Id.", categoryId)
-		{
-		}
-
-		public CategoryNotFoundException(string message, string paramName)
-			: base(message, paramName)
+		public override void Execute()
 		{
 		}
 

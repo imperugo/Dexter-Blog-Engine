@@ -25,7 +25,6 @@ namespace Dexter.Services.Implmentation
 	using Common.Logging;
 
 	using Dexter.Data;
-	using Dexter.Data.Exceptions;
 	using Dexter.Dependency;
 	using Dexter.Entities;
 	using Dexter.Entities.Result;
@@ -88,7 +87,7 @@ namespace Dexter.Services.Implmentation
 
 			if (plugin == null)
 			{
-				throw new DexterPluginException("Unable to find the specified plugin",pluginId);
+				throw new DexterPluginException("Unable to find the specified plugin", pluginId);
 			}
 
 			this.pluginDataService.DisablePlugin(plugin);

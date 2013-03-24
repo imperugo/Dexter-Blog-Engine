@@ -195,7 +195,7 @@ namespace Dexter.Web.Mvc.Helpers
 
 		private static void AddHome(StringBuilder sb, IUrlBuilder urlBuilder, ViewContext viewContext)
 		{
-			bool isCurrent = RouteHelper.IsCurrentController("Admin", "Home", viewContext);
+			bool isCurrent = RouteHelper.IsCurrentController("Dxt_Admin", "Home", viewContext);
 
 			sb.AppendFormat("<li class=\"home {0}\">", isCurrent ? "current" : string.Empty);
 			sb.AppendFormat("<a href=\"{0}\" title=\"Home\">Home</a></li>", urlBuilder.Admin.Home());
@@ -203,7 +203,7 @@ namespace Dexter.Web.Mvc.Helpers
 
 		private static void AddPost(StringBuilder sb, IUrlBuilder urlBuilder, ViewContext viewContext)
 		{
-			bool isCurrent = RouteHelper.IsCurrentController("Admin", "Post", viewContext) || RouteHelper.IsCurrentController("Admin", "Category", viewContext) || RouteHelper.IsCurrentController("Admin", "Page", viewContext);
+			bool isCurrent = RouteHelper.IsCurrentController("Dxt_Admin", "Post", viewContext) || RouteHelper.IsCurrentController("Dxt_Admin", "Category", viewContext) || RouteHelper.IsCurrentController("Dxt_Admin", "Page", viewContext);
 
 			sb.AppendFormat("<li class=\"write {0}\">", isCurrent ? "current" : string.Empty);
 			sb.AppendFormat("<a href=\"{0}\" title=\"Post & Pages\">Posts</a>", urlBuilder.Admin.Post.List());
@@ -220,7 +220,7 @@ namespace Dexter.Web.Mvc.Helpers
 
 		private static void AddSettigns(StringBuilder sb, IUrlBuilder urlBuilder, ViewContext viewContext)
 		{
-			bool isCurrent = RouteHelper.IsCurrentController("Admin", "Settings", viewContext);
+			bool isCurrent = RouteHelper.IsCurrentController("Dxt_Admin", "Settings", viewContext);
 
 			sb.AppendFormat("<li class=\"settings {0}\">", isCurrent ? "current" : string.Empty);
 			sb.AppendFormat("<a href=\"{0}\" title=\"settings\">settings</a>", urlBuilder.Admin.EditConfiguration());

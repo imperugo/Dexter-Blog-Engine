@@ -20,11 +20,12 @@ namespace Dexter.Data.Raven.Services
 	using System.Collections.Generic;
 	using System.Linq;
 
+	using Dexter.Shared.Exceptions;
+
 	using global::AutoMapper;
 
 	using Common.Logging;
 
-	using Dexter.Data.Exceptions;
 	using Dexter.Data.Raven.Domain;
 	using Dexter.Data.Raven.Helpers;
 	using Dexter.Data.Raven.Indexes.Updating;
@@ -79,12 +80,12 @@ namespace Dexter.Data.Raven.Services
 
 			if (categories[0] == null)
 			{
-				throw new CategoryNotFoundException(id);
+				throw new DexterCategoryNotFoundException(id);
 			}
 
 			if (categories[0] == null)
 			{
-				throw new CategoryNotFoundException(newCategoryId);
+				throw new DexterCategoryNotFoundException(newCategoryId);
 			}
 
 			if (categories[0].IsDefault)
@@ -135,7 +136,7 @@ namespace Dexter.Data.Raven.Services
 
 				if (category == null)
 				{
-					throw new CategoryNotFoundException(categoryId);
+					throw new DexterCategoryNotFoundException(categoryId);
 				}
 			}
 			else

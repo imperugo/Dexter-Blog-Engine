@@ -20,7 +20,6 @@ namespace Dexter.Services.Implmentation
 	using Common.Logging;
 
 	using Dexter.Data;
-	using Dexter.Data.Exceptions;
 	using Dexter.Entities;
 	using Dexter.Entities.Filters;
 	using Dexter.Entities.Result;
@@ -83,7 +82,7 @@ namespace Dexter.Services.Implmentation
 		{
 			if (item == null)
 			{
-				throw new ItemNotFoundException("item");
+				throw new DexterPageNotFoundException();
 			}
 
 			CancelEventArgsWithOneParameterWithoutResult<PageDto> e = new CancelEventArgsWithOneParameterWithoutResult<PageDto>(item);

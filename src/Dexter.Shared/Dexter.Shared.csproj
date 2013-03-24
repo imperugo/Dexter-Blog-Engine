@@ -44,6 +44,7 @@
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
     <Compile Include="Constants.cs" />
+    <Compile Include="Exceptions\DexterCategoryNotFoundException.cs" />
     <Compile Include="Exceptions\DexterDatabaseConnectionException.cs" />
     <Compile Include="Exceptions\DexterException.cs" />
     <Compile Include="Exceptions\DexterItemNotFoundException.cs" />

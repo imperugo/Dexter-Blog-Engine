@@ -10,6 +10,10 @@
 
 		#region Constructors and Destructors
 
+		public DexterPostNotFoundException()
+		{
+		}
+
 		public DexterPostNotFoundException(int key)
 			: base(key)
 		{
@@ -20,12 +24,12 @@
 		{
 		}
 
-		protected DexterPostNotFoundException(string slug)
+		public DexterPostNotFoundException(string slug)
 		{
 			this.slug = slug;
 		}
 
-		protected DexterPostNotFoundException(string slug, string message)
+		public DexterPostNotFoundException(string slug, string message)
 			: base(message)
 		{
 			this.slug = slug;

@@ -1450,6 +1450,18 @@
     <Content Include="Areas\Dxt_Admin\Views\Page\ConfirmDelete.cshtml" />
     <Content Include="Areas\Dxt_Admin\Views\Category\Index.cshtml" />
     <Content Include="Areas\Dxt_Admin\Views\Category\Manage.cshtml" />
+    <Content Include="js\jquery.datepick\jquery.datepick.ext.min.js.map">
+      <DependentUpon>jquery.datepick.ext.js</DependentUpon>
+    </Content>
+    <Content Include="js\jquery.datepick\jquery.datepick.min.js.map">
+      <DependentUpon>jquery.datepick.js</DependentUpon>
+    </Content>
+    <Content Include="js\jquery.datepick\jquery.datepick.lang.min.js.map">
+      <DependentUpon>jquery.datepick.lang.js</DependentUpon>
+    </Content>
+    <Content Include="js\jquery.datepick\jquery.datepick.validation.min.js.map">
+      <DependentUpon>jquery.datepick.validation.js</DependentUpon>
+    </Content>
     <None Include="Styles\Global\CommonStyles.css.bundle" />
   </ItemGroup>
   <PropertyGroup>

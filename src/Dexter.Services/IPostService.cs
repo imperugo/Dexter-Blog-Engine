@@ -71,6 +71,11 @@ namespace Dexter.Services
 		event EventHandler<CancelEventArgsWithOneParameter<string, PostDto>> PostRetrievingBySlug;
 
 		/// <summary>
+		/// This event will raise after the <see cref="PostDto"/> is saved if the property <see cref="ItemDto.Status"/> == <see cref="ItemStatus.Published"/>. The event is raised by by the implementation of <see cref="SaveOrUpdate"/> or the async version.
+		/// </summary>
+		event EventHandler<CancelEventArgsWithoutParameterWithResult<PostDto>> PostPublished;
+
+		/// <summary>
 		/// This event will raise after the <see cref="PostDto"/> is saved. The event is raised by by the implementation of <see cref="SaveOrUpdate"/> or the async version.
 		/// </summary>
 		event EventHandler<CancelEventArgsWithoutParameterWithResult<PostDto>> PostSaved;
