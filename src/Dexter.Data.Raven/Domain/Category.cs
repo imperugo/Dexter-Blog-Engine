@@ -22,6 +22,7 @@ namespace Dexter.Data.Raven.Domain
 		public Category()
 		{
 			this.PostsId = new string[0];
+			this.ChildrenIds = new string[0];
 		}
 
 		#region Public Properties

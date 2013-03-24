@@ -32,6 +32,7 @@ namespace Dexter.Data.Raven.Services
 	using Dexter.Data.Raven.Session;
 	using Dexter.Entities;
 
+	using global::Raven.Abstractions.Extensions;
 	using global::Raven.Client;
 
 	public class CategoryDataService : ServiceBase, ICategoryDataService
@@ -99,7 +100,7 @@ namespace Dexter.Data.Raven.Services
 			this.Session.Store(categories[1]);
 
 			UpdateCategoryIndex.UpdateCategoryIndexAfterDelete(this.store, this.Session, categories[0], categories[1]);
-			UpdateCategoryIndex.UpdateCategoryIndexes(this.store, this.Session, categories[1]);
+			UpdateCategoryIndex.UpdateCategoryIndexes(this.store, this.Session, categories[1], categories[0].Name);
 		}
 
 		public IList<CategoryDto> GetCategoriesStructure()
@@ -116,37 +117,43 @@ namespace Dexter.Data.Raven.Services
 			return result;
 		}
 
-		public string SaveOrUpdate(string name, bool isDefault, string parentCategoryId, string categoryId = null)
+		public string SaveOrUpdate(CategoryDto item)
 		{
-			if (name == null)
+			if (item == null)
 			{
-				throw new ArgumentNullException("name", "Category name cannot be null.");
+				throw new ArgumentNullException("item", "Category item cannot be null.");
 			}
 
-			if (name == string.Empty)
+			if (item.Name == null)
 			{
-				throw new ArgumentException("Category name cannot be empty", "name");
+				throw new ArgumentNullException("item.Name", "Category name cannot be null.");
+			}
+
+			if (item.Name == string.Empty)
+			{
+				throw new ArgumentException("Category name cannot be empty", "item.Name");
 			}
 
 			Category category;
+			string oldCategoryName = null;
 
-			if (categoryId != null)
+			if (item.Id > 0)
 			{
-				category = this.Session.Load<Category>(categoryId);
+				category = this.Session.Load<Category>(item.Id);
+				oldCategoryName = category.Name;
 
 				if (category == null)
 				{
-					throw new DexterCategoryNotFoundException(categoryId);
+					throw new DexterCategoryNotFoundException(item.Id);
 				}
 			}
 			else
 			{
 				category = new Category();
-				category.Name = name;
 			}
 
-			category.IsDefault = isDefault;
-			category.ParentId = parentCategoryId;
+			item.MapPropertiesToInstance(category);
+			category.ParentId = category.ParentId;
 
 			if (string.IsNullOrEmpty(category.Slug))
 			{
@@ -155,7 +162,7 @@ namespace Dexter.Data.Raven.Services
 
 			this.Session.Store(category);
 
-			UpdateCategoryIndex.UpdateCategoryIndexes(this.store, this.Session, category);
+			UpdateCategoryIndex.UpdateCategoryIndexes(this.store, this.Session, category, oldCategoryName);
 
 			return category.Id;
 		}
@@ -179,25 +186,29 @@ namespace Dexter.Data.Raven.Services
 			return this.Session.Query<Category>().FirstOrDefault(x => x.Slug == slug);
 		}
 
-		private List<CategoryDto> MakeTree(IList<Category> flatObjects, CategoryDto parent)
+		private List<CategoryDto> MakeTree(IList<Category> flattenedCategories, string parentId)
 		{
-			if (parent == null)
+			List<CategoryDto> cats = new List<CategoryDto>();
+
+			var filteredFlatCategories = flattenedCategories.Where(fc => fc.ParentId == parentId);
+
+			foreach (var flattenedCat in filteredFlatCategories)
 			{
-				parent = new CategoryDto();
+				CategoryDto cat = flattenedCat.MapTo<CategoryDto>();
+
+				IList<CategoryDto> childCats = this.MakeTree(flattenedCategories, flattenedCat.Id);
+
+				cat.Categories.AddRange(childCats);
+
+				foreach (var childCat in childCats)
+				{
+					childCat.Parent = cat;
+				}
+
+				cats.Add(cat);
 			}
 
-			return flatObjects
-				.Where(x => x.ParentId == RavenIdHelper.Resolve<Category>(parent.Id))
-				.Select(item => new CategoryDto
-					                {
-						                Id = RavenIdHelper.Resolve(item.Id), 
-						                Name = item.Name, 
-						                IsDefault = item.IsDefault, 
-						                PostCount = item.PostsId != null ? item.PostsId.Length : 0, 
-						                ParentId = RavenIdHelper.Resolve(item.ParentId), 
-										Slug = item.Slug,
-						                Categories = this.MakeTree(flatObjects, item.MapTo<CategoryDto>())
-					                }).ToList();
+			return cats;
 		}
 
 		#endregion

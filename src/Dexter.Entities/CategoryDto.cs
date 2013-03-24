@@ -47,11 +47,11 @@ namespace Dexter.Entities
 
 		public int PostCount { get; set; }
 
-		public int ParentId { get; set; }
+		public CategoryDto Parent { get; set; }
 
 		public bool IsChild
 		{
-			get { return ParentId > 0; }
+			get { return Parent != null; }
 		}
 
 		#endregion

@@ -5,7 +5,7 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
 // Created:		2012/12/24
-// Last edit:	2013/03/23
+// Last edit:	2013/03/24
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -16,6 +16,7 @@
 
 namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 {
+	using System;
 	using System.Linq;
 	using System.Web.Mvc;
 
@@ -23,9 +24,12 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 
 	using Common.Logging;
 
+	using Dexter.Entities;
 	using Dexter.Host.Areas.Dxt_Admin.Binders;
 	using Dexter.Host.Areas.Dxt_Admin.Models.Category;
+	using Dexter.Navigation.Contracts;
 	using Dexter.Services;
+	using Dexter.Shared.Exceptions;
 	using Dexter.Web.Core.Controllers.Web;
 
 	[Authorize]
@@ -35,14 +39,17 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 
 		private readonly ICategoryService categoryService;
 
+		private readonly IUrlBuilder urlBuilder;
+
 		#endregion
 
 		#region Constructors and Destructors
 
-		public CategoryController(ILog logger, IConfigurationService configurationService, ICategoryService categoryService)
+		public CategoryController(ILog logger, IConfigurationService configurationService, ICategoryService categoryService, IUrlBuilder urlBuilder)
 			: base(logger, configurationService)
 		{
 			this.categoryService = categoryService;
+			this.urlBuilder = urlBuilder;
 		}
 
 		#endregion
@@ -61,6 +68,11 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 		[AcceptVerbs(HttpVerbs.Get)]
 		public ActionResult Manage(int? id)
 		{
+			if (id.HasValue && id.Value < 1)
+			{
+				return this.HttpNotFound();
+			}
+
 			ManageViewModel model = new ManageViewModel();
 
 			model.Category = id.HasValue && id > 0
@@ -70,6 +82,75 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 			model.Categories = id.HasValue
 				                   ? this.categoryService.GetCategories().Where(x => x.Id != id.Value)
 				                   : this.categoryService.GetCategories();
+
+			return this.View(model);
+		}
+
+		[ValidateAntiForgeryToken]
+		[AcceptVerbs(HttpVerbs.Post)]
+		public ActionResult Manage(int? id, CategoryBinder category)
+		{
+			if (!this.ModelState.IsValid)
+			{
+				ManageViewModel model = new ManageViewModel();
+
+				model.Category = category;
+
+				model.Categories = id.HasValue
+					                   ? this.categoryService.GetCategories().Where(x => x.Id != id.Value)
+					                   : this.categoryService.GetCategories();
+
+				return this.View(model);
+			}
+
+			try
+			{
+				CategoryDto newCategory;
+
+				if (id.HasValue && id.Value > 0)
+				{
+					newCategory = this.categoryService.GetCategoryById(id.Value);
+				}
+				else
+				{
+					newCategory = new CategoryDto();
+				}
+
+				if (category.ParentId.HasValue)
+				{
+					newCategory.Parent = this.categoryService.GetCategoryById(category.ParentId.Value);
+				}
+
+				if (!string.IsNullOrEmpty(category.FeedBurnerUrl))
+				{
+					newCategory.FeedBurnerUrl = new Uri(category.FeedBurnerUrl);
+				}
+
+				newCategory.Name = category.Name;
+				newCategory.Description = category.Description;
+
+				this.categoryService.SaveOrUpdate(newCategory);
+
+				return this.urlBuilder.Admin.FeedbackPage(FeedbackType.Positive, "Category Saved", this.urlBuilder.Admin.Category.List()).Redirect();
+			}
+			catch (DexterException e)
+			{
+				this.Logger.ErrorFormat("Unable to save the specified category", e);
+				return this.urlBuilder.Admin.FeedbackPage(FeedbackType.Positive, "Category Saved", this.urlBuilder.Admin.Category.List()).Redirect();
+			}
+		}
+
+		[AcceptVerbs(HttpVerbs.Get)]
+		public ActionResult ConfirmDelete(int id)
+		{
+			if (id < 1)
+			{
+				return this.HttpNotFound();
+			}
+
+			ConfirmDeleteViewModel model = new ConfirmDeleteViewModel();
+			model.Category = this.categoryService.GetCategoryById(id);
+			model.Categories = this.categoryService.GetCategories().Where(x => x.Id != id);
 
 			return this.View(model);
 		}

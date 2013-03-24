@@ -1,33 +1,33 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			ICategoryDataService.cs
+// File:			ConfirmDeleteViewModel.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
-// Created:		2012/12/01
-// Last edit:	2013/01/20
+// Created:		2013/03/24
+// Last edit:	2013/03/24
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
-namespace Dexter.Data
+namespace Dexter.Host.Areas.Dxt_Admin.Models.Category
 {
 	using System.Collections.Generic;
 
 	using Dexter.Entities;
+	using Dexter.Web.Core.Models;
 
-	public interface ICategoryDataService
+	public class ConfirmDeleteViewModel : DexterBackofficeModelBase
 	{
-		#region Public Methods and Operators
+		#region Public Properties
 
-		void DeleteCategory(string id, string newCategoryId);
+		public IEnumerable<CategoryDto> Categories { get; set; }
 
-		IList<CategoryDto> GetCategoriesStructure();
-
-		string SaveOrUpdate(CategoryDto category);
+		public CategoryDto Category { get; set; }
 
 		#endregion
 	}

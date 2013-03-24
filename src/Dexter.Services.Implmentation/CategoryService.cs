@@ -51,6 +51,11 @@ namespace Dexter.Services.Implmentation
 
 		#region Public Methods and Operators
 
+		public IList<CategoryDto> GetFlatCategories()
+		{
+			return this.GetCategories().ToFlat(x => x.Categories).ToList();
+		}
+
 		public IList<CategoryDto> GetCategories()
 		{
 			CancelEventArgsWithoutParameters<IList<CategoryDto>> e = new CancelEventArgsWithoutParameters<IList<CategoryDto>>(null);
@@ -71,27 +76,12 @@ namespace Dexter.Services.Implmentation
 
 		public CategoryDto GetCategoryById(int id)
 		{
-			return this.GetCategories().FirstOrDefault(x => x.Id == id);
+			return this.GetFlatCategories().FirstOrDefault(x => x.Id == id);
 		}
 
 		public void SaveOrUpdate(CategoryDto category)
 		{
-			if (category == null)
-			{
-				throw new ArgumentNullException("category", "The specified category must contain a valid instance");
-			}
-
-			if (category.Name == null)
-			{
-				throw new ArgumentNullException("category.Name", "The category name cannot be null.");
-			}
-
-			if (category.Name == string.Empty)
-			{
-				throw new ArgumentException("category.Name", "The category name cannot be empty.");
-			}
-
-			throw new NotImplementedException();
+			this.categoryDataService.SaveOrUpdate(category);
 		}
 
 		#endregion

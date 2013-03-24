@@ -165,6 +165,7 @@
     <Compile Include="Areas\Dxt_Admin\Controllers\PageController.cs" />
     <Compile Include="Areas\Dxt_Admin\Controllers\WidgetController.cs" />
     <Compile Include="Areas\Dxt_Admin\Dxt_AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Dxt_Admin\Models\Category\ConfirmDeleteViewModel.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Category\IndexViewModel.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Category\ManageViewModel.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Error\IndexViewModel.cs" />
@@ -1407,6 +1408,10 @@
       <Project>{93f94260-4a10-41fd-ab0f-c1c22bfe3e78}</Project>
       <Name>Dexter.Async</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dexter.Shared\Dexter.Shared.csproj">
+      <Project>{43C6E51E-D066-4BD3-8182-ACA95096CB37}</Project>
+      <Name>Dexter.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dexter.Web.Core\Dexter.Web.Core.csproj">
       <Project>{AEB41407-67EB-4AB2-881C-3DFB5CD8B540}</Project>
       <Name>Dexter.Web.Core</Name>
@@ -1462,6 +1467,7 @@
     <Content Include="js\jquery.datepick\jquery.datepick.validation.min.js.map">
       <DependentUpon>jquery.datepick.validation.js</DependentUpon>
     </Content>
+    <Content Include="Areas\Dxt_Admin\Views\Category\ConfirmDelete.cshtml" />
     <None Include="Styles\Global\CommonStyles.css.bundle" />
   </ItemGroup>
   <PropertyGroup>

@@ -84,7 +84,12 @@ namespace Dexter.Services.Implmentation
 			this.logger.Debug("Created blog configuration.");
 
 			//Creating default category
-			this.categoryService.SaveOrUpdate("Various", true, null);
+			this.categoryService.SaveOrUpdate(new CategoryDto
+				                                  {
+					                                  Name = "Various",
+													  IsDefault = true
+				                                  });
+
 			this.logger.Debug("Created default category.");
 
 			PostDto defaultPost = new PostDto();

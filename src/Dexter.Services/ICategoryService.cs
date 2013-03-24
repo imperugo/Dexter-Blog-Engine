@@ -41,6 +41,8 @@ namespace Dexter.Services
 
 		#region Public Methods and Operators
 
+		IList<CategoryDto> GetFlatCategories();
+
 		IList<CategoryDto> GetCategories();
 
 		CategoryDto GetCategoryById(int id);

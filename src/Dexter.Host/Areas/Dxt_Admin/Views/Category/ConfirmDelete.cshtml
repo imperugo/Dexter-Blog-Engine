@@ -1,0 +1,39 @@
+﻿@model Dexter.Host.Areas.Dxt_Admin.Models.Category.ConfirmDeleteViewModel
+@{
+    Layout = "~/Areas/Dxt_Admin/Views/Shared/_layoutWithMenu.cshtml";
+}
+
+<div class="block-content">
+	<div class="task with-legend">
+		<div class="legend">
+			<img src="~/Images/Icons/Fugue/status.png" width="16" height="16">Delete Post
+		</div>
+					
+		<div class="task-description">
+			<p><strong>Title :</strong>@Model.Category.Name</p>
+			<p><strong>Abstract :</strong>@Model.Category.Description</p>
+			<p><strong>Categories :</strong>
+				@for (int i = 0; i < Model.Category.Categories.Count; i++) {
+					@Model.Category.Categories[i].Name
+						if (i < Model.Category.Categories.Count-1 ) {
+							Response.Write ( ", " );
+						}
+				}
+			</p>
+			<p><strong>Url: </strong><a href="@U.Category.Feed(Model.Category)"> Click Here</a></p>
+			<p><strong>Content Number :</strong> @Model.Category.PostCount</p>
+		</div>
+					
+		<ul class="task-dialog">
+			<li>
+				<form method="post" action="../../Delete">
+					@Html.AntiForgeryToken()
+					@Html.Hidden("id", Model.Category.Id )
+					@Html.DropDownList("newCategoryId", new SelectList ( Model.Categories, "Id", "Name" ),"-- Move Post To --")
+					<button type="button" onclick="location.href='@U.Category.Edit( Model.Category )'">Edit</button>
+					<button type="submit">Confirm Delete</button>
+				</form>
+			</li>
+		</ul>
+	</div>
+</div>

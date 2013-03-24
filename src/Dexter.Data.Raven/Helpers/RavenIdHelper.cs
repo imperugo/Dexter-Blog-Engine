@@ -17,7 +17,6 @@
 namespace Dexter.Data.Raven.Helpers
 {
 	using System;
-	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 
@@ -64,6 +63,16 @@ namespace Dexter.Data.Raven.Helpers
 			return ravenId.Select(Resolve<T>).ToArray();
 		}
 
+		public static string Resolve<T>(int? id)
+		{
+			if (!id.HasValue)
+			{
+				return null;
+			}
+
+			return Resolve<T>(id.Value);
+		}
+
 		public static string Resolve<T>(int id)
 		{
 			if (id < 1)
@@ -71,7 +80,7 @@ namespace Dexter.Data.Raven.Helpers
 				return null;
 			}
 
-			var entityName = Inflector.Pluralize(typeof(T).Name);
+			var entityName = Inflector.Pluralize(typeof(T).Name).ToLowerInvariant();
 
 			return string.Format("{0}/{1}", entityName, id);
 		}

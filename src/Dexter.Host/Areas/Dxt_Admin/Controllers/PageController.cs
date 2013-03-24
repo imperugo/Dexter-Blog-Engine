@@ -16,7 +16,6 @@
 namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 {
 	using System;
-	using System.Collections.Generic;
 	using System.Web.Mvc;
 
 	using AutoMapper;
@@ -27,9 +26,9 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 	using Dexter.Entities.Filters;
 	using Dexter.Host.Areas.Dxt_Admin.Binders;
 	using Dexter.Host.Areas.Dxt_Admin.Models.Page;
-	using Dexter.Host.Areas.Dxt_Admin.Models.Post;
 	using Dexter.Navigation.Contracts;
 	using Dexter.Services;
+	using Dexter.Shared.Exceptions;
 	using Dexter.Web.Core.Controllers.Web;
 	using Dexter.Web.Core.Routing;
 
@@ -98,7 +97,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 
 				this.routingService.UpdateRoutes();
 			}
-			catch (Exception e)
+			catch (DexterException e)
 			{
 				this.Logger.Error("Error during deleting the page", e);
 
@@ -154,7 +153,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 
 				this.routingService.UpdateRoutes();
 			}
-			catch (Exception e)
+			catch (DexterException e)
 			{
 				this.Logger.Error("Error during saving the post", e);
 

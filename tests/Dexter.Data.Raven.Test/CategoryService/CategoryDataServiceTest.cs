@@ -22,6 +22,7 @@ namespace Dexter.Data.Raven.Test.CategoryService
 	using Common.Logging;
 
 	using Dexter.Data.Raven.Domain;
+	using Dexter.Data.Raven.Helpers;
 	using Dexter.Data.Raven.Services;
 	using Dexter.Data.Raven.Test.Helpers;
 	using Dexter.Entities;
@@ -205,80 +206,6 @@ namespace Dexter.Data.Raven.Test.CategoryService
 			cats[1].Categories.Should().Not.Be.Null();
 			cats[0].Categories.Count.Should().Be.EqualTo(2);
 			cats[1].Categories.Count.Should().Be.EqualTo(3);
-		}
-
-		[Fact]
-		public void SaveOrUpdate_WithValidDataForNewCategory_ShouldSaveTheCategory()
-		{
-			IList<Category> categories = CategoryHelper.GetCategories(5);
-
-			foreach (Category category in categories)
-			{
-				category.Id = this.sut.SaveOrUpdate(category.Name, false, category.ParentId, category.Id);
-			}
-
-			this.sut.Session.SaveChanges();
-
-			Category[] cats;
-
-			using (IDocumentSession testSession = this.DocumentStore.OpenSession())
-			{
-				cats = testSession.Load<Category>(categories.Select(x => x.Id).ToArray());
-			}
-
-			cats.Should().Not.Be.Null();
-			cats.Count().Should().Be.EqualTo(5);
-		}
-
-		[Fact]
-		public void SaveOrUpdate_WithValidData_ShouldUpdateDefaultCategory()
-		{
-			IList<Category> categories = CategoryHelper.GetCategories(4);
-
-			Category defaultCategory = CategoryHelper.GetCategories(1)[0];
-			defaultCategory.IsDefault = true;
-
-			categories.Add(defaultCategory);
-
-			this.SetupData(x =>
-				{
-					foreach (Category c in categories)
-					{
-						x.Store(c);
-					}
-				});
-
-			this.WaitStaleIndexes();
-
-			this.sut.SaveOrUpdate(categories[0].Name, true, categories[0].ParentId, categories[0].Id);
-			this.sut.Session.SaveChanges();
-
-			IList<Category> newCategories;
-
-			using (IDocumentSession testSession = this.DocumentStore.OpenSession())
-			{
-				newCategories = testSession.Query<Category>().ToList();
-			}
-
-			newCategories.Should().Not.Be.Null();
-			newCategories.Count.Should().Be.EqualTo(5);
-
-			newCategories.Count(x => x.IsDefault)
-			             .Should()
-			             .Be
-			             .EqualTo(1);
-
-			newCategories.Single(x => x.Id == defaultCategory.Id)
-			             .IsDefault
-			             .Should()
-			             .Be
-			             .False();
-
-			newCategories.Single(x => x.Id == categories[0].Id)
-			             .IsDefault
-			             .Should()
-			             .Be
-			             .True();
 		}
 
 		#endregion

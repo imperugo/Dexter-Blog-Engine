@@ -30,6 +30,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 	using Dexter.Host.Areas.Dxt_Admin.Models.Post;
 	using Dexter.Navigation.Contracts;
 	using Dexter.Services;
+	using Dexter.Shared.Exceptions;
 	using Dexter.Web.Core.Controllers.Web;
 
 	[Authorize]
@@ -92,7 +93,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 			{
 				this.postService.Delete(id);
 			}
-			catch (Exception e)
+			catch (DexterException e)
 			{
 				this.Logger.Error("Error during deleting the post", e);
 
@@ -150,7 +151,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 			{
 				this.postService.SaveOrUpdate(post.MapTo<PostDto>());
 			}
-			catch (Exception e)
+			catch (DexterException e)
 			{
 				this.Logger.Error("Error during saving the post", e);
 

@@ -108,9 +108,9 @@ namespace Dexter.Web.Core.HttpHandlers
 			CategoryInfo[] data = categories.Select(c => new CategoryInfo
 				                                             {
 					                                             categoryid = c.Id.ToString(), 
-					                                             parentid = c.ParentId == null
+					                                             parentid = c.Parent == null
 						                                                        ? String.Empty
-						                                                        : c.ParentId.ToString(CultureInfo.InvariantCulture), 
+						                                                        : c.Parent.Id.ToString(CultureInfo.InvariantCulture), 
 					                                             title = c.Name, 
 					                                             description = string.IsNullOrEmpty(c.Description)
 						                                                           ? string.Empty
@@ -331,7 +331,7 @@ namespace Dexter.Web.Core.HttpHandlers
 			CategoryDto parentCategory = null;
 			if (category.parent_id > 0)
 			{
-				parentCategory = categories.FirstOrDefault(c => c.ParentId == category.parent_id);
+				parentCategory = categories.FirstOrDefault(c => c.Parent.Id == category.parent_id);
 			}
 
 			if (cat == null)
@@ -339,15 +339,15 @@ namespace Dexter.Web.Core.HttpHandlers
 				cat = new CategoryDto
 					      {
 						      Name = category.name, 
-						      ParentId = parentCategory.Id
+						      Parent = parentCategory
 					      };
 				this.categoryService.SaveOrUpdate(cat);
 			}
 			else
 			{
-				if (cat.ParentId != parentCategory.Id)
+				if (cat.Parent != null && cat.Parent.Id != parentCategory.Id)
 				{
-					cat.ParentId = parentCategory.Id;
+					cat.Parent.Id = parentCategory.Id;
 					this.categoryService.SaveOrUpdate(cat);
 				}
 			}

@@ -49,6 +49,27 @@ namespace Dexter.Data.Raven.Indexes.Updating
 						}, allowStale: true);
 			}
 
+			store.DatabaseCommands.UpdateByIndex("Category/UpdatePostsName",
+				new IndexQuery
+					{
+						Query = session.Query<Post>().Where(x => x.Id.In(deletedCategory.PostsId)).ToString()
+					},
+				new[]
+					{
+						new PatchRequest
+							{
+								Type = PatchCommandType.Remove,
+								Name = "Categories",
+								Value = deletedCategory.Name
+							},
+						new PatchRequest
+							{
+								Type = PatchCommandType.Add,
+								Name = "Categories",
+								Value = newCategory.Name
+							}
+					}, allowStale: true);
+
 			store.DatabaseCommands.UpdateByIndex("Category/ById", 
 				new IndexQuery
 					{
@@ -73,7 +94,7 @@ namespace Dexter.Data.Raven.Indexes.Updating
 					}, allowStale: true);
 		}
 
-		public static void UpdateCategoryIndexes(IDocumentStore store, IDocumentSession session, Category item)
+		public static void UpdateCategoryIndexes(IDocumentStore store, IDocumentSession session, Category item, string oldCategoryName)
 		{
 			if (!string.IsNullOrEmpty(item.ParentId))
 			{
@@ -90,20 +111,48 @@ namespace Dexter.Data.Raven.Indexes.Updating
 						});
 			}
 
-			store.DatabaseCommands.UpdateByIndex("Category/ById", 
+			if (item.IsDefault)
+			{
+				store.DatabaseCommands.UpdateByIndex("Category/ById",
+					new IndexQuery
+						{
+							Query = session.Query<Category>().Where(x => x.Id != item.Id).ToString()
+						},
+					new[]
+						{
+							new PatchRequest
+								{
+									Type = PatchCommandType.Set,
+									Name = "IsDefault",
+									Value = false
+								}
+						}, allowStale: true);
+			}
+
+			if (!string.IsNullOrEmpty(oldCategoryName) && item.Name != oldCategoryName)
+			{
+				store.DatabaseCommands.UpdateByIndex("Category/UpdatePostsName",
 				new IndexQuery
-					{
-						Query = session.Query<Category>().Where(x => x.Id != item.Id).ToString()
-					}, 
+				{
+					Query = session.Query<Post>().Where(x => x.Id.In(item.PostsId)).ToString()
+				},
 				new[]
 					{
 						new PatchRequest
 							{
-								Type = PatchCommandType.Set, 
-								Name = "IsDefault", 
-								Value = false
+								Type = PatchCommandType.Remove,
+								Name = "Categories",
+								Value = oldCategoryName
+							},
+						new PatchRequest
+							{
+								Type = PatchCommandType.Add,
+								Name = "Categories",
+								Value = item.Name
 							}
-					},allowStale:true);
+					}, allowStale: true);
+			}
+			
 		}
 
 		#endregion

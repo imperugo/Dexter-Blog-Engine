@@ -57,11 +57,11 @@ namespace Dexter.Data.Raven.AutoMapper
 			Mapper.CreateMap<Comment, CommentDto>().ReverseMap();
 
 			Mapper.CreateMap<Category, CategoryDto>()
-					.ForMember(dest => dest.Id, opt => opt.MapFrom(x => RavenIdHelper.Resolve(x.Id)))
-					.ForMember(dest => dest.ParentId, opt => opt.MapFrom(x => RavenIdHelper.Resolve(x.ParentId)));
+			      .ForMember(dest => dest.Id, opt => opt.MapFrom(x => RavenIdHelper.Resolve(x.Id)));
 
 			Mapper.CreateMap<CategoryDto, Category>()
-			      .ForMember(dest => dest.Id, opt => opt.MapFrom(x => RavenIdHelper.Resolve<Category>(x.Id)));
+			      .ForMember(dest => dest.Id, opt => opt.MapFrom(x => RavenIdHelper.Resolve<Category>(x.Id)))
+			      .ForMember(dest => dest.ParentId, opt => opt.MapFrom(x => RavenIdHelper.Resolve<Category>(x.Parent.Id)));
 			
 			Mapper.CreateMap<EmailMessage, EmailMessageDto>().ReverseMap();
 		}

@@ -14,6 +14,7 @@
 					<tr>
 						<th class="col">ID</th>
 						<th scope="col">Name</th>
+						<th scope="col">Is Default</th>
 						<th scope="col">Content Number</th>
 						<th scope="col">Feed Url</th>
 						<th scope="col" class="table-actions">Actions</th>
@@ -32,6 +33,9 @@
 							}else{ 
 								<div style="margin-left: 20px;">@category.Name</div>
 							}
+						</td>
+						<td>
+							<input type="checkbox" checked="@category.IsDefault" disabled="disabled"/>
 						</td>
 						<td>
 							@category.PostCount
