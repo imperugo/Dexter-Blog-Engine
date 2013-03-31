@@ -56,7 +56,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 
 		#region Public Methods and Operators
 
-		[AcceptVerbs(HttpVerbs.Get)]
+		[HttpGet]
 		public ActionResult Index()
 		{
 			IndexViewModel model = new IndexViewModel();
@@ -65,7 +65,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 			return this.View(model);
 		}
 
-		[AcceptVerbs(HttpVerbs.Get)]
+		[HttpGet]
 		public ActionResult Manage(int? id)
 		{
 			if (id.HasValue && id.Value < 1)
@@ -87,7 +87,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 		}
 
 		[ValidateAntiForgeryToken]
-		[AcceptVerbs(HttpVerbs.Post)]
+		[HttpPost]
 		public ActionResult Manage(int? id, CategoryBinder category)
 		{
 			if (!this.ModelState.IsValid)
@@ -137,11 +137,11 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 			catch (DexterException e)
 			{
 				this.Logger.ErrorFormat("Unable to save the specified category", e);
-				return this.urlBuilder.Admin.FeedbackPage(FeedbackType.Positive, "Category Saved", this.urlBuilder.Admin.Category.List()).Redirect();
+				return this.urlBuilder.Admin.FeedbackPage(FeedbackType.Negative, "Category Not Saved", this.urlBuilder.Admin.Category.List()).Redirect();
 			}
 		}
 
-		[AcceptVerbs(HttpVerbs.Get)]
+		[HttpGet]
 		public ActionResult ConfirmDelete(int id)
 		{
 			if (id < 1)
@@ -154,6 +154,22 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 			model.Categories = this.categoryService.GetCategories().Where(x => x.Id != id);
 
 			return this.View(model);
+		}
+
+		[HttpPost]
+		public ActionResult Delete(int id, int? newCategoryId)
+		{
+			try
+			{
+				this.categoryService.Delete(id, newCategoryId);
+
+				return this.urlBuilder.Admin.FeedbackPage(FeedbackType.Positive, "Category Deleted", this.urlBuilder.Admin.Category.List()).Redirect();
+			}
+			catch (DexterException e)
+			{
+				this.Logger.ErrorFormat("Unable to save the specified category", e);
+				return this.urlBuilder.Admin.FeedbackPage(FeedbackType.Negative, "Category Not Deleted", this.urlBuilder.Admin.Category.List()).Redirect();
+			}
 		}
 
 		#endregion

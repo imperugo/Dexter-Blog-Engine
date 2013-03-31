@@ -17,7 +17,6 @@ namespace Dexter.Services.Implmentation
 {
 	using System;
 	using System.Collections.Generic;
-	using System.Threading.Tasks;
 
 	using Dexter.Data;
 	using Dexter.Entities;

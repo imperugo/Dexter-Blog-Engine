@@ -84,7 +84,7 @@ namespace Dexter.Data.Raven.Test.CategoryService
 
 			this.WaitStaleIndexes();
 
-			this.sut.DeleteCategory(parents[0].Id, parents[1].Id);
+			this.sut.DeleteCategory(RavenIdHelper.Resolve(parents[0].Id), RavenIdHelper.Resolve(parents[1].Id));
 			this.sut.Session.SaveChanges();
 
 			using (IDocumentSession testSession = this.DocumentStore.OpenSession())
@@ -133,7 +133,7 @@ namespace Dexter.Data.Raven.Test.CategoryService
 
 			this.WaitStaleIndexes();
 
-			this.sut.DeleteCategory(defaultCategory.Id, categories[0].Id);
+			this.sut.DeleteCategory(RavenIdHelper.Resolve(defaultCategory.Id), RavenIdHelper.Resolve(categories[0].Id));
 			this.sut.Session.SaveChanges();
 
 			IList<Category> newCategories;

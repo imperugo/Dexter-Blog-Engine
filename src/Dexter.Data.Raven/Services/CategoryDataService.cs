@@ -55,29 +55,22 @@ namespace Dexter.Data.Raven.Services
 
 		#region Public Methods and Operators
 
-		public void DeleteCategory(string id, string newCategoryId)
+		public void DeleteCategory(int id, int newCategoryId)
 		{
-			if (id == null)
+			if (id < 1)
 			{
-				throw new ArgumentNullException("id", "Category id cannot be null.");
+				throw new ArgumentException("Category id cannot be lesser than 1.","id");
 			}
 
-			if (id == string.Empty)
+			if (newCategoryId < 1)
 			{
-				throw new ArgumentException("Category id cannot be empty", "id");
+				throw new ArgumentException("New category id cannot be lesser than 1", "newCategoryId");
 			}
 
-			if (newCategoryId == null)
-			{
-				throw new ArgumentNullException("newCategoryId", "New category id cannot be null.");
-			}
+			var ravenCategoryId = RavenIdHelper.Resolve<Category>(id);
+			var ravenNewCategoryId = RavenIdHelper.Resolve<Category>(newCategoryId);
 
-			if (newCategoryId == string.Empty)
-			{
-				throw new ArgumentException("New category id cannot be empty", "newCategoryId");
-			}
-
-			Category[] categories = this.Session.Load<Category>(new[] { id, newCategoryId });
+			Category[] categories = this.Session.Load<Category>(new[] { ravenCategoryId, ravenNewCategoryId });
 
 			if (categories[0] == null)
 			{

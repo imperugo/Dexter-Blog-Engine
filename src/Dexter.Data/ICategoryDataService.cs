@@ -23,7 +23,7 @@ namespace Dexter.Data
 	{
 		#region Public Methods and Operators
 
-		void DeleteCategory(string id, string newCategoryId);
+		void DeleteCategory(int id, int newCategoryId);
 
 		IList<CategoryDto> GetCategoriesStructure();
 

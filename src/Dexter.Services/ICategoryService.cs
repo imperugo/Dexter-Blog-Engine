@@ -49,6 +49,8 @@ namespace Dexter.Services
 
 		void SaveOrUpdate(CategoryDto category);
 
+		void Delete(int categoryId, int? newCategoryId);
+
 		#endregion
 	}
 }
