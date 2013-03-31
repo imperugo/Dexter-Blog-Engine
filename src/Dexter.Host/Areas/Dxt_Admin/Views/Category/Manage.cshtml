@@ -31,6 +31,12 @@
 						<label for="simple-required">FeedBurner url</label>
 						@Html.TextBoxFor(x => x.Category.FeedBurnerUrl, new { @class = "full-width", placeholder = "Write here the title of the post" })
 					</p>
+					
+					<p>
+						<label for="simple-required">Is Default</label>
+						@Html.CheckBoxFor( x => x.Category.IsDefault, new { @class = "mini-switch"} )
+					</p>
+
 					@if (Model.Categories.Any())
 					{
 						<p>

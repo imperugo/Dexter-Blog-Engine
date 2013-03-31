@@ -128,6 +128,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 
 				newCategory.Name = category.Name;
 				newCategory.Description = category.Description;
+				newCategory.IsDefault = category.IsDefault;
 
 				this.categoryService.SaveOrUpdate(newCategory);
 

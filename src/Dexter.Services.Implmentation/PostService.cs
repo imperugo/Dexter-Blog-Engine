@@ -401,7 +401,7 @@ namespace Dexter.Services.Implmentation
 			if (item.Status == ItemStatus.Published)
 			{
 				this.PostPublished.Raise(this, new CancelEventArgsWithoutParameterWithResult<PostDto>(item));
-				this.taskExecutor.ExcuteLater(new PublishedBackgroundTask());
+				this.taskExecutor.ExcuteLater(new PublishedBackgroundTask(item));
 			}
 
 			this.PostSaved.Raise(this, new CancelEventArgsWithoutParameterWithResult<PostDto>(item));

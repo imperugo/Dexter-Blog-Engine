@@ -16,11 +16,13 @@
 
 namespace Dexter.Async.TaskExecutor
 {
+	using System.Threading.Tasks;
+
 	public abstract class BackgroundTask
 	{
 		#region Public Methods and Operators
 
-		public abstract void Execute();
+		public abstract Task Execute();
 
 		#endregion
 	}

@@ -32,6 +32,8 @@ namespace Dexter.Host.Areas.Dxt_Admin.Binders
 		[Required]
 		public string Name { get; set; }
 
+		public bool IsDefault { get; set; }
+
 		public int? ParentId { get; set; }
 
 		#endregion
