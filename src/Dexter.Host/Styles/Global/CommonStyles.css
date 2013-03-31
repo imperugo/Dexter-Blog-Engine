@@ -1,5 +1,4 @@
-﻿/*#source /Styles/Global/reset.css */
-/*
+﻿/*
  * Global reset
  * Based on Eric Meyer's : http://meyerweb.com/eric/thoughts/2008/01/15/resetting-again/
  */ 
@@ -63,7 +62,6 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-/*#source /Styles/Global/common.css */
 /**
  * Common styles for all variants (standard or mobile)
  * z-index hierachy :
@@ -2442,7 +2440,6 @@ ul.tabs + .tabs-content {
 .clearfix,
 .block-controls,
 .side-tabs { display: block; }
-/*#source /Styles/Global/form.css */
 /************** Forms & pseudo-form **************/
 .form fieldset,
 .fieldset {
@@ -2975,7 +2972,6 @@ p span.relative > input + .check-error,
 p span.relative > select + .check-error,
 p span.relative > input + .check-warning,
 p span.relative > select + .check-warning { margin-top: -0.583em; }
-/*#source /Styles/Global/standard.css */
 /**
  * Styles for the standard template
  */
@@ -5065,7 +5061,6 @@ article { display: inline-block; }
 .columns,
 .content-columns,
 article { display: block; }
-/*#source /Styles/Global/special-pages.css */
 /* Custom styles for the special pages */
 
 html { height: 100%; }

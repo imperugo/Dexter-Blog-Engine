@@ -1,0 +1,11 @@
+msgid "My message Id"
+msgstr "My message string"
+
+msgid "My message Id2"
+msgstr "My message string2"
+
+msgid "My message Id3"
+msgstr "My message string3"
+
+msgid "My message Id without scope"
+msgstr "My message string without scope"
