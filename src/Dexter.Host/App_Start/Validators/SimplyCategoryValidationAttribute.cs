@@ -21,8 +21,6 @@ namespace Dexter.Host.App_Start.Validators
 	using System.ComponentModel.DataAnnotations;
 	using System.Linq;
 
-	using Dexter.Host.Areas.Dxt_Admin.Models.Post;
-
 	public class SimplyCategoryValidationAttribute : ValidationAttribute
 	{
 		#region Constructors and Destructors

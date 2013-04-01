@@ -41,6 +41,16 @@ namespace Dexter.Navigation.Contracts
 
 		SiteUrl EditConfiguration();
 
+		SiteUrl EditSeoConfiguration();
+
+		SiteUrl EditTrackingConfiguration();
+
+		SiteUrl EditCommentsConfiguration();
+
+		SiteUrl EditSmtpConfiguration();
+
+		SiteUrl EditReadingConfiguration();
+
 		SiteUrl FeedbackPage(FeedbackType feedback, string localizationKey, SiteUrl redirect);
 
 		SiteUrl Home();

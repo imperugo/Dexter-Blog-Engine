@@ -54,12 +54,12 @@ namespace Dexter.Web.Mvc.Helpers
 			AddHome(sb, u, helper.ViewContext);
 			AddPost(sb, u, helper.ViewContext);
 
-			//AddComments ( sb, u, helper.ViewContext );
+			AddComments ( sb, u, helper.ViewContext );
 			//AddStats(sb, u, helper.ViewContext);
 			AddSettigns(sb, u, helper.ViewContext);
 
 			//Addbackup(sb, u, helper.ViewContext);
-			//AddUser(sb, u, helper.ViewContext);
+			AddUsers(sb, u, helper.ViewContext);
 
 			sb.Append("</li>");
 			sb.Append("</ul>");
@@ -225,7 +225,25 @@ namespace Dexter.Web.Mvc.Helpers
 			sb.AppendFormat("<li class=\"settings {0}\">", isCurrent ? "current" : string.Empty);
 			sb.AppendFormat("<a href=\"{0}\" title=\"settings\">settings</a>", urlBuilder.Admin.EditConfiguration());
 			sb.Append("<ul>");
-			sb.AppendFormat("<li><a href=\"{0}\" title=\"Site Configuration.\">Site Configuration</a></li>", urlBuilder.Admin.EditConfiguration());
+			sb.AppendFormat("<li><a href=\"{0}\" title=\"Site Configuration.\">Site</a></li>", urlBuilder.Admin.EditConfiguration());
+			sb.AppendFormat("<li><a href=\"{0}\" title=\"SEO Configuration.\">SEO</a></li>", urlBuilder.Admin.EditSeoConfiguration());
+			sb.AppendFormat("<li><a href=\"{0}\" title=\"Tracking Configuration.\">Tracking</a></li>", urlBuilder.Admin.EditTrackingConfiguration());
+			sb.AppendFormat("<li><a href=\"{0}\" title=\"Comments Configuration.\">Comment</a></li>", urlBuilder.Admin.EditCommentsConfiguration());
+			sb.AppendFormat("<li><a href=\"{0}\" title=\"SMTP Configuration.\">Smtp</a></li>", urlBuilder.Admin.EditSmtpConfiguration());
+			sb.AppendFormat("<li><a href=\"{0}\" title=\"Reading Configuration.\">Reading</a></li>", urlBuilder.Admin.EditReadingConfiguration());
+			sb.Append("</ul>");
+			sb.Append("</li>");
+		}
+
+		private static void AddUsers(StringBuilder sb, IUrlBuilder urlBuilder, ViewContext viewContext)
+		{
+			bool isCurrent = RouteHelper.IsCurrentController("Dxt_Admin", "Users", viewContext);
+
+			sb.AppendFormat("<li class=\"users {0}\">", isCurrent ? "current" : string.Empty);
+			sb.AppendFormat("<a href=\"{0}\" title=\"Users\">Users</a>", urlBuilder.Admin.EditConfiguration());
+			sb.Append("<ul>");
+			sb.AppendFormat("<li><a href=\"{0}\" title=\"List.\">List</a></li>", "#");
+			sb.AppendFormat("<li><a href=\"{0}\" title=\"Create.\">Create</a></li>", "#");
 			sb.Append("</ul>");
 			sb.Append("</li>");
 		}

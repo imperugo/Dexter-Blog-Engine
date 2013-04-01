@@ -153,9 +153,15 @@
     <Compile Include="App_Start\Constants.cs" />
     <Compile Include="App_Start\Installer.cs" />
     <Compile Include="App_Start\Validators\SimplyCategoryValidationAttribute.cs" />
+    <Compile Include="Areas\Dxt_Admin\Binders\BlogConfigurationBinder.cs" />
     <Compile Include="Areas\Dxt_Admin\Binders\CategoryBinder.cs" />
+    <Compile Include="Areas\Dxt_Admin\Binders\CommentsConfigurationBinder.cs" />
     <Compile Include="Areas\Dxt_Admin\Binders\ItemBinder.cs" />
     <Compile Include="Areas\Dxt_Admin\Binders\PageBinder.cs" />
+    <Compile Include="Areas\Dxt_Admin\Binders\ReadingConfigurationBinder.cs" />
+    <Compile Include="Areas\Dxt_Admin\Binders\SeoConfigurationBinder.cs" />
+    <Compile Include="Areas\Dxt_Admin\Binders\SmtpConfigurationBinder.cs" />
+    <Compile Include="Areas\Dxt_Admin\Binders\TrackingConfigurationBinder.cs" />
     <Compile Include="Areas\Dxt_Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Dxt_Admin\Controllers\ErrorController.cs" />
     <Compile Include="Areas\Dxt_Admin\Controllers\FeedbackController.cs" />
@@ -163,6 +169,7 @@
     <Compile Include="Areas\Dxt_Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Dxt_Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Dxt_Admin\Controllers\PageController.cs" />
+    <Compile Include="Areas\Dxt_Admin\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Dxt_Admin\Controllers\WidgetController.cs" />
     <Compile Include="Areas\Dxt_Admin\Dxt_AdminAreaRegistration.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Category\ConfirmDeleteViewModel.cs" />
@@ -176,6 +183,12 @@
     <Compile Include="Areas\Dxt_Admin\Models\Page\PageDeleteViewData.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Post\PostDeleteViewData.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Post\IndexViewModel.cs" />
+    <Compile Include="Areas\Dxt_Admin\Models\Settings\BlogConfigurationViewModel.cs" />
+    <Compile Include="Areas\Dxt_Admin\Models\Settings\CommentsViewModel.cs" />
+    <Compile Include="Areas\Dxt_Admin\Models\Settings\ReadingViewModel.cs" />
+    <Compile Include="Areas\Dxt_Admin\Models\Settings\SeoViewModel.cs" />
+    <Compile Include="Areas\Dxt_Admin\Models\Settings\SmtpViewModel.cs" />
+    <Compile Include="Areas\Dxt_Admin\Models\Settings\TrackingViewModel.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Widget\FastPostBinder.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Home\IndexViewModel.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Login\CredentialLoginBinder.cs" />

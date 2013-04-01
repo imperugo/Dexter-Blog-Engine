@@ -49,7 +49,32 @@ namespace Dexter.Navigation.Concretes
 
 		public SiteUrl EditConfiguration()
 		{
-			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Home", "Configuration", null, null);
+			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Settings", "Configuration", null, null);
+		}
+
+		public SiteUrl EditSeoConfiguration()
+		{
+			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Settings", "Seo", null, null);
+		}
+
+		public SiteUrl EditTrackingConfiguration()
+		{
+			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Settings", "Tracking", null, null);
+		}
+
+		public SiteUrl EditCommentsConfiguration()
+		{
+			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Settings", "Comments", null, null);
+		}
+
+		public SiteUrl EditSmtpConfiguration()
+		{
+			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Settings", "Smtp", null, null);
+		}
+
+		public SiteUrl EditReadingConfiguration()
+		{
+			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Settings", "Reading", null, null);
 		}
 
 		public SiteUrl FeedbackPage(FeedbackType feedback, string localizationKey, SiteUrl redirect)

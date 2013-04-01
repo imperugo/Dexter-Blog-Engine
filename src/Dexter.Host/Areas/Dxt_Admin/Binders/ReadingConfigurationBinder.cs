@@ -1,25 +1,35 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			Dexter.Build.cs
+// File:			ReadingConfigurationBinder.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
-// Created:		2012/10/27
-// Last edit:	2013/01/20
+// Created:		2013/04/01
+// Last edit:	2013/04/01
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
-using System.Reflection;
+namespace Dexter.Host.Areas.Dxt_Admin.Binders
+{
+	public class ReadingConfigurationBinder
+	{
+		#region Public Properties
 
-//Major.Minor.Patch
-//Major = new version, possible breaking changes
-//Minor = new features
-//Patch = bug fixing
-[assembly: AssemblyFileVersion("0.0.0.5")]
-[assembly: AssemblyVersion("0.0.0.5")]
-[assembly: AssemblyCompany("Dexter Blog Engine (https://github.com/imperugo/DexterBlogEngine)")]
-[assembly: AssemblyCopyright("Copyright https://github.com/imperugo/DexterBlogEngine")]
+		public string EncodingForPageAndFeed { get; set; }
+
+		public int HomePageItemId { get; set; }
+
+		public int NumberOfPostPerFeed { get; set; }
+
+		public int NumberOfPostPerPage { get; set; }
+
+		public bool ShowAbstractInFeed { get; set; }
+
+		#endregion
+	}
+}

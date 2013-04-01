@@ -132,6 +132,11 @@ namespace Dexter.Navigation.Helpers
 			{
 				foreach (string segment in this.Segments)
 				{
+					if (string.IsNullOrEmpty(segment))
+					{
+						continue;
+					}
+
 					sb.AppendFormat("{0}/", segment);
 				}
 			}
