@@ -1,4 +1,4 @@
-﻿#region Disclaimer/Info
+#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 // File:			AssemblyInfo.cs
@@ -18,8 +18,7 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("Dexter.Plugin")]
 [assembly: AssemblyDescription("The plugin manager.")]
-[assembly: AssemblyConfiguration("")]
 [assembly: AssemblyProduct("Dexter.Plugin")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
+[assembly: AssemblyFileVersion("1.0.13107.0")]
+[assembly: AssemblyVersion("1.0.13107.0")]
 [assembly: Guid("d405e38c-b979-4930-af69-9f82dc7f96aa")]

@@ -47,6 +47,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 		{
 			BlogConfigurationViewModel model = new BlogConfigurationViewModel();
 			model.BlogConfiguration = this.BlogConfiguration.MapTo<BlogConfigurationBinder>();
+			model.TimesZones = TimeZoneInfo.GetSystemTimeZones();
 
 			return this.View(model);
 		}
@@ -58,12 +59,14 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 			if (!ModelState.IsValid)
 			{
 				BlogConfigurationViewModel model = new BlogConfigurationViewModel();
+				model.TimesZones = TimeZoneInfo.GetSystemTimeZones();
 				model.BlogConfiguration = blogConfiguration;
 			}
 
 			try
 			{
-				var configuration = this.BlogConfiguration.MapTo<BlogConfigurationDto>();
+				BlogConfigurationDto currentConfiguration = this.BlogConfiguration;
+				BlogConfigurationDto configuration = this.BlogConfiguration.MapPropertiesToInstance<BlogConfigurationDto>(currentConfiguration);
 
 				this.ConfigurationService.SaveOrUpdateConfiguration(configuration);
 

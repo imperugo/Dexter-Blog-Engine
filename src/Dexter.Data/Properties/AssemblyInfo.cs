@@ -1,4 +1,4 @@
-﻿#region Disclaimer/Info
+#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 // File:			AssemblyInfo.cs
@@ -18,8 +18,7 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("Dexter.Data")]
 [assembly: AssemblyDescription("The services contracts for the data storage")]
-[assembly: AssemblyConfiguration("")]
 [assembly: AssemblyProduct("Dexter.Data")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
+[assembly: AssemblyFileVersion("1.0.13107.0")]
+[assembly: AssemblyVersion("1.0.13107.0")]
 [assembly: Guid("53c0de8d-cde1-47a6-9ed9-be752f976b09")]

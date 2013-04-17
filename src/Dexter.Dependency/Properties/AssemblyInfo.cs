@@ -1,4 +1,4 @@
-﻿#region Disclaimer/Info
+#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 // File:			AssemblyInfo.cs
@@ -18,8 +18,7 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("Dexter.Dependency")]
 [assembly: AssemblyDescription("The contract base for the Dependency Injection")]
-[assembly: AssemblyConfiguration("")]
 [assembly: AssemblyProduct("Dexter.Dependency")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
+[assembly: AssemblyFileVersion("1.0.13107.0")]
+[assembly: AssemblyVersion("1.0.13107.0")]
 [assembly: Guid("08e08bd7-0a88-4f62-b28b-224364120615")]

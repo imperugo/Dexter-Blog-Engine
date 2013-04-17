@@ -51,6 +51,9 @@ namespace Dexter.Host.App_Start.Automapper
 			Mapper.CreateMap<PageBinder, PageDto>().ReverseMap();
 
 			Mapper.CreateMap<CategoryBinder, CategoryDto>().ReverseMap();
+
+			Mapper.CreateMap<BlogConfigurationBinder, BlogConfigurationDto>()
+			      .ForMember(dest => dest.TimeZone, source => source.MapFrom(p => TimeZoneInfo.FindSystemTimeZoneById(p.TimeZone)));
 		}
 
 		#endregion

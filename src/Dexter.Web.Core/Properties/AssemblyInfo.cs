@@ -1,4 +1,4 @@
-﻿#region Disclaimer/Info
+#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 // File:			AssemblyInfo.cs
@@ -18,8 +18,7 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("Dexter.Web.Core")]
 [assembly: AssemblyDescription("The business logic of the web application and some cool extensions")]
-[assembly: AssemblyConfiguration("")]
 [assembly: AssemblyProduct("Dexter.Web.Core")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
+[assembly: AssemblyFileVersion("1.0.13107.0")]
+[assembly: AssemblyVersion("1.0.13107.0")]
 [assembly: Guid("6a1c2ed0-7033-44df-a64c-fcfafde68792")]

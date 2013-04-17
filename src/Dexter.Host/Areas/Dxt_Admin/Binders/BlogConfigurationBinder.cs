@@ -17,16 +17,20 @@
 namespace Dexter.Host.Areas.Dxt_Admin.Binders
 {
 	using System;
+	using System.ComponentModel.DataAnnotations;
 
 	public class BlogConfigurationBinder
 	{
 		#region Public Properties
 
+		[Required(AllowEmptyStrings = false)]
 		public string Name { get; set; }
 
+		[Required(AllowEmptyStrings = false)]
 		public Uri SiteDomain { get; set; }
 
-		public TimeZoneInfo TimeZone { get; set; }
+		[Required(AllowEmptyStrings = false)]
+		public string TimeZone { get; set; }
 
 		#endregion
 	}

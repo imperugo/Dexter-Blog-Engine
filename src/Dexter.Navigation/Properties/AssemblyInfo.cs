@@ -1,4 +1,4 @@
-﻿#region Disclaimer/Info
+#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 // File:			AssemblyInfo.cs
@@ -18,8 +18,7 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("Dexter.Navigation")]
 [assembly: AssemblyDescription("The Library with the url builder for navigation")]
-[assembly: AssemblyConfiguration("")]
 [assembly: AssemblyProduct("Dexter.Navigation")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
+[assembly: AssemblyFileVersion("1.0.13107.0")]
+[assembly: AssemblyVersion("1.0.13107.0")]
 [assembly: Guid("f7b5e501-f7cb-4720-abbd-edcd47405a03")]

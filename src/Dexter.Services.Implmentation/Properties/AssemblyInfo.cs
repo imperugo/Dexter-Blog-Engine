@@ -1,4 +1,4 @@
-﻿#region Disclaimer/Info
+#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 // File:			AssemblyInfo.cs
@@ -18,8 +18,7 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("Dexter.Services.Implmentation")]
 [assembly: AssemblyDescription("The concrete implementation of Dexter.Services")]
-[assembly: AssemblyConfiguration("")]
 [assembly: AssemblyProduct("Dexter.Services.Implmentation")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
+[assembly: AssemblyFileVersion("1.0.13107.0")]
+[assembly: AssemblyVersion("1.0.13107.0")]
 [assembly: Guid("44f43efb-77d0-42e8-bbb3-7dede1dd4a5c")]

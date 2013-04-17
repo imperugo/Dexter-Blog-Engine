@@ -42,6 +42,9 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\doc\Dexter.Build.cs">
+      <Link>Properties\Dexter.Build.cs</Link>
+    </Compile>
     <Compile Include="CultureDictionary.cs" />
     <Compile Include="Installer.cs" />
     <Compile Include="LocalizationProvider.cs" />

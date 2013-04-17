@@ -40,14 +40,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\doc\Dexter.Build.cs">
+      <Link>Properties\Dexter.Build.cs</Link>
+    </Compile>
     <Compile Include="Helpers\TweetHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TwitterPlugin.cs" />
+    <Compile Include="TwitterPluginSharedItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Dexter.Plugins.Twitter.nugetspec" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Dexter.Data\Dexter.Data.csproj">
+      <Project>{08BF3549-6B10-4E83-AE71-1C4665004C02}</Project>
+      <Name>Dexter.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Dexter.Entities\Dexter.Entities.csproj">
       <Project>{5FB1AED5-D55E-43CC-A3E0-5E788BD72144}</Project>
       <Name>Dexter.Entities</Name>

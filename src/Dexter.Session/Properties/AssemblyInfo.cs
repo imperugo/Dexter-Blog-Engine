@@ -1,4 +1,4 @@
-﻿#region Disclaimer/Info
+#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 // File:			AssemblyInfo.cs
@@ -18,8 +18,7 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("Dexter.Async")]
 [assembly: AssemblyDescription("All dexter needs to manage async calls.")]
-[assembly: AssemblyConfiguration("")]
 [assembly: AssemblyProduct("Dexter.Async")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
+[assembly: AssemblyFileVersion("1.0.13107.0")]
+[assembly: AssemblyVersion("1.0.13107.0")]
 [assembly: Guid("9ce804cc-0eb3-4871-8607-a16cbdce3cd5")]

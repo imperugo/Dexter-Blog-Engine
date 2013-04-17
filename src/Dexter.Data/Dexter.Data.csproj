@@ -49,6 +49,7 @@
     <Compile Include="IPostDataService.cs" />
     <Compile Include="ITrackBackDataService.cs" />
     <Compile Include="ITrackbackService.cs" />
+    <Compile Include="PluginData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

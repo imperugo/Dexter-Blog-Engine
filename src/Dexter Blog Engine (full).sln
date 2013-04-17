@@ -13,8 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".notes", ".notes", "{403158
 		..\doc\CREDITS.txt = ..\doc\CREDITS.txt
 		..\doc\Dexter.Build.cs = ..\doc\Dexter.Build.cs
 		..\doc\LICENSE.txt = ..\doc\LICENSE.txt
-		..\doc\note.txt = ..\doc\note.txt
-		..\doc\RELEASE NOTE.txt = ..\doc\RELEASE NOTE.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dexter.Dependency", "Dexter.Dependency\Dexter.Dependency.csproj", "{07FF041C-FC20-49A3-8BC4-A38E7F72ABAA}"
@@ -82,6 +80,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dexter.Shared", "Dexter.Shared\Dexter.Shared.csproj", "{43C6E51E-D066-4BD3-8182-ACA95096CB37}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dexter.Localization.Po.Test", "..\tests\Dexter.Localization.Po.Test\Dexter.Localization.Po.Test.csproj", "{12A5A34B-406E-4DE0-95F5-534F21620CCB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".doc", ".doc", "{13779398-67C4-41ED-A319-CA3668885CA0}"
+	ProjectSection(SolutionItems) = preProject
+		..\doc\Dependencies.dgml = ..\doc\Dependencies.dgml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

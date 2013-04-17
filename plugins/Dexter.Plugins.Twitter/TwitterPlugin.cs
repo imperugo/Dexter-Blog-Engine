@@ -5,7 +5,7 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
 // Created:		2013/03/11
-// Last edit:	2013/03/13
+// Last edit:	2013/04/01
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -15,8 +15,7 @@
 
 namespace Dexter.Plugins.Twitter
 {
-	using System;
-
+	using Dexter.Data;
 	using Dexter.Entities;
 	using Dexter.Services;
 	using Dexter.Services.Events;
@@ -24,11 +23,18 @@ namespace Dexter.Plugins.Twitter
 
 	public class TwitterPlugin : IPlugin
 	{
+		#region Fields
+
+		private readonly IPluginDataService pluginDataService;
+
+		#endregion
+
 		#region Constructors and Destructors
 
-		public TwitterPlugin(IPostService postService)
+		public TwitterPlugin(IPostService postService, IPluginDataService pluginDataService)
 		{
-			postService.PostSaved += this.PostSaved;
+			this.pluginDataService = pluginDataService;
+			postService.PostPublished += this.PostPublished;
 		}
 
 		#endregion
@@ -37,7 +43,6 @@ namespace Dexter.Plugins.Twitter
 
 		public void Initialize()
 		{
-			
 		}
 
 		public void Setup()
@@ -48,12 +53,8 @@ namespace Dexter.Plugins.Twitter
 
 		#region Methods
 
-		private void PostSaved(object sender, CancelEventArgsWithoutParameterWithResult<PostDto> e)
+		private void PostPublished(object sender, CancelEventArgsWithoutParameterWithResult<PostDto> e)
 		{
-			if (e.Result.PublishAt >= DateTimeOffset.Now)
-			{
-				return;
-			}
 		}
 
 		#endregion

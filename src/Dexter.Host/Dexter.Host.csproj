@@ -1481,6 +1481,7 @@
       <DependentUpon>jquery.datepick.validation.js</DependentUpon>
     </Content>
     <Content Include="Areas\Dxt_Admin\Views\Category\ConfirmDelete.cshtml" />
+    <Content Include="Areas\Dxt_Admin\Views\Settings\Configuration.cshtml" />
     <None Include="Styles\Global\CommonStyles.css.bundle" />
   </ItemGroup>
   <PropertyGroup>
@@ -1512,6 +1513,10 @@
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

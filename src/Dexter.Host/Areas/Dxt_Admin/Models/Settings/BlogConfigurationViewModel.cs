@@ -16,6 +16,9 @@
 
 namespace Dexter.Host.Areas.Dxt_Admin.Models.Settings
 {
+	using System;
+	using System.Collections.ObjectModel;
+
 	using Dexter.Host.Areas.Dxt_Admin.Binders;
 	using Dexter.Web.Core.Models;
 
@@ -24,6 +27,8 @@ namespace Dexter.Host.Areas.Dxt_Admin.Models.Settings
 		#region Public Properties
 
 		public BlogConfigurationBinder BlogConfiguration { get; set; }
+
+		public ReadOnlyCollection<TimeZoneInfo> TimesZones { get; set; }
 
 		#endregion
 	}
