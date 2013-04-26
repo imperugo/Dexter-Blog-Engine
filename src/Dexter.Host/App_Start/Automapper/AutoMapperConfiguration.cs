@@ -54,9 +54,43 @@ namespace Dexter.Host.App_Start.Automapper
 
 			Mapper.CreateMap<BlogConfigurationBinder, BlogConfigurationDto>()
 			      .ForMember(dest => dest.TimeZone, source => source.MapFrom(p => TimeZoneInfo.FindSystemTimeZoneById(p.TimeZone)));
+
+			Mapper.CreateMap<BlogConfigurationDto, BlogConfigurationBinder>()
+					.ForMember(dest => dest.TimeZone, source => source.MapFrom(p => p.TimeZone.Id));
+
+			Mapper.CreateMap<SeoConfigurationBinder, SeoConfigurationDto>()
+				  .ForMember(dest => dest.DefaultKeyWords, source => source.MapFrom(p => CommaSeparedStringToConvertStringArray(p.DefaultKeyWords)));
+
+			Mapper.CreateMap<SeoConfigurationDto, SeoConfigurationBinder>()
+			      .ForMember(dest => dest.DefaultKeyWords, source => source.MapFrom(p => ConvertStringArrayToCommaSeparedString(p.DefaultKeyWords)));
+
+			Mapper.CreateMap<TrackingConfigurationBinder, Tracking>().ReverseMap();
+			Mapper.CreateMap<CommentsConfigurationBinder, CommentSettingsDto>().ReverseMap();
+			Mapper.CreateMap<SmtpConfigurationBinder, SmtpConfiguration>().ReverseMap();
+			Mapper.CreateMap<ReadingConfigurationBinder, ReadingConfiguration>().ReverseMap();
 		}
 
 		#endregion
+
+		private static string ConvertStringArrayToCommaSeparedString(string[] array)
+		{
+			if (array == null || array.Length == 0)
+			{
+				return null;
+			}
+
+			return string.Join(",", array);
+		}
+
+		private static string[] CommaSeparedStringToConvertStringArray(string value)
+		{
+			if (string.IsNullOrEmpty(value))
+			{
+				return null;
+			}
+
+			return value.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+		}
 		
 		private static DateTimeOffset ConvertPusblishAt(DateTimeOffset source, int hour, int minutes)
 		{

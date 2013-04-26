@@ -20,9 +20,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Binders
 	{
 		#region Public Properties
 
-		public string EncodingForPageAndFeed { get; set; }
-
-		public int HomePageItemId { get; set; }
+		public int? HomePageItemId { get; set; }
 
 		public int NumberOfPostPerFeed { get; set; }
 

@@ -53,7 +53,6 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 		}
 
 		[HttpPost]
-		[ValidateAntiForgeryToken]
 		public ActionResult Configuration(BlogConfigurationBinder blogConfiguration)
 		{
 			if (!ModelState.IsValid)
@@ -89,7 +88,6 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 		}
 
 		[HttpPost]
-		[ValidateAntiForgeryToken]
 		public ActionResult Seo(SeoConfigurationBinder seo)
 		{
 			if (!ModelState.IsValid)
@@ -125,7 +123,6 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 		}
 
 		[HttpPost]
-		[ValidateAntiForgeryToken]
 		public ActionResult Tracking(TrackingConfigurationBinder tracking)
 		{
 			if (!ModelState.IsValid)
@@ -161,7 +158,6 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 		}
 
 		[HttpPost]
-		[ValidateAntiForgeryToken]
 		public ActionResult Comments(CommentsConfigurationBinder comments)
 		{
 			if (!ModelState.IsValid)
@@ -197,7 +193,6 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 		}
 
 		[HttpPost]
-		[ValidateAntiForgeryToken]
 		public ActionResult Smtp(SmtpConfigurationBinder smtp)
 		{
 			if (!ModelState.IsValid)
@@ -227,13 +222,12 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 		public ActionResult Reading()
 		{
 			ReadingViewModel model = new ReadingViewModel();
-			model.Reading = this.BlogConfiguration.MapTo<ReadingConfigurationBinder>();
+			model.Reading = this.BlogConfiguration.ReadingConfiguration.MapTo<ReadingConfigurationBinder>();
 
 			return this.View(model);
 		}
 
 		[HttpPost]
-		[ValidateAntiForgeryToken]
 		public ActionResult Reading(ReadingConfigurationBinder reading)
 		{
 			if (!ModelState.IsValid)

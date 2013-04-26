@@ -1,0 +1,31 @@
+﻿@model Dexter.Host.Areas.Dxt_Admin.Models.Settings.CommentsViewModel
+
+@{
+    Layout = "~/Areas/Dxt_Admin/Views/Shared/_layoutWithMenu.cshtml";
+}
+
+<section class="grid_12">
+	@if (!ViewData.ModelState.IsValid) {
+		<ul class="message error no-margin">
+			@Html.ValidationSummary()
+		</ul>	
+	}
+	
+	<div class="block-border">
+		<form method="post" id="simple_form" class="block-content form">
+			<h1>Edit Comments Settings</h1>
+
+			<fieldset class="grey-bg">
+				<p>
+					<label for="simple-required">Number Of Days Before Close Comments</label>
+					@Html.TextBoxFor(x => x.Comments.NumberOfDayBeforeCloseComments, new { @class = "full-width", placeholder = "Write here the title of the blog" })
+				</p>
+				<p>
+					<label>Enable Premoderation</label>
+					@Html.CheckBoxFor( x => x.Comments.EnablePremoderation, new { @class = "mini-switch"} )
+				</p>
+			</fieldset>
+		</form>
+	</div>
+
+</section>

@@ -1482,6 +1482,11 @@
     </Content>
     <Content Include="Areas\Dxt_Admin\Views\Category\ConfirmDelete.cshtml" />
     <Content Include="Areas\Dxt_Admin\Views\Settings\Configuration.cshtml" />
+    <Content Include="Areas\Dxt_Admin\Views\Settings\Seo.cshtml" />
+    <Content Include="Areas\Dxt_Admin\Views\Settings\Tracking.cshtml" />
+    <Content Include="Areas\Dxt_Admin\Views\Settings\Comments.cshtml" />
+    <Content Include="Areas\Dxt_Admin\Views\Settings\Smtp.cshtml" />
+    <Content Include="Areas\Dxt_Admin\Views\Settings\Reading.cshtml" />
     <None Include="Styles\Global\CommonStyles.css.bundle" />
   </ItemGroup>
   <PropertyGroup>

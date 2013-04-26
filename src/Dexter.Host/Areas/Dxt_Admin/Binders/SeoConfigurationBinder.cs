@@ -5,7 +5,7 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
 // Created:		2013/04/01
-// Last edit:	2013/04/01
+// Last edit:	2013/04/26
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -20,6 +20,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Binders
 
 	public class SeoConfigurationBinder
 	{
+
 		#region Public Properties
 
 		public bool AllowIndicization { get; set; }
@@ -37,5 +38,6 @@ namespace Dexter.Host.Areas.Dxt_Admin.Binders
 		public string DefaultTitle { get; set; }
 
 		#endregion
+
 	}
 }

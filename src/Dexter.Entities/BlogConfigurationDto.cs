@@ -27,18 +27,30 @@ namespace Dexter.Entities
 			this.Name = name;
 			this.SiteDomain = siteDomain;
 			this.SeoConfiguration = new SeoConfigurationDto(name);
-			this.CommentSettings = new CommentSettingsDto();
+			this.CommentSettings = new CommentSettingsDto
+				                       {
+					                       EnablePremoderation = false,
+					                       NumberOfDayBeforeCloseComments = 0
+				                       };
 			this.DebugInfo = new DebugInfo();
 			this.SmtpConfiguration = new SmtpConfiguration
 				                         {
 					                         SmtpHost = "localhost", 
-					                         UseSSL = false
+					                         UseSSL = false,
+											 Port = 25
 				                         };
+
+			this.Tracking = new Tracking
+				                {
+									EnablePingBackReceive = true,
+									EnablePingBackSend = true,
+									EnableReferrerTracking = true,
+									EnableTrackBackReceive = true,
+									EnableTrackBackSend = true
+				                };
 
 			this.ReadingConfiguration = new ReadingConfiguration
 				                            {
-					                            EncodingForPageAndFeed = "UTF-8", 
-					                            HomePageItemId = 10, 
 					                            NumberOfPostPerFeed = 10, 
 					                            NumberOfPostPerPage = 10, 
 					                            ShowAbstractInFeed = false
@@ -263,9 +275,7 @@ namespace Dexter.Entities
 	{
 		#region Public Properties
 
-		public string EncodingForPageAndFeed { get; set; }
-
-		public int HomePageItemId { get; set; }
+		public int? HomePageItemId { get; set; }
 
 		public int NumberOfPostPerFeed { get; set; }
 

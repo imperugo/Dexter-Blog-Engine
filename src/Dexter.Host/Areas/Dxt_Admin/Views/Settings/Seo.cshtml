@@ -1,0 +1,48 @@
+﻿@model Dexter.Host.Areas.Dxt_Admin.Models.Settings.SeoViewModel
+
+@{
+    Layout = "~/Areas/Dxt_Admin/Views/Shared/_layoutWithMenu.cshtml";
+}
+
+<section class="grid_12">
+	@if (!ViewData.ModelState.IsValid) {
+		<ul class="message error no-margin">
+			@Html.ValidationSummary()
+		</ul>	
+	}
+	
+	<div class="block-border">
+		<form method="post" id="simple_form" class="block-content form">
+			<h1>Edit Seo Settings</h1>
+			
+			<fieldset class="grey-bg required">
+				<legend>Required Fields</legend>
+				<p>
+					<label for="simple-required">Default Title</label>
+					@Html.TextBoxFor(x => x.Seo.DefaultTitle, new { @class = "full-width", placeholder = "Write here the title of the blog" })
+				</p>
+				<p>
+					<label for="simple-required">Default Description</label>
+					@Html.TextBoxFor(x => x.Seo.DefaultDescription, new { @class = "full-width", placeholder = "Write here the description of the blog" })
+				</p>
+				<p>
+					<label for="simple-required">Default KeyWords (comma separeted)</label>
+					@Html.TextBoxFor(x => x.Seo.DefaultKeyWords, new { @class = "full-width", placeholder = "Write here the keywords of the blog (comma separed)" })
+				</p>
+				<p>
+					<label for="simple-required">CopyRight</label>
+					@Html.TextBoxFor(x => x.Seo.CopyRight, new { @class = "full-width", placeholder = "Write here the copyright of the blog" })
+				</p>
+				
+			</fieldset>
+
+			<fieldset class="grey-bg">
+				<p>
+					<label>Allow Indicization</label>
+					@Html.CheckBoxFor( x => x.Seo.AllowIndicization, new { @class = "mini-switch"} )
+				</p>
+			</fieldset>
+		</form>
+	</div>
+
+</section>
