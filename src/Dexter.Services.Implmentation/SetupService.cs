@@ -152,6 +152,8 @@ namespace Dexter.Services.Implmentation
 
 					// Adding user to role
 					Roles.AddUserToRole(item.AdminUsername, Constants.AdministratorRole);
+					Roles.AddUserToRole(item.AdminUsername, Constants.Editor);
+					Roles.AddUserToRole(item.AdminUsername, Constants.Moderator);
 					this.logger.Debug("Assigned user to administration role.");
 				});
 		}

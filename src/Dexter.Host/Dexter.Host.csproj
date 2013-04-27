@@ -170,8 +170,11 @@
     <Compile Include="Areas\Dxt_Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Dxt_Admin\Controllers\PageController.cs" />
     <Compile Include="Areas\Dxt_Admin\Controllers\SettingsController.cs" />
+    <Compile Include="Areas\Dxt_Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Dxt_Admin\Controllers\WidgetController.cs" />
     <Compile Include="Areas\Dxt_Admin\Dxt_AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Dxt_Admin\Models\Account\IndexViewModel.cs" />
+    <Compile Include="Areas\Dxt_Admin\Models\Account\User.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Category\ConfirmDeleteViewModel.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Category\IndexViewModel.cs" />
     <Compile Include="Areas\Dxt_Admin\Models\Category\ManageViewModel.cs" />
@@ -1487,6 +1490,7 @@
     <Content Include="Areas\Dxt_Admin\Views\Settings\Comments.cshtml" />
     <Content Include="Areas\Dxt_Admin\Views\Settings\Smtp.cshtml" />
     <Content Include="Areas\Dxt_Admin\Views\Settings\Reading.cshtml" />
+    <Content Include="Areas\Dxt_Admin\Views\Account\Index.cshtml" />
     <None Include="Styles\Global\CommonStyles.css.bundle" />
   </ItemGroup>
   <PropertyGroup>

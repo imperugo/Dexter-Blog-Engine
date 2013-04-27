@@ -1,0 +1,101 @@
+﻿@model Dexter.Host.Areas.Dxt_Admin.Models.Account.IndexViewModel
+
+@{
+	Layout = "~/Areas/Dxt_Admin/Views/Shared/_layoutWithMenu.cshtml";
+}
+
+@helper GetRowColor(string text){
+	string[] cssStyles = new[] { "", "orange-keyword", "purple-keyword", "green-keyword" };
+	var css = cssStyles.GetRandom();
+
+	<text>
+		<li class="@css">@text</li>
+	</text>
+}
+
+<div class="block-border">
+	<form class="block-content form" id="table_form" method="post" action="">
+		<h1>Recent Posts</h1>
+
+		<div class="block-controls">
+
+			<ul class="controls-buttons">
+				@Html.Pager(Model.Users)
+				<li class="sep"></li>
+			</ul>
+
+		</div>
+
+		<div class="no-margin">
+			<table class="table" cellspacing="0" width="100%">
+				<thead>
+					<tr>
+						<th class="black-cell"><span class="success"></span></th>
+						<th scope="col">Username</th>
+						<th scope="col">Email</th>
+						<th scope="col">Creation Date</th>
+						<th scope="col">Is Approved</th>
+						<th scope="col">Is Locked Out</th>
+						<th scope="col">Last Activity Date</th>
+						<th scope="col">Last Login Date</th>
+						<th scope="col">Roles</th>
+						<th scope="col" class="table-actions">Actions</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					@foreach (var user in Model.Users.Result)
+					{
+						<tr>
+							<th scope="row" class="table-check-cell">
+								<input type="checkbox" name="selected[]" id="table-selected-1" value="1">
+							</th>
+							<td>@user.Username</td>
+							<td>@user.Email</td>
+							<td>@user.CreateDate</td>
+							<td>@user.IsApproved</td>
+							<td>@user.IsLockedOut</td>
+							<td>@user.LastActivityDate</td>
+							<td>@user.LastLoginDate</td>
+							<td>
+								<ul class="keywords">
+									@foreach (string category in user.Roles)
+									{
+										@GetRowColor(category)
+									}
+								</ul>
+							</td>
+							<td class="table-actions">
+								<a href="#" title="Edit" class="with-tip">
+									<img src="~/images/icons/fugue/pencil.png" width="16" height="16">
+								</a>
+								<a href="#" title="Delete" class="with-tip">
+									<img src="~/images/icons/fugue/cross-circle.png" width="16" height="16">
+								</a>
+							</td>
+						</tr>
+					}
+				</tbody>
+
+			</table>
+		</div>
+
+		<ul class="message no-margin">
+			<li>@Model.Users.PagedSummary()</li>
+		</ul>
+
+		<div class="block-footer">
+			<img src="~/images/icons/fugue/arrow-curve-000-left.png" width="16" height="16" class="picto">
+			<a href="#" class="button">Select All</a>
+			<a href="#" class="button">Unselect All</a>
+			<span class="sep"></span>
+			<select name="table-action" id="table-action" class="small">
+				<option value="">Action for selected...</option>
+				<option value="validate">Validate</option>
+				<option value="delete">Delete</option>
+			</select>
+			<button type="submit" class="small">Ok</button>
+		</div>
+
+	</form>
+</div>

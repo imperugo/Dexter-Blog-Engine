@@ -17,11 +17,14 @@
 namespace Dexter.Host.App_Start.Automapper
 {
 	using System;
+	using System.Collections.Generic;
+	using System.Web.Security;
 
 	using AutoMapper;
 
 	using Dexter.Entities;
 	using Dexter.Host.Areas.Dxt_Admin.Binders;
+	using Dexter.Host.Areas.Dxt_Admin.Models.Account;
 	using Dexter.Host.Areas.Dxt_Setup.Models;
 
 	public class AutoMapperConfiguration
@@ -68,6 +71,8 @@ namespace Dexter.Host.App_Start.Automapper
 			Mapper.CreateMap<CommentsConfigurationBinder, CommentSettingsDto>().ReverseMap();
 			Mapper.CreateMap<SmtpConfigurationBinder, SmtpConfiguration>().ReverseMap();
 			Mapper.CreateMap<ReadingConfigurationBinder, ReadingConfiguration>().ReverseMap();
+
+			Mapper.CreateMap<MembershipUser, User>();
 		}
 
 		#endregion
