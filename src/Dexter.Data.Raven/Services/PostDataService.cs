@@ -211,6 +211,11 @@ namespace Dexter.Data.Raven.Services
 				throw new ArgumentException("The page size must be greater than 0", "pageSize");
 			}
 
+			if (string.IsNullOrEmpty(tag))
+			{
+				throw new ArgumentException("The tag must contains a valid value.", "tag");
+			}
+
 			RavenQueryStatistics stats;
 
 			return this.Session.Query<Post>()
@@ -219,6 +224,33 @@ namespace Dexter.Data.Raven.Services
 			           .Where(post => post.Tags.Any(postTag => postTag == tag))
 			           .OrderByDescending(post => post.PublishAt)
 			           .ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
+		}
+
+		public IPagedResult<PostDto> GetPostsByCategory(int pageIndex, int pageSize, string categoryName, ItemQueryFilter filters)
+		{
+			if (pageIndex < 1)
+			{
+				throw new ArgumentException("The page index must be greater than 0.", "pageIndex");
+			}
+
+			if (pageSize < 1)
+			{
+				throw new ArgumentException("The page size must be greater than 0.", "pageSize");
+			}
+
+			if (string.IsNullOrEmpty(categoryName))
+			{
+				throw new ArgumentException("The category name must contains a valid value.", "categoryName");
+			}
+
+			RavenQueryStatistics stats;
+
+			return this.Session.Query<Post>()
+					   .Statistics(out stats)
+					   .ApplyFilterItem(filters)
+					   .Where(post => post.Categories.Any(postCategory => postCategory == categoryName))
+					   .OrderByDescending(post => post.PublishAt)
+					   .ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
 		}
 
 		public IList<TagDto> GetTopTagsForPublishedPosts(int numberOfTags)

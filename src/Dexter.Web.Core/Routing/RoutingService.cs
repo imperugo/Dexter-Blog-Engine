@@ -85,12 +85,27 @@ namespace Dexter.Web.Core.Routing
 					this.logger.DebugFormat("Registered route for dynamic page '{0}'", x);
 				});
 
+			webApiConfiguration.Routes.MapHttpRoute("SyndicationWithAction", "api/Syndication/{action}/{id}", new
+			{
+				controller = "Syndication",
+				action = "MainFeed",
+				id = RouteParameter.Optional
+			});
+
 			webApiConfiguration.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{id}", new
 				                                                                               {
 					                                                                               id = RouteParameter.Optional
 				                                                                               });
 
+			webApiConfiguration.Routes.MapHttpRoute("DefaultWithAction", "api/{controller}/{action}/{id}", new
+				                                                                                               {
+					                                                                                               controller = "Syndication",
+					                                                                                               action = "MainFeed",
+					                                                                                               id = RouteParameter.Optional
+				                                                                                               });
+
 			routes.Add(new Route("wlw/metaweblog", new MetaWeblogApiRouteHandler()));
+
 			routes.MapRoute("Default", "{controller}/{action}/{id}", 
 				new
 					{

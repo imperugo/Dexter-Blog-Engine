@@ -33,6 +33,10 @@ namespace Dexter.Navigation.Contracts
 
 		ICategoryUrlBuilder Category { get; }
 
+		IServiceUrlBuilder Service { get; }
+
+		IFeedUrlBuilder Feed { get; }
+
 		#endregion
 
 		#region Public Methods and Operators

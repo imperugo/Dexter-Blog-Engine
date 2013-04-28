@@ -22,7 +22,7 @@ namespace Dexter.Host.Controllers
 
 	using Dexter.Host.Model.TagController;
 	using Dexter.Services;
-	using Dexter.Web.Core.Controllers.Web;
+	using Dexter.Web.Core.Controllers;
 
 	public class TagController : DexterControllerBase
 	{

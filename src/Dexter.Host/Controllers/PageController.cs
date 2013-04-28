@@ -23,7 +23,7 @@ namespace Dexter.Host.Controllers
 	using Dexter.Entities;
 	using Dexter.Host.Model.PageController;
 	using Dexter.Services;
-	using Dexter.Web.Core.Controllers.Web;
+	using Dexter.Web.Core.Controllers;
 	using Dexter.Web.Core.Filters;
 
 	public class PageController : DexterControllerBase

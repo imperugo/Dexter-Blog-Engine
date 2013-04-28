@@ -77,13 +77,17 @@
     <Compile Include="Concretes\AdminPageUrlBuilder.cs" />
     <Compile Include="Concretes\AdminPostUrlBuilder.cs" />
     <Compile Include="Concretes\CategoryUrlBuilder.cs" />
+    <Compile Include="Concretes\FeedUrlBuilder.cs" />
+    <Compile Include="Concretes\ServiceUrlBuilder.cs" />
     <Compile Include="Concretes\PageUrlBuilder.cs" />
     <Compile Include="Concretes\UrlBuilder.cs" />
     <Compile Include="Concretes\AdminUrlBuilder.cs" />
     <Compile Include="Contracts\IAdminUrlBuilder.cs" />
     <Compile Include="Contracts\ICategoryUrlBuilder.cs" />
+    <Compile Include="Contracts\IFeedUrlBuilder.cs" />
     <Compile Include="Contracts\IPageUrlBuilder.cs" />
     <Compile Include="Contracts\IPostUrlBuilder.cs" />
+    <Compile Include="Contracts\IServiceUrlBuilder.cs" />
     <Compile Include="Contracts\IUrlBuilder.cs" />
     <Compile Include="Concretes\PostUrlBuilder.cs" />
     <Compile Include="Extensions\NavigationExtensions.cs" />

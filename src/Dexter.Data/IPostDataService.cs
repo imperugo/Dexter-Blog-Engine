@@ -39,6 +39,8 @@ namespace Dexter.Data
 
 		IPagedResult<PostDto> GetPostsByTag(int pageIndex, int pageSize, string tag, ItemQueryFilter filters);
 
+		IPagedResult<PostDto> GetPostsByCategory(int pageIndex, int pageSize, string categoryName, ItemQueryFilter filters);
+
 		IList<TagDto> GetTopTagsForPublishedPosts(int numberOfTags);
 
 		void SaveOrUpdate(PostDto item);

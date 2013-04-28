@@ -17,14 +17,11 @@ namespace Dexter.Services
 {
 	using System;
 	using System.Collections.Generic;
-	using System.Security.Permissions;
-	using System.Threading.Tasks;
 
 	using Dexter.Entities;
 	using Dexter.Entities.Filters;
 	using Dexter.Entities.Result;
 	using Dexter.Services.Events;
-	using Dexter.Shared;
 
 	public interface IPostService
 	{
@@ -41,12 +38,12 @@ namespace Dexter.Services
 		event EventHandler<CancelEventArgsWithoutParameters<IList<MonthDto>>> MonthsRetrievingForPublishedPosts;
 
 		/// <summary>
-		/// This event will raise after the <see cref="Post"/> is delete. The event is raised by by the implementation of <see cref="Delete"/> or the async version.
+		/// This event will raise after the <see cref="PostDto"/> is delete. The event is raised by by the implementation of <see cref="Delete"/> or the async version.
 		/// </summary>
 		event EventHandler<EventArgs> PostDeleted;
 
 		/// <summary>
-		/// This event will raise before to delete <see cref="Post"/>. The event is raised by by the implementation of <see cref="Delete"/> or the async version.
+		/// This event will raise before to delete <see cref="PostDto"/>. The event is raised by by the implementation of <see cref="Delete"/> or the async version.
 		/// </summary>
 		event EventHandler<CancelEventArgsWithOneParameterWithoutResult<int>> PostDeleting;
 
@@ -96,6 +93,11 @@ namespace Dexter.Services
 		event EventHandler<GenericEventArgs<IPagedResult<PostDto>>> PostsRetrievedByTag;
 
 		/// <summary>
+		/// This event will raise after to retrieve <see cref="IPagedResult"/> of <see cref="PostDto"/> by tag with specific filters. The event is raised by by the implementation of <see cref="GetPostsByCategory"/> or the async version.
+		/// </summary>
+		event EventHandler<GenericEventArgs<IPagedResult<PostDto>>> PostsRetrievedByCategory;
+
+		/// <summary>
 		/// This event will raise after to retrieve <see cref="IPagedResult"/> of <see cref="PostDto"/> with specific filters. The event is raised by by the implementation of <see cref="GetPosts"/> or the async version.
 		/// </summary>
 		event EventHandler<GenericEventArgs<IPagedResult<PostDto>>> PostsRetrievedWithFilters;
@@ -108,7 +110,12 @@ namespace Dexter.Services
 		/// <summary>
 		/// This event will raise before to retrieve <see cref="IPagedResult"/> of <see cref="PostDto"/> by tag with specific filters. The event is raised by by the implementation of <see cref="GetPostsByTag"/> or the async version.
 		/// </summary>
-		event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, string, ItemQueryFilter>, IPagedResult<PostDto>>> PostsRetrievingBytag;
+		event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, string, ItemQueryFilter>, IPagedResult<PostDto>>> PostsRetrievingByTag;
+
+		/// <summary>
+		/// This event will raise before to retrieve <see cref="IPagedResult"/> of <see cref="PostDto"/> by tag with specific filters. The event is raised by by the implementation of <see cref="GetPostsByCategory"/> or the async version.
+		/// </summary>
+		event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, string, ItemQueryFilter>, IPagedResult<PostDto>>> PostsRetrievingByCategory;
 
 		/// <summary>
 		/// This event will raise before to retrieve <see cref="IPagedResult"/> of <see cref="PostDto"/> with specific filters. The event is raised by by the implementation of <see cref="GetPosts"/> or the async version.
@@ -139,8 +146,6 @@ namespace Dexter.Services
 
 		#region Public Methods and Operators
 
-		[PrincipalPermission(SecurityAction.PermitOnly, Authenticated = true, Role = Constants.Editor)]
-		[PrincipalPermission(SecurityAction.PermitOnly, Authenticated = true, Role = Constants.AdministratorRole)]
 		void Delete(int key);
 
 		IList<MonthDto> GetMonthsForPublishedPosts();
@@ -155,10 +160,10 @@ namespace Dexter.Services
 
 		IPagedResult<PostDto> GetPostsByTag(int pageIndex, int pageSize, string tag, ItemQueryFilter filters = null);
 
+		IPagedResult<PostDto> GetPostsByCategory(int pageIndex, int pageSize, string categoryName, ItemQueryFilter filters = null);
+
 		IList<TagDto> GetTopTagsForPublishedPosts(int maxNumberOfTags);
 
-		[PrincipalPermission(SecurityAction.PermitOnly, Authenticated = true, Role = Constants.Editor)]
-		[PrincipalPermission(SecurityAction.PermitOnly, Authenticated = true, Role = Constants.AdministratorRole)]
 		void SaveOrUpdate(PostDto item);
 
 		IPagedResult<PostDto> Search(string term, int pageIndex, int pageSize, ItemQueryFilter filters);

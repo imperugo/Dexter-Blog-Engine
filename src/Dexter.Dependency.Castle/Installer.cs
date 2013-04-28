@@ -16,6 +16,7 @@
 namespace Dexter.Dependency.Castle
 {
 	using System.Web;
+	using System.Web.Http.Dispatcher;
 	using System.Web.Mvc;
 
 	using global::Castle.MicroKernel.Lifestyle;
@@ -44,6 +45,7 @@ namespace Dexter.Dependency.Castle
 			container.Register<IHttpModule, PerWebRequestLifestyleModule>(LifeCycle.Singleton);
 			container.Register<IDependencyResolver, DexterDependencyResolver>(LifeCycle.Singleton);
 			container.Register<System.Web.Http.Dependencies.IDependencyResolver, Web.WebApi.DexterDependencyResolver>(LifeCycle.Singleton);
+			container.Register<IHttpControllerActivator, Web.WebApi.DexterHttpControllerActivator>(LifeCycle.Singleton);
 		}
 
 		/// <summary>

@@ -33,6 +33,7 @@ namespace Dexter.Host.App_Start
 		public void ServiceRegistration(IDexterContainer container)
 		{
 			container.RegisterComponentsByBaseClass<Controller>(this.GetType().Assembly, LifeCycle.Transient);
+			container.RegisterComponentsByBaseClass<System.Web.Http.Controllers.IHttpController>(this.GetType().Assembly, LifeCycle.Transient);
 		}
 
 		public void ServiceRegistrationComplete(IDexterContainer container)

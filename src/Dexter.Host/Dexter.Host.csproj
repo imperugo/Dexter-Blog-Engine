@@ -148,6 +148,7 @@
     <Compile Include="..\..\doc\Dexter.Build.cs">
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
+    <Compile Include="Api\SyndicationController.cs" />
     <Compile Include="App_Start\Automapper\AutoMapperConfiguration.cs" />
     <Compile Include="App_Start\Backoffice\BackOfficeHelper.cs" />
     <Compile Include="App_Start\Constants.cs" />
@@ -1360,6 +1361,10 @@
     <Content Include="App_Data\Localization\en-US\Core.po" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dexter.Api.Core\Dexter.Api.Core.csproj">
+      <Project>{3441ce35-6cd3-4d5c-8fe6-8488a93e7249}</Project>
+      <Name>Dexter.Api.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dexter.Automapper.Extensions\Dexter.Automapper.Extensions.csproj">
       <Project>{8cd3fcf5-e770-4628-bcf3-97308132015e}</Project>
       <Name>Dexter.Automapper.Extensions</Name>

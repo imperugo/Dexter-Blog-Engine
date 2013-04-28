@@ -27,7 +27,7 @@ namespace Dexter.Host.Areas.Dxt_Setup.Controllers
 	using Dexter.Host.Areas.Dxt_Setup.Models.Home;
 	using Dexter.Navigation.Contracts;
 	using Dexter.Services;
-	using Dexter.Web.Core.Controllers.Web;
+	using Dexter.Web.Core.Controllers;
 	using Dexter.Web.Core.Routing;
 
 	public class HomeController : DexterControllerBase

@@ -27,13 +27,15 @@ namespace Dexter.Navigation.Concretes
 	{
 		#region Constructors and Destructors
 
-		public UrlBuilder(IConfigurationService configurationService, IAdminUrlBuilder admin, IPostUrlBuilder post, IPageUrlBuilder page, ICategoryUrlBuilder categoryUrlBuilder)
+		public UrlBuilder(IConfigurationService configurationService, IAdminUrlBuilder admin, IPostUrlBuilder post, IPageUrlBuilder page, ICategoryUrlBuilder categoryUrlBuilder, IServiceUrlBuilder serviceUrlBuilder, IFeedUrlBuilder feedUrlBuilder)
 			: base(configurationService)
 		{
 			this.Admin = admin;
 			this.Post = post;
 			this.Page = page;
 			this.Category = categoryUrlBuilder;
+			this.Service = serviceUrlBuilder;
+			this.Feed = feedUrlBuilder;
 		}
 
 		#endregion
@@ -55,6 +57,10 @@ namespace Dexter.Navigation.Concretes
 		public IPostUrlBuilder Post { get; private set; }
 
 		public ICategoryUrlBuilder Category { get; private set; }
+
+		public IServiceUrlBuilder Service { get; private set; }
+
+		public IFeedUrlBuilder Feed { get; private set; }
 
 		#endregion
 

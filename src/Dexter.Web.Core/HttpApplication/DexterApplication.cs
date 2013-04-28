@@ -5,12 +5,13 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
 // Created:		2012/11/01
-// Last edit:	2013/01/20
+// Last edit:	2013/04/28
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Web.Core.HttpApplication
@@ -40,11 +41,11 @@ namespace Dexter.Web.Core.HttpApplication
 
 		private readonly ILog logger;
 
+		private readonly IPluginService pluginService;
+
 		private readonly IRoutingService routingService;
 
 		private readonly ITaskExecutor taskExecutor;
-
-		private readonly IPluginService pluginService;
 
 		#endregion
 
@@ -67,6 +68,7 @@ namespace Dexter.Web.Core.HttpApplication
 
 			base.BeginRequest += (o, args) => this.BeginRequest();
 			base.EndRequest += (o, args) => this.EndRequest();
+			this.Init();
 		}
 
 		#endregion
@@ -75,7 +77,7 @@ namespace Dexter.Web.Core.HttpApplication
 
 		public new void BeginRequest()
 		{
-			this.logger.DebugFormat("Beginning request for url '{0}'",HttpContext.Current.Request.Url);
+			this.logger.DebugFormat("Beginning request for url '{0}'", HttpContext.Current.Request.Url);
 			this.dexterCall.StartSession();
 		}
 
@@ -98,8 +100,8 @@ namespace Dexter.Web.Core.HttpApplication
 
 			this.logger.DebugFormat("Ending request for url '{0}'", HttpContext.Current.Request.Url);
 
-			var exception = errors as DexterRestartRequiredException;
-			
+			DexterRestartRequiredException exception = errors as DexterRestartRequiredException;
+
 			if (exception != null)
 			{
 				this.logger.DebugFormat("Restart required by '{0}' with reason '{1}'.", exception.Caller, exception.Message);
@@ -157,19 +159,26 @@ namespace Dexter.Web.Core.HttpApplication
 		{
 			this.routingService.RegisterRoutes();
 
-			this.RegisterGlobalFilters(GlobalFilters.Filters);
+			this.RegisterGlobalFilters();
 
 			DependencyResolver.SetResolver(this.container.Resolve<IDependencyResolver>());
 			GlobalConfiguration.Configuration.DependencyResolver = this.container.Resolve<System.Web.Http.Dependencies.IDependencyResolver>();
 		}
 
-		private void RegisterGlobalFilters(GlobalFilterCollection filters)
+		private void RegisterGlobalFilters()
 		{
 			FilterAttribute[] f = this.container.ResolveAll<FilterAttribute>();
 
 			foreach (FilterAttribute filter in f)
 			{
-				filters.Add(filter);
+				GlobalFilters.Filters.Add(filter);
+			}
+
+			System.Web.Http.Filters.FilterAttribute[] webApiFilter = this.container.ResolveAll<System.Web.Http.Filters.FilterAttribute>();
+
+			foreach (System.Web.Http.Filters.FilterAttribute filter in webApiFilter)
+			{
+				GlobalConfiguration.Configuration.Filters.Add(filter);
 			}
 		}
 

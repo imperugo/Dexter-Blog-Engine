@@ -24,7 +24,7 @@ namespace Dexter.Host.Controllers
 	using Dexter.Entities.Filters;
 	using Dexter.Host.Model.HomeController;
 	using Dexter.Services;
-	using Dexter.Web.Core.Controllers.Web;
+	using Dexter.Web.Core.Controllers;
 	using Dexter.Web.Core.Filters;
 
 	public class HomeController : DexterControllerBase
@@ -49,7 +49,7 @@ namespace Dexter.Host.Controllers
 		{
 			IndexViewModel model = new IndexViewModel();
 
-			model.Posts = this.postService.GetPosts(page, 10, new ItemQueryFilter
+			model.Posts = this.postService.GetPosts(page, this.BlogConfiguration.ReadingConfiguration.NumberOfPostPerPage, new ItemQueryFilter
 				                                                                                  {
 					                                                                                  MaxPublishAt = DateTimeOffset.Now, 
 					                                                                                  Status = ItemStatus.Published

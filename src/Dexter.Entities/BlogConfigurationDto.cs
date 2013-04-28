@@ -132,6 +132,7 @@ namespace Dexter.Entities
 		{
 			this.AllowIndicization = true;
 			this.DefaultTitle = string.Format("{0} | ", blogName);
+			this.DefaultKeyWords = new string[0];
 		}
 
 		#endregion
