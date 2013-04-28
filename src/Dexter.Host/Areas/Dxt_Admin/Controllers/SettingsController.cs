@@ -30,7 +30,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 	using Dexter.Services;
 	using Dexter.Shared;
 	using Dexter.Shared.Exceptions;
-	using Dexter.Web.Core.Controllers.Web;
+	using Dexter.Web.Core.Controllers;
 
 	[Authorize(Roles = Constants.AdministratorRole)]
 	public class SettingsController : DexterControllerBase

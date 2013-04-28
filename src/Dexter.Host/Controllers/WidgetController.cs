@@ -27,7 +27,7 @@ namespace Dexter.Host.Controllers
 	using Dexter.Entities.Result;
 	using Dexter.Host.Model.Widget;
 	using Dexter.Services;
-	using Dexter.Web.Core.Controllers.Web;
+	using Dexter.Web.Core.Controllers;
 
 	public class WidgetController : DexterControllerBase
 	{

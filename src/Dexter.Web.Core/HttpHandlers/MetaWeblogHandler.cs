@@ -213,7 +213,6 @@ namespace Dexter.Web.Core.HttpHandlers
 						          categoryId = cat.Id.ToString(CultureInfo.InvariantCulture), 
 						          categoryName = cat.Name, 
 						          
-						          
 						          // todo: fill up the 'is primary field", maybe this must be true for the first category only
 						          isPrimary = (i == 0)
 					          };

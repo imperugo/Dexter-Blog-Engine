@@ -5,18 +5,20 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
 // Created:		2012/11/01
-// Last edit:	2013/01/20
+// Last edit:	2013/04/28
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Services.Implmentation
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Security.Permissions;
 
 	using Common.Logging;
 
@@ -40,9 +42,9 @@ namespace Dexter.Services.Implmentation
 
 		private readonly IPostDataService postDataService;
 
-		private readonly IUserContext userContext;
-
 		private readonly ITaskExecutor taskExecutor;
+
+		private readonly IUserContext userContext;
 
 		#endregion
 
@@ -68,6 +70,8 @@ namespace Dexter.Services.Implmentation
 
 		public event EventHandler<CancelEventArgsWithOneParameterWithoutResult<int>> PostDeleting;
 
+		public event EventHandler<CancelEventArgsWithoutParameterWithResult<PostDto>> PostPublished;
+
 		public event EventHandler<GenericEventArgs<PostDto>> PostRetrievedById;
 
 		public event EventHandler<GenericEventArgs<PostDto>> PostRetrievedBySlug;
@@ -76,11 +80,11 @@ namespace Dexter.Services.Implmentation
 
 		public event EventHandler<CancelEventArgsWithOneParameter<string, PostDto>> PostRetrievingBySlug;
 
-		public event EventHandler<CancelEventArgsWithoutParameterWithResult<PostDto>> PostPublished;
-
 		public event EventHandler<CancelEventArgsWithoutParameterWithResult<PostDto>> PostSaved;
 
 		public event EventHandler<CancelEventArgsWithOneParameterWithoutResult<PostDto>> PostSaving;
+
+		public event EventHandler<GenericEventArgs<IPagedResult<PostDto>>> PostsRetrievedByCategory;
 
 		public event EventHandler<GenericEventArgs<IPagedResult<PostDto>>> PostsRetrievedByDates;
 
@@ -88,9 +92,11 @@ namespace Dexter.Services.Implmentation
 
 		public event EventHandler<GenericEventArgs<IPagedResult<PostDto>>> PostsRetrievedWithFilters;
 
+		public event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, string, ItemQueryFilter>, IPagedResult<PostDto>>> PostsRetrievingByCategory;
+
 		public event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, int, int?, int?, ItemQueryFilter>, IPagedResult<PostDto>>> PostsRetrievingByDates;
 
-		public event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, string, ItemQueryFilter>, IPagedResult<PostDto>>> PostsRetrievingBytag;
+		public event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, string, ItemQueryFilter>, IPagedResult<PostDto>>> PostsRetrievingByTag;
 
 		public event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, ItemQueryFilter>, IPagedResult<PostDto>>> PostsRetrievingWithFilters;
 
@@ -106,6 +112,8 @@ namespace Dexter.Services.Implmentation
 
 		#region Public Methods and Operators
 
+		[PrincipalPermission(SecurityAction.PermitOnly, Authenticated = true, Role = Constants.Editor)]
+		[PrincipalPermission(SecurityAction.PermitOnly, Authenticated = true, Role = Constants.AdministratorRole)]
 		public void Delete(int key)
 		{
 			if (key < 1)
@@ -122,7 +130,7 @@ namespace Dexter.Services.Implmentation
 				return;
 			}
 
-			var post = this.postDataService.GetPostByKey(key);
+			PostDto post = this.postDataService.GetPostByKey(key);
 
 			if (post == null)
 			{
@@ -133,7 +141,7 @@ namespace Dexter.Services.Implmentation
 			{
 				throw new DexterSecurityException(string.Format("Only the Administrator or the Author can delete the post (item Key '{0}').", post.Id));
 			}
-			
+
 			this.postDataService.Delete(key);
 
 			this.PostDeleted.Raise(this, new EventArgs());
@@ -246,6 +254,52 @@ namespace Dexter.Services.Implmentation
 			return result;
 		}
 
+		public IPagedResult<PostDto> GetPostsByCategory(int pageIndex, int pageSize, string categoryName, ItemQueryFilter filters = null)
+		{
+			if (pageIndex < 1)
+			{
+				throw new ArgumentException("The page index must be greater than 0", "pageIndex");
+			}
+
+			if (pageSize < 1)
+			{
+				throw new ArgumentException("The page size must be greater than 0", "pageSize");
+			}
+
+			if (categoryName == null)
+			{
+				throw new ArgumentNullException("categoryName", "The string categoryName must contains a value");
+			}
+
+			if (categoryName == string.Empty)
+			{
+				throw new ArgumentException("The string categoryName must not be empty", "categoryName");
+			}
+
+			if (filters == null)
+			{
+				filters = new ItemQueryFilter();
+				filters.MaxPublishAt = DateTimeOffset.Now.AsMinutes();
+				filters.Status = ItemStatus.Published;
+			}
+
+			CancelEventArgsWithOneParameter<Tuple<int, int, string, ItemQueryFilter>, IPagedResult<PostDto>> e = new CancelEventArgsWithOneParameter<Tuple<int, int, string, ItemQueryFilter>, IPagedResult<PostDto>>(new Tuple<int, int, string, ItemQueryFilter>(pageIndex, pageSize, categoryName, filters), null);
+
+			this.PostsRetrievingByCategory.Raise(this, e);
+
+			if (e.Cancel)
+			{
+				this.logger.DebugAsync("The result of the method 'GetPostsByCategory' is overridden by the event 'PostsRetrievingByTag'.");
+				return e.Result;
+			}
+
+			IPagedResult<PostDto> result = this.postDataService.GetPostsByCategory(pageIndex, pageSize, categoryName, filters);
+
+			this.PostsRetrievedByCategory.Raise(this, new GenericEventArgs<IPagedResult<PostDto>>(result));
+
+			return result;
+		}
+
 		public IPagedResult<PostDto> GetPostsByDate(int pageIndex, int pageSize, int year, int? month, int? day, ItemQueryFilter filters = null)
 		{
 			if (pageIndex < 1)
@@ -329,9 +383,11 @@ namespace Dexter.Services.Implmentation
 
 			CancelEventArgsWithOneParameter<Tuple<int, int, string, ItemQueryFilter>, IPagedResult<PostDto>> e = new CancelEventArgsWithOneParameter<Tuple<int, int, string, ItemQueryFilter>, IPagedResult<PostDto>>(new Tuple<int, int, string, ItemQueryFilter>(pageIndex, pageSize, tag, filters), null);
 
+			this.PostsRetrievingByTag.Raise(this, e);
+
 			if (e.Cancel)
 			{
-				this.logger.DebugAsync("The result of the method 'GetPostsByTag' is overridden by the event 'PostsRetrievingBytag'.");
+				this.logger.DebugAsync("The result of the method 'GetPostsByTag' is overridden by the event 'PostsRetrievingByTag'.");
 				return e.Result;
 			}
 
@@ -365,6 +421,8 @@ namespace Dexter.Services.Implmentation
 			return data;
 		}
 
+		[PrincipalPermission(SecurityAction.PermitOnly, Authenticated = true, Role = Constants.Editor)]
+		[PrincipalPermission(SecurityAction.PermitOnly, Authenticated = true, Role = Constants.AdministratorRole)]
 		public void SaveOrUpdate(PostDto item)
 		{
 			if (item == null)
@@ -383,7 +441,7 @@ namespace Dexter.Services.Implmentation
 
 			if (item.Id > 0)
 			{
-				var post = this.postDataService.GetPostByKey(item.Id);
+				PostDto post = this.postDataService.GetPostByKey(item.Id);
 
 				if (post == null)
 				{

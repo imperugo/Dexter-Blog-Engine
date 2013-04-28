@@ -24,7 +24,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 	using Dexter.Host.Areas.Dxt_Admin.Models.Login;
 	using Dexter.Navigation.Contracts;
 	using Dexter.Services;
-	using Dexter.Web.Core.Controllers.Web;
+	using Dexter.Web.Core.Controllers;
 
 	public class LoginController : DexterControllerBase
 	{

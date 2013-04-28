@@ -30,7 +30,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 	using Dexter.Navigation.Contracts;
 	using Dexter.Services;
 	using Dexter.Shared.Exceptions;
-	using Dexter.Web.Core.Controllers.Web;
+	using Dexter.Web.Core.Controllers;
 
 	[Authorize]
 	public class CategoryController : DexterControllerBase

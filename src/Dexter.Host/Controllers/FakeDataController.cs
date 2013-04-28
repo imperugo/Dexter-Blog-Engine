@@ -23,7 +23,7 @@ namespace Dexter.Host.Controllers
 
 	using Dexter.Entities;
 	using Dexter.Services;
-	using Dexter.Web.Core.Controllers.Web;
+	using Dexter.Web.Core.Controllers;
 
 	public class FakeDataController : DexterControllerBase
 	{

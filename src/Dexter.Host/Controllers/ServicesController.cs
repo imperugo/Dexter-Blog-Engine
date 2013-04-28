@@ -32,7 +32,7 @@ namespace Dexter.Host.Controllers
 	using Dexter.Entities;
 	using Dexter.Services;
 	using Dexter.Services.Implmentation;
-	using Dexter.Web.Core.Controllers.Web;
+	using Dexter.Web.Core.Controllers;
 
 	public class ServicesController : DexterControllerBase
 	{

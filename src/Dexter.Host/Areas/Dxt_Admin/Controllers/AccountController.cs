@@ -29,7 +29,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 	using Dexter.Host.Areas.Dxt_Admin.Models.Account;
 	using Dexter.Services;
 	using Dexter.Shared;
-	using Dexter.Web.Core.Controllers.Web;
+	using Dexter.Web.Core.Controllers;
 
 	[Authorize(Roles = Constants.AdministratorRole)]
 	public class AccountController : DexterControllerBase

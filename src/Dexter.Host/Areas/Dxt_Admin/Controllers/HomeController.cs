@@ -27,7 +27,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 	using Dexter.Entities.Result;
 	using Dexter.Host.Areas.Dxt_Admin.Models.Home;
 	using Dexter.Services;
-	using Dexter.Web.Core.Controllers.Web;
+	using Dexter.Web.Core.Controllers;
 
 	[Authorize]
 	public class HomeController : DexterControllerBase

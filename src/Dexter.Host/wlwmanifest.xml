@@ -38,12 +38,12 @@
 		<adminLinkText>Dashboard</adminLinkText>
 		<adminUrl>
 			<![CDATA[
-		{blog-homepage-url}Admin
+		{blog-homepage-url}Dxt-Admin
 	]]>
 		</adminUrl>
 		<postEditingUrl>
 			<![CDATA[
-		{blog-homepage-url}Admin/PostsList
+		{blog-homepage-url}Dxt-Admin/Post/Index/
 	]]>
 		</postEditingUrl>
 	</weblog>
@@ -54,7 +54,7 @@
 			<imageUrl>wlw/comments.png</imageUrl>
 			<clickUrl>
 				<![CDATA[ 
-				{blog-postapi-url}Admin/PostCommentList
+				{blog-postapi-url}Dxt-Admin/Comment/Index/
 			]]>
 			</clickUrl>
 		</button>

@@ -22,7 +22,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 
 	using Dexter.Host.Areas.Dxt_Admin.Models.Error;
 	using Dexter.Services;
-	using Dexter.Web.Core.Controllers.Web;
+	using Dexter.Web.Core.Controllers;
 	using Dexter.Web.Core.Models;
 
 	public class ErrorController : DexterControllerBase

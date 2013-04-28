@@ -1,30 +1,31 @@
 ﻿#region Disclaimer/Info
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////
-// File:			DexterControllerBase.cs
+// File:			DexterApiControllerBase.cs
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
-// Created:		2012/11/01
-// Last edit:	2013/01/20
+// Created:		2013/04/28
+// Last edit:	2013/04/28
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
-namespace Dexter.Web.Core.Controllers.Web
+namespace Dexter.Api.Core.Controllers
 {
-	using System.Globalization;
-	using System.Threading;
-	using System.Web.Mvc;
+	using System.Net;
+	using System.Net.Http;
+	using System.Web.Http;
 
 	using Common.Logging;
 
 	using Dexter.Entities;
 	using Dexter.Services;
 
-	public class DexterControllerBase : AsyncController
+	public class DexterApiControllerBase : ApiController
 	{
 		#region Fields
 
@@ -36,7 +37,7 @@ namespace Dexter.Web.Core.Controllers.Web
 
 		#region Constructors and Destructors
 
-		public DexterControllerBase(ILog logger, IConfigurationService configurationService)
+		public DexterApiControllerBase(ILog logger, IConfigurationService configurationService)
 		{
 			this.logger = logger;
 			this.configurationService = configurationService;
@@ -71,5 +72,21 @@ namespace Dexter.Web.Core.Controllers.Web
 		}
 
 		#endregion
+
+		/// <summary>
+		/// Raises an invalid parameter exception.
+		/// </summary>
+		/// <param name="parameterName">Name of the invalid parameter.</param>
+		/// <exception cref="System.Web.Http.HttpResponseException"></exception>
+		protected void RaiseInvalidParameterException(string parameterName)
+		{
+			string errorMessage = string.Format("Parameter: {0} is not valid or contains and invalid value", parameterName);
+			throw new HttpResponseException(this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, errorMessage));
+		}
+
+		protected void RaiseNotFoundException(string message)
+		{
+			throw new HttpResponseException(this.Request.CreateErrorResponse(HttpStatusCode.NotFound, message));
+		}
 	}
 }
