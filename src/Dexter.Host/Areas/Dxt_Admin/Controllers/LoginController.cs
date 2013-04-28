@@ -46,8 +46,8 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 
 		#region Public Methods and Operators
 
-		[AcceptVerbs(HttpVerbs.Get)]
-		public ActionResult Index()
+		[HttpGet]
+		public ActionResult Index(string returnUrl)
 		{
 			IndexViewModel model = new IndexViewModel();
 			model.Credential = new CredentialLoginBinder();
@@ -55,8 +55,8 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 			return this.View(model);
 		}
 
-		[AcceptVerbs(HttpVerbs.Post)]
-		public ActionResult Index(CredentialLoginBinder credential)
+		[HttpPost]
+		public ActionResult Index(CredentialLoginBinder credential, string returnUrl)
 		{
 			if (!this.ModelState.IsValid)
 			{
@@ -80,7 +80,20 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 
 			this.Logger.InfoFormat("User '{0}' is logged in.", credential.Username);
 
+			if (!string.IsNullOrEmpty(returnUrl))
+			{
+				return this.Redirect(returnUrl);
+			}
+
 			return this.urlBuilder.Admin.Home().Redirect();
+		}
+
+		[HttpGet]
+		public ActionResult Logout()
+		{
+			FormsAuthentication.SignOut();
+
+			return this.urlBuilder.Admin.Login().Redirect();
 		}
 
 		#endregion

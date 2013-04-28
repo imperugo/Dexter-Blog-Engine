@@ -24,17 +24,13 @@
 				<li class="tag-user">@Model.Post.Authors</li>
 			</ul>
 						
-			<p><strong>Title :</strong>@Model.Post.Title</p>
-			<p><strong>Abstract :</strong>@Model.Post.Excerpt</p>
-			<p><strong>Categories :</strong>
-				@for (int i = 0; i < Model.Post.Categories.Length; i++) {
-					@Model.Post.Categories[i]
-				}
-			</p>
-			<p><strong>Published :</strong> @Model.Post.Status</p>
+			<p><strong>Title: </strong>@Model.Post.Title</p>
+			<p><strong>Abstract: </strong>@Model.Post.Excerpt</p>
+			<p><strong>Categories: </strong> @string.Join(", ",Model.Post.Categories)</p>
+			<p><strong>Published: </strong> @Model.Post.Status</p>
 			<p><strong>Url: </strong><a href="@U.Post.Permalink(Model.Post)"> Click Here</a></p>
-			<p><strong>Comments :</strong> @Model.Post.TotalComments</p>
-			<p><strong>Trackback :</strong> @Model.Post.TotalTrackback</p>
+			<p><strong>Comments: </strong> @Model.Post.TotalComments</p>
+			<p><strong>Trackback: </strong> @Model.Post.TotalTrackback</p>
 			<p>
 				<strong>Tags :</strong>
 				<ul class="keywords">

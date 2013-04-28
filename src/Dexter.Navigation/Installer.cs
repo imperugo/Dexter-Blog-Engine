@@ -39,6 +39,7 @@ namespace Dexter.Navigation
 			container.Register<IAdminPageUrlBuilder, AdminPageUrlBuilder>(LifeCycle.Singleton);
 			container.Register<IAdminPostUrlBuilder, AdminPostUrlBuilder>(LifeCycle.Singleton);
 			container.Register<IAdminCategoryUrlBuilder, AdminCategoryUrlBuilder>(LifeCycle.Singleton);
+			container.Register<IAdminAccountUrlBuilder, AdminAccountUrlBuilder>(LifeCycle.Singleton);
 			container.Register<IFeedUrlBuilder, FeedUrlBuilder>(LifeCycle.Singleton);
 			container.Register<IServiceUrlBuilder, ServiceUrlBuilder>(LifeCycle.Singleton);
 		}

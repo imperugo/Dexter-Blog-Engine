@@ -25,12 +25,13 @@ namespace Dexter.Navigation.Concretes
 	{
 		#region Constructors and Destructors
 
-		public AdminUrlBuilder(IConfigurationService configurationService, IAdminPostUrlBuilder post, IAdminPageUrlBuilder page, IAdminCategoryUrlBuilder category)
+		public AdminUrlBuilder(IConfigurationService configurationService, IAdminPostUrlBuilder post, IAdminPageUrlBuilder page, IAdminCategoryUrlBuilder category, IAdminAccountUrlBuilder account)
 			: base(configurationService)
 		{
 			this.Post = post;
 			this.Page = page;
 			this.Category = category;
+			this.Account = account;
 		}
 
 		#endregion
@@ -42,6 +43,8 @@ namespace Dexter.Navigation.Concretes
 		public IAdminPageUrlBuilder Page { get; private set; }
 
 		public IAdminPostUrlBuilder Post { get; private set; }
+
+		public IAdminAccountUrlBuilder Account { get; private set; }
 
 		#endregion
 
@@ -96,6 +99,11 @@ namespace Dexter.Navigation.Concretes
 		public SiteUrl Login()
 		{
 			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Login", "Index", null, null);
+		}
+
+		public SiteUrl Logout()
+		{
+			return new SiteUrl(this.Domain, this.HttpPort, false, "Dxt-Admin", "Login", "Logout", null, null);
 		}
 
 		#endregion

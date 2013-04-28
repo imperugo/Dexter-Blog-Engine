@@ -33,6 +33,6 @@ namespace Dexter.Host.Areas.Dxt_Admin.Models.Account
 		public DateTime? CreateDate { get; set; }
 		public bool IsLockedOut { get; set; }
 		public DateTime? LastPasswordChangedDate { get; set; }
-		public IEnumerable<string> Roles { get; set; }
+		public List<string> Roles { get; set; }
 	}
 }

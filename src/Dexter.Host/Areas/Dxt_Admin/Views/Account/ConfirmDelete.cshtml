@@ -1,0 +1,46 @@
+﻿@model Dexter.Host.Areas.Dxt_Admin.Models.Account.DetailViewModel
+@{
+    Layout = "~/Areas/Dxt_Admin/Views/Shared/_layoutWithMenu.cshtml";
+}
+
+@helper GetRowColor(string text){
+	string[] cssStyles = new[] { "", "orange-keyword", "purple-keyword", "green-keyword" };
+	var css = cssStyles.GetRandom();
+
+	<text>
+		<li class="@css">@text</li>
+	</text>
+}
+
+<div class="block-content">
+	<div class="task with-legend">
+		<div class="legend">
+			<img src="~/Images/Icons/Fugue/status.png" width="16" height="16">Delete User
+		</div>
+					
+		<div class="task-description">
+			<p><strong>Username: </strong>@Model.User.Username</p>
+			<p><strong>Email: </strong>@Model.User.Email</p>
+			<p><strong>Comments: </strong>@Model.User.Comment</p>
+			<p><strong>Roles :</strong> @string.Join(", ",Model.User.Roles)</p>
+			<p><strong>Creation Date :</strong> @Model.User.CreateDate</p>
+			<p><strong>Is Approved: </strong>@Model.User.IsApproved</p>
+			<p><strong>Is Locked Out: </strong>@Model.User.IsLockedOut</p>
+			<p><strong>Last Login Date: </strong>@Model.User.LastLoginDate</p>
+			<p><strong>Last Activity Date: </strong>@Model.User.LastActivityDate</p>
+			<p><strong>Last Lockout Date: </strong>@Model.User.LastLockoutDate</p>
+			<p><strong>Last Password Changed Date: </strong>@Model.User.LastPasswordChangedDate</p>
+			<p><strong>Last Password Failure Date: </strong>@Model.User.LastPasswordFailureDate</p>
+			<p><strong>Password Failures Since Last Success: </strong>@Model.User.PasswordFailuresSinceLastSuccess</p>
+		</div>
+					
+		<ul class="task-dialog">
+			<li>
+				<form method="post" action="../../Delete">
+					@Html.Hidden("id", Model.User.Username )
+					<button type="submit">Confirm Delete</button>
+				</form>
+			</li>
+		</ul>
+	</div>
+</div>

@@ -15,7 +15,6 @@
 
 namespace Dexter.Navigation.Contracts
 {
-	using Dexter.Entities;
 	using Dexter.Navigation.Helpers;
 
 	public enum FeedbackType
@@ -34,6 +33,8 @@ namespace Dexter.Navigation.Contracts
 		IAdminPageUrlBuilder Page { get; }
 
 		IAdminPostUrlBuilder Post { get; }
+
+		IAdminAccountUrlBuilder Account { get; }
 
 		#endregion
 
@@ -57,46 +58,7 @@ namespace Dexter.Navigation.Contracts
 
 		SiteUrl Login();
 
-		#endregion
-	}
-
-	public interface IAdminCategoryUrlBuilder
-	{
-		#region Public Methods and Operators
-
-		SiteUrl List();
-
-		SiteUrl New();
-
-		#endregion
-	}
-
-	public interface IAdminPostUrlBuilder
-	{
-		#region Public Methods and Operators
-
-		SiteUrl Delete(ItemDto item);
-
-		SiteUrl Edit(ItemDto item);
-
-		SiteUrl List();
-
-		SiteUrl New();
-
-		#endregion
-	}
-
-	public interface IAdminPageUrlBuilder
-	{
-		#region Public Methods and Operators
-
-		SiteUrl Delete(ItemDto item);
-
-		SiteUrl Edit(ItemDto item);
-
-		SiteUrl List();
-
-		SiteUrl New();
+		SiteUrl Logout();
 
 		#endregion
 	}

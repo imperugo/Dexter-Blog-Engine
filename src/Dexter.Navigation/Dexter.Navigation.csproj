@@ -73,6 +73,7 @@
     <Compile Include="..\..\doc\Dexter.Build.cs">
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
+    <Compile Include="Concretes\AdminAccountUrlBuilder.cs" />
     <Compile Include="Concretes\AdminCategoryUrlBuilder.cs" />
     <Compile Include="Concretes\AdminPageUrlBuilder.cs" />
     <Compile Include="Concretes\AdminPostUrlBuilder.cs" />
@@ -82,6 +83,10 @@
     <Compile Include="Concretes\PageUrlBuilder.cs" />
     <Compile Include="Concretes\UrlBuilder.cs" />
     <Compile Include="Concretes\AdminUrlBuilder.cs" />
+    <Compile Include="Contracts\IAdminAccountUrlBuilder.cs" />
+    <Compile Include="Contracts\IAdminCategoryUrlBuilder.cs" />
+    <Compile Include="Contracts\IAdminPageUrlBuilder.cs" />
+    <Compile Include="Contracts\IAdminPostUrlBuilder.cs" />
     <Compile Include="Contracts\IAdminUrlBuilder.cs" />
     <Compile Include="Contracts\ICategoryUrlBuilder.cs" />
     <Compile Include="Contracts\IFeedUrlBuilder.cs" />

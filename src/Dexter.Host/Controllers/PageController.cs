@@ -57,7 +57,6 @@ namespace Dexter.Host.Controllers
 
 			PageDto page = this.pageService.GetPageBySlug(id);
 
-
 			if (page == null)
 			{
 				return this.HttpNotFound();

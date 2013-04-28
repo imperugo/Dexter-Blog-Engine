@@ -60,7 +60,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 
 		#region Public Methods and Operators
 
-		[AcceptVerbs(HttpVerbs.Get)]
+		[HttpGet]
 		public ActionResult ConfirmDelete(int id)
 		{
 			if (id < 1)
@@ -81,7 +81,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 			return this.View(model);
 		}
 
-		[AcceptVerbs(HttpVerbs.Post)]
+		[HttpPost]
 		public ActionResult Delete(int id)
 		{
 			if (id < 1)
@@ -103,7 +103,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 			return this.urlBuilder.Admin.FeedbackPage(FeedbackType.Positive, "PostDeleted", this.urlBuilder.Admin.Post.List()).Redirect();
 		}
 
-		[AcceptVerbs(HttpVerbs.Get)]
+		[HttpGet]
 		public ActionResult Index()
 		{
 			IndexViewModel model = new IndexViewModel();
@@ -118,7 +118,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 			return this.View(model);
 		}
 
-		[AcceptVerbs(HttpVerbs.Get)]
+		[HttpGet]
 		public ActionResult Manage(int? id, int? month, int? day, int? year)
 		{
 			IList<CategoryDto> categories = this.categoryService.GetCategories();
@@ -135,7 +135,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 			return this.View(model);
 		}
 
-		[AcceptVerbs(HttpVerbs.Post)]
+		[HttpPost]
 		public ActionResult Manage(PostBinder post)
 		{
 			if (!this.ModelState.IsValid)
