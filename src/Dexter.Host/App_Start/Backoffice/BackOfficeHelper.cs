@@ -5,7 +5,7 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
 // Created:		2012/12/31
-// Last edit:	2013/01/20
+// Last edit:	2013/04/28
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -54,7 +54,8 @@ namespace Dexter.Web.Mvc.Helpers
 			AddHome(sb, u, helper.ViewContext);
 			AddPost(sb, u, helper.ViewContext);
 
-			AddComments ( sb, u, helper.ViewContext );
+			AddComments(sb, u, helper.ViewContext);
+
 			//AddStats(sb, u, helper.ViewContext);
 			AddSettigns(sb, u, helper.ViewContext);
 
@@ -150,8 +151,8 @@ namespace Dexter.Web.Mvc.Helpers
 			for (int page = pageIndex; page < Math.Round(totalCounts / pageSize + 0.5) && page < pageIndex + pageSize; page++)
 			{
 				sb.AppendFormat(page == pageIndex
-									? "<li><a href=\"{0}\" title=\"Page {1}\"><b>{1}</b></a></li>"
-									: "<li><a href=\"{0}\" title=\"Page {1}\" class=\"current\"><b>{1}</b></a></li>", "#", page + 1);
+					                ? "<li><a href=\"{0}\" title=\"Page {1}\"><b>{1}</b></a></li>"
+					                : "<li><a href=\"{0}\" title=\"Page {1}\" class=\"current\"><b>{1}</b></a></li>", "#", page + 1);
 			}
 
 			if ((pageIndex * pageSize) <= totalCounts)
@@ -169,14 +170,14 @@ namespace Dexter.Web.Mvc.Helpers
 			string prevImageString = string.Format("<img src=\"{0}\" width=\"16\" height=\"16\"> Prev", VirtualPathUtility.ToAbsolute("~/admin/Resources/images/Icons/Fugue/navigation-180.png"));
 			string nextImageString = string.Format("Next <img src=\"{0}\" width=\"16\" height=\"16\">", VirtualPathUtility.ToAbsolute("~/admin/Resources/images/Icons/Fugue/navigation.png"));
 
-			return Render(helper, pageSize,
-				pageIndex,
-				totalCounts,
-				"controls-buttons",
-				true,
-				prevImageString,
-				nextImageString,
-				"current",
+			return Render(helper, pageSize, 
+				pageIndex, 
+				totalCounts, 
+				"controls-buttons", 
+				true, 
+				prevImageString, 
+				nextImageString, 
+				"current", 
 				baseUrl);
 		}
 
@@ -237,12 +238,12 @@ namespace Dexter.Web.Mvc.Helpers
 
 		private static void AddUsers(StringBuilder sb, IUrlBuilder urlBuilder, ViewContext viewContext)
 		{
-			bool isCurrent = RouteHelper.IsCurrentController("Dxt_Admin", "Users", viewContext);
+			bool isCurrent = RouteHelper.IsCurrentController("Dxt_Admin", "Account", viewContext);
 
 			sb.AppendFormat("<li class=\"users {0}\">", isCurrent ? "current" : string.Empty);
-			sb.AppendFormat("<a href=\"{0}\" title=\"Users\">Users</a>", urlBuilder.Admin.EditConfiguration());
+			sb.AppendFormat("<a href=\"{0}\" title=\"Users\">Users</a>", urlBuilder.Admin.Account.List());
 			sb.Append("<ul>");
-			sb.AppendFormat("<li><a href=\"{0}\" title=\"List.\">List</a></li>", "#");
+			sb.AppendFormat("<li><a href=\"{0}\" title=\"List.\">List</a></li>", urlBuilder.Admin.Account.List());
 			sb.AppendFormat("<li><a href=\"{0}\" title=\"Create.\">Create</a></li>", "#");
 			sb.Append("</ul>");
 			sb.Append("</li>");
@@ -262,13 +263,13 @@ namespace Dexter.Web.Mvc.Helpers
 				sb.Append("<li class=\"closed\">");
 
 				sb.Append(category.Categories.Any()
-							  ? "<b class=\"toggle\"></b>"
-							  : "<b></b>");
+					          ? "<b class=\"toggle\"></b>"
+					          : "<b></b>");
 
 				sb.Append("<span>");
 				sb.AppendFormat("<input type=\"checkbox\" name=\"{1}.Categories\" value=\"{0}\" {2} /> ", category.Name, bindePrefix, selectedValues != null && selectedValues.Contains(category.Name)
-																																									? "checked=\"checked\""
-																																									: string.Empty);
+					                                                                                                                      ? "checked=\"checked\""
+					                                                                                                                      : string.Empty);
 				sb.Append(category.Name);
 				sb.Append("</span>");
 
