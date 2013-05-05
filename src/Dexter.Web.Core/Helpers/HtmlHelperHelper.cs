@@ -61,9 +61,9 @@ namespace System.Web.Mvc.Html
 			sb.AppendLine(helper.Favicon().ToString());
 			sb.AppendLine(helper.WindowsLiveWriterManifest().ToString());
 			sb.AppendLine(helper.MetaWeblogRsd().ToString());
-			sb.AppendLine(helper.OpenSearch().ToString());
+			//sb.AppendLine(helper.OpenSearch().ToString());
 			sb.AppendLine(helper.FeedUrl().ToString());
-			sb.AppendLine(helper.PingBack().ToString());
+			//sb.AppendLine(helper.PingBack().ToString());
 
 			return new MvcHtmlString(sb.ToString());
 		}

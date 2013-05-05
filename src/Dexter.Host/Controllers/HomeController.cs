@@ -55,7 +55,7 @@ namespace Dexter.Host.Controllers
 					                                                                                  Status = ItemStatus.Published
 				                                                                                  });
 
-			return this.Json(model, JsonRequestBehavior.AllowGet);
+			return this.View(model);
 		}
 
 		[PingBack]

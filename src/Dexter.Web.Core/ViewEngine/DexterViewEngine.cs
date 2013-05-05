@@ -46,14 +46,14 @@ namespace Dexter.Web.Core.ViewEngine
 		{
 			this.ViewLocationFormats = new[]
 				                           {
-					                           "~/App_Data/Themes/Default/Views/{1}/{2}/{0}.aspx", 
-					                           "~/App_Data/Themes/Default/Views/{1}/{2}/{0}.ascx", 
-					                           "~/App_Data/Themes/Default/Views/Shared/{2}/{0}.aspx", 
-					                           "~/App_Data/Themes/Default/Views/Shared/{2}/{0}.ascx", 
-					                           "~/App_Data/Themes/Default/Views/{1}/{0}.aspx", 
-					                           "~/App_Data/Themes/Default/Views/{1}/{0}.ascx", 
-					                           "~/App_Data/Themes/Default/Views/Shared/{0}.aspx", 
-					                           "~/App_Data/Themes/Default/Views/Shared/{0}.ascx"
+					                           "~/Extensions/Themes/ScoreMe/Frontend/Views/{1}/{0}.cshtml", 
+					                           "~/Extensions/Themes/ScoreMe/Frontend/Views/{1}/{0}.cshtml", 
+					                           "~/Extensions/Themes/ScoreMe/Frontend/Views/Shared/{0}.cshtml", 
+					                           "~/Extensions/Themes/ScoreMe/Frontend/Views/Shared/{0}.cshtml", 
+					                           "~/Extensions/Themes/ScoreMe/Frontend/Views/{1}/{0}.cshtml", 
+					                           "~/Extensions/Themes/ScoreMe/Frontend/Views/{1}/{0}.cshtml", 
+					                           "~/Extensions/Themes/ScoreMe/Frontend/Views/Shared/{0}.cshtml", 
+					                           "~/Extensions/Themes/ScoreMe/Frontend/Views/Shared/{0}.cshtml"
 				                           };
 		}
 
@@ -139,11 +139,10 @@ namespace Dexter.Web.Core.ViewEngine
 		{
 			string result = string.Empty;
 			searchedLocations = new string[locations.Length];
-			string language = controllerContext.RouteData.Values["lang"].ToString();
 
 			for (int i = 0; i < locations.Length; i++)
 			{
-				string virtualPath = string.Format(CultureInfo.InvariantCulture, locations[i], name, controllerName, language);
+				string virtualPath = string.Format(CultureInfo.InvariantCulture, locations[i], name, controllerName);
 
 				if (this.FileExists(controllerContext, virtualPath))
 				{

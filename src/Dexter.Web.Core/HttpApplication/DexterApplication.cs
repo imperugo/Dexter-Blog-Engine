@@ -30,6 +30,7 @@ namespace Dexter.Web.Core.HttpApplication
 	using Dexter.Services;
 	using Dexter.Shared.Exceptions;
 	using Dexter.Web.Core.Routing;
+	using Dexter.Web.Core.ViewEngine;
 
 	public class DexterApplication : HttpApplication
 	{
@@ -159,6 +160,7 @@ namespace Dexter.Web.Core.HttpApplication
 		{
 			this.routingService.RegisterRoutes();
 
+			this.ConfigureViewEngine();
 			this.RegisterGlobalFilters();
 
 			DependencyResolver.SetResolver(this.container.Resolve<IDependencyResolver>());
@@ -180,6 +182,13 @@ namespace Dexter.Web.Core.HttpApplication
 			{
 				GlobalConfiguration.Configuration.Filters.Add(filter);
 			}
+		}
+
+		private void ConfigureViewEngine()
+		{
+			ViewEngines.Engines.Clear();
+			ViewEngines.Engines.Add(new DexterViewEngine());
+			ViewEngines.Engines.Add(new RazorViewEngine());
 		}
 
 		#endregion

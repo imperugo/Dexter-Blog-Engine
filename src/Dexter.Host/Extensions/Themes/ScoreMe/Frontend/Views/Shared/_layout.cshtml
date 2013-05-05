@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+<!--[if IE 6]><html id="ie6" lang="en-US"><![endif]-->
+<!--[if IE 7]><html id="ie7" lang="en-US"><![endif]-->
+<!--[if IE 8]><html id="ie8" lang="en-US"><![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	@Html.HeadSuperPack()
+	
+	<!-- Set the viewport width to device width for mobile -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<!-- Themnific Mobile & Special CSS -->
+	<link href="~/Extensions/Themes/ScoreMe/Frontend/Styles/Fonts.css" rel="stylesheet" />
+	<link href="~/Extensions/Themes/ScoreMe/Frontend/Styles/style.css" rel="stylesheet" />
+	<link href="~/Extensions/Themes/ScoreMe/Frontend/Styles/prettyPhoto.css" rel="stylesheet" />
+	<link href="~/Extensions/Themes/ScoreMe/Frontend/Styles/style-custom.css" rel="stylesheet" />
+	<link href="~/Extensions/Themes/ScoreMe/Frontend/Styles/font-awesome.min.css" rel="stylesheet" />
+	<link href="~/Extensions/Themes/ScoreMe/Frontend/Styles/font-awesome-ie7.css" rel="stylesheet" />
+	<link href="~/Extensions/Themes/ScoreMe/Frontend/Styles/mobile.css" rel="stylesheet" />
+	<link href="~/Extensions/Themes/ScoreMe/Frontend/Styles/shortcodes.css" rel="stylesheet" />
+	<!-- Themnific Styling -->
+	<style type="text/css">
+		.mainflex, .body4, .headad, #footer, .stuff {
+			background-color: #242424;
+		}
+
+		.body2, #coinslid, span.arr, #header ul.social-menu li, .searchformhead, #navigation .scrollTo_top {
+			background-color: #F5F5F5;
+		}
+
+		body, .nav li ul, .body3, .container-inn, #serpane3 a {
+			background-color: #f9f9f9;
+		}
+
+		.scrollTo_top, .overrating, a#navtrigger, #serinfo-nav li.current, .mainflex .flex-direction-nav li a, .hrline span, .hrlineB span, .inpost2, #tabsmall li.ui-tabs-selected span.nr, .page-numbers.current, .imgwrap, span.ribbon, a.mainbutton, #submit, #comments .navigation a, .tagssingle a, .contact-form .submit {
+			background-color: #97c730;
+		}
+
+		#main-nav > li:hover, #main-nav > li.current-cat, #main-nav > li.current_page_item {
+			border-color: #97c730 !important;
+		}
+
+		.nav a:hover {
+			color: #97c730;
+		}
+
+		.body2, .body2 h2, .body2 h3 {
+			color: #242424;
+		}
+
+		.body1 a, a:link, a:visited, #serinfo h4 a, .related li a {
+			color: #303030;
+		}
+
+		#footer a, .tickerwrap a {
+			color: #d4d4d4;
+		}
+
+		.entry a, a:hover, .body1 a:hover, #serinfo a:hover, #homecontent h2 span a, .nav > li.current-cat > a, .nav > li.current_page_item > a {
+			color: #787878;
+		}
+
+		.imagepost, .videopost, .imageformat {
+			background-color: #787878;
+		}
+
+		.body2 a, a.body2 {
+			color: #333;
+		}
+
+		.body2 a:hover, p.body2 a:hover {
+			color: #666!important;
+		}
+
+		#coinslid, #tabsmall li, ul#tabsmall, .searchformhead, .nav > li > a, #headtop, #header ul.social-menu li, .searchform input.s, #main-nav, #main-nav > li, .fullbox, .pagination, input, textarea, input checkbox, input radio, select, file {
+			border-color: #e6e6e6 !important;
+		}
+
+		ul#serinfo-nav, .hrline, .hrlineB {
+			background-color: #e6e6e6;
+		}
+
+		.body2, #sidebar, #homecontent .body2 h2, .ratingblock {
+			border-color: #ddd !important;
+		}
+
+		.mainflex p.teaser, #footer h2, #footer .tagcloud a {
+			border-color: #454545 !important;
+		}
+
+		body, #serinfo h3, input, textarea, input checkbox, input radio, select, file {
+			font: 400 12px/2.0em Arial, sans-serif;
+			color: #545454;
+		}
+
+		#footer, .stuff {
+			font: 400 11px/2.2em Arial, sans-serif;
+			color: #e8e8e8;
+		}
+
+		#footer h2, #footer h3, .stuff h2 a {
+			color: #e8e8e8;
+		}
+
+		h1 {
+			font: 900 80px/1.1em "Raleway", sans-serif;
+			color: #1f1f1f;
+		}
+
+		h2 {
+			font: 600 21px/1.2em "Open Sans", sans-serif;
+			color: #1c1c1c;
+		}
+
+		.twins h2, .ratingblock h2, ul.medpost > li > h2, .archivepost li h2 {
+			font: 800 17px/1.2em "Raleway", sans-serif;
+			color: #000;
+		}
+
+		h2.widget {
+			font-family: "Raleway", sans-serif;
+		}
+
+		h3 {
+			font: 800 12px/1.5em "Raleway", sans-serif;
+			color: #1f1f1f;
+		}
+
+		h4 {
+			font: 400 13px/1.5em "Open Sans", sans-serif;
+			color: #5c5c5c;
+		}
+
+		h5 {
+			font: 400 13px/1.5em "Open Sans", sans-serif;
+			color: #5c5c5c;
+		}
+
+		h6 {
+			font: 400 13px/1.5em "Open Sans", sans-serif;
+			color: #5c5c5c;
+		}
+
+		.nav > li > a, .grid-nav > li > a, .searchformhead input.s, .ratingblock p {
+			font: 800 13px/1em "Raleway", sans-serif;
+			color: #383838;
+		}
+
+		#tabsmall li h3, .inpost p.inslider, .inpost2 p {
+			font-family: "Raleway", sans-serif;
+		}
+
+		.tab-post small a, .taggs a, .ei-slider-thumbs li a {
+			color: #545454;
+		}
+	</style>
+
+</head>
+
+<body class="single single-post postid-20 single-format-standard">
+	<div class="container upper">
+		@Html.Partial("~/Extensions/Themes/ScoreMe/Frontend/Views/Shared/_header.cshtml")
+	
+	
+		<div style="clear: both;"></div> 
+		<div class="hrlineB"></div>
+	
+		<div id="singlecontent">
+			@RenderBody()
+		</div>
+	
+		@Html.Partial("~/Extensions/Themes/ScoreMe/Frontend/Views/Shared/_sidebar.cshtml")
+	</div>
+	
+	@Html.Partial("~/Extensions/Themes/ScoreMe/Frontend/Views/Shared/_footer.cshtml")
+	
+	<div class="scrollTo_top rad" style="display: none;">
+		<a title="Scroll to top" href="http://wpdemo.themnific.com/pre/16/?p=20#"></a>
+	</div>
+	<script src="~/Extensions/Themes/ScoreMe/Frontend/Javascripts/jquery.tweet.js"></script>
+	<script src="~/Extensions/Themes/ScoreMe/Frontend/Javascripts/tabs.js"></script>
+	<script src="~/Extensions/Themes/ScoreMe/Frontend/Javascripts/jquery.flexslider-min.js"></script>
+	<script src="~/Extensions/Themes/ScoreMe/Frontend/Javascripts/jquery.flexslider.widget.start.js"></script>
+	<script src="~/Extensions/Themes/ScoreMe/Frontend/Javascripts/superfish.js"></script>
+	<script src="~/Extensions/Themes/ScoreMe/Frontend/Javascripts/jquery.hoverIntent.minified.js"></script>
+	<script src="~/Extensions/Themes/ScoreMe/Frontend/Javascripts/css3-mediaqueries.js"></script>
+	<script src="~/Extensions/Themes/ScoreMe/Frontend/Javascripts/jquery.prettyPhoto.js"></script>
+	<script src="~/Extensions/Themes/ScoreMe/Frontend/Javascripts/ownScript.js"></script>
+	<script src="~/Extensions/Themes/ScoreMe/Frontend/Javascripts/jquery.flexslider.main.start.js"></script>
+</body>
