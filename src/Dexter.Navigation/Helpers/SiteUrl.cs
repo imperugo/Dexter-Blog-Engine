@@ -23,6 +23,8 @@ namespace Dexter.Navigation.Helpers
 
 	public class SiteUrl : IHtmlString
 	{
+		private string renderedUrl;
+
 		#region Constructors and Destructors
 
 		public SiteUrl(string domain, string controller, string action)
@@ -84,11 +86,21 @@ namespace Dexter.Navigation.Helpers
 
 		#region Public Methods and Operators
 
+		public void OverrideRenderUrl(string url)
+		{
+			this.renderedUrl = url;
+		}
+
 		public static implicit operator string(SiteUrl url)
 		{
 			if (url == null)
 			{
 				return null;
+			}
+
+			if (!string.IsNullOrEmpty(url.renderedUrl))
+			{
+				return url.renderedUrl;
 			}
 
 			return url.ToString();
@@ -99,6 +111,11 @@ namespace Dexter.Navigation.Helpers
 			if (url == null)
 			{
 				return null;
+			}
+
+			if (!string.IsNullOrEmpty(url.renderedUrl))
+			{
+				return new Uri(url.renderedUrl);
 			}
 
 			return new Uri(url.ToString());
@@ -125,8 +142,7 @@ namespace Dexter.Navigation.Helpers
 				sb.AppendFormat("{0}/", this.Area);
 			}
 
-			var isDefaultRoot = string.Equals(this.Controller, "Home", StringComparison.OrdinalIgnoreCase)
-			                    && string.Equals(this.Action, "Index", StringComparison.OrdinalIgnoreCase)
+			var isDefaultRoot = string.Equals(this.Action, "Index", StringComparison.OrdinalIgnoreCase)
 			                    && (this.Segments == null || this.Segments.Any() == false);
 
 			if (!isDefaultRoot)

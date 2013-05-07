@@ -38,7 +38,7 @@
 		<adminLinkText>Dashboard</adminLinkText>
 		<adminUrl>
 			<![CDATA[
-		{blog-homepage-url}Dxt-Admin
+		{blog-homepage-url}Dxt-Admin/
 	]]>
 		</adminUrl>
 		<postEditingUrl>

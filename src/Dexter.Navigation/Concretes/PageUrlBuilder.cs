@@ -62,12 +62,17 @@ namespace Dexter.Navigation.Concretes
 
 		public SiteUrl Permalink(string slug)
 		{
-			return new SiteUrl(this.Domain, this.HttpPort, false, null, "Blog", "Page", new[] { slug }, null);
+			var siteUrl = new SiteUrl(this.Domain, this.HttpPort, false, null, "Page", "Index", new[] { slug }, null);
+			siteUrl.OverrideRenderUrl(string.Format("{0}://{1}:{2}/{3}", siteUrl.Protocol, siteUrl.Domain, siteUrl.Port, slug));
+			return siteUrl;
 		}
 
 		public SiteUrl Permalink(ItemDto item)
 		{
-			return new SiteUrl(this.Domain, this.HttpPort, false, null, "Blog", "Page", new[] { item.Slug }, null);
+			var siteUrl = new SiteUrl(this.Domain, this.HttpPort, false, null, "Page", "Index", new[] { item.Slug }, null);
+			siteUrl.OverrideRenderUrl(string.Format("{0}://{1}:{2}/{3}", siteUrl.Protocol, siteUrl.Domain, siteUrl.Port, item.Slug));
+
+			return siteUrl;
 		}
 
 		#endregion

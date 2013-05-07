@@ -40,6 +40,7 @@ namespace Dexter.Host.Areas.Dxt_Admin
 				"Dxt-Admin/{controller}/{action}/{id}", 
 				new
 					{
+						controller = "Home",
 						action = "Index", 
 						id = UrlParameter.Optional
 					}, 
