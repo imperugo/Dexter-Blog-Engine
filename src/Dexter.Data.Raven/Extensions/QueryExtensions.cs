@@ -15,8 +15,11 @@
 
 namespace Dexter.Data.Raven.Extensions
 {
+	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+
+	using Dexter.Entities;
 
 	using global::AutoMapper;
 
@@ -25,6 +28,7 @@ namespace Dexter.Data.Raven.Extensions
 	using Dexter.Entities.Result;
 
 	using global::Raven.Client;
+	using global::Raven.Client.Linq;
 
 	public static class QueryExtensions
 	{
@@ -55,6 +59,118 @@ namespace Dexter.Data.Raven.Extensions
 			return query
 				.Skip((currentPage - 1) * pageSize)
 				.Take(pageSize);
+		}
+
+		public static IQueryable<T> ApplyOrder<T>(this IQueryable<T> query, ItemQueryFilter filters) where T : Item
+		{
+			if (filters == null)
+			{
+				query = query.OrderByDescending(x => x.CreatedAt);
+				return query;
+			}
+
+			if (filters.OrderFilter.RandomOrder)
+			{
+				var q = query as IRavenQueryable<T>;
+
+				if (q != null)
+				{
+					query = q.Customize(x => x.RandomOrdering());
+				}
+
+				return query;
+			}
+
+			if (filters.OrderFilter.Ascending)
+			{
+				switch (filters.OrderFilter.SortBy)
+				{
+						case SortBy.CreatedAt:
+						{
+							query = query.OrderBy(x => x.CreatedAt);
+							break;
+						}
+						case SortBy.Id:
+						{
+							query = query.OrderBy(x => x.Id);
+							break;
+						}
+
+						case SortBy.PublishAt:
+						{
+							query = query.OrderBy(x => x.PublishAt);
+							break;
+						}
+
+						case SortBy.Title:
+						{
+							query = query.OrderBy(x => x.Title);
+							break;
+						}
+
+						case SortBy.TotalComments:
+						{
+							query = query.OrderBy(x => x.TotalComments);
+							break;
+						}
+						case SortBy.TotalTrackback:
+						{
+							query = query.OrderBy(x => x.TotalTrackback);
+							break;
+						}
+						default:
+						{
+							query = query.OrderBy(x => x.PublishAt);
+							break;
+						}
+				}
+				
+				return query;
+			}
+
+			switch (filters.OrderFilter.SortBy)
+			{
+				case SortBy.CreatedAt:
+					{
+						query = query.OrderByDescending(x => x.CreatedAt);
+						break;
+					}
+				case SortBy.Id:
+					{
+						query = query.OrderByDescending(x => x.Id);
+						break;
+					}
+
+				case SortBy.PublishAt:
+					{
+						query = query.OrderByDescending(x => x.PublishAt);
+						break;
+					}
+
+				case SortBy.Title:
+					{
+						query = query.OrderByDescending(x => x.Title);
+						break;
+					}
+
+				case SortBy.TotalComments:
+					{
+						query = query.OrderByDescending(x => x.TotalComments);
+						break;
+					}
+				case SortBy.TotalTrackback:
+					{
+						query = query.OrderByDescending(x => x.TotalTrackback);
+						break;
+					}
+				default:
+					{
+						query = query.OrderByDescending(x => x.PublishAt);
+						break;
+					}
+			}
+			
+			return query;
 		}
 
 		public static IPagedResult<TK> ToPagedResult<T, TK>(this IQueryable<T> query, int currentPage, int pageSize, RavenQueryStatistics stats)

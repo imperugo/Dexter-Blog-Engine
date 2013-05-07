@@ -63,9 +63,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="Glimpse.Core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Glimpse.Core, Version=1.3.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Glimpse.1.0.1\lib\net40\Glimpse.Core.dll</HintPath>
+      <HintPath>..\packages\Glimpse.1.3.1\lib\net45\Glimpse.Core.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
@@ -73,7 +73,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -211,6 +211,11 @@
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Controllers\WidgetController.cs" />
+    <Content Include="Extensions\Themes\ScoreMe\Frontend\Views\Widget\RecentPosts.cshtml" />
+    <Content Include="Extensions\Themes\ScoreMe\Frontend\Views\Widget\RandomPosts.cshtml" />
+    <Content Include="Extensions\Themes\ScoreMe\Frontend\Views\Page\Index.cshtml" />
+    <None Include="Extensions\Themes\ScoreMe\Frontend\Views\Widget\TopTags.cshtml" />
+    <None Include="Extensions\Themes\ScoreMe\Frontend\Views\Shared\_postDetail.cshtml" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -223,6 +228,7 @@
     <Compile Include="Model\Widget\ArchiveViewModel.cs" />
     <Compile Include="Model\Widget\ItemCommentViewModel.cs" />
     <Compile Include="Model\Widget\RecentCommentsViewModel.cs" />
+    <Compile Include="Model\Widget\RecentPostViewModel.cs" />
     <Compile Include="Model\Widget\TopTagsViewModel.cs" />
     <Compile Include="Model\Widget\FuturePostsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

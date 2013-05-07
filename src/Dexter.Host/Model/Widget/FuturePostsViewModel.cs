@@ -17,8 +17,9 @@ namespace Dexter.Host.Model.Widget
 {
 	using Dexter.Entities;
 	using Dexter.Entities.Result;
+	using Dexter.Web.Core.Models;
 
-	public class FuturePostsViewModel
+	public class FuturePostsViewModel : WidgetModelBase
 	{
 		#region Public Properties
 

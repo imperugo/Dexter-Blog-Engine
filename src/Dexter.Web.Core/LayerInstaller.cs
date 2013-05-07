@@ -18,6 +18,7 @@ namespace Dexter.Web.Core
 	using Dexter.Dependency;
 	using Dexter.Dependency.Installation;
 	using Dexter.Web.Core.Routing;
+	using Dexter.Web.Core.Theme;
 
 	public class LayerInstaller : ILayerInstaller
 	{
@@ -30,6 +31,7 @@ namespace Dexter.Web.Core
 		public void ServiceRegistration(IDexterContainer container)
 		{
 			container.Register<IRoutingService, RoutingService>(LifeCycle.Singleton);
+			container.Register<IThemeHelper, ThemeHelper>(LifeCycle.Singleton);
 		}
 
 		public void ServiceRegistrationComplete(IDexterContainer container)

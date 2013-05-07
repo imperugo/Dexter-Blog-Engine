@@ -57,10 +57,6 @@
       <Project>{5FB1AED5-D55E-43CC-A3E0-5E788BD72144}</Project>
       <Name>Dexter.Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Dexter.Shared\Dexter.Shared.csproj">
-      <Project>{43C6E51E-D066-4BD3-8182-ACA95096CB37}</Project>
-      <Name>Dexter.Shared</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

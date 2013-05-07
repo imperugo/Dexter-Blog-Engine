@@ -30,7 +30,7 @@ namespace Dexter.Dependency.Castle.Configuration
 
 		public static void RegisterInterceptor(IWindsorContainer container)
 		{
-			container.Register(AllTypes.FromAssembly(typeof(CastleConfiguration).Assembly).BasedOn<IInterceptor>().Configure(reg => reg.LifeStyle.Singleton.Named(reg.Implementation.Name)).WithService.FromInterface());
+			container.Register(Classes.FromAssembly(typeof(CastleConfiguration).Assembly).BasedOn<IInterceptor>().Configure(reg => reg.LifeStyle.Singleton.Named(reg.Implementation.Name)).WithService.FromInterface());
 		}
 
 		#endregion

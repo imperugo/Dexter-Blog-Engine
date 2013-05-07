@@ -17,7 +17,6 @@ namespace Dexter.Host.Controllers
 {
 	using System;
 	using System.Collections.Generic;
-	using System.Threading.Tasks;
 	using System.Web.Mvc;
 
 	using Common.Logging;
@@ -28,8 +27,9 @@ namespace Dexter.Host.Controllers
 	using Dexter.Host.Model.Widget;
 	using Dexter.Services;
 	using Dexter.Web.Core.Controllers;
+	using Dexter.Web.Core.Theme;
 
-	public class WidgetController : DexterControllerBase
+	public class WidgetController : WidgetControllerBase
 	{
 		private readonly IPostService postService;
 
@@ -37,8 +37,8 @@ namespace Dexter.Host.Controllers
 
 		#region Constructors and Destructors
 
-		public WidgetController(ILog logger, IConfigurationService configurationService, IPostService postService, ICommentService commentService)
-			: base(logger, configurationService)
+		public WidgetController(ILog logger, IConfigurationService configurationService, IThemeHelper themeHelper, IPostService postService, ICommentService commentService)
+			: base(logger, configurationService, themeHelper)
 		{
 			this.postService = postService;
 			this.commentService = commentService;
@@ -109,6 +109,32 @@ namespace Dexter.Host.Controllers
 					                 Comments = comments
 				                 });
 		}
+
+		[ChildActionOnly]
+		public ActionResult RecentPosts(int maxNumberOfPosts)
+		{
+			var posts = this.postService.GetPosts(1, maxNumberOfPosts);
+
+			return this.View(new RecentPostViewModel()
+			{
+				Posts = posts
+			});
+		}
+
+		[ChildActionOnly]
+		public ActionResult RandomPosts(int maxNumberOfPosts)
+		{
+			var itemQueryFilter = new ItemQueryFilter();
+			itemQueryFilter.OrderFilter.RandomOrder = true;
+
+			var posts = this.postService.GetPosts(1, maxNumberOfPosts, itemQueryFilter);
+
+			return this.View(new RecentPostViewModel()
+			{
+				Posts = posts
+			});
+		}
+
 
 		#endregion
 	}

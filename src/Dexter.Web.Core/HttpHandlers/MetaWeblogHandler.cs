@@ -117,8 +117,8 @@ namespace Dexter.Web.Core.HttpHandlers
 						                                                           : c.Name, 
 					                                             
 					                                             //TODO: Da implementare l'url builder
-					                                             htmlUrl = string.Empty, 
-					                                             rssUrl = string.Empty, 
+					                                             htmlUrl = string.Empty,
+																 rssUrl = this.urlBuilder.Feed.CategoryFeed(c.Name),
 				                                             }).ToArray();
 
 			return data;
@@ -299,7 +299,26 @@ namespace Dexter.Web.Core.HttpHandlers
 
 		public WpCategoryInfo[] WpGetCategories(string blogid, string username, string password)
 		{
-			throw new NotImplementedException();
+			this.ValidateUser(username, password);
+
+			IList<CategoryDto> categories = this.categoryService.GetCategories();
+
+			WpCategoryInfo[] data = categories.Select(c => new WpCategoryInfo
+			{
+				categoryId = c.Id,
+				parentId = c.Parent == null
+							   ? 0
+							   : c.Parent.Id,
+				categoryName = c.Name,
+				description = string.IsNullOrEmpty(c.Description)
+								  ? string.Empty
+								  : c.Name,
+				//TODO: Da implementare l'url builder
+				htmlUrl = string.Empty,
+				rssUrl = this.urlBuilder.Feed.CategoryFeed(c.Name),
+			}).ToArray();
+
+			return data;
 		}
 
 		public WpTagInfo[] WpGetTags(string blog_id, string username, string password)

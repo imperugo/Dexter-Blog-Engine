@@ -21,7 +21,7 @@ namespace Dexter.Web.Core.Models
 
 	using Dexter.Entities;
 
-	public class DexterModelBase : DynamicObject
+	public class DexterModelBase : TemplateModelBase
 	{
 		#region Fields
 

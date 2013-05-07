@@ -24,7 +24,7 @@ namespace Dexter.Web.Core.Controllers
 	using Dexter.Services;
 	using Dexter.Web.Core.Resultes;
 
-	public class DexterControllerBase : AsyncController
+	public abstract class DexterControllerBase : AsyncController
 	{
 		#region Fields
 

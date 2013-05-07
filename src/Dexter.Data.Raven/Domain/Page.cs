@@ -22,5 +22,7 @@ namespace Dexter.Data.Raven.Domain
 		public int SortId { get; set; }
 
 		public string[] PagesId { get; set; }
+
+		public string Template { get; set; }
 	}
 }

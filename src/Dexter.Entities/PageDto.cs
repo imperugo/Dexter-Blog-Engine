@@ -22,5 +22,7 @@ namespace Dexter.Entities
 		public int SortId { get; set; }
 
 		public int[] PagesId { get; set; }
+
+		public string Template { get; set; }
 	}
 }

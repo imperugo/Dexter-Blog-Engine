@@ -21,6 +21,8 @@ namespace Dexter.Data.Raven.Services
 	using System.Linq;
 	using System.Threading;
 
+	using Dexter.Data.Raven.AutoMapper;
+
 	using global::AutoMapper;
 
 	using Common.Logging;
@@ -145,8 +147,8 @@ namespace Dexter.Data.Raven.Services
 
 			return this.Session.Query<Post>()
 			           .Statistics(out stats)
+					   .ApplyOrder(filters)
 			           .ApplyFilterItem(filters)
-			           .OrderByDescending(post => post.PublishAt)
 			           .ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
 		}
 
@@ -181,6 +183,7 @@ namespace Dexter.Data.Raven.Services
 
 			IQueryable<Post> query = this.Session.Query<Post>()
 			                             .Statistics(out stats)
+										 .ApplyOrder(filters)
 			                             .Where(post => post.PublishAt.Year == year)
 			                             .ApplyFilterItem(filters);
 
@@ -195,7 +198,6 @@ namespace Dexter.Data.Raven.Services
 			}
 
 			return query
-				.OrderByDescending(post => post.PublishAt)
 				.ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
 		}
 
@@ -220,9 +222,9 @@ namespace Dexter.Data.Raven.Services
 
 			return this.Session.Query<Post>()
 			           .Statistics(out stats)
+					   .ApplyOrder(filters)
 			           .ApplyFilterItem(filters)
 			           .Where(post => post.Tags.Any(postTag => postTag == tag))
-			           .OrderByDescending(post => post.PublishAt)
 			           .ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
 		}
 
@@ -247,9 +249,9 @@ namespace Dexter.Data.Raven.Services
 
 			return this.Session.Query<Post>()
 					   .Statistics(out stats)
+					   .ApplyOrder(filters)
 					   .ApplyFilterItem(filters)
 					   .Where(post => post.Categories.Any(postCategory => postCategory == categoryName))
-					   .OrderByDescending(post => post.PublishAt)
 					   .ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
 		}
 
@@ -273,11 +275,20 @@ namespace Dexter.Data.Raven.Services
 				throw new ArgumentNullException("item", "The post must be contains a valid instance");
 			}
 
-			Post post = this.Session.Load<Post>(item.Id)
-			            ?? new Post
-				               {
-					               CreatedAt = DateTimeOffset.Now
-				               };
+			Post post = null;
+			
+			if (item.Id > 0)
+			{
+				post = this.Session.Load<Post>(item.Id);
+			}
+
+			if (post == null)
+			{
+				post = new Post
+				{
+					CreatedAt = DateTimeOffset.Now
+				};
+			}
 
 			if (string.IsNullOrEmpty(item.Author))
 			{
@@ -380,10 +391,10 @@ namespace Dexter.Data.Raven.Services
 			return this.Session.Query<PostFullTextIndex.ReduceResult, PostFullTextIndex>()
 			           .Customize(x => x.Highlight("SearchQuery", 128, 1, "Results"))
 			           .Search(x => x.SearchQuery, term)
-			           .OrderByDescending(post => post.PublishDate)
 			           .Statistics(out stats)
 			           .As<Post>()
 			           .ApplyFilterItem(filters)
+					   .ApplyOrder(filters)
 			           .ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
 		}
 

@@ -125,8 +125,15 @@ namespace Dexter.Navigation.Helpers
 				sb.AppendFormat("{0}/", this.Area);
 			}
 
-			sb.AppendFormat("{0}/", this.Controller);
-			sb.AppendFormat("{0}/", this.Action);
+			var isDefaultRoot = string.Equals(this.Controller, "Home", StringComparison.OrdinalIgnoreCase)
+			                    && string.Equals(this.Action, "Index", StringComparison.OrdinalIgnoreCase)
+			                    && (this.Segments == null || this.Segments.Any() == false);
+
+			if (!isDefaultRoot)
+			{
+				sb.AppendFormat("{0}/", this.Controller);
+				sb.AppendFormat("{0}/", this.Action);
+			}
 
 			if (this.Segments != null)
 			{

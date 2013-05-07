@@ -1,0 +1,212 @@
+﻿@model Dexter.Host.Model.PageController.IndexViewModel
+
+@{
+	Layout = Model.Template;
+}
+
+@helper DisplayComments(int numberOfComments)
+{
+	if (numberOfComments < 1)
+	{
+		<text>
+			No Comments
+		</text>
+	}
+	else if (numberOfComments > 1)
+	{
+		<text>
+			@numberOfComments Comments
+		</text>
+	}
+	else
+	{
+		<text>
+			1 Comment
+		</text>
+	}
+}
+
+<div class="post-1981 post type-post status-publish format-standard hentry category-design tag-foliage tag-macro twinsbox"> 
+ 
+	@if (Model.Page.FeaturedImage != null)
+	{
+		<img width="718" height="400" src="@Model.Page.FeaturedImage" class="main-single wp-post-image" alt="@Model.Page.Title">
+		<div style="clear: both;"></div>
+	}
+	
+		<h2 class="heading">
+			<a href="@U.Page.Permalink(Model.Page)">@Model.Page.Title</a>
+		</h2>
+s
+	<div class="entry">
+
+		<p class="meta sserif">
+			<i class="icon-time"></i> on  @Model.Page.PublishAt.ToString("m") | 
+			<i class="icon-copy"></i> in 
+			<i class="icon-edit"></i> by @Model.Page.Author | 
+			<i class="icon-comments-alt"></i> with @Comments(Model.Page.TotalComments)
+		</p>
+        
+		@Model.Page.Content
+
+		<div class="postauthor">
+			<h2 class="widget"><span>about the author:</span> <a href="http://wpdemo.themnific.com/pre/16/?author=1" title="Posts by Themnific" rel="author">Themnific</a></h2>
+			<img alt="" src="http://0.gravatar.com/avatar/aacc823ac139f84d0825de27e8a9258a?s=75&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D75&amp;r=G" class="avatar avatar-75 photo" height="75" width="75"> 			<div class="authordesc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc faucibus neque interdum lectus convallis ullamcorper condimentum purus aliquam. Sed sit amet tellus nunc, eget tristique nibh. Cras congue purus ut est faucibus et lacinia lectus venenatis. Morbi sit amet leo et ipsum convallis commodo vitae non lectus. Nam pulvinar porta tincidunt. Integer dolor ligula, semper ac vulputate vel, mollis vel quam.</div>
+		</div>                
+		<h2 class="widget"><span>related</span> posts</h2>
+		<ul class="related">	
+				
+			<li><span class="top-rating">83<span>%</span></span>
+                        
+				                
+				<a href="http://wpdemo.themnific.com/pre/16/?p=2317" title="Old War Towers">
+                     
+					<img width="270" height="160" src="http://wpdemo.themnific.com/pre/16/wp-content/uploads/2013/04/1108649_24517411-270x160.jpg" class="attachment-w-cacousel wp-post-image" alt="1108649_24517411" title="">                            
+				</a>
+                     
+                                
+				<p class="meta">
+                
+					Apr 15 | 
+					570 Views |
+					No Comments                
+				</p>
+                
+				<h3 class="upperfont"><a href="http://wpdemo.themnific.com/pre/16/?p=2317" title="Old War Towers">Old War Towers<br>	<span class="rating_star">
+						                                                                                                                    <i class="icon-star"></i>
+						                                                                                                                    <i class="icon-star"></i>
+						                                                                                                                    <i class="icon-star"></i>
+						                                                                                                                    <i class="icon-star"></i>
+						                                                                                                                    <i class="icon-star-empty"></i>
+					                                                                                                                    </span> </a></h3>
+                
+
+			</li>
+			<li><span class="top-rating">67<span>%</span></span>
+                        
+				                
+				<a href="http://wpdemo.themnific.com/pre/16/?p=2438" title="Grey See Stones">
+                     
+					<img width="270" height="160" src="http://wpdemo.themnific.com/pre/16/wp-content/uploads/2013/04/the-stones-103626_1920-270x160.jpg" class="attachment-w-cacousel wp-post-image" alt="the-stones-103626_1920" title="">                            
+				</a>
+                     
+                                
+				<p class="meta">
+                
+					Feb 17 | 
+					352 Views |
+					No Comments                
+				</p>
+                
+				<h3 class="upperfont"><a href="http://wpdemo.themnific.com/pre/16/?p=2438" title="Grey See Stones">Grey See Stones<br>	<span class="rating_star">
+						                                                                                                                      <i class="icon-star"></i>
+						                                                                                                                      <i class="icon-star"></i>
+						                                                                                                                      <i class="icon-star"></i>
+						                                                                                                                      <i class="icon-star-half"></i>
+						                                                                                                                      <i class="icon-star-empty"></i>
+					                                                                                                                      </span> </a></h3>
+                
+
+			</li>
+			<li><span class="top-rating">94<span>%</span></span>
+                        
+				                
+				<a href="http://wpdemo.themnific.com/pre/16/?p=20" title="The Tin Woodman gave a sigh of satisfaction and lowered his axe">
+                     
+					<img width="270" height="160" src="http://wpdemo.themnific.com/pre/16/wp-content/uploads/2012/11/angle-19887-270x160.jpg" class="attachment-w-cacousel wp-post-image" alt="angle-19887" title="" style="opacity: 1;">                            
+				</a>
+                     
+                                
+				<p class="meta">
+                
+					Nov 3 | 
+					422 Views |
+					No Comments                
+				</p>
+                
+				<h3 class="upperfont"><a href="http://wpdemo.themnific.com/pre/16/?p=20" title="The Tin Woodman gave a sigh of satisfaction and lowered his axe">The Tin Woodman gave a sigh of satisfaction and lowered his...<br>	<span class="rating_star">
+						                                                                                                                                                                                                                   <i class="icon-star"></i>
+						                                                                                                                                                                                                                   <i class="icon-star"></i>
+						                                                                                                                                                                                                                   <i class="icon-star"></i>
+						                                                                                                                                                                                                                   <i class="icon-star"></i>
+						                                                                                                                                                                                                                   <i class="icon-star"></i>
+					                                                                                                                                                                                                                   </span> </a></h3>
+                
+
+			</li>
+		</ul>
+		<div style="clear: both;"></div>
+
+
+					            	
+		<div style="clear: both;"></div>
+            
+		<div class="postinfo body2">
+
+			<span class="fl">
+				<p><a href="http://wpdemo.themnific.com/pre/16"><i class="icon-home"></i> </a> » <a href="http://wpdemo.themnific.com/pre/16/?cat=3" title="View all posts in Design" rel="category">Design</a> » All night a wide-awake watch was...</p>
+			</span>
+                            
+			<span class="fr">
+				<p><i class="icon-tags"></i>  <a href="http://wpdemo.themnific.com/pre/16/?tag=foliage" rel="tag">Foliage</a>, <a href="http://wpdemo.themnific.com/pre/16/?tag=macro" rel="tag">Macro</a></p>                            </span>
+                        
+			<div style="clear: both;"></div> 
+                            
+		</div>
+                        
+                	                    
+
+            
+		<div style="clear: both;"></div>
+            
+            	
+
+
+		<div id="comments">
+
+			<h3 id="comments-title">One Response to All night a wide-awake watch was kept by all the officers</h3>
+			<div class="hrline"><span></span></div>
+
+			<ol class="commentlist">
+				<li class="comment even thread-even depth-1" id="comment-2">
+					<div id="div-comment-2" class="comment-body">
+						<div class="comment-author vcard">
+							<img alt="" src="http://0.gravatar.com/avatar/aacc823ac139f84d0825de27e8a9258a?s=54&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D54&amp;r=G" class="avatar avatar-54 photo" height="54" width="54">		<cite class="fn"><a href="http://themnific.com/" rel="external nofollow" class="url">Dannci</a></cite> <span class="says">says:</span>		</div>
+
+						<div class="comment-meta commentmetadata"><a href="http://wpdemo.themnific.com/pre/16/?p=1981#comment-2">
+							                                          January 31, 2013 at 3:14 pm</a>		</div>
+
+						<p>She was drifting some fifty feet above the ground, followed by all but some hundred of the warriors who had been ordered back to the roofs to cover the possibility of a return of the fleet, or of reinforcements. It soon became evident that she would strike the face of the buildings about a mile south of our position, and as I watched the progress of the chase I saw a number of warriors gallop ahead, dismount and enter the building she seemed destined to touch.</p>
+
+						<div class="reply">
+							<a class="comment-reply-link" href="/pre/16/?p=1981&amp;replytocom=2#respond" onclick="return addComment.moveForm(&quot;div-comment-2&quot;, &quot;2&quot;, &quot;respond&quot;, &quot;1981&quot;)">Reply</a>		</div>
+					</div>
+				</li>
+			</ol>
+
+
+
+			<div id="respond">
+				<h3 id="reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/pre/16/?p=1981#respond" style="display:none;">Cancel reply</a></small></h3>
+				<form action="http://wpdemo.themnific.com/pre/16/wp-comments-post.php" method="post" id="commentform">
+					<p class="comment-notes">Your email address will not be published. Required fields are marked <span class="required">*</span></p>							<p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" aria-required="true"></p>
+					<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="text" value="" size="30" aria-required="true"></p>
+					<p class="comment-form-url"><label for="url">Website</label><input id="url" name="url" type="text" value="" size="30"></p>
+					<p class="comment-form-comment"><label for="comment">Comment</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>						<p class="form-allowed-tags">You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:  <code>&lt;a href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; &lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt; &lt;strong&gt; </code></p>						<p class="form-submit">
+																		                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 <input name="submit" type="submit" id="submit" value="Post Comment">
+																		                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 <input type="hidden" name="comment_post_ID" value="1981" id="comment_post_ID">
+																		                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 <input type="hidden" name="comment_parent" id="comment_parent" value="0">
+																	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 </p>
+					<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="bdacad11b5"></p>					</form>
+			</div><!-- #respond -->
+						
+		</div><!-- #comments -->
+            
+		<p>
+			<span class="fl" style="width:45%;">« <a href="http://wpdemo.themnific.com/pre/16/?p=2348" rel="prev">Alps Holiday</a></span>                                </p>
+            
+	</div>
+            
+</div>
+
+<div style="clear: both;"></div>

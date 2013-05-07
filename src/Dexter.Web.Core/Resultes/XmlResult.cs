@@ -20,7 +20,7 @@ namespace Dexter.Web.Core.Resultes
 	using System.Xml;
 	using System.Xml.Linq;
 
-	public class XmlResult : ActionResult
+	public class XmlResult : DexterViewResult
 	{
 		#region Fields
 

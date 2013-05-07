@@ -18,8 +18,9 @@ namespace Dexter.Host.Model.Widget
 	using System.Collections.Generic;
 
 	using Dexter.Entities;
+	using Dexter.Web.Core.Models;
 
-	public class ArchiveViewModel
+	public class ArchiveViewModel : WidgetModelBase
 	{
 		#region Public Properties
 

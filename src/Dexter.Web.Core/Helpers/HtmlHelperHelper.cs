@@ -153,11 +153,7 @@ namespace System.Web.Mvc.Html
 
 		public static MvcHtmlString WindowsLiveWriterManifest(this HtmlHelper helper)
 		{
-			IUrlBuilder urlBuilder = DexterContainer.Resolve<IUrlBuilder>();
-
-			string tag = string.Format(@"<link rel=""wlwmanifest"" type=""application/wlwmanifest+xml"" href=""{0}/wlwmanifest.xml""/>", urlBuilder.Home);
-
-			return new MvcHtmlString(tag);
+			return new MvcHtmlString(@"<link rel=""wlwmanifest"" type=""application/wlwmanifest+xml"" href=""/wlwmanifest.xml""/>");
 		}
 
 		#endregion

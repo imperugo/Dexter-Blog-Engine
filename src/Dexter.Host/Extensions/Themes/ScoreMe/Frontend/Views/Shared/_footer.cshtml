@@ -1,11 +1,17 @@
-﻿<div id="footer">
+﻿@model Dexter.Web.Core.Models.DexterModelBase
+<div id="footer">
 	
 	<div class="container upper">
 
 		<div class="threecol first">
 			<h2>Tags</h2>
 			<div class="tagcloud">
-				<a href="http://wpdemo.themnific.com/pre/16/?tag=art" class="tag-link-12" title="2 topics" style="font-size: 14.3pt;">Art</a>
+				@{ Html.RenderAction("TopTags", "Widget", new
+					                                          {
+																	area = "",
+																	maxNumberOfTags = 16
+					                                          }); }
+				@*<a href="http://wpdemo.themnific.com/pre/16/?tag=art" class="tag-link-12" title="2 topics" style="font-size: 14.3pt;">Art</a>
 				<a href="http://wpdemo.themnific.com/pre/16/?tag=buildings" class="tag-link-13" title="2 topics" style="font-size: 14.3pt;">Buildings</a>
 				<a href="http://wpdemo.themnific.com/pre/16/?tag=cards" class="tag-link-14" title="4 topics" style="font-size: 22pt;">Cards</a>
 				<a href="http://wpdemo.themnific.com/pre/16/?tag=face" class="tag-link-16" title="2 topics" style="font-size: 14.3pt;">Face</a>
@@ -21,7 +27,8 @@
 				<a href="http://wpdemo.themnific.com/pre/16/?tag=road" class="tag-link-27" title="2 topics" style="font-size: 14.3pt;">Road</a>
 				<a href="http://wpdemo.themnific.com/pre/16/?tag=sentinel" class="tag-link-28" title="2 topics" style="font-size: 14.3pt;">Sentinel</a>
 				<a href="http://wpdemo.themnific.com/pre/16/?tag=smooth" class="tag-link-30" title="1 topic" style="font-size: 8pt;">Smooth</a>
-				<a href="http://wpdemo.themnific.com/pre/16/?tag=song" class="tag-link-31" title="3 topics" style="font-size: 18.5pt;">Song</a>
+				<a href="http://wpdemo.themnific.com/pre/16/?tag=song" class="tag-link-31" title="3 topics" style="font-size: 18.5pt;">Song</a>*@
+
 			</div>
 			<h2>About Us</h2>
 			<div class="textwidget">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus faucibus ligula consequat porttitor. Vestibulum ac justo.</div>

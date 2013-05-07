@@ -101,11 +101,16 @@
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
     <Compile Include="Controllers\DexterControllerBase.cs" />
+    <Compile Include="Controllers\WidgetControllerBase.cs" />
     <Compile Include="Filters\PingBackAttribute.cs" />
     <Compile Include="Helpers\HtmlHelperHelper.cs" />
     <Compile Include="HttpApplication\DexterApplication.cs" />
     <Compile Include="HttpHandlers\HttpHandlerBase.cs" />
     <Compile Include="HttpHandlers\MetaWeblogHandler.cs" />
+    <Compile Include="Invokers\DexterControllerActionInvoker.cs" />
+    <Compile Include="Models\TemplateModelBase.cs" />
+    <Compile Include="Models\WidgetModelBase.cs" />
+    <Compile Include="Resultes\DexterViewResult.cs" />
     <Compile Include="LayerInstaller.cs" />
     <Compile Include="MetaWeblogApi\Domain\BlogInfo.cs" />
     <Compile Include="MetaWeblogApi\Domain\Category.cs" />
@@ -135,6 +140,8 @@
     <Compile Include="Routing\Routes\MetaWeblogApiRouteHandler.cs" />
     <Compile Include="Routing\Routes\SetupRoute.cs" />
     <Compile Include="Routing\RoutingService.cs" />
+    <Compile Include="Theme\Theme.cs" />
+    <Compile Include="Theme\IThemeHelper.cs" />
     <Compile Include="ViewEngine\DexterViewEngine.cs" />
     <Compile Include="ViewPages\IDexterView.cs" />
     <Compile Include="ViewPages\RazorViewPage %28generics%29.cs" />
@@ -175,9 +182,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Providers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

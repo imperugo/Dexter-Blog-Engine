@@ -20,7 +20,6 @@ namespace Dexter.Data.Raven
 	using System.Diagnostics;
 	using System.Net;
 	using System.Net.Sockets;
-	using System.Web;
 
 	using BuildingBlocks.Membership.Contract;
 

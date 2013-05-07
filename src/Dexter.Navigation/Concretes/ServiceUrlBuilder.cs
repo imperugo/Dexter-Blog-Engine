@@ -42,7 +42,7 @@ namespace Dexter.Navigation.Concretes
 
 		public SiteUrl MetaWeblogRsd()
 		{
-			return new SiteUrl(this.Domain, this.HttpPort, false, null, "Syndication", "Rsd", null, null);
+			return new SiteUrl(this.Domain, this.HttpPort, false, "api", "Syndication", "Rsd", null, null);
 		}
 
 		public SiteUrl Pingback()

@@ -19,6 +19,11 @@ namespace Dexter.Entities.Filters
 
 	public class ItemQueryFilter
 	{
+		public ItemQueryFilter()
+		{
+			this.OrderFilter = new ItemOrderFilter();
+		}
+
 		#region Public Properties
 
 		public DateTimeOffset? MaxPublishAt { get; set; }
@@ -27,6 +32,30 @@ namespace Dexter.Entities.Filters
 
 		public ItemStatus? Status { get; set; }
 
+		public ItemOrderFilter OrderFilter { get; set; }
+
 		#endregion
+	}
+
+	public class ItemOrderFilter
+	{
+		public ItemOrderFilter()
+		{
+			this.SortBy = SortBy.PublishAt;
+		}
+
+		public SortBy SortBy { get; set; }
+		public bool Ascending { get; set; }
+		public bool RandomOrder { get; set; }
+	}
+
+	public enum SortBy
+	{
+		Id,
+		Title,
+		TotalComments,
+		TotalTrackback,
+		CreatedAt,
+		PublishAt
 	}
 }

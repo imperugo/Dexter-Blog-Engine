@@ -15,10 +15,7 @@
 
 namespace Dexter.Data
 {
-	using System.Security.Permissions;
-
 	using Dexter.Entities;
-	using Dexter.Shared;
 
 	public interface IConfigurationDataService
 	{

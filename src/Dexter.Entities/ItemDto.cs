@@ -5,12 +5,13 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
 // Created:		2012/11/03
-// Last edit:	2013/01/20
+// Last edit:	2013/05/07
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Entities
@@ -21,17 +22,33 @@ namespace Dexter.Entities
 	{
 		#region Public Properties
 
-		public string Author { get; set; }
+		public int Id { get; set; }
+
+		public string Title { get; set; }
+
+		public string Slug { get; set; }
+
+		public ItemStatus Status { get; set; }
 
 		public string Excerpt { get; set; }
-
-		public bool AllowComments { get; set; }
 
 		public string Content { get; set; }
 
 		public DateTimeOffset CreatedAt { get; set; }
 
-		public int Id { get; set; }
+		public DateTimeOffset PublishAt { get; set; }
+
+		public string Author { get; set; }
+
+		public bool AllowComments { get; set; }
+
+		public Uri FeaturedImage { get; set; }
+
+		public int TotalComments { get; set; }
+
+		public int TotalTrackback { get; set; }
+
+		public string[] Tags { get; set; }
 
 		public bool IsTransient
 		{
@@ -40,20 +57,6 @@ namespace Dexter.Entities
 				return this.Id == 0;
 			}
 		}
-
-		public DateTimeOffset PublishAt { get; set; }
-
-		public string Slug { get; set; }
-
-		public ItemStatus Status { get; set; }
-
-		public string Title { get; set; }
-
-		public int TotalComments { get; set; }
-
-		public int TotalTrackback { get; set; }
-
-		public string[] Tags { get; set; }
 
 		#endregion
 	}

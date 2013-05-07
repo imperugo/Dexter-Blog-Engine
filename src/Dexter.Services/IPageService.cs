@@ -23,7 +23,6 @@ namespace Dexter.Services
 	using Dexter.Entities.Filters;
 	using Dexter.Entities.Result;
 	using Dexter.Services.Events;
-	using Dexter.Shared;
 
 	public interface IPageService
 	{
@@ -83,8 +82,6 @@ namespace Dexter.Services
 
 		#region Public Methods and Operators
 
-		[PrincipalPermission(SecurityAction.PermitOnly, Authenticated = true, Role = Constants.Editor)]
-		[PrincipalPermission(SecurityAction.PermitOnly, Authenticated = true, Role = Constants.AdministratorRole)]
 		void Delete(int key);
 
 		string[] GetAllSlugs();
@@ -95,8 +92,6 @@ namespace Dexter.Services
 
 		IPagedResult<PageDto> GetPages(int pageIndex, int pageSize, ItemQueryFilter filters);
 
-		[PrincipalPermission(SecurityAction.PermitOnly, Authenticated = true, Role = Constants.Editor)]
-		[PrincipalPermission(SecurityAction.PermitOnly, Authenticated = true, Role = Constants.AdministratorRole)]
 		void SaveOrUpdate(PageDto item);
 
 		#endregion

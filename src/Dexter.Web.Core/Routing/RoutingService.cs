@@ -16,6 +16,7 @@
 
 namespace Dexter.Web.Core.Routing
 {
+	using System.Collections.Generic;
 	using System.Web.Http;
 	using System.Web.Mvc;
 	using System.Web.Routing;
@@ -104,7 +105,12 @@ namespace Dexter.Web.Core.Routing
 					                                                                                               id = RouteParameter.Optional
 				                                                                                               });
 
-			routes.Add(new Route("wlw/metaweblog", new MetaWeblogApiRouteHandler()));
+			routes.Add(new Route("wlw/{weblog}", null,
+				new RouteValueDictionary(new
+					                         {
+												 weblog = "metaweblog"
+					                         }),
+				new MetaWeblogApiRouteHandler()));
 
 			routes.MapRoute("Default", "{controller}/{action}/{id}", 
 				new

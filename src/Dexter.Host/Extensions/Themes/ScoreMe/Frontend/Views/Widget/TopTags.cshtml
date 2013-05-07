@@ -1,0 +1,16 @@
+﻿@using Dexter.Entities
+@model Dexter.Host.Model.Widget.TopTagsViewModel
+
+@{
+	Layout = Model.Template;
+}
+
+@foreach (TagDto tag in Model.Tags)
+{
+	<a href="http://wpdemo.themnific.com/pre/16/?tag=art" 
+	   class="tag-link-@tag.Count" 
+	   title="@tag.Name" 
+	   style="font-size: 13.75pt;">
+		@tag.Name
+	</a>
+}

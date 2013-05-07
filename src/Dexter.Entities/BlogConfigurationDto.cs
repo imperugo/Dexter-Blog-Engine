@@ -101,6 +101,8 @@ namespace Dexter.Entities
 
 		public Tracking Tracking { get; set; }
 
+		public string ThemeName { get; set; }
+
 		#endregion
 	}
 

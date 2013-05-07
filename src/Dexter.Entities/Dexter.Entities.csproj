@@ -45,6 +45,7 @@
     <Compile Include="DtoBase.cs" />
     <Compile Include="EmailMessageDto.cs" />
     <Compile Include="Extensions\PagedResultExtensions.cs" />
+    <Compile Include="Filters\OrderFilter.cs" />
     <Compile Include="ItemType.cs" />
     <Compile Include="PackageDto.cs" />
     <Compile Include="PluginDto.cs" />
