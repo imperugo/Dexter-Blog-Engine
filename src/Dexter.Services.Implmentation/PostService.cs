@@ -112,8 +112,6 @@ namespace Dexter.Services.Implmentation
 
 		#region Public Methods and Operators
 
-		[PrincipalPermission(SecurityAction.PermitOnly, Authenticated = true, Role = Constants.Editor)]
-		[PrincipalPermission(SecurityAction.PermitOnly, Authenticated = true, Role = Constants.AdministratorRole)]
 		public void Delete(int key)
 		{
 			if (key < 1)
@@ -421,8 +419,6 @@ namespace Dexter.Services.Implmentation
 			return data;
 		}
 
-		[PrincipalPermission(SecurityAction.PermitOnly, Authenticated = true, Role = Constants.Editor)]
-		[PrincipalPermission(SecurityAction.PermitOnly, Authenticated = true, Role = Constants.AdministratorRole)]
 		public void SaveOrUpdate(PostDto item)
 		{
 			if (item == null)

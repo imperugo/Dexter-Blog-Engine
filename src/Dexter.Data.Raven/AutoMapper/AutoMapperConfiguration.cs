@@ -32,6 +32,8 @@ namespace Dexter.Data.Raven.AutoMapper
 		{
 			Mapper.CreateMap<ItemDto, Item>()
 			      .ForMember(dest => dest.SearchContent, opt => opt.MapFrom(x => x.Content.CleanHtmlText()))
+				  .ForMember(dest => dest.CommentsId, opt => opt.Ignore())
+				  .ForMember(dest => dest.TrackbacksId, opt => opt.Ignore())
 			      .Include<PostDto, Post>()
 			      .Include<PageDto, Page>();
 
@@ -48,16 +50,26 @@ namespace Dexter.Data.Raven.AutoMapper
 
 			Mapper.CreateMap<PageDto, Page>()
 					.ForMember(dest => dest.Id, opt => opt.MapFrom(x => RavenIdHelper.Resolve<Page>(x.Id)))
+					.ForMember(dest => dest.CommentsId, opt => opt.Ignore())
+					.ForMember(dest => dest.TrackbacksId, opt => opt.Ignore())
 					.ForMember(dest => dest.ParentId, opt => opt.MapFrom(x => RavenIdHelper.Resolve<Page>(x.ParentId)))
 					.ForMember(dest => dest.PagesId, opt => opt.MapFrom(x => RavenIdHelper.Resolve<Page>(x.PagesId)));
 
 			Mapper.CreateMap<PostDto, Post>()
+				  .ForMember(dest => dest.Results, opt => opt.Ignore())
+			      .ForMember(dest => dest.CommentsId, opt => opt.Ignore())
+			      .ForMember(dest => dest.TrackbacksId, opt => opt.Ignore())
 			      .ForMember(dest => dest.Id, opt => opt.MapFrom(x => RavenIdHelper.Resolve<Post>(x.Id)));
 
-			Mapper.CreateMap<Comment, CommentDto>().ReverseMap();
+			Mapper.CreateMap<Comment, CommentDto>()
+			      .ForMember(dest => dest.ItemInfo, opt => opt.Ignore())
+			      .ReverseMap();
+
+			Mapper.CreateMap<CommentDto, Comment>();
 
 			Mapper.CreateMap<Category, CategoryDto>()
-			      .ForMember(dest => dest.Id, opt => opt.MapFrom(x => RavenIdHelper.Resolve(x.Id)));
+			      .ForMember(dest => dest.Id, opt => opt.MapFrom(x => RavenIdHelper.Resolve(x.Id)))
+			      .ForMember(dest => dest.PostCount, opt => opt.MapFrom(p => p.PostsId.Length));
 
 			Mapper.CreateMap<CategoryDto, Category>()
 			      .ForMember(dest => dest.Id, opt => opt.MapFrom(x => RavenIdHelper.Resolve<Category>(x.Id)))

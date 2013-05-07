@@ -75,6 +75,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Quartz, Version=2.1.2.400, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Quartz.2.1.2\lib\net40\Quartz.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -1453,6 +1457,10 @@
     <ProjectReference Include="..\Dexter.Plugin\Dexter.PackageInstaller.csproj">
       <Project>{70be4f00-3f08-40da-b6ba-58cbeaaa1b62}</Project>
       <Name>Dexter.PackageInstaller</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Scheduler\Dexter.Scheduler.csproj">
+      <Project>{487c4a05-25e3-4e7c-8dc0-b768f19ac3d8}</Project>
+      <Name>Dexter.Scheduler</Name>
     </ProjectReference>
     <ProjectReference Include="..\Dexter.Services.Implmentation\Dexter.Services.Implmentation.csproj">
       <Project>{cbc7440d-f0c3-418e-b733-ab2f68cf0db5}</Project>

@@ -160,11 +160,11 @@ namespace Dexter.Web.Core.HttpApplication
 		{
 			this.routingService.RegisterRoutes();
 
-			this.ConfigureViewEngine();
-			this.RegisterGlobalFilters();
-
 			DependencyResolver.SetResolver(this.container.Resolve<IDependencyResolver>());
 			GlobalConfiguration.Configuration.DependencyResolver = this.container.Resolve<System.Web.Http.Dependencies.IDependencyResolver>();
+
+			this.RegisterGlobalFilters();
+			this.ConfigureViewEngine();
 		}
 
 		private void RegisterGlobalFilters()
@@ -187,8 +187,17 @@ namespace Dexter.Web.Core.HttpApplication
 		private void ConfigureViewEngine()
 		{
 			ViewEngines.Engines.Clear();
-			ViewEngines.Engines.Add(new DexterViewEngine());
-			ViewEngines.Engines.Add(new RazorViewEngine());
+
+			var blogConfiguration = DexterContainer.Resolve<IConfigurationService>().GetConfiguration();
+
+			string currentTheme = "Default";
+
+			if (blogConfiguration != null)
+			{
+				currentTheme = blogConfiguration.ThemeName;
+			}
+
+			ViewEngines.Engines.Add(new DexterViewEngine(currentTheme));
 		}
 
 		#endregion

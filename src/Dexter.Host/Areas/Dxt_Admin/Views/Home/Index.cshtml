@@ -78,9 +78,9 @@
 </section>
 
 <section class="grid_8">
-	@Html.Action("FastPostEditor","Widget")
+	@Html.Action("FastPostEditor","Widget", new { area ="Dxt_Admin"})
 </section>
 
 <section class="grid_12">
-	@Html.Action("PostList","Widget", new {pageIndex = 1, pageSize = 10})
+	@Html.Action("PostList","Widget", new { area ="Dxt_Admin", pageIndex = 1, pageSize = 10})
 </section>
