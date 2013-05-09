@@ -17,7 +17,7 @@ namespace Dexter.Services
 {
 	using System.Threading.Tasks;
 
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 
 	public interface ISetupService
 	{

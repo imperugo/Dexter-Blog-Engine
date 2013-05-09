@@ -29,7 +29,7 @@ namespace Dexter.Host.Controllers
 	using Common.Logging;
 
 	using Dexter.Data;
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 	using Dexter.Services;
 	using Dexter.Services.Implmentation;
 	using Dexter.Web.Core.Controllers;

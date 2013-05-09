@@ -19,7 +19,7 @@ namespace Dexter.Data.Raven.Domain
 	using System;
 	using System.Collections.Generic;
 
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 
 	public abstract class Item : EntityBase<string>
 	{
@@ -40,6 +40,7 @@ namespace Dexter.Data.Raven.Domain
 		public Uri FeaturedImage { get; set; }
 
 		public string Author { get; set; }
+		public string AuthorId { get; set; }
 
 		public bool AllowComments { get; set; }
 

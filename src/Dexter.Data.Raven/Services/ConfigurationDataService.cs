@@ -21,7 +21,7 @@ namespace Dexter.Data.Raven.Services
 	using Common.Logging;
 
 	using Dexter.Data.Raven.Session;
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 
 	public class ConfigurationDataService : ServiceBase, IConfigurationDataService
 	{

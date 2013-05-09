@@ -20,7 +20,7 @@ namespace Dexter.Web.Core.Controllers
 
 	using Common.Logging;
 
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 	using Dexter.Services;
 	using Dexter.Web.Core.Resultes;
 

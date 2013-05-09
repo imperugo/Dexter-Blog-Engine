@@ -21,7 +21,7 @@ namespace Dexter.Web.Core.Models
 	public class TemplateModelBase : DynamicObject
 	{
 		protected TemplateModelBase()
-			: this("../Shared/_layout.cshtml")
+			: this("../Templates/_layout.cshtml")
 		{
 		}
 

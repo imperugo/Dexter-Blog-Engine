@@ -18,7 +18,7 @@ namespace Dexter.Host.Model.Widget
 {
 	using System.Collections.Generic;
 
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 	using Dexter.Web.Core.Models;
 
 	public class ItemCommentViewModel : WidgetModelBase

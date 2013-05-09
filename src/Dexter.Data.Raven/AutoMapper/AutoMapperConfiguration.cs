@@ -22,7 +22,7 @@ namespace Dexter.Data.Raven.AutoMapper
 
 	using Dexter.Data.Raven.Domain;
 	using Dexter.Data.Raven.Helpers;
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 
 	public class AutoMapperConfiguration
 	{
@@ -39,6 +39,10 @@ namespace Dexter.Data.Raven.AutoMapper
 
 			Mapper.CreateMap<Item, ItemDto>()
 			      .ForMember(dest => dest.Id, opt => opt.MapFrom(x => RavenIdHelper.Resolve(x.Id)))
+			      .ForMember(dest => dest.Author, opt => opt.MapFrom(x => new AuthorInfoDto
+				                                                              {
+					                                                              Username = x.Author
+				                                                              }))
 			      .Include<Post, PostDto>()
 			      .Include<Page, PageDto>();
 
@@ -66,6 +70,8 @@ namespace Dexter.Data.Raven.AutoMapper
 			      .ReverseMap();
 
 			Mapper.CreateMap<CommentDto, Comment>();
+
+			Mapper.CreateMap<AuthorInfo, AuthorInfoDto>();
 
 			Mapper.CreateMap<Category, CategoryDto>()
 			      .ForMember(dest => dest.Id, opt => opt.MapFrom(x => RavenIdHelper.Resolve(x.Id)))

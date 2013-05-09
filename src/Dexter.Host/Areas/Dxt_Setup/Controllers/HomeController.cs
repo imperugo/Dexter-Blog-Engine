@@ -22,7 +22,7 @@ namespace Dexter.Host.Areas.Dxt_Setup.Controllers
 
 	using Common.Logging;
 
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 	using Dexter.Host.Areas.Dxt_Setup.Models;
 	using Dexter.Host.Areas.Dxt_Setup.Models.Home;
 	using Dexter.Navigation.Contracts;

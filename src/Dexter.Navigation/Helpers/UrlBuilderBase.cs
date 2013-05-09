@@ -17,7 +17,7 @@ namespace Dexter.Navigation.Helpers
 {
 	using System.Web;
 
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 	using Dexter.Services;
 
 	public class UrlBuilderBase

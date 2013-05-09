@@ -20,6 +20,8 @@ namespace Dexter.Data.Raven.Services
 	using System.Collections.Generic;
 	using System.Linq;
 
+	using Dexter.Shared.Filters;
+
 	using global::AutoMapper;
 
 	using Common.Logging;
@@ -27,8 +29,7 @@ namespace Dexter.Data.Raven.Services
 	using Dexter.Data.Raven.Domain;
 	using Dexter.Data.Raven.Indexes.Reading;
 	using Dexter.Data.Raven.Session;
-	using Dexter.Entities;
-	using Dexter.Entities.Filters;
+	using Dexter.Shared.Dto;
 	using Dexter.Shared.Exceptions;
 
 	using global::Raven.Client;

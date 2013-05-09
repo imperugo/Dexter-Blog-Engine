@@ -22,7 +22,7 @@ namespace Dexter.Api.Core.Controllers
 
 	using Common.Logging;
 
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 	using Dexter.Services;
 
 	public class DexterApiControllerBase : ApiController

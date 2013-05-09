@@ -22,7 +22,7 @@ namespace Dexter.Data.Raven.Helpers
 	using System.Web;
 
 	using Dexter.Data.Raven.Domain;
-	using Dexter.Entities.Exceptions;
+	using Dexter.Shared.Exceptions;
 
 	internal static class SlugHelper
 	{
@@ -90,7 +90,7 @@ namespace Dexter.Data.Raven.Helpers
 
 				if (tryCount++ > 15)
 				{
-					throw new InvalidItemSlugException();
+					throw new DexterInvalidItemSlugException();
 				}
 
 				element = getbyslug(entryName);

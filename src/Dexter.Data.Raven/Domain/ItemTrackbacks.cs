@@ -19,7 +19,7 @@ namespace Dexter.Data.Raven.Domain
 	using System.Collections.Generic;
 	using System.Linq;
 
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 
 	using global::Raven.Imports.Newtonsoft.Json;
 

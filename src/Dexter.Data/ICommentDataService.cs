@@ -17,8 +17,8 @@ namespace Dexter.Data
 {
 	using System.Collections.Generic;
 
-	using Dexter.Entities;
-	using Dexter.Entities.Filters;
+	using Dexter.Shared.Dto;
+	using Dexter.Shared.Filters;
 
 	public interface ICommentDataService
 	{

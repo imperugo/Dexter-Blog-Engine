@@ -26,7 +26,7 @@ namespace Dexter.Services.Implmentation.BackgroundTasks.Helpers
 
 	using Dexter.Data;
 	using Dexter.Dependency;
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 
 	internal static class PingHelper
 	{

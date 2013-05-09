@@ -16,7 +16,7 @@
 namespace Dexter.Plugins.Twitter
 {
 	using Dexter.Data;
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 	using Dexter.Services;
 	using Dexter.Services.Events;
 	using Dexter.Services.Plugins;

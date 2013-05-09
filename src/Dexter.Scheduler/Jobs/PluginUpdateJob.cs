@@ -18,9 +18,9 @@ namespace Dexter.Scheduler.Jobs
 	using AutoMapper;
 
 	using Dexter.Data;
-	using Dexter.Entities;
-	using Dexter.Entities.Result;
+	using Dexter.Shared.Dto;
 	using Dexter.Services;
+	using Dexter.Shared.Result;
 
 	using global::Quartz;
 

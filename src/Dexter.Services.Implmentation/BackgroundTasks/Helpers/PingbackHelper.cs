@@ -26,7 +26,7 @@ namespace Dexter.Services.Implmentation.BackgroundTasks.Helpers
 	using System.Xml;
 
 	using Dexter.Dependency;
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 	using Dexter.Navigation.Contracts;
 	using Dexter.Navigation.Helpers;
 

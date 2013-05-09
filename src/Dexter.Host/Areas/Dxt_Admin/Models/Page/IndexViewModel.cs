@@ -16,8 +16,8 @@
 
 namespace Dexter.Host.Areas.Dxt_Admin.Models.Page
 {
-	using Dexter.Entities;
-	using Dexter.Entities.Result;
+	using Dexter.Shared.Dto;
+	using Dexter.Shared.Result;
 	using Dexter.Web.Core.Models;
 
 	public class IndexViewModel : DexterBackofficeModelBase

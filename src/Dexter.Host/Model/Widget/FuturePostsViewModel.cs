@@ -15,8 +15,8 @@
 
 namespace Dexter.Host.Model.Widget
 {
-	using Dexter.Entities;
-	using Dexter.Entities.Result;
+	using Dexter.Shared.Dto;
+	using Dexter.Shared.Result;
 	using Dexter.Web.Core.Models;
 
 	public class FuturePostsViewModel : WidgetModelBase

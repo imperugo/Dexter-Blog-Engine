@@ -16,7 +16,7 @@
 
 namespace Dexter.Services
 {
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 
 	public interface IConfigurationService
 	{

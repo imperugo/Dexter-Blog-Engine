@@ -37,6 +37,8 @@ namespace Dexter.Web.Core.Routing
 
 		private readonly ISetupService setupService;
 
+		const string MATCH_POSITIVE_INTEGER = @"\d{1,10}";
+
 		#endregion
 
 		#region Constructors and Destructors
@@ -120,6 +122,17 @@ namespace Dexter.Web.Core.Routing
 						id = UrlParameter.Optional
 					}, 
 				new[] { "Dexter.Host.Controllers" });
+
+			routes.MapRoute("PostDetail", "Blog/Post/{year}/{month}/{day}/{slug}",
+			new
+			{
+				controller = "Blog",
+				action = "Post",
+				year = MATCH_POSITIVE_INTEGER, 
+				month = MATCH_POSITIVE_INTEGER,
+				day= MATCH_POSITIVE_INTEGER 
+			},
+			new[] { "Dexter.Host.Controllers" });
 		}
 
 		public void UpdateRoutes()

@@ -15,7 +15,7 @@
 
 namespace Dexter.Navigation.Contracts
 {
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 	using Dexter.Navigation.Helpers;
 
 	public interface IPageUrlBuilder

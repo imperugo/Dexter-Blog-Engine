@@ -30,7 +30,7 @@ namespace Dexter.Data.Raven.Services
 	using Dexter.Data.Raven.Helpers;
 	using Dexter.Data.Raven.Indexes.Updating;
 	using Dexter.Data.Raven.Session;
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 
 	using global::Raven.Abstractions.Extensions;
 	using global::Raven.Client;

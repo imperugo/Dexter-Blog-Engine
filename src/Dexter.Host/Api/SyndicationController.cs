@@ -26,10 +26,10 @@ namespace Dexter.Host.Api
 
 	using Dexter.Api.Core.Controllers;
 	using Dexter.Api.Core.Formatters.Syndication;
-	using Dexter.Entities;
-	using Dexter.Entities.Result;
+	using Dexter.Shared.Dto;
 	using Dexter.Navigation.Contracts;
 	using Dexter.Services;
+	using Dexter.Shared.Result;
 
 	public class SyndicationController : DexterApiControllerBase
 	{

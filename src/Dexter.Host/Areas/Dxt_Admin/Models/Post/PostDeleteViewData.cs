@@ -16,7 +16,7 @@
 
 namespace Dexter.Host.Areas.Dxt_Admin.Models.Post
 {
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 	using Dexter.Web.Core.Models;
 
 	public class PostDeleteViewData : DexterBackofficeModelBase

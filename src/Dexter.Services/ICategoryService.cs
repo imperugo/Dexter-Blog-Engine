@@ -19,9 +19,9 @@ namespace Dexter.Services
 	using System.Collections.Generic;
 	using System.Threading.Tasks;
 
-	using Dexter.Entities;
-	using Dexter.Entities.Result;
+	using Dexter.Shared.Dto;
 	using Dexter.Services.Events;
+	using Dexter.Shared.Result;
 
 	public interface ICategoryService
 	{

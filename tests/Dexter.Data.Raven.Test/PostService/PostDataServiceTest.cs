@@ -5,12 +5,13 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
 // Created:		2012/10/27
-// Last edit:	2013/01/20
+// Last edit:	2013/05/09
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
 // For any question contact info@dexterblogengine.com
 // ////////////////////////////////////////////////////////////////////////////////////////////////
+
 #endregion
 
 namespace Dexter.Data.Raven.Test.PostService
@@ -19,25 +20,25 @@ namespace Dexter.Data.Raven.Test.PostService
 	using System.Collections.Generic;
 	using System.Linq;
 
-	using Dexter.Data.Raven.Helpers;
-
-	using global::AutoMapper;
-
 	using Common.Logging;
 
 	using Dexter.Data.Raven.Domain;
+	using Dexter.Data.Raven.Helpers;
 	using Dexter.Data.Raven.Services;
 	using Dexter.Data.Raven.Test.Helpers;
-	using Dexter.Entities;
-	using Dexter.Entities.Result;
+	using Dexter.Shared.Dto;
+	using Dexter.Shared.Requests;
+	using Dexter.Shared.Result;
 
 	using Moq;
-
-	using global::Raven.Client;
 
 	using SharpTestsEx;
 
 	using Xunit;
+
+	using global::AutoMapper;
+
+	using global::Raven.Client;
 
 	public class PostDataServiceTest : RavenDbTestBase, IDisposable
 	{
@@ -52,7 +53,7 @@ namespace Dexter.Data.Raven.Test.PostService
 		#region Constructors and Destructors
 
 		/// <summary>
-		/// 	Initializes a new instance of the <see cref="T:System.Object" /> class.
+		///     Initializes a new instance of the <see cref="T:System.Object" /> class.
 		/// </summary>
 		public PostDataServiceTest()
 		{
@@ -119,9 +120,7 @@ namespace Dexter.Data.Raven.Test.PostService
 
 			post.PublishAt = DateTime.Today.AddDays(5);
 
-			PostDto postDto = post.MapTo<PostDto>();
-
-			this.sut.SaveOrUpdate(postDto);
+			this.sut.SaveOrUpdate(post.MapTo<PostRequest>());
 
 			this.sut.Session.SaveChanges();
 
@@ -137,7 +136,7 @@ namespace Dexter.Data.Raven.Test.PostService
 		{
 			PostDto post = PostHelper.GetPostsDto(1)[0];
 
-			this.sut.SaveOrUpdate(post);
+			this.sut.SaveOrUpdate(post.MapTo<PostRequest>());
 
 			this.sut.Session.SaveChanges();
 

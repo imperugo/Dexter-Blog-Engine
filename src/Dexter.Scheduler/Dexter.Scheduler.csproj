@@ -72,10 +72,6 @@
       <Project>{07ff041c-fc20-49a3-8bc4-a38e7f72abaa}</Project>
       <Name>Dexter.Dependency</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Dexter.Entities\Dexter.Entities.csproj">
-      <Project>{5fb1aed5-d55e-43cc-a3e0-5e788bd72144}</Project>
-      <Name>Dexter.Entities</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Dexter.Extensions\Dexter.Extensions.csproj">
       <Project>{408d067c-933b-4987-b76f-481708f08470}</Project>
       <Name>Dexter.Extensions</Name>
@@ -87,6 +83,10 @@
     <ProjectReference Include="..\Dexter.Session\Dexter.Async.csproj">
       <Project>{93F94260-4A10-41FD-AB0F-C1C22BFE3E78}</Project>
       <Name>Dexter.Async</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Shared\Dexter.Shared.csproj">
+      <Project>{43C6E51E-D066-4BD3-8182-ACA95096CB37}</Project>
+      <Name>Dexter.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

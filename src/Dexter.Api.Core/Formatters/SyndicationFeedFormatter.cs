@@ -30,7 +30,7 @@ namespace Dexter.Api.Core.Formatters.Syndication
 
 	using Dexter.Dependency;
 	using Dexter.Dependency.Extensions;
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 	using Dexter.Navigation.Contracts;
 	using Dexter.Services;
 
@@ -145,7 +145,7 @@ namespace Dexter.Api.Core.Formatters.Syndication
 				
 				//Adding authors
 				urls.GroupBy(x => x.Author).Select(x => x.Key)
-			    .ForEach(author => feed.Authors.Add(new SyndicationPerson(null, author, this.UrlBuilder.Home)));
+			    .ForEach(author => feed.Authors.Add(new SyndicationPerson(null, author.Username, this.UrlBuilder.Home)));
 			} 
 
 			//Adding items
@@ -181,7 +181,7 @@ namespace Dexter.Api.Core.Formatters.Syndication
 				                           };
 			feedItem.Authors.Add(new SyndicationPerson
 				                     {
-					                     Name = item.Author
+					                     Name = item.Author.Username
 				                     });
 
 			return feedItem;

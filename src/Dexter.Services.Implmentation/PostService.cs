@@ -24,15 +24,17 @@ namespace Dexter.Services.Implmentation
 
 	using Dexter.Async.TaskExecutor;
 	using Dexter.Data;
-	using Dexter.Entities;
-	using Dexter.Entities.Filters;
-	using Dexter.Entities.Result;
+	using Dexter.Shared.Dto;
 	using Dexter.Extensions.Logging;
 	using Dexter.Services.Events;
 	using Dexter.Services.Implmentation.BackgroundTasks;
 	using Dexter.Shared;
 	using Dexter.Shared.Exceptions;
+	using Dexter.Shared.Filters;
+	using Dexter.Shared.Requests;
+	using Dexter.Shared.Result;
 	using Dexter.Shared.UserContext;
+	using Dexter.Shared.Validation;
 
 	public class PostService : IPostService
 	{
@@ -46,16 +48,19 @@ namespace Dexter.Services.Implmentation
 
 		private readonly IUserContext userContext;
 
+		private readonly IObjectValidator objectValidator;
+
 		#endregion
 
 		#region Constructors and Destructors
 
-		public PostService(IPostDataService postDataService, ILog logger, IUserContext userContext, ITaskExecutor taskExecutor)
+		public PostService(IPostDataService postDataService, ILog logger, IUserContext userContext, ITaskExecutor taskExecutor, IObjectValidator objectValidator)
 		{
 			this.postDataService = postDataService;
 			this.logger = logger;
 			this.userContext = userContext;
 			this.taskExecutor = taskExecutor;
+			this.objectValidator = objectValidator;
 		}
 
 		#endregion
@@ -82,7 +87,7 @@ namespace Dexter.Services.Implmentation
 
 		public event EventHandler<CancelEventArgsWithoutParameterWithResult<PostDto>> PostSaved;
 
-		public event EventHandler<CancelEventArgsWithOneParameterWithoutResult<PostDto>> PostSaving;
+		public event EventHandler<CancelEventArgsWithOneParameter<PostRequest,PostDto>> PostSaving;
 
 		public event EventHandler<GenericEventArgs<IPagedResult<PostDto>>> PostsRetrievedByCategory;
 
@@ -107,6 +112,10 @@ namespace Dexter.Services.Implmentation
 		public event EventHandler<GenericEventArgs<IList<TagDto>>> TagsRetrievedForPublishedPosts;
 
 		public event EventHandler<CancelEventArgsWithOneParameter<int, IList<TagDto>>> TagsRetrievingForPublishedPosts;
+
+		public event EventHandler<GenericEventArgs<IPagedResult<PostDto>>> PostsRetrievedByAuthor;
+
+		public event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, string, ItemQueryFilter>, IPagedResult<PostDto>>> PostsRetrievingByAuthor;
 
 		#endregion
 
@@ -135,7 +144,7 @@ namespace Dexter.Services.Implmentation
 				throw new DexterPostNotFoundException(key);
 			}
 
-			if (!this.userContext.IsInRole(Constants.AdministratorRole) && post.Author != this.userContext.Username)
+			if (!this.userContext.IsInRole(Constants.AdministratorRole) && post.Author.Username != this.userContext.Username)
 			{
 				throw new DexterSecurityException(string.Format("Only the Administrator or the Author can delete the post (item Key '{0}').", post.Id));
 			}
@@ -248,6 +257,52 @@ namespace Dexter.Services.Implmentation
 			IPagedResult<PostDto> result = this.postDataService.GetPosts(pageIndex, pageSize, filters);
 
 			this.PostsRetrievedWithFilters.Raise(this, new GenericEventArgs<IPagedResult<PostDto>>(result));
+
+			return result;
+		}
+
+		public IPagedResult<PostDto> GetPostsByAuthor(string username, int pageIndex, int pageSize, ItemQueryFilter filters)
+		{
+			if (pageIndex < 1)
+			{
+				throw new ArgumentException("The page index must be greater than 0", "pageIndex");
+			}
+
+			if (pageSize < 1)
+			{
+				throw new ArgumentException("The page size must be greater than 0", "pageSize");
+			}
+
+			if (username == null)
+			{
+				throw new ArgumentNullException("username", "The string username must contains a value");
+			}
+
+			if (username == string.Empty)
+			{
+				throw new ArgumentException("The string username must not be empty", "username");
+			}
+
+			if (filters == null)
+			{
+				filters = new ItemQueryFilter();
+				filters.MaxPublishAt = DateTimeOffset.Now.AsMinutes();
+				filters.Status = ItemStatus.Published;
+			}
+
+			CancelEventArgsWithOneParameter<Tuple<int, int, string, ItemQueryFilter>, IPagedResult<PostDto>> e = new CancelEventArgsWithOneParameter<Tuple<int, int, string, ItemQueryFilter>, IPagedResult<PostDto>>(new Tuple<int, int, string, ItemQueryFilter>(pageIndex, pageSize, username, filters), null);
+
+			this.PostsRetrievingByAuthor.Raise(this, e);
+
+			if (e.Cancel)
+			{
+				this.logger.DebugAsync("The result of the method 'GetPostsByCategory' is overridden by the event 'PostsRetrievingByTag'.");
+				return e.Result;
+			}
+
+			IPagedResult<PostDto> result = this.postDataService.GetPostsByAuthor(username, pageIndex, pageSize, filters);
+
+			this.PostsRetrievedByAuthor.Raise(this, new GenericEventArgs<IPagedResult<PostDto>>(result));
 
 			return result;
 		}
@@ -419,20 +474,17 @@ namespace Dexter.Services.Implmentation
 			return data;
 		}
 
-		public void SaveOrUpdate(PostDto item)
+		public PostDto SaveOrUpdate(PostRequest item)
 		{
-			if (item == null)
-			{
-				throw new DexterPostNotFoundException();
-			}
+			this.objectValidator.Validate(item);
 
-			CancelEventArgsWithOneParameterWithoutResult<PostDto> e = new CancelEventArgsWithOneParameterWithoutResult<PostDto>(item);
+			CancelEventArgsWithOneParameter<PostRequest, PostDto> e = new CancelEventArgsWithOneParameter<PostRequest, PostDto>(item, null);
 
 			this.PostSaving.Raise(this, e);
 
 			if (e.Cancel)
 			{
-				return;
+				return e.Result;
 			}
 
 			if (item.Id > 0)
@@ -444,21 +496,23 @@ namespace Dexter.Services.Implmentation
 					throw new DexterPostNotFoundException(item.Id);
 				}
 
-				if (!this.userContext.IsInRole(Constants.AdministratorRole) && post.Author != this.userContext.Username)
+				if (!this.userContext.IsInRole(Constants.AdministratorRole) && post.Author.Username != this.userContext.Username)
 				{
 					throw new DexterSecurityException(string.Format("Only the Administrator or the Author can edit the post (item Key '{0}').", post.Id));
 				}
 			}
 
-			this.postDataService.SaveOrUpdate(item);
+			var savedPost = this.postDataService.SaveOrUpdate(item);
 
 			if (item.Status == ItemStatus.Published)
 			{
-				this.PostPublished.Raise(this, new CancelEventArgsWithoutParameterWithResult<PostDto>(item));
-				this.taskExecutor.ExcuteLater(new PublishedBackgroundTask(item));
+				this.PostPublished.Raise(this, new CancelEventArgsWithoutParameterWithResult<PostDto>(savedPost));
+				this.taskExecutor.ExcuteLater(new PublishedBackgroundTask(savedPost));
 			}
 
-			this.PostSaved.Raise(this, new CancelEventArgsWithoutParameterWithResult<PostDto>(item));
+			this.PostSaved.Raise(this, new CancelEventArgsWithoutParameterWithResult<PostDto>(savedPost));
+
+			return savedPost;
 		}
 
 		public IPagedResult<PostDto> Search(string term, int pageIndex, int pageSize, ItemQueryFilter filters)

@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
   </ItemGroup>
@@ -39,20 +40,59 @@
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
     <Compile Include="Constants.cs" />
+    <Compile Include="Dto\AuthorInfoDto.cs" />
+    <Compile Include="Dto\BlogConfigurationDto.cs" />
+    <Compile Include="Dto\CategoryDto.cs" />
+    <Compile Include="Dto\CommentDto.cs" />
+    <Compile Include="Dto\CommentStatus.cs" />
+    <Compile Include="Dto\DexterInfo.cs" />
+    <Compile Include="Dto\DtoBase.cs" />
+    <Compile Include="Dto\EmailMessageDto.cs" />
+    <Compile Include="Dto\ItemBaseInfo.cs" />
+    <Compile Include="Dto\ItemDto.cs" />
+    <Compile Include="Dto\ItemStatus.cs" />
+    <Compile Include="Dto\ItemType.cs" />
+    <Compile Include="Dto\MonthDto.cs" />
+    <Compile Include="Dto\PackageDto.cs" />
+    <Compile Include="Dto\PageDto.cs" />
+    <Compile Include="Dto\PluginDto.cs" />
+    <Compile Include="Dto\PostDto.cs" />
+    <Compile Include="Dto\Setup.cs" />
+    <Compile Include="Dto\TagDto.cs" />
+    <Compile Include="Dto\TrackbackDto.cs" />
+    <Compile Include="Dto\TrackbackStatus.cs" />
     <Compile Include="Exceptions\DexterCategoryNotFoundException.cs" />
     <Compile Include="Exceptions\DexterDatabaseConnectionException.cs" />
     <Compile Include="Exceptions\DexterException.cs" />
+    <Compile Include="Exceptions\DexterInvalidItemSlugException.cs" />
     <Compile Include="Exceptions\DexterItemNotFoundException.cs" />
     <Compile Include="Exceptions\DexterPageNotFoundException.cs" />
     <Compile Include="Exceptions\DexterPluginException.cs" />
     <Compile Include="Exceptions\DexterPostNotFoundException.cs" />
     <Compile Include="Exceptions\DexterRestartRequiredException.cs" />
     <Compile Include="Exceptions\DexterSecurityException.cs" />
+    <Compile Include="Exceptions\DexterValidationException.cs" />
+    <Compile Include="Extensions\PagedResultExtensions.cs" />
+    <Compile Include="Filters\CommentQueryFilter.cs" />
+    <Compile Include="Filters\ItemOrderFilter.cs" />
+    <Compile Include="Filters\ItemQueryFilter.cs" />
+    <Compile Include="Filters\OrderFilter.cs" />
+    <Compile Include="Filters\SortBy.cs" />
     <Compile Include="Helpers\TagHelper.cs" />
     <Compile Include="Installer.cs" />
+    <Compile Include="Requests\AuthorRequest.cs" />
+    <Compile Include="Requests\ItemRequest.cs" />
+    <Compile Include="Requests\PageRequest.cs" />
+    <Compile Include="Requests\PostRequest.cs" />
+    <Compile Include="Result\EmptyPagedResult.cs" />
+    <Compile Include="Result\IPagedResult %28generic%29.cs" />
+    <Compile Include="Result\IPagedResult.cs" />
+    <Compile Include="Result\PagedResult.cs" />
     <Compile Include="UserContext\IUserContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserContext\UserContext.cs" />
+    <Compile Include="Validation\DataAnnotationsValidator.cs" />
+    <Compile Include="Validation\IObjectValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dexter.Dependency\Dexter.Dependency.csproj">

@@ -18,7 +18,7 @@ namespace Dexter.Navigation.Concretes
 	using System.Collections.Generic;
 	using System.Globalization;
 
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 	using Dexter.Navigation.Contracts;
 	using Dexter.Navigation.Helpers;
 	using Dexter.Services;

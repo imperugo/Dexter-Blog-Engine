@@ -18,10 +18,11 @@ namespace Dexter.Services
 	using System;
 	using System.Collections.Generic;
 
-	using Dexter.Entities;
-	using Dexter.Entities.Filters;
-	using Dexter.Entities.Result;
+	using Dexter.Shared.Dto;
 	using Dexter.Services.Events;
+	using Dexter.Shared.Filters;
+	using Dexter.Shared.Requests;
+	using Dexter.Shared.Result;
 
 	public interface IPostService
 	{
@@ -80,7 +81,7 @@ namespace Dexter.Services
 		/// <summary>
 		/// This event will raise before to save <see cref="PostDto"/>. The event is raised by by the implementation of <see cref="SaveOrUpdate"/> or the async version.
 		/// </summary>
-		event EventHandler<CancelEventArgsWithOneParameterWithoutResult<PostDto>> PostSaving;
+		event EventHandler<CancelEventArgsWithOneParameter<PostRequest, PostDto>> PostSaving;
 
 		/// <summary>
 		/// This event will raise after to retrieve <see cref="PostDto"/> filtered by the specified filters.. The event is raised by by the implementation of <see cref="GetPostsByDate"/> or the async version.
@@ -91,11 +92,6 @@ namespace Dexter.Services
 		/// This event will raise after to retrieve <see cref="IPagedResult"/> of <see cref="PostDto"/> by tag with specific filters. The event is raised by by the implementation of <see cref="GetPostsByTag"/> or the async version.
 		/// </summary>
 		event EventHandler<GenericEventArgs<IPagedResult<PostDto>>> PostsRetrievedByTag;
-
-		/// <summary>
-		/// This event will raise after to retrieve <see cref="IPagedResult"/> of <see cref="PostDto"/> by tag with specific filters. The event is raised by by the implementation of <see cref="GetPostsByCategory"/> or the async version.
-		/// </summary>
-		event EventHandler<GenericEventArgs<IPagedResult<PostDto>>> PostsRetrievedByCategory;
 
 		/// <summary>
 		/// This event will raise after to retrieve <see cref="IPagedResult"/> of <see cref="PostDto"/> with specific filters. The event is raised by by the implementation of <see cref="GetPosts"/> or the async version.
@@ -111,6 +107,11 @@ namespace Dexter.Services
 		/// This event will raise before to retrieve <see cref="IPagedResult"/> of <see cref="PostDto"/> by tag with specific filters. The event is raised by by the implementation of <see cref="GetPostsByTag"/> or the async version.
 		/// </summary>
 		event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, string, ItemQueryFilter>, IPagedResult<PostDto>>> PostsRetrievingByTag;
+
+		/// <summary>
+		/// This event will raise after to retrieve <see cref="IPagedResult"/> of <see cref="PostDto"/> by tag with specific filters. The event is raised by by the implementation of <see cref="GetPostsByCategory"/> or the async version.
+		/// </summary>
+		event EventHandler<GenericEventArgs<IPagedResult<PostDto>>> PostsRetrievedByCategory;
 
 		/// <summary>
 		/// This event will raise before to retrieve <see cref="IPagedResult"/> of <see cref="PostDto"/> by tag with specific filters. The event is raised by by the implementation of <see cref="GetPostsByCategory"/> or the async version.
@@ -142,6 +143,17 @@ namespace Dexter.Services
 		/// </summary>
 		event EventHandler<CancelEventArgsWithOneParameter<int, IList<TagDto>>> TagsRetrievingForPublishedPosts;
 
+
+		/// <summary>
+		/// This event will raise after to retrieve <see cref="IPagedResult"/> of <see cref="PostDto"/> by tag with specific filters. The event is raised by by the implementation of <see cref="GetPostsByAuthor"/> or the async version.
+		/// </summary>
+		event EventHandler<GenericEventArgs<IPagedResult<PostDto>>> PostsRetrievedByAuthor;
+
+		/// <summary>
+		/// This event will raise before to retrieve <see cref="IPagedResult"/> of <see cref="PostDto"/> by tag with specific filters. The event is raised by by the implementation of <see cref="GetPostsByAuthor"/> or the async version.
+		/// </summary>
+		event EventHandler<CancelEventArgsWithOneParameter<Tuple<int, int, string, ItemQueryFilter>, IPagedResult<PostDto>>> PostsRetrievingByAuthor;
+
 		#endregion
 
 		#region Public Methods and Operators
@@ -156,6 +168,8 @@ namespace Dexter.Services
 
 		IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, ItemQueryFilter filters = null);
 
+		IPagedResult<PostDto> GetPostsByAuthor(string username, int pageIndex, int pageSize, ItemQueryFilter filters);
+
 		IPagedResult<PostDto> GetPostsByDate(int pageIndex, int pageSize, int year, int? month, int? day, ItemQueryFilter filters = null);
 
 		IPagedResult<PostDto> GetPostsByTag(int pageIndex, int pageSize, string tag, ItemQueryFilter filters = null);
@@ -164,7 +178,7 @@ namespace Dexter.Services
 
 		IList<TagDto> GetTopTagsForPublishedPosts(int maxNumberOfTags);
 
-		void SaveOrUpdate(PostDto item);
+		PostDto SaveOrUpdate(PostRequest item);
 
 		IPagedResult<PostDto> Search(string term, int pageIndex, int pageSize, ItemQueryFilter filters);
 

@@ -26,10 +26,10 @@ namespace Dexter.Services.Implmentation
 
 	using Dexter.Data;
 	using Dexter.Dependency;
-	using Dexter.Entities;
-	using Dexter.Entities.Result;
+	using Dexter.Shared.Dto;
 	using Dexter.Services.Plugins;
 	using Dexter.Shared.Exceptions;
+	using Dexter.Shared.Result;
 
 	public class PluginService : IPluginService
 	{

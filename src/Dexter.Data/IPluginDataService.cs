@@ -17,8 +17,8 @@ namespace Dexter.Data
 {
 	using System;
 
-	using Dexter.Entities;
-	using Dexter.Entities.Result;
+	using Dexter.Shared.Dto;
+	using Dexter.Shared.Result;
 
 	public interface IPluginDataService
 	{

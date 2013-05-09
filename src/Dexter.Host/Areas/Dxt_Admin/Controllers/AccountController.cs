@@ -25,11 +25,11 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 	using Common.Logging;
 
 	using Dexter.Dependency.Extensions;
-	using Dexter.Entities.Extensions;
 	using Dexter.Host.Areas.Dxt_Admin.Models.Account;
 	using Dexter.Navigation.Contracts;
 	using Dexter.Services;
 	using Dexter.Shared;
+	using Dexter.Shared.Extensions;
 	using Dexter.Web.Core.Controllers;
 
 	[Authorize(Roles = Constants.AdministratorRole)]

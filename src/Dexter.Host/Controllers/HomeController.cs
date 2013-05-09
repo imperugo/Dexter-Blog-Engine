@@ -20,12 +20,14 @@ namespace Dexter.Host.Controllers
 
 	using Common.Logging;
 
-	using Dexter.Entities;
-	using Dexter.Entities.Filters;
-	using Dexter.Host.Model.HomeController;
+	using Dexter.Shared.Dto;
+	using Dexter.Host.Model.BlogController;
 	using Dexter.Services;
+	using Dexter.Shared.Filters;
 	using Dexter.Web.Core.Controllers;
 	using Dexter.Web.Core.Filters;
+
+	using IndexViewModel = Dexter.Host.Model.HomeController.IndexViewModel;
 
 	public class HomeController : DexterControllerBase
 	{
@@ -54,17 +56,6 @@ namespace Dexter.Host.Controllers
 					                                                                                  MaxPublishAt = DateTimeOffset.Now, 
 					                                                                                  Status = ItemStatus.Published
 				                                                                                  });
-
-			return this.View(model);
-		}
-
-		[PingBack]
-		[AcceptVerbs(HttpVerbs.Get | HttpVerbs.Head)]
-		public ActionResult Post(string id)
-		{
-			PostViewModel model = new PostViewModel();
-
-			model.Post = this.postService.GetPostBySlug(id);
 
 			return this.View(model);
 		}

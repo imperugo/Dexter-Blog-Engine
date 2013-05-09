@@ -24,13 +24,14 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 
 	using Common.Logging;
 
-	using Dexter.Entities;
-	using Dexter.Entities.Filters;
+	using Dexter.Shared.Dto;
 	using Dexter.Host.Areas.Dxt_Admin.Binders;
 	using Dexter.Host.Areas.Dxt_Admin.Models.Post;
 	using Dexter.Navigation.Contracts;
 	using Dexter.Services;
 	using Dexter.Shared.Exceptions;
+	using Dexter.Shared.Filters;
+	using Dexter.Shared.Requests;
 	using Dexter.Web.Core.Controllers;
 
 	[Authorize]
@@ -149,7 +150,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 
 			try
 			{
-				this.postService.SaveOrUpdate(post.MapTo<PostDto>());
+				this.postService.SaveOrUpdate(post.MapTo<PostRequest>());
 			}
 			catch (DexterException e)
 			{

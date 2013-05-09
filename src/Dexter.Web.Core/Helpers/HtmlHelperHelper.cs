@@ -19,7 +19,7 @@ namespace System.Web.Mvc.Html
 	using System.Text;
 
 	using Dexter.Dependency;
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 	using Dexter.Navigation.Contracts;
 	using Dexter.Services;
 	using Dexter.Web.Core.Models;

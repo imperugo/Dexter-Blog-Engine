@@ -56,13 +56,13 @@
       <Project>{08BF3549-6B10-4E83-AE71-1C4665004C02}</Project>
       <Name>Dexter.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Dexter.Entities\Dexter.Entities.csproj">
-      <Project>{5FB1AED5-D55E-43CC-A3E0-5E788BD72144}</Project>
-      <Name>Dexter.Entities</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\Dexter.Services\Dexter.Services.csproj">
       <Project>{BE578436-AD00-48FA-A16D-245044F109C2}</Project>
       <Name>Dexter.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Dexter.Shared\Dexter.Shared.csproj">
+      <Project>{43C6E51E-D066-4BD3-8182-ACA95096CB37}</Project>
+      <Name>Dexter.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

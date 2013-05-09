@@ -17,7 +17,7 @@ namespace Dexter.Data
 {
 	using System.Collections.Generic;
 
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 
 	public interface IEmailNotificationDataService
 	{

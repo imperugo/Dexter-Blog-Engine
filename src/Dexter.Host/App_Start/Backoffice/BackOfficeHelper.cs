@@ -24,9 +24,9 @@ namespace Dexter.Web.Mvc.Helpers
 	using System.Web.Mvc;
 
 	using Dexter.Dependency;
-	using Dexter.Entities;
-	using Dexter.Entities.Result;
+	using Dexter.Shared.Dto;
 	using Dexter.Navigation.Contracts;
+	using Dexter.Shared.Result;
 
 	public static class BackOfficeHelper
 	{

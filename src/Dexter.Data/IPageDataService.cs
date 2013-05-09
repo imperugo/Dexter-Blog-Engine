@@ -15,9 +15,10 @@
 
 namespace Dexter.Data
 {
-	using Dexter.Entities;
-	using Dexter.Entities.Filters;
-	using Dexter.Entities.Result;
+	using Dexter.Shared.Dto;
+	using Dexter.Shared.Filters;
+	using Dexter.Shared.Requests;
+	using Dexter.Shared.Result;
 
 	public interface IPageDataService
 	{
@@ -25,7 +26,7 @@ namespace Dexter.Data
 
 		void Delete(int id);
 
-		void SaveOrUpdate(PageDto item);
+		PageDto SaveOrUpdate(PageRequest item);
 
 		string[] GetAllSlugs();
 

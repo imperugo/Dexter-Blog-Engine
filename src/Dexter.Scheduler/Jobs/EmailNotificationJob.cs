@@ -23,7 +23,7 @@ namespace Dexter.Scheduler.Jobs
 	using Common.Logging;
 
 	using Dexter.Data;
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 
 	using global::Quartz;
 

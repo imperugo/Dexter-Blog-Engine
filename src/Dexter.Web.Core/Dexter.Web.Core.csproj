@@ -102,6 +102,7 @@
     </Compile>
     <Compile Include="Controllers\DexterControllerBase.cs" />
     <Compile Include="Controllers\WidgetControllerBase.cs" />
+    <Compile Include="Extensions\ModelBaseExtensions.cs" />
     <Compile Include="Filters\PingBackAttribute.cs" />
     <Compile Include="Helpers\HtmlHelperHelper.cs" />
     <Compile Include="HttpApplication\DexterApplication.cs" />
@@ -150,13 +151,13 @@
     <Compile Include="ViewPages\WebViewPage.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dexter.Automapper.Extensions\Dexter.Automapper.Extensions.csproj">
+      <Project>{8CD3FCF5-E770-4628-BCF3-97308132015E}</Project>
+      <Name>Dexter.Automapper.Extensions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dexter.Dependency\Dexter.Dependency.csproj">
       <Project>{07FF041C-FC20-49A3-8BC4-A38E7F72ABAA}</Project>
       <Name>Dexter.Dependency</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Dexter.Entities\Dexter.Entities.csproj">
-      <Project>{5FB1AED5-D55E-43CC-A3E0-5E788BD72144}</Project>
-      <Name>Dexter.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\Dexter.Extensions\Dexter.Extensions.csproj">
       <Project>{408D067C-933B-4987-B76F-481708F08470}</Project>

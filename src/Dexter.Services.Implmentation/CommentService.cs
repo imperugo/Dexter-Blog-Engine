@@ -19,9 +19,9 @@ namespace Dexter.Services.Implmentation
 	using System.Collections.Generic;
 
 	using Dexter.Data;
-	using Dexter.Entities;
-	using Dexter.Entities.Filters;
+	using Dexter.Shared.Dto;
 	using Dexter.Services.Events;
+	using Dexter.Shared.Filters;
 
 	public class CommentService : ICommentService
 	{

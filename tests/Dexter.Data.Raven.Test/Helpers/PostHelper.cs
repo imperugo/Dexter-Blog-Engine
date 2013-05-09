@@ -18,7 +18,7 @@ namespace Dexter.Data.Raven.Test.Helpers
 	using System.Collections.Generic;
 
 	using Dexter.Data.Raven.Domain;
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 
 	using FizzWare.NBuilder;
 

@@ -19,7 +19,7 @@ namespace Dexter.Web.Core.Models
 	using System.Collections.Concurrent;
 	using System.Dynamic;
 
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 
 	public class DexterModelBase : TemplateModelBase
 	{

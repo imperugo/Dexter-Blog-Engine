@@ -17,9 +17,10 @@ namespace Dexter.Data
 {
 	using System.Collections.Generic;
 
-	using Dexter.Entities;
-	using Dexter.Entities.Filters;
-	using Dexter.Entities.Result;
+	using Dexter.Shared.Dto;
+	using Dexter.Shared.Filters;
+	using Dexter.Shared.Requests;
+	using Dexter.Shared.Result;
 
 	public interface IPostDataService
 	{
@@ -35,6 +36,8 @@ namespace Dexter.Data
 
 		IPagedResult<PostDto> GetPosts(int pageIndex, int pageSize, ItemQueryFilter filters);
 
+		IPagedResult<PostDto> GetPostsByAuthor(string username, int pageIndex, int pageSize, ItemQueryFilter filters);
+
 		IPagedResult<PostDto> GetPostsByDate(int pageIndex, int pageSize, int year, int? month, int? day, ItemQueryFilter filters);
 
 		IPagedResult<PostDto> GetPostsByTag(int pageIndex, int pageSize, string tag, ItemQueryFilter filters);
@@ -43,7 +46,7 @@ namespace Dexter.Data
 
 		IList<TagDto> GetTopTagsForPublishedPosts(int numberOfTags);
 
-		void SaveOrUpdate(PostDto item);
+		PostDto SaveOrUpdate(PostRequest item);
 
 		void SaveTrackback(TrackBackDto trackBack, int itemId);
 

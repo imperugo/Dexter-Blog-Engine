@@ -19,8 +19,8 @@ namespace Dexter.Services
 	using System;
 	using System.Security.Permissions;
 
-	using Dexter.Entities;
-	using Dexter.Entities.Result;
+	using Dexter.Shared.Dto;
+	using Dexter.Shared.Result;
 
 	public interface IPluginService
 	{

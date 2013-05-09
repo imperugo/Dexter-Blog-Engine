@@ -21,7 +21,7 @@ namespace Dexter.Services.Implmentation
 	using System.Linq;
 
 	using Dexter.Data;
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 	using Dexter.Services.Events;
 
 	public class CategoryService : ICategoryService

@@ -16,13 +16,11 @@
 
 namespace Dexter.Host.Controllers
 {
-	using System.Threading.Tasks;
 	using System.Web.Mvc;
 
 	using Common.Logging;
 
-	using Dexter.Entities;
-	using Dexter.Entities.Result;
+	using Dexter.Host.Model.BlogController;
 	using Dexter.Host.Model.HomeController;
 	using Dexter.Services;
 	using Dexter.Web.Core.Controllers;
@@ -43,6 +41,28 @@ namespace Dexter.Host.Controllers
 		#endregion
 
 		#region Public Methods and Operators
+
+		[PingBack]
+		[AcceptVerbs(HttpVerbs.Get | HttpVerbs.Head)]
+		public ActionResult Post(int year, int month, int day, string slug)
+		{
+			if (string.IsNullOrEmpty(slug))
+			{
+				return this.HttpNotFound();
+			}
+
+			var post = this.postService.GetPostBySlug(slug);
+
+			if (post == null)
+			{
+				return this.HttpNotFound();
+			}
+
+			PostViewModel model = new PostViewModel();
+			model.Post = post;
+
+			return this.View(model);
+		}
 
 		[PingBack]
 		[AcceptVerbs(HttpVerbs.Get | HttpVerbs.Head)]

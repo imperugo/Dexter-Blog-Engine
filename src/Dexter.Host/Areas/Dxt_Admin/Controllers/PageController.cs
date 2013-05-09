@@ -22,13 +22,14 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 
 	using Common.Logging;
 
-	using Dexter.Entities;
-	using Dexter.Entities.Filters;
+	using Dexter.Shared.Dto;
 	using Dexter.Host.Areas.Dxt_Admin.Binders;
 	using Dexter.Host.Areas.Dxt_Admin.Models.Page;
 	using Dexter.Navigation.Contracts;
 	using Dexter.Services;
 	using Dexter.Shared.Exceptions;
+	using Dexter.Shared.Filters;
+	using Dexter.Shared.Requests;
 	using Dexter.Web.Core.Controllers;
 	using Dexter.Web.Core.Routing;
 
@@ -149,7 +150,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 
 			try
 			{
-				this.pageService.SaveOrUpdate(page.MapTo<PageDto>());
+				this.pageService.SaveOrUpdate(page.MapTo<PageRequest>());
 
 				this.routingService.UpdateRoutes();
 			}

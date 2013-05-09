@@ -18,7 +18,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Models.Widget
 {
 	using System.Collections.Generic;
 
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 	using Dexter.Host.Areas.Dxt_Admin.Models.Home;
 	using Dexter.Web.Core.Models;
 

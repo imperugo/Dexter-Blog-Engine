@@ -17,7 +17,7 @@
 namespace Dexter.Data.Raven.Indexes.Updating
 {
 	using Dexter.Data.Raven.Domain;
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 
 	using global::Raven.Abstractions.Data;
 

@@ -21,11 +21,11 @@ namespace Dexter.Host.Controllers
 
 	using Common.Logging;
 
-	using Dexter.Entities;
-	using Dexter.Entities.Filters;
-	using Dexter.Entities.Result;
+	using Dexter.Shared.Dto;
 	using Dexter.Host.Model.Widget;
 	using Dexter.Services;
+	using Dexter.Shared.Filters;
+	using Dexter.Shared.Result;
 	using Dexter.Web.Core.Controllers;
 	using Dexter.Web.Core.Theme;
 

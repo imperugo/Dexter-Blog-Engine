@@ -18,7 +18,7 @@ namespace Dexter.Data.Raven.Indexes.Reading
 	using System.Linq;
 
 	using Dexter.Data.Raven.Domain;
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 
 	using global::Raven.Abstractions.Indexing;
 

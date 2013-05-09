@@ -5,7 +5,7 @@
 // Website:		http://dexterblogengine.com/
 // Authors:		http://dexterblogengine.com/aboutus
 // Created:		2012/11/02
-// Last edit:	2013/03/24
+// Last edit:	2013/05/09
 // License:		New BSD License (BSD)
 // For updated news and information please visit http://dexterblogengine.com/
 // Dexter is hosted to Github at https://github.com/imperugo/Dexter-Blog-Engine
@@ -21,7 +21,9 @@ namespace Dexter.Data.Raven.Services
 	using System.Linq;
 	using System.Threading;
 
-	using Dexter.Data.Raven.AutoMapper;
+	using Dexter.Shared.Filters;
+	using Dexter.Shared.Requests;
+	using Dexter.Shared.Result;
 
 	using global::AutoMapper;
 
@@ -33,9 +35,7 @@ namespace Dexter.Data.Raven.Services
 	using Dexter.Data.Raven.Indexes.Reading;
 	using Dexter.Data.Raven.Indexes.Updating;
 	using Dexter.Data.Raven.Session;
-	using Dexter.Entities;
-	using Dexter.Entities.Filters;
-	using Dexter.Entities.Result;
+	using Dexter.Shared.Dto;
 	using Dexter.Shared.Exceptions;
 
 	using global::Raven.Client;
@@ -105,6 +105,7 @@ namespace Dexter.Data.Raven.Services
 			Post post = this.Session
 			                .Include<Post>(x => x.CommentsId)
 			                .Include<Post>(x => x.TrackbacksId)
+			                .Include<AuthorInfo>(x => x.AuthorId)
 			                .Load(id);
 
 			if (post == null)
@@ -113,6 +114,7 @@ namespace Dexter.Data.Raven.Services
 			}
 
 			PostDto result = post.MapTo<PostDto>();
+			result.Author = this.Session.Load<AuthorInfo>(post.AuthorId).MapTo<AuthorInfoDto>();
 
 			return result;
 		}
@@ -127,6 +129,7 @@ namespace Dexter.Data.Raven.Services
 			}
 
 			PostDto result = post.MapTo<PostDto>();
+			result.Author = this.Session.Load<AuthorInfo>(post.AuthorId).MapTo<AuthorInfoDto>();
 
 			return result;
 		}
@@ -147,7 +150,34 @@ namespace Dexter.Data.Raven.Services
 
 			return this.Session.Query<Post>()
 			           .Statistics(out stats)
-					   .ApplyOrder(filters)
+			           .ApplyOrder(filters)
+			           .ApplyFilterItem(filters)
+			           .ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
+		}
+
+		public IPagedResult<PostDto> GetPostsByAuthor(string username, int pageIndex, int pageSize, ItemQueryFilter filters)
+		{
+			if (pageIndex < 1)
+			{
+				throw new ArgumentException("The page index must be greater than 0", "pageIndex");
+			}
+
+			if (pageSize < 1)
+			{
+				throw new ArgumentException("The page size must be greater than 0", "pageSize");
+			}
+
+			if (string.IsNullOrEmpty(username))
+			{
+				throw new ArgumentException("The username must contains a valid value.", "username");
+			}
+
+			RavenQueryStatistics stats;
+
+			return this.Session.Query<Post>()
+			           .Statistics(out stats)
+			           .ApplyOrder(filters)
+			           .Where(post => post.Author == username)
 			           .ApplyFilterItem(filters)
 			           .ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
 		}
@@ -183,7 +213,7 @@ namespace Dexter.Data.Raven.Services
 
 			IQueryable<Post> query = this.Session.Query<Post>()
 			                             .Statistics(out stats)
-										 .ApplyOrder(filters)
+			                             .ApplyOrder(filters)
 			                             .Where(post => post.PublishAt.Year == year)
 			                             .ApplyFilterItem(filters);
 
@@ -222,7 +252,7 @@ namespace Dexter.Data.Raven.Services
 
 			return this.Session.Query<Post>()
 			           .Statistics(out stats)
-					   .ApplyOrder(filters)
+			           .ApplyOrder(filters)
 			           .ApplyFilterItem(filters)
 			           .Where(post => post.Tags.Any(postTag => postTag == tag))
 			           .ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
@@ -248,11 +278,11 @@ namespace Dexter.Data.Raven.Services
 			RavenQueryStatistics stats;
 
 			return this.Session.Query<Post>()
-					   .Statistics(out stats)
-					   .ApplyOrder(filters)
-					   .ApplyFilterItem(filters)
-					   .Where(post => post.Categories.Any(postCategory => postCategory == categoryName))
-					   .ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
+			           .Statistics(out stats)
+			           .ApplyOrder(filters)
+			           .ApplyFilterItem(filters)
+			           .Where(post => post.Categories.Any(postCategory => postCategory == categoryName))
+			           .ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
 		}
 
 		public IList<TagDto> GetTopTagsForPublishedPosts(int numberOfTags)
@@ -268,32 +298,33 @@ namespace Dexter.Data.Raven.Services
 			           .ToList();
 		}
 
-		public void SaveOrUpdate(PostDto item)
+		public PostDto SaveOrUpdate(PostRequest item)
 		{
-			if (item == null)
+			if (string.IsNullOrEmpty(item.Author))
 			{
-				throw new ArgumentNullException("item", "The post must be contains a valid instance");
+				item.Author = Thread.CurrentPrincipal.Identity.Name;
 			}
 
 			Post post = null;
-			
+
 			if (item.Id > 0)
 			{
-				post = this.Session.Load<Post>(item.Id);
+				post = this.Session
+				           .Load<Post>(item.Id);
 			}
 
 			if (post == null)
 			{
 				post = new Post
-				{
-					CreatedAt = DateTimeOffset.Now
-				};
+					       {
+						       CreatedAt = DateTimeOffset.Now, 
+					       };
 			}
 
-			if (string.IsNullOrEmpty(item.Author))
-			{
-				item.Author = Thread.CurrentPrincipal.Identity.Name;
-			}
+			AuthorInfo author = this.Session.Query<AuthorInfo>().Single(x => x.Username == item.Author);
+
+			post.AuthorId = author.Id;
+			post.Author = author.Username;
 
 			item.MapPropertiesToInstance(post);
 
@@ -341,7 +372,10 @@ namespace Dexter.Data.Raven.Services
 
 			UpdateDenormalizedItemIndex.UpdateIndexes(this.store, this.Session, post);
 
-			item.Id = RavenIdHelper.Resolve(post.Id);
+			PostDto postDto = post.MapTo<PostDto>();
+			postDto.Author = author.MapTo<AuthorInfoDto>();
+
+			return postDto;
 		}
 
 		public void SaveTrackback(TrackBackDto trackBack, int itemId)
@@ -394,7 +428,7 @@ namespace Dexter.Data.Raven.Services
 			           .Statistics(out stats)
 			           .As<Post>()
 			           .ApplyFilterItem(filters)
-					   .ApplyOrder(filters)
+			           .ApplyOrder(filters)
 			           .ToPagedResult<Post, PostDto>(pageIndex, pageSize, stats);
 		}
 
@@ -418,6 +452,7 @@ namespace Dexter.Data.Raven.Services
 			                .Where(x => x.Slug == slug)
 			                .Include(x => x.CommentsId)
 			                .Include(x => x.TrackbacksId)
+			                .Include(x => x.AuthorId)
 			                .FirstOrDefault();
 
 			return post;

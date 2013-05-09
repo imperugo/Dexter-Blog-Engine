@@ -17,7 +17,7 @@ namespace Dexter.PackageInstaller.Automapper
 {
 	using AutoMapper;
 
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 	using Dexter.PackageInstaller.Extensions;
 
 	using NuGet;

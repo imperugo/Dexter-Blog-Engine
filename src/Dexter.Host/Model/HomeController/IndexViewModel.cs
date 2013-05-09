@@ -15,8 +15,8 @@
 
 namespace Dexter.Host.Model.HomeController
 {
-	using Dexter.Entities;
-	using Dexter.Entities.Result;
+	using Dexter.Shared.Dto;
+	using Dexter.Shared.Result;
 	using Dexter.Web.Core.Models;
 
 	public class IndexViewModel : DexterModelBase

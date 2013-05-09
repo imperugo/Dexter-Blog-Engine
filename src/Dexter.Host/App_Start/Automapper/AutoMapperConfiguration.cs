@@ -22,7 +22,7 @@ namespace Dexter.Host.App_Start.Automapper
 
 	using AutoMapper;
 
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 	using Dexter.Host.Areas.Dxt_Admin.Binders;
 	using Dexter.Host.Areas.Dxt_Admin.Models.Account;
 	using Dexter.Host.Areas.Dxt_Setup.Models;

@@ -16,7 +16,7 @@
 
 namespace Dexter.Host.Areas.Dxt_Admin.Models.Page
 {
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 	using Dexter.Web.Core.Models;
 
 	public class PageDeleteViewData : DexterBackofficeModelBase

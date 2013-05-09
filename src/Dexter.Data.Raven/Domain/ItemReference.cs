@@ -17,7 +17,7 @@ namespace Dexter.Data.Raven.Domain
 {
 	using System;
 
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 
 	public class ItemReference
 	{

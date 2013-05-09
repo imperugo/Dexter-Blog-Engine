@@ -17,7 +17,7 @@ namespace Dexter.Services.Implmentation.Automapper
 {
 	using AutoMapper;
 
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 
 	public class AutoMapperConfiguration
 	{

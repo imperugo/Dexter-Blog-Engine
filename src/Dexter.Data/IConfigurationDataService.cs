@@ -15,7 +15,7 @@
 
 namespace Dexter.Data
 {
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 
 	public interface IConfigurationDataService
 	{

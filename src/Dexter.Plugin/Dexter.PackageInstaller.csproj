@@ -75,10 +75,6 @@
       <Project>{07FF041C-FC20-49A3-8BC4-A38E7F72ABAA}</Project>
       <Name>Dexter.Dependency</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Dexter.Entities\Dexter.Entities.csproj">
-      <Project>{5FB1AED5-D55E-43CC-A3E0-5E788BD72144}</Project>
-      <Name>Dexter.Entities</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Dexter.Extensions\Dexter.Extensions.csproj">
       <Project>{408d067c-933b-4987-b76f-481708f08470}</Project>
       <Name>Dexter.Extensions</Name>

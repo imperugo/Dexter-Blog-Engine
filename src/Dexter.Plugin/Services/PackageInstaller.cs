@@ -21,12 +21,12 @@ namespace Dexter.PackageInstaller.Services
 
 	using AutoMapper;
 
-	using Dexter.Entities;
-	using Dexter.Entities.Result;
+	using Dexter.Shared.Dto;
 	using Dexter.PackageInstaller.Extensions;
 	using Dexter.PackageInstaller.Logger;
 	using Dexter.Services;
 	using Dexter.Shared.Exceptions;
+	using Dexter.Shared.Result;
 
 	using NuGet;
 

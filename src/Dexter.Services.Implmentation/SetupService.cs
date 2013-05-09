@@ -25,8 +25,9 @@ namespace Dexter.Services.Implmentation
 	using Common.Logging;
 
 	using Dexter.Data;
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 	using Dexter.Shared;
+	using Dexter.Shared.Requests;
 
 	public class SetupService : ISetupService
 	{
@@ -38,18 +39,21 @@ namespace Dexter.Services.Implmentation
 
 		private readonly IPostDataService postDataService;
 
+		private readonly IAuthorService authorService;
+
 		private readonly ILog logger;
 
 		#endregion
 
 		#region Constructors and Destructors
 
-		public SetupService(IConfigurationDataService configurationDataService, IPostDataService postDataService, ICategoryDataService categoryService, ILog logger)
+		public SetupService(IConfigurationDataService configurationDataService, IPostDataService postDataService, ICategoryDataService categoryService, ILog logger, IAuthorService authorService)
 		{
 			this.configurationDataService = configurationDataService;
 			this.postDataService = postDataService;
 			this.categoryService = categoryService;
 			this.logger = logger;
+			this.authorService = authorService;
 		}
 
 		#endregion
@@ -92,7 +96,7 @@ namespace Dexter.Services.Implmentation
 
 			this.logger.Debug("Created default category.");
 
-			PostDto defaultPost = new PostDto();
+			PostRequest defaultPost = new PostRequest();
 
 			defaultPost.Title = "Welcome to Dexter!";
 			defaultPost.Tags = new[] { "Dexter" };
@@ -103,6 +107,11 @@ namespace Dexter.Services.Implmentation
 			defaultPost.AllowComments = true;
 
 			await Task.WhenAll(defaultPostTask, membershipTask);
+
+			this.authorService.SaveOrUpdate(new AuthorRequest
+				                                {
+					                                Username = item.AdminUsername
+				                                });
 
 			defaultPost.Content = defaultPostTask.Result;
 

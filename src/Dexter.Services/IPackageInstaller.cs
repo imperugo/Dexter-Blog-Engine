@@ -17,8 +17,8 @@ namespace Dexter.Services
 {
 	using System;
 
-	using Dexter.Entities;
-	using Dexter.Entities.Result;
+	using Dexter.Shared.Dto;
+	using Dexter.Shared.Result;
 
 	/// <summary>
 	/// The contract for the Package installer

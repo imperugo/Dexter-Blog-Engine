@@ -26,19 +26,22 @@ namespace Dexter.Web.Core.HttpHandlers
 	using System.Web;
 	using System.Web.Security;
 
+	using AutoMapper;
+
 	using Common.Logging;
 
 	using CookComputing.XmlRpc;
 
 	using Dexter.Dependency;
-	using Dexter.Entities;
-	using Dexter.Entities.Filters;
-	using Dexter.Entities.Result;
+	using Dexter.Shared.Dto;
 	using Dexter.Navigation.Contracts;
 	using Dexter.Services;
 	using Dexter.Shared;
 	using Dexter.Shared.Exceptions;
+	using Dexter.Shared.Filters;
 	using Dexter.Shared.Helpers;
+	using Dexter.Shared.Requests;
+	using Dexter.Shared.Result;
 	using Dexter.Web.Core.MetaWeblogApi;
 	using Dexter.Web.Core.MetaWeblogApi.Domain;
 	using Dexter.Web.Core.Routing;
@@ -456,7 +459,7 @@ namespace Dexter.Web.Core.HttpHandlers
 
 		#region Methods
 
-		private void ConvertAllowCommentsForItem(int allowComments, ItemDto item)
+		private void ConvertAllowCommentsForItem(int allowComments, ItemRequest item)
 		{
 			// SiteConfiguration conf;
 
@@ -502,7 +505,7 @@ namespace Dexter.Web.Core.HttpHandlers
 			string authorId = null;
 
 			// take into account a deleted author
-			WpAuthor auth = authors.FirstOrDefault(a => a.user_login == item.Author);
+			WpAuthor auth = authors.FirstOrDefault(a => a.user_login == item.Author.Username);
 			if (auth.user_id > 0)
 			{
 				authorId = auth.user_id.ToString();
@@ -550,25 +553,16 @@ namespace Dexter.Web.Core.HttpHandlers
 					       mt_allow_pings = 0, 
 					       wp_slug = p.Slug, 
 					       wp_password = string.Empty, 
-					       wp_author = p.Author, 
-					       
-					       
-					       
-					       
-					       
-					       
-					       
-					       
-					       
-					       //wp_page_parent_id = p.Parent != null
-					       //						? p.Parent.Id.ToString()
-					       //						: string.Empty,
+					       wp_author = p.Author.Username,
+						   wp_page_parent_id = p.ParentId != null
+												? p.ParentId.ToString()
+												: string.Empty,
 					       //wp_page_parent_title = p.Parent != null
 					       //						? p.Parent.Title
 					       //						: string.Empty,
 					       //wp_page_order = p.SortOrder.ToString(),
 					       wp_author_id = authorId, 
-					       wp_author_display_name = p.Author, 
+					       wp_author_display_name = p.Author.Username, 
 					       date_created_gmt = p.PublishAt.DateTime.ToUniversalTime(), 
 					       wp_page_template = string.Empty
 				       };
@@ -599,7 +593,7 @@ namespace Dexter.Web.Core.HttpHandlers
 					         wp_slug = item.Slug, 
 					         wp_password = string.Empty, 
 					         wp_author_id = authorId, 
-					         wp_author_display_name = item.Author, 
+					         wp_author_display_name = item.Author.Username, 
 					         date_created_gmt = item.CreatedAt.DateTime.ToUniversalTime(), 
 					         post_status = item.Status.ToString(), 
 					         custom_fields = null, 
@@ -613,9 +607,16 @@ namespace Dexter.Web.Core.HttpHandlers
 			string body = content.description;
 			string title = HttpUtility.HtmlDecode(content.title);
 
-			PageDto newPage = !pageId.HasValue || pageId.Value < 1
-				                  ? new PageDto()
-				                  : this.pageService.GetPageByKey(pageId.Value);
+			PageRequest newPage;
+
+			if (!pageId.HasValue || pageId.Value < 1)
+			{
+				newPage = new PageRequest();
+			}
+			else
+			{
+				newPage = this.pageService.GetPageByKey(pageId.Value).MapTo<PageRequest>();
+			}
 
 			// everything that pass through the metaweblog handler goes published by default
 			newPage.Status = ItemStatus.Published;
@@ -692,9 +693,17 @@ namespace Dexter.Web.Core.HttpHandlers
 			string title = HttpUtility.HtmlDecode(post.title);
 			string body = post.description;
 
-			PostDto newPost = !postId.HasValue || postId.Value < 1
-				                  ? new PostDto()
-				                  : this.postService.GetPostByKey(postId.Value);
+			PostRequest newPost;
+
+			if (!postId.HasValue || postId.Value < 1)
+			{
+				newPost = new PostRequest();
+			}
+			else
+			{
+				newPost = this.postService.GetPostByKey(postId.Value).MapTo<PostRequest>();
+			}
+
 
 			newPost.Title = title;
 			newPost.Slug = post.wp_slug;

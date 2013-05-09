@@ -23,7 +23,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 
 	using Common.Logging;
 
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 	using Dexter.Host.Areas.Dxt_Admin.Binders;
 	using Dexter.Host.Areas.Dxt_Admin.Models.Settings;
 	using Dexter.Navigation.Contracts;

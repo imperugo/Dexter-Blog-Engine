@@ -22,7 +22,7 @@ namespace Dexter.Services.Implmentation
 	using Common.Logging;
 
 	using Dexter.Data;
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 	using Dexter.Navigation.Contracts;
 	using Dexter.Navigation.Helpers;
 	using Dexter.Shared.Exceptions;

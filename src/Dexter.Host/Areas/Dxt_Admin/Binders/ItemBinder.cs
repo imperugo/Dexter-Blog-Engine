@@ -4,7 +4,7 @@
 	using System.ComponentModel.DataAnnotations;
 	using System.Web.Mvc;
 
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 
 	public abstract class ItemBinder
 	{

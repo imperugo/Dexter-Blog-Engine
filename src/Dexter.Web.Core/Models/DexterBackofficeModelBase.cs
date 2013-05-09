@@ -20,7 +20,7 @@ namespace Dexter.Web.Core.Models
 	using System.Collections.Generic;
 	using System.Dynamic;
 
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 	using Dexter.Navigation.Contracts;
 
 	public class DexterBackofficeModelBase : DynamicObject

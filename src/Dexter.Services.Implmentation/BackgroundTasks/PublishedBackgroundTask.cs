@@ -25,7 +25,7 @@ namespace Dexter.Services.Implmentation.BackgroundTasks
 	using Dexter.Async.TaskExecutor;
 	using Dexter.Data;
 	using Dexter.Dependency;
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 	using Dexter.Services.Implmentation.BackgroundTasks.Helpers;
 
 	public class PublishedBackgroundTask : BackgroundTask

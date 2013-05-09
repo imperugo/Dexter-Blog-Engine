@@ -18,7 +18,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Models.Page
 {
 	using System.Collections.Generic;
 
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 	using Dexter.Host.App_Start;
 	using Dexter.Host.Areas.Dxt_Admin.Binders;
 	using Dexter.Web.Core.Models;

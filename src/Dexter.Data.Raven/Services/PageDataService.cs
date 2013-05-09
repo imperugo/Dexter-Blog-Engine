@@ -20,21 +20,23 @@ namespace Dexter.Data.Raven.Services
 	using System.Linq;
 	using System.Threading;
 
-	using Dexter.Data.Raven.Indexes.Reading;
-	using Dexter.Shared.Exceptions;
+	using Dexter.Shared.Filters;
+	using Dexter.Shared.Requests;
+	using Dexter.Shared.Result;
 
 	using global::AutoMapper;
 
 	using Common.Logging;
 
 	using Dexter.Data.Raven.Domain;
+	
 	using Dexter.Data.Raven.Extensions;
 	using Dexter.Data.Raven.Helpers;
+	using Dexter.Data.Raven.Indexes.Reading;
 	using Dexter.Data.Raven.Indexes.Updating;
 	using Dexter.Data.Raven.Session;
-	using Dexter.Entities;
-	using Dexter.Entities.Filters;
-	using Dexter.Entities.Result;
+	using Dexter.Shared.Dto;
+	using Dexter.Shared.Exceptions;
 
 	using global::Raven.Client;
 
@@ -149,11 +151,11 @@ namespace Dexter.Data.Raven.Services
 			           .ToPagedResult<Page, PageDto>(pageIndex, pageSize, stats);
 		}
 
-		public void SaveOrUpdate(PageDto item)
+		public PageDto SaveOrUpdate(PageRequest item)
 		{
-			if (item == null)
+			if (string.IsNullOrEmpty(item.Author))
 			{
-				throw new ArgumentNullException("item", "The post must be contains a valid instance");
+				item.Author = Thread.CurrentPrincipal.Identity.Name;
 			}
 
 			Page page = this.Session.Load<Page>(item.Id)
@@ -162,10 +164,10 @@ namespace Dexter.Data.Raven.Services
 					               CreatedAt = DateTimeOffset.Now
 				               };
 
-			if (string.IsNullOrEmpty(item.Author))
-			{
-				item.Author = Thread.CurrentPrincipal.Identity.Name;
-			}
+			AuthorInfo author = this.Session.Query<AuthorInfo>().Single(x => x.Username == item.Author);
+
+			page.AuthorId = author.Id;
+			page.Author = author.Username;
 
 			item.MapPropertiesToInstance(page);
 
@@ -212,7 +214,10 @@ namespace Dexter.Data.Raven.Services
 
 			UpdateDenormalizedItemIndex.UpdateIndexes(this.store, this.Session, page);
 
-			item.Id = RavenIdHelper.Resolve(page.Id);
+			PageDto pageDto = page.MapTo<PageDto>();
+			pageDto.Author = author.MapTo<AuthorInfoDto>();
+
+			return pageDto;
 		}
 
 		public string[] GetAllSlugs()

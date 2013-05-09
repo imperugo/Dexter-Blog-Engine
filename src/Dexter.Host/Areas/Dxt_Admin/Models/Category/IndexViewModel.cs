@@ -17,7 +17,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Models.Category
 {
 	using System.Collections.Generic;
 
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 	using Dexter.Web.Core.Models;
 
 	public class IndexViewModel : DexterBackofficeModelBase

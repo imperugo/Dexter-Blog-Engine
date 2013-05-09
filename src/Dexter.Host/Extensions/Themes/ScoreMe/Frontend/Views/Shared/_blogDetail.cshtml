@@ -1,0 +1,177 @@
+﻿@using GravatarHelper.Extensions
+@model Dexter.Host.Model.PageController.IndexViewModel
+
+@{
+	var post = Model.Page;
+}
+
+@helper DisplayComments(int numberOfComments)
+{
+	if (numberOfComments < 1)
+	{
+		<text>
+			No Comments
+		</text>
+	}
+	else if (numberOfComments > 1)
+	{
+		<text>
+			@numberOfComments Comments
+		</text>
+	}
+	else
+	{
+		<text>
+			1 Comment
+		</text>
+	}
+}
+
+<div class="post-1981 post type-post status-publish format-standard hentry category-design tag-foliage tag-macro twinsbox">
+	@if(post.FeaturedImage != null)
+	{
+		<img width="718" height="400" src="@post.FeaturedImage" class="main-single wp-post-image" alt="@post.Title" />
+		<div style="clear: both;"></div>
+	}
+	
+	<h2 class="heading">
+		<a href="@U.Page.Permalink(post)">@post.Title</a>
+	</h2>
+	
+	<div class="entry">
+		<p class="meta sserif">
+			<i class="icon-time"></i> on  @post.PublishAt.ToString("m") | 
+			<i class="icon-edit"></i> by @post.Author | 
+			<i class="icon-comments-alt"></i> with @DisplayComments(post.TotalComments)
+		</p>
+		
+		@Html.Raw(post.Content)
+	
+		<div class="postauthor">
+			<h2 class="widget"><span>about the author:</span>
+				<a href="http://wpdemo.themnific.com/pre/16/?author=1" title="Posts by @post.Author" rel="author">@post.Author</a>
+			</h2>
+			@Html.Gravatar(post.Author.Email, 75, GravatarHelper.GravatarHelper.DefaultImageMysteryMan, new { Title = post.Author.Username, Alt = post.Author.Username , @class ="avatar avatar-75 photo" })
+			@if (!string.IsNullOrEmpty(post.Author.Description))
+			{
+				<div class="authordesc">
+					@post.Author.Description
+				</div>
+			}
+		</div>
+		
+		<h2 class="widget"><span>related</span> posts</h2>
+		<ul class="related">
+			<li>
+				<span class="top-rating">83<span>%</span></span>
+				<a href="http://wpdemo.themnific.com/pre/16/?p=2317" title="Old War Towers">
+					<img width="270" height="160" src="http://wpdemo.themnific.com/pre/16/wp-content/uploads/2013/04/1108649_24517411-270x160.jpg" class="attachment-w-cacousel wp-post-image" alt="1108649_24517411" title="">                            
+				</a>
+
+				<p class="meta">
+					Apr 15 | 
+					570 Views |
+					No Comments                
+				</p>
+                
+				<h3 class="upperfont">
+					<a href="http://wpdemo.themnific.com/pre/16/?p=2317" title="Old War Towers">
+						Old War Towers<br>
+						              <span class="rating_star">
+							              <i class="icon-star"></i>
+							              <i class="icon-star"></i>
+							              <i class="icon-star"></i>
+							              <i class="icon-star"></i>
+							              <i class="icon-star-empty"></i>
+						              </span> 
+					</a>
+				</h3>
+			</li>
+			<li>
+				<span class="top-rating">67<span>%</span></span>
+				<a href="http://wpdemo.themnific.com/pre/16/?p=2438" title="Grey See Stones">
+					<img width="270" height="160" src="http://wpdemo.themnific.com/pre/16/wp-content/uploads/2013/04/the-stones-103626_1920-270x160.jpg" class="attachment-w-cacousel wp-post-image" alt="the-stones-103626_1920" title="">                            
+				</a>
+
+				<p class="meta">
+					Feb 17 | 
+					352 Views |
+					No Comments                
+				</p>
+                
+				<h3 class="upperfont">
+					<a href="http://wpdemo.themnific.com/pre/16/?p=2438" title="Grey See Stones">
+						Grey See Stones
+						<br>	<span class="rating_star">
+								    <i class="icon-star"></i>
+								    <i class="icon-star"></i>
+								    <i class="icon-star"></i>
+								    <i class="icon-star-half"></i>
+								    <i class="icon-star-empty"></i>
+							    </span> 
+					</a>
+				</h3>
+			</li>
+			<li>
+				<span class="top-rating">94<span>%</span></span>
+				<a href="http://wpdemo.themnific.com/pre/16/?p=20" title="The Tin Woodman gave a sigh of satisfaction and lowered his axe">
+					<img width="270" height="160" src="http://wpdemo.themnific.com/pre/16/wp-content/uploads/2012/11/angle-19887-270x160.jpg" class="attachment-w-cacousel wp-post-image" alt="angle-19887" title="" style="opacity: 1;">                            
+				</a>
+
+				<p class="meta">
+					Nov 3 | 
+					422 Views |
+					No Comments                
+				</p>
+
+				<h3 class="upperfont">
+					<a href="http://wpdemo.themnific.com/pre/16/?p=20" title="The Tin Woodman gave a sigh of satisfaction and lowered his axe">
+						The Tin Woodman gave a sigh of satisfaction and lowered his...<br>
+						                                                              <span class="rating_star">
+							                                                              <i class="icon-star"></i>
+							                                                              <i class="icon-star"></i>
+							                                                              <i class="icon-star"></i>
+							                                                              <i class="icon-star"></i>
+							                                                              <i class="icon-star"></i>
+						                                                              </span> 
+					</a>
+				</h3>
+			</li>
+		</ul>
+		
+		<div style="clear: both;"></div>
+		<div style="clear: both;"></div>
+		
+		<div class="postinfo body2">
+			<span class="fl">
+				<p>
+					<a href="http://wpdemo.themnific.com/pre/16">
+						<i class="icon-home"></i> 
+					</a> » 
+					<a href="http://wpdemo.themnific.com/pre/16/?cat=3" title="View all posts in Design" rel="category">
+						Design
+					</a> 
+					» @post.Title
+				</p>
+			</span>
+
+			@if (post.Tags != null && post.Tags.Any())
+			{
+				<span class="fr">
+					<p>
+						<i class="icon-tags"></i>
+						@foreach (var tag in post.Tags)
+						{
+							<a href="#" rel="tag">@tag</a>
+						}
+					</p>
+				</span>
+			}
+
+			<div style="clear: both;"></div> 
+		</div>
+
+	</div>
+
+</div>
+<div style="clear: both;"></div>

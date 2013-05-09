@@ -15,12 +15,12 @@
 
 namespace Dexter.Host.Controllers
 {
-	using System.Threading.Tasks;
 	using System.Web.Mvc;
 
 	using Common.Logging;
 
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
+	using Dexter.Host.Model.BlogController;
 	using Dexter.Host.Model.PageController;
 	using Dexter.Services;
 	using Dexter.Web.Core.Controllers;
@@ -63,7 +63,6 @@ namespace Dexter.Host.Controllers
 			}
 
 			IndexViewModel model = new IndexViewModel();
-
 			model.Page = page;
 
 			return this.View(model);

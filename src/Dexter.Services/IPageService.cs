@@ -19,10 +19,11 @@ namespace Dexter.Services
 	using System;
 	using System.Security.Permissions;
 
-	using Dexter.Entities;
-	using Dexter.Entities.Filters;
-	using Dexter.Entities.Result;
+	using Dexter.Shared.Dto;
 	using Dexter.Services.Events;
+	using Dexter.Shared.Filters;
+	using Dexter.Shared.Requests;
+	using Dexter.Shared.Result;
 
 	public interface IPageService
 	{
@@ -66,7 +67,7 @@ namespace Dexter.Services
 		/// <summary>
 		/// This event will raise before to save <see cref="PageDto"/>. The event is raised by by the implementation of <see cref="SaveOrUpdate"/> or the async version.
 		/// </summary>
-		event EventHandler<CancelEventArgsWithOneParameterWithoutResult<PageDto>> PageSaving;
+		event EventHandler<CancelEventArgsWithOneParameter<PageRequest, PageDto>> PageSaving;
 
 		/// <summary>
 		/// This event will raise after to retrieve <see cref="IPagedResult"/> of <see cref="PageDto"/> with specific filters. The event is raised by by the implementation of <see cref="GetPages"/> or the async version.
@@ -92,7 +93,7 @@ namespace Dexter.Services
 
 		IPagedResult<PageDto> GetPages(int pageIndex, int pageSize, ItemQueryFilter filters);
 
-		void SaveOrUpdate(PageDto item);
+		PageDto SaveOrUpdate(PageRequest item);
 
 		#endregion
 	}

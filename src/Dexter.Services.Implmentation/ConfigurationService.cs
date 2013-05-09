@@ -20,7 +20,7 @@ namespace Dexter.Services.Implmentation
 
 	using Dexter.Caching;
 	using Dexter.Data;
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 
 	public class ConfigurationService : IConfigurationService
 	{

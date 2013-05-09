@@ -67,6 +67,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Glimpse.1.3.1\lib\net45\Glimpse.Core.dll</HintPath>
     </Reference>
+    <Reference Include="GravatarHelper">
+      <HintPath>..\packages\GravatarHelper.3.2.2\lib\Net40\GravatarHelper.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
@@ -209,7 +212,6 @@
     <Compile Include="Areas\Dxt_Setup\Models\Home\IndexViewModel.cs" />
     <Compile Include="Areas\Dxt_Setup\Models\SetupBinder.cs" />
     <Compile Include="Controllers\BlogController.cs" />
-    <Compile Include="Controllers\FakeDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
@@ -218,16 +220,17 @@
     <Content Include="Extensions\Themes\ScoreMe\Frontend\Views\Widget\RecentPosts.cshtml" />
     <Content Include="Extensions\Themes\ScoreMe\Frontend\Views\Widget\RandomPosts.cshtml" />
     <Content Include="Extensions\Themes\ScoreMe\Frontend\Views\Page\Index.cshtml" />
+    <Content Include="Extensions\Themes\ScoreMe\Frontend\Views\Blog\Post.cshtml" />
+    <Content Include="Extensions\Themes\ScoreMe\Frontend\Views\Shared\_blogDetail.cshtml" />
     <None Include="Extensions\Themes\ScoreMe\Frontend\Views\Widget\TopTags.cshtml" />
-    <None Include="Extensions\Themes\ScoreMe\Frontend\Views\Shared\_postDetail.cshtml" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Model\HomeController\ArchiveViewModel.cs" />
+    <Compile Include="Model\BlogController\PostViewModel.cs" />
     <Compile Include="Model\TagController\ArchiveViewModel.cs" />
     <Compile Include="Model\PageController\IndexViewModel.cs" />
     <Compile Include="Model\HomeController\IndexViewModel.cs" />
-    <Compile Include="Model\HomeController\PostViewModel.cs" />
     <Compile Include="Model\TagController\IndexViewModel.cs" />
     <Compile Include="Model\Widget\ArchiveViewModel.cs" />
     <Compile Include="Model\Widget\ItemCommentViewModel.cs" />
@@ -236,6 +239,7 @@
     <Compile Include="Model\Widget\TopTagsViewModel.cs" />
     <Compile Include="Model\Widget\FuturePostsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Views\web.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Extensions\Plugins\SamplePlugin\Assemblies\readme.txt" />
@@ -1434,10 +1438,6 @@
       <Project>{07FF041C-FC20-49A3-8BC4-A38E7F72ABAA}</Project>
       <Name>Dexter.Dependency</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Dexter.Entities\Dexter.Entities.csproj">
-      <Project>{5fb1aed5-d55e-43cc-a3e0-5e788bd72144}</Project>
-      <Name>Dexter.Entities</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Dexter.Extensions\Dexter.Extensions.csproj">
       <Project>{408d067c-933b-4987-b76f-481708f08470}</Project>
       <Name>Dexter.Extensions</Name>
@@ -1544,7 +1544,7 @@
     <Content Include="Areas\Dxt_Admin\Views\Account\ConfirmDelete.cshtml" />
     <Content Include="Extensions\Themes\ScoreMe\Frontend\Views\Web.config" />
     <Content Include="Extensions\Themes\ScoreMe\Frontend\Views\_ViewStart.cshtml" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Views\Shared\_layout.cshtml" />
+    <Content Include="Extensions\Themes\ScoreMe\Frontend\Views\Templates\_layout.cshtml" />
     <Content Include="Extensions\Themes\ScoreMe\Frontend\Views\Shared\_footer.cshtml" />
     <Content Include="Extensions\Themes\ScoreMe\Frontend\Views\Home\Index.cshtml" />
     <None Include="Extensions\Themes\ScoreMe\Frontend\Views\Shared\_header.cshtml" />

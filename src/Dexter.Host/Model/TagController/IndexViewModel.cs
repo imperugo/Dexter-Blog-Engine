@@ -17,7 +17,7 @@ namespace Dexter.Host.Model.TagController
 {
 	using System.Collections.Generic;
 
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 	using Dexter.Web.Core.Models;
 
 	public class IndexViewModel : DexterModelBase

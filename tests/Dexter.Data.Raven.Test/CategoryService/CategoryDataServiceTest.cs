@@ -25,7 +25,7 @@ namespace Dexter.Data.Raven.Test.CategoryService
 	using Dexter.Data.Raven.Helpers;
 	using Dexter.Data.Raven.Services;
 	using Dexter.Data.Raven.Test.Helpers;
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
 
 	using Moq;
 

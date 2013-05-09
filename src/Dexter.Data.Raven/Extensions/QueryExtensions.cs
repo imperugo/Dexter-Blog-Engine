@@ -19,13 +19,13 @@ namespace Dexter.Data.Raven.Extensions
 	using System.Collections.Generic;
 	using System.Linq;
 
-	using Dexter.Entities;
+	using Dexter.Shared.Dto;
+	using Dexter.Shared.Filters;
+	using Dexter.Shared.Result;
 
 	using global::AutoMapper;
 
 	using Dexter.Data.Raven.Domain;
-	using Dexter.Entities.Filters;
-	using Dexter.Entities.Result;
 
 	using global::Raven.Client;
 	using global::Raven.Client.Linq;

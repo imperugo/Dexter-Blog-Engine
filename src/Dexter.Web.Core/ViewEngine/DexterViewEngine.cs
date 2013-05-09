@@ -27,13 +27,10 @@ namespace Dexter.Web.Core.ViewEngine
 			this.ViewLocationFormats = new[]
 				                           {
 					                           string.Concat("~/Extensions/Themes/", currentTheme, "/Frontend/Views/{1}/{0}.cshtml"),
-					                           string.Concat("~/Extensions/Themes/", currentTheme, "Frontend/Views/{1}/{0}.cshtml"),
-					                           string.Concat("~/Extensions/Themes/", currentTheme, "Frontend/Views/Shared/{0}.cshtml"),
-					                           string.Concat("~/Extensions/Themes/", currentTheme, "Frontend/Views/Shared/{0}.cshtml"),
-					                           string.Concat("~/Extensions/Themes/", currentTheme, "Frontend/Views/{1}/{0}.cshtml"),
-					                           string.Concat("~/Extensions/Themes/", currentTheme, "Frontend/Views/{1}/{0}.cshtml"),
-					                           string.Concat("~/Extensions/Themes/", currentTheme, "Frontend/Views/Shared/{0}.cshtml"),
-					                           string.Concat("~/Extensions/Themes/", currentTheme, "Frontend/Views/Shared/{0}.cshtml")
+					                           string.Concat("~/Extensions/Themes/", currentTheme, "/Frontend/Views/Shared/{0}.cshtml"),
+					                           string.Concat("~/Extensions/Themes/", currentTheme, "/Frontend/Views/{1}/{0}.cshtml"),
+					                           string.Concat("~/Extensions/Themes/", currentTheme, "/Frontend/Views/Shared/{0}.cshtml"),
+					                           string.Concat("~/Extensions/Themes/", currentTheme, "/Frontend/Views/Templates/{0}.cshtml")
 				                           };
 		}
 

@@ -38,6 +38,7 @@
     <Compile Include="..\..\doc\Dexter.Build.cs">
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
+    <Compile Include="IAuthorDataService.cs" />
     <Compile Include="ICategoryDataService.cs" />
     <Compile Include="IEmailNotificationDataService.cs" />
     <Compile Include="ILinkDataService.cs" />
@@ -53,9 +54,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Dexter.Entities\Dexter.Entities.csproj">
-      <Project>{5FB1AED5-D55E-43CC-A3E0-5E788BD72144}</Project>
-      <Name>Dexter.Entities</Name>
+    <ProjectReference Include="..\Dexter.Shared\Dexter.Shared.csproj">
+      <Project>{43C6E51E-D066-4BD3-8182-ACA95096CB37}</Project>
+      <Name>Dexter.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
