@@ -18,6 +18,7 @@ namespace Dexter.Shared
 {
 	using Dexter.Dependency;
 	using Dexter.Dependency.Installation;
+	using Dexter.Shared.Automapper;
 	using Dexter.Shared.UserContext;
 	using Dexter.Shared.Validation;
 
@@ -37,6 +38,7 @@ namespace Dexter.Shared
 
 		public void ServiceRegistrationComplete(IDexterContainer container)
 		{
+			AutoMapperConfiguration.Configure();
 		}
 
 		#endregion

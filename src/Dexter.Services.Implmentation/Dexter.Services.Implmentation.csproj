@@ -60,6 +60,7 @@
     <Compile Include="..\..\doc\Dexter.Build.cs">
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
+    <Compile Include="AuthorService.cs" />
     <Compile Include="Automapper\AutoMapperConfiguration.cs" />
     <Compile Include="BackgroundTasks\Helpers\PingbackHelper.cs" />
     <Compile Include="BackgroundTasks\Helpers\PingHelper.cs" />
