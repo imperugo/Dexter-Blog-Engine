@@ -15,9 +15,15 @@
 
 namespace Castle.Windsor
 {
+	using System;
 	using System.Linq;
 
+	using Castle.DynamicProxy;
 	using Castle.MicroKernel;
+	using Castle.MicroKernel.Registration;
+
+	using Dexter.Dependency.Castle.Interceptor;
+	using Dexter.Dependency.Validator;
 
 	internal static class ContainerExtensions
 	{
@@ -50,6 +56,22 @@ namespace Castle.Windsor
 		public static bool IsRegistered(this IWindsorContainer container, string name)
 		{
 			return container.Kernel.HasComponent(name);
+		}
+
+		public static void InizializeAttributeValidation(this IWindsorContainer container)
+		{
+			container.Register(Component.For<IInterceptor>().ImplementedBy<ValidationInterceptor>());
+		}
+
+
+		public static ComponentRegistration<T> EnableValidation<T>(this ComponentRegistration<T> component) where T : class
+		{
+			if (typeof(T).IsAssignableFrom(typeof(IValidate)))
+			{
+				return component.Interceptors<ValidationInterceptor>();
+			}
+
+			return component;
 		}
 
 		#endregion

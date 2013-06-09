@@ -1,5 +1,7 @@
 ﻿namespace Dexter.Shared.Requests
 {
+	using Dexter.Services.Requests;
+
 	public class PageRequest : ItemRequest
 	{
 		public int? ParentId { get; set; }

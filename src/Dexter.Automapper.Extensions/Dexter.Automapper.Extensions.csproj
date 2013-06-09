@@ -39,7 +39,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>

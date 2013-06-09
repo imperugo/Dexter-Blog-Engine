@@ -33,11 +33,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\doc\Dexter.Build.cs">
@@ -55,6 +50,10 @@
     <ProjectReference Include="..\..\src\Dexter.Data\Dexter.Data.csproj">
       <Project>{08BF3549-6B10-4E83-AE71-1C4665004C02}</Project>
       <Name>Dexter.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Dexter.Dependency\Dexter.Dependency.csproj">
+      <Project>{07FF041C-FC20-49A3-8BC4-A38E7F72ABAA}</Project>
+      <Name>Dexter.Dependency</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Dexter.Services\Dexter.Services.csproj">
       <Project>{BE578436-AD00-48FA-A16D-245044F109C2}</Project>

@@ -17,15 +17,16 @@
 namespace Dexter.Services
 {
 	using System;
-	using System.Security.Permissions;
 
+	using Dexter.Dependency.Attributes;
+	using Dexter.Dependency.Validator;
 	using Dexter.Shared.Dto;
 	using Dexter.Services.Events;
 	using Dexter.Shared.Filters;
 	using Dexter.Shared.Requests;
 	using Dexter.Shared.Result;
 
-	public interface IPageService
+	public interface IPageService : IValidate
 	{
 		#region Public Events
 
@@ -93,7 +94,7 @@ namespace Dexter.Services
 
 		IPagedResult<PageDto> GetPages(int pageIndex, int pageSize, ItemQueryFilter filters);
 
-		PageDto SaveOrUpdate(PageRequest item);
+		PageDto SaveOrUpdate([Validate] PageRequest item);
 
 		#endregion
 	}

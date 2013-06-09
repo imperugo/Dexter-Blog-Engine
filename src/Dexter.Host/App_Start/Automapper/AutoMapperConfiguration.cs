@@ -22,6 +22,7 @@ namespace Dexter.Host.App_Start.Automapper
 
 	using AutoMapper;
 
+	using Dexter.Services.Requests;
 	using Dexter.Shared.Dto;
 	using Dexter.Host.Areas.Dxt_Admin.Binders;
 	using Dexter.Host.Areas.Dxt_Admin.Models.Account;
@@ -33,7 +34,7 @@ namespace Dexter.Host.App_Start.Automapper
 
 		public static void Configure()
 		{
-			Mapper.CreateMap<SetupBinder, Setup>();
+			Mapper.CreateMap<SetupBinder, SetupRequest>();
 
 			Mapper.CreateMap<ItemBinder, ItemDto>()
 			      .ForMember(dest => dest.Content, source => source.MapFrom(p => p.FormattedBody))

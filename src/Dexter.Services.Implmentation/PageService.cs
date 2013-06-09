@@ -24,12 +24,11 @@ namespace Dexter.Services.Implmentation
 	using Dexter.Extensions.Logging;
 	using Dexter.Services.Events;
 	using Dexter.Shared;
-	using Dexter.Shared.Exceptions;
+	using Dexter.Exceptions;
 	using Dexter.Shared.Filters;
 	using Dexter.Shared.Requests;
 	using Dexter.Shared.Result;
 	using Dexter.Shared.UserContext;
-	using Dexter.Shared.Validation;
 
 	public class PageService : IPageService
 	{
@@ -41,18 +40,15 @@ namespace Dexter.Services.Implmentation
 
 		private readonly IUserContext userContext;
 
-		private readonly IObjectValidator objectValidator;
-
 		#endregion
 
 		#region Constructors and Destructors
 
-		public PageService(IPageDataService pageDataService, ILog logger, IUserContext userContext, IObjectValidator objectValidator)
+		public PageService(IPageDataService pageDataService, ILog logger, IUserContext userContext)
 		{
 			this.pageDataService = pageDataService;
 			this.logger = logger;
 			this.userContext = userContext;
-			this.objectValidator = objectValidator;
 		}
 
 		#endregion
@@ -85,8 +81,6 @@ namespace Dexter.Services.Implmentation
 
 		public PageDto SaveOrUpdate(PageRequest item)
 		{
-			this.objectValidator.Validate(item);
-
 			CancelEventArgsWithOneParameter<PageRequest, PageDto> e = new CancelEventArgsWithOneParameter<PageRequest, PageDto>(item, null);
 
 			this.PageSaving.Raise(this, e);

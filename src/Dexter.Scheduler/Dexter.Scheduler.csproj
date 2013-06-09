@@ -58,6 +58,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quartz\DexterJobFactory.cs" />
     <Compile Include="Quartz\JobExecutionExceptionListener.cs" />
+    <Compile Include="Store\RavenJobStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dexter.Automapper.Extensions\Dexter.Automapper.Extensions.csproj">

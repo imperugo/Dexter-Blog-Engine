@@ -31,7 +31,7 @@ namespace Dexter.Data.Raven
 	using Dexter.Data.Raven.Session;
 	using Dexter.Dependency;
 	using Dexter.Dependency.Installation;
-	using Dexter.Shared.Exceptions;
+	using Dexter.Exceptions;
 
 	using global::Raven.Client;
 
@@ -81,6 +81,7 @@ namespace Dexter.Data.Raven
 			container.Register<ISessionFactory, SessionFactory>(LifeCycle.Singleton);
 			container.Register<IPluginDataService, PluginDataService>(LifeCycle.Singleton);
 			container.Register<IRepositoryFactory, RepositoryFactory>(LifeCycle.Singleton);
+			container.Register<IAuthorDataService, AuthorDataService>(LifeCycle.Singleton);
 			this.InitializeDocumentStore();
 
 			container.Register(typeof(IDocumentStore), store, LifeCycle.Singleton);

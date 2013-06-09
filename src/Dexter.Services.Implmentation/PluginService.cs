@@ -28,7 +28,7 @@ namespace Dexter.Services.Implmentation
 	using Dexter.Dependency;
 	using Dexter.Shared.Dto;
 	using Dexter.Services.Plugins;
-	using Dexter.Shared.Exceptions;
+	using Dexter.Exceptions;
 	using Dexter.Shared.Result;
 
 	public class PluginService : IPluginService

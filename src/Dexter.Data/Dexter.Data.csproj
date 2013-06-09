@@ -32,7 +32,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\doc\Dexter.Build.cs">
@@ -54,6 +53,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dexter.Dependency\Dexter.Dependency.csproj">
+      <Project>{07FF041C-FC20-49A3-8BC4-A38E7F72ABAA}</Project>
+      <Name>Dexter.Dependency</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dexter.Shared\Dexter.Shared.csproj">
       <Project>{43C6E51E-D066-4BD3-8182-ACA95096CB37}</Project>
       <Name>Dexter.Shared</Name>

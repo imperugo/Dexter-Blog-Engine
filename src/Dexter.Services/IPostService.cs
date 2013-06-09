@@ -18,13 +18,15 @@ namespace Dexter.Services
 	using System;
 	using System.Collections.Generic;
 
+	using Dexter.Dependency.Attributes;
+	using Dexter.Dependency.Validator;
 	using Dexter.Shared.Dto;
 	using Dexter.Services.Events;
 	using Dexter.Shared.Filters;
 	using Dexter.Shared.Requests;
 	using Dexter.Shared.Result;
 
-	public interface IPostService
+	public interface IPostService : IValidate
 	{
 		#region Public Events
 
@@ -178,7 +180,7 @@ namespace Dexter.Services
 
 		IList<TagDto> GetTopTagsForPublishedPosts(int maxNumberOfTags);
 
-		PostDto SaveOrUpdate(PostRequest item);
+		PostDto SaveOrUpdate([Validate] PostRequest item);
 
 		IPagedResult<PostDto> Search(string term, int pageIndex, int pageSize, ItemQueryFilter filters);
 

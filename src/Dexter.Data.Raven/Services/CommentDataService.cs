@@ -30,7 +30,7 @@ namespace Dexter.Data.Raven.Services
 	using Dexter.Data.Raven.Indexes.Reading;
 	using Dexter.Data.Raven.Session;
 	using Dexter.Shared.Dto;
-	using Dexter.Shared.Exceptions;
+	using Dexter.Exceptions;
 
 	using global::Raven.Client;
 

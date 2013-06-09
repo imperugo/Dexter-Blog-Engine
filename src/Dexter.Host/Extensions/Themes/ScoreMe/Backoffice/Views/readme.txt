@@ -1,1 +1,0 @@
-﻿Put here your mvc views

@@ -16,29 +16,21 @@
 
 namespace Dexter.Services.Implmentation
 {
-	using System;
-
 	using Dexter.Data;
 	using Dexter.Shared.Dto;
 	using Dexter.Shared.Requests;
-	using Dexter.Shared.Validation;
 
 	public class AuthorService : IAuthorService
 	{
-		private readonly IObjectValidator objectValidator;
-
 		private readonly IAuthorDataService authorDataService;
 
-		public AuthorService(IObjectValidator objectValidator, IAuthorDataService authorDataService)
+		public AuthorService(IAuthorDataService authorDataService)
 		{
-			this.objectValidator = objectValidator;
 			this.authorDataService = authorDataService;
 		}
 
 		public AuthorInfoDto SaveOrUpdate(AuthorRequest author)
 		{
-			this.objectValidator.Validate(author);
-
 			return this.authorDataService.SaveOrUpdate(author);
 		}
 	}

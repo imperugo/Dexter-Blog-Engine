@@ -25,7 +25,7 @@ namespace Dexter.PackageInstaller.Services
 	using Dexter.PackageInstaller.Extensions;
 	using Dexter.PackageInstaller.Logger;
 	using Dexter.Services;
-	using Dexter.Shared.Exceptions;
+	using Dexter.Exceptions;
 	using Dexter.Shared.Result;
 
 	using NuGet;

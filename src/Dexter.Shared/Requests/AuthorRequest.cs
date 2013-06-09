@@ -17,6 +17,7 @@
 namespace Dexter.Shared.Requests
 {
 	using System.ComponentModel.DataAnnotations;
+	using System.Net.Mail;
 
 	public class AuthorRequest
 	{

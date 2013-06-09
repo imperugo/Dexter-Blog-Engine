@@ -25,6 +25,7 @@ namespace Dexter.Services.Implmentation
 	using Common.Logging;
 
 	using Dexter.Data;
+	using Dexter.Services.Requests;
 	using Dexter.Shared.Dto;
 	using Dexter.Shared;
 	using Dexter.Shared.Requests;
@@ -74,7 +75,7 @@ namespace Dexter.Services.Implmentation
 
 		#region Public Methods and Operators
 
-		public async Task InitializeAsync(Setup item)
+		public async Task InitializeAsync(SetupRequest item)
 		{
 			string defaultPostPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App_Data/Setup/defaultPost.dxt");
 
@@ -121,7 +122,7 @@ namespace Dexter.Services.Implmentation
 
 		#endregion
 
-		public Task CreateMembershipAndRole(Setup item)
+		public Task CreateMembershipAndRole(SetupRequest item)
 		{
 			//NOTE:The membership use a different session, so it could be runned in an async thread. Unluckily this request is not under transaction
 

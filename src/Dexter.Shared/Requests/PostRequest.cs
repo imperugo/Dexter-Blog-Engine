@@ -16,6 +16,8 @@
 
 namespace Dexter.Shared.Requests
 {
+	using Dexter.Services.Requests;
+
 	public class PostRequest : ItemRequest
 	{
 		public string[] Categories { get; set; }

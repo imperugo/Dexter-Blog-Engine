@@ -22,7 +22,7 @@ namespace Dexter.Data.Raven.Helpers
 	using System.Web;
 
 	using Dexter.Data.Raven.Domain;
-	using Dexter.Shared.Exceptions;
+	using Dexter.Exceptions;
 
 	internal static class SlugHelper
 	{

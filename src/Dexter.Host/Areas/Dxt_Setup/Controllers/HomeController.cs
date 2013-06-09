@@ -22,11 +22,11 @@ namespace Dexter.Host.Areas.Dxt_Setup.Controllers
 
 	using Common.Logging;
 
-	using Dexter.Shared.Dto;
 	using Dexter.Host.Areas.Dxt_Setup.Models;
 	using Dexter.Host.Areas.Dxt_Setup.Models.Home;
 	using Dexter.Navigation.Contracts;
 	using Dexter.Services;
+	using Dexter.Services.Requests;
 	using Dexter.Web.Core.Controllers;
 	using Dexter.Web.Core.Routing;
 
@@ -74,7 +74,7 @@ namespace Dexter.Host.Areas.Dxt_Setup.Controllers
 				return this.View(model);
 			}
 
-			await this.setupService.InitializeAsync(setup.MapTo<Setup>());
+			await this.setupService.InitializeAsync(setup.MapTo<SetupRequest>());
 
 			this.routingService.UpdateRoutes();
 

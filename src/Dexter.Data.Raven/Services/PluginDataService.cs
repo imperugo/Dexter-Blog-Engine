@@ -25,7 +25,7 @@ namespace Dexter.Data.Raven.Services
 	using Dexter.Data.Raven.Extensions;
 	using Dexter.Data.Raven.Session;
 	using Dexter.Shared.Dto;
-	using Dexter.Shared.Exceptions;
+	using Dexter.Exceptions;
 	using Dexter.Shared.Result;
 
 	using global::Raven.Client;

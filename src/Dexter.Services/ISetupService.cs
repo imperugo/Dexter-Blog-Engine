@@ -17,9 +17,13 @@ namespace Dexter.Services
 {
 	using System.Threading.Tasks;
 
+	using Dexter.Dependency.Attributes;
+	using Dexter.Dependency.Castle.Interceptor;
+	using Dexter.Dependency.Validator;
+	using Dexter.Services.Requests;
 	using Dexter.Shared.Dto;
 
-	public interface ISetupService
+	public interface ISetupService : IValidate
 	{
 		#region Public Properties
 
@@ -29,7 +33,7 @@ namespace Dexter.Services
 
 		#region Public Methods and Operators
 
-		Task InitializeAsync(Setup item);
+		Task InitializeAsync([Validate] SetupRequest item);
 
 		#endregion
 	}

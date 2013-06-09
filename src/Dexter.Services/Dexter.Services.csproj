@@ -32,11 +32,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=2.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Common.Logging, Version=2.1.2.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Common.Logging.2.1.2\lib\net40\Common.Logging.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
@@ -44,6 +49,7 @@
     <Compile Include="..\..\doc\Dexter.Build.cs">
       <Link>Properties\Dexter.Build.cs</Link>
     </Compile>
+    <Compile Include="Automapper\AutoMapperConfiguration.cs" />
     <Compile Include="Events\CancelEventArgsWithoutParameters.cs" />
     <Compile Include="Events\CancelEventArgsWithOneParameterWithoutResult.cs" />
     <Compile Include="Events\CancelEventArgsWithoutParameterWithResult.cs" />
@@ -62,6 +68,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dexter.Dependency.Castle\Dexter.Dependency.Castle.csproj">
+      <Project>{A04A2782-5DAA-4D17-B91D-6D963967FF6D}</Project>
+      <Name>Dexter.Dependency.Castle</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dexter.Dependency\Dexter.Dependency.csproj">
       <Project>{07FF041C-FC20-49A3-8BC4-A38E7F72ABAA}</Project>
       <Name>Dexter.Dependency</Name>

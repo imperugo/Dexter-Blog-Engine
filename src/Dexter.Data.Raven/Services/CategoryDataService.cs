@@ -20,7 +20,7 @@ namespace Dexter.Data.Raven.Services
 	using System.Collections.Generic;
 	using System.Linq;
 
-	using Dexter.Shared.Exceptions;
+	using Dexter.Exceptions;
 
 	using global::AutoMapper;
 

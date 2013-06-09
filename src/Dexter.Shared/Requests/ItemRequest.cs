@@ -14,7 +14,7 @@
 
 #endregion
 
-namespace Dexter.Shared.Requests
+namespace Dexter.Services.Requests
 {
 	using System;
 	using System.ComponentModel.DataAnnotations;

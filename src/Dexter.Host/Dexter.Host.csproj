@@ -217,12 +217,6 @@
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Controllers\WidgetController.cs" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Views\Widget\RecentPosts.cshtml" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Views\Widget\RandomPosts.cshtml" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Views\Page\Index.cshtml" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Views\Blog\Post.cshtml" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Views\Shared\_blogDetail.cshtml" />
-    <None Include="Extensions\Themes\ScoreMe\Frontend\Views\Widget\TopTags.cshtml" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -247,36 +241,6 @@
     <Content Include="Extensions\Plugins\SamplePlugin\Javascripts\readme.txt" />
     <Content Include="Extensions\Plugins\SamplePlugin\Styles\readme.txt" />
     <Content Include="Extensions\Plugins\SamplePlugin\Views\readme.txt" />
-    <Content Include="Extensions\Themes\ScoreMe\Assemblies\readme.txt" />
-    <Content Include="Extensions\Themes\ScoreMe\Backoffice\Contents\readme.txt" />
-    <Content Include="Extensions\Themes\ScoreMe\Backoffice\Javascripts\readme.txt" />
-    <Content Include="Extensions\Themes\ScoreMe\Backoffice\Styles\readme.txt" />
-    <Content Include="Extensions\Themes\ScoreMe\Backoffice\Views\readme.txt" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Contents\readme.txt" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Javascripts\comment-reply.min.js" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Javascripts\css3-mediaqueries.js" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Javascripts\jquery.flexslider-min.js" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Javascripts\jquery.flexslider.main.start.js" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Javascripts\jquery.flexslider.widget.start.js" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Javascripts\jquery.hoverIntent.minified.js" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Javascripts\jquery.js" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Javascripts\jquery.prettyPhoto.js" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Javascripts\jquery.tweet.js" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Javascripts\jquery.ui.core.min.js" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Javascripts\jquery.ui.tabs.min.js" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Javascripts\jquery.ui.widget.min.js" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Javascripts\ownScript.js" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Javascripts\shortcodes.js" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Javascripts\superfish.js" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Javascripts\tabs.js" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Styles\font-awesome-ie7.css" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Styles\font-awesome.min.css" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Styles\Fonts.css" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Styles\mobile.css" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Styles\prettyPhoto.css" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Styles\shortcodes.css" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Styles\style-custom.css" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Styles\style.css" />
     <Content Include="Extensions\Themes\Default\Assemblies\readme.txt" />
     <Content Include="Extensions\Themes\Default\Backoffice\Contents\readme.txt" />
     <Content Include="Extensions\Themes\Default\Backoffice\Javascripts\readme.txt" />
@@ -1438,6 +1402,10 @@
       <Project>{07FF041C-FC20-49A3-8BC4-A38E7F72ABAA}</Project>
       <Name>Dexter.Dependency</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dexter.Exceptions\Dexter.Exceptions.csproj">
+      <Project>{A142FB84-8091-4104-BE08-50E0510CE9FC}</Project>
+      <Name>Dexter.Exceptions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dexter.Extensions\Dexter.Extensions.csproj">
       <Project>{408d067c-933b-4987-b76f-481708f08470}</Project>
       <Name>Dexter.Extensions</Name>
@@ -1542,13 +1510,6 @@
     <Content Include="Areas\Dxt_Admin\Views\Settings\Reading.cshtml" />
     <Content Include="Areas\Dxt_Admin\Views\Account\Index.cshtml" />
     <Content Include="Areas\Dxt_Admin\Views\Account\ConfirmDelete.cshtml" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Views\Web.config" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Views\_ViewStart.cshtml" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Views\Templates\_layout.cshtml" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Views\Shared\_footer.cshtml" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Views\Home\Index.cshtml" />
-    <None Include="Extensions\Themes\ScoreMe\Frontend\Views\Shared\_header.cshtml" />
-    <Content Include="Extensions\Themes\ScoreMe\Frontend\Views\Shared\_sidebar.cshtml" />
     <None Include="Styles\Global\CommonStyles.css.bundle" />
   </ItemGroup>
   <PropertyGroup>

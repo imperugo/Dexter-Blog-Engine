@@ -28,7 +28,7 @@ namespace Dexter.Web.Core.HttpApplication
 	using Dexter.Async.TaskExecutor;
 	using Dexter.Dependency;
 	using Dexter.Services;
-	using Dexter.Shared.Exceptions;
+	using Dexter.Exceptions;
 	using Dexter.Web.Core.Routing;
 	using Dexter.Web.Core.ViewEngine;
 

@@ -29,7 +29,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 	using Dexter.Host.Areas.Dxt_Admin.Models.Category;
 	using Dexter.Navigation.Contracts;
 	using Dexter.Services;
-	using Dexter.Shared.Exceptions;
+	using Dexter.Exceptions;
 	using Dexter.Web.Core.Controllers;
 
 	[Authorize]

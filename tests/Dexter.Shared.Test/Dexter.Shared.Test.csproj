@@ -59,12 +59,15 @@
   <ItemGroup>
     <Compile Include="Helpers\ValidateObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Validation\DataAnnotationsValidatorTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Dexter.Exceptions\Dexter.Exceptions.csproj">
+      <Project>{A142FB84-8091-4104-BE08-50E0510CE9FC}</Project>
+      <Name>Dexter.Exceptions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Dexter.Shared\Dexter.Shared.csproj">
       <Project>{43C6E51E-D066-4BD3-8182-ACA95096CB37}</Project>
       <Name>Dexter.Shared</Name>

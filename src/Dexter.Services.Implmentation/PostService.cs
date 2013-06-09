@@ -29,12 +29,11 @@ namespace Dexter.Services.Implmentation
 	using Dexter.Services.Events;
 	using Dexter.Services.Implmentation.BackgroundTasks;
 	using Dexter.Shared;
-	using Dexter.Shared.Exceptions;
+	using Dexter.Exceptions;
 	using Dexter.Shared.Filters;
 	using Dexter.Shared.Requests;
 	using Dexter.Shared.Result;
 	using Dexter.Shared.UserContext;
-	using Dexter.Shared.Validation;
 
 	public class PostService : IPostService
 	{
@@ -48,19 +47,16 @@ namespace Dexter.Services.Implmentation
 
 		private readonly IUserContext userContext;
 
-		private readonly IObjectValidator objectValidator;
-
 		#endregion
 
 		#region Constructors and Destructors
 
-		public PostService(IPostDataService postDataService, ILog logger, IUserContext userContext, ITaskExecutor taskExecutor, IObjectValidator objectValidator)
+		public PostService(IPostDataService postDataService, ILog logger, IUserContext userContext, ITaskExecutor taskExecutor)
 		{
 			this.postDataService = postDataService;
 			this.logger = logger;
 			this.userContext = userContext;
 			this.taskExecutor = taskExecutor;
-			this.objectValidator = objectValidator;
 		}
 
 		#endregion
@@ -476,8 +472,6 @@ namespace Dexter.Services.Implmentation
 
 		public PostDto SaveOrUpdate(PostRequest item)
 		{
-			this.objectValidator.Validate(item);
-
 			CancelEventArgsWithOneParameter<PostRequest, PostDto> e = new CancelEventArgsWithOneParameter<PostRequest, PostDto>(item, null);
 
 			this.PostSaving.Raise(this, e);

@@ -1,6 +1,7 @@
 src/Dexter.Host/App_Data/db
 src/Dexter.Host/App_Data/temp
 src/Dexter.Host/App_Data/Logs
+src/Dexter.Host/Extensions/Themes/ScoreMe
 
 #################
 ## Eclipse

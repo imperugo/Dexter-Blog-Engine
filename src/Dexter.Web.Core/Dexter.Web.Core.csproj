@@ -159,6 +159,10 @@
       <Project>{07FF041C-FC20-49A3-8BC4-A38E7F72ABAA}</Project>
       <Name>Dexter.Dependency</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dexter.Exceptions\Dexter.Exceptions.csproj">
+      <Project>{A142FB84-8091-4104-BE08-50E0510CE9FC}</Project>
+      <Name>Dexter.Exceptions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dexter.Extensions\Dexter.Extensions.csproj">
       <Project>{408D067C-933B-4987-B76F-481708F08470}</Project>
       <Name>Dexter.Extensions</Name>

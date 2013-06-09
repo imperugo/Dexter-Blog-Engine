@@ -38,27 +38,27 @@
     </Reference>
     <Reference Include="BuildingBlocks.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\BuildingBlocks.Common.1.0.0.55\lib\net40\BuildingBlocks.Common.dll</HintPath>
+      <HintPath>..\packages\BuildingBlocks.Common.1.0.0.58\lib\net40\BuildingBlocks.Common.dll</HintPath>
     </Reference>
     <Reference Include="BuildingBlocks.Membership, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\BuildingBlocks.Membership.1.0.0.55\lib\net40\BuildingBlocks.Membership.dll</HintPath>
+      <HintPath>..\packages\BuildingBlocks.Membership.1.0.0.58\lib\net40\BuildingBlocks.Membership.dll</HintPath>
     </Reference>
     <Reference Include="BuildingBlocks.Membership.RavenDB, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\BuildingBlocks.Membership.RavenDB.1.0.0.55\lib\net40\BuildingBlocks.Membership.RavenDB.dll</HintPath>
+      <HintPath>..\packages\BuildingBlocks.Membership.RavenDB.1.0.0.58\lib\net40\BuildingBlocks.Membership.RavenDB.dll</HintPath>
     </Reference>
     <Reference Include="BuildingBlocks.Query, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\BuildingBlocks.Query.1.0.0.55\lib\net40\BuildingBlocks.Query.dll</HintPath>
+      <HintPath>..\packages\BuildingBlocks.Query.1.0.0.58\lib\net40\BuildingBlocks.Query.dll</HintPath>
     </Reference>
-    <Reference Include="BuildingBlocks.Store, Version=1.0.0.55, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="BuildingBlocks.Store, Version=1.0.0.58, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\BuildingBlocks.Store.1.0.0.55\lib\net40\BuildingBlocks.Store.dll</HintPath>
+      <HintPath>..\packages\BuildingBlocks.Store.1.0.0.58\lib\net40\BuildingBlocks.Store.dll</HintPath>
     </Reference>
-    <Reference Include="BuildingBlocks.Store.RavenDB, Version=1.0.0.55, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="BuildingBlocks.Store.RavenDB, Version=1.0.0.58, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\BuildingBlocks.Store.RavenDB.1.0.0.55\lib\net40\BuildingBlocks.Store.RavenDB.dll</HintPath>
+      <HintPath>..\packages\BuildingBlocks.Store.RavenDB.1.0.0.58\lib\net40\BuildingBlocks.Store.RavenDB.dll</HintPath>
     </Reference>
     <Reference Include="Common.Logging, Version=2.1.2.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -104,24 +104,25 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\RavenDB.Database.2.0.2261\lib\net40\NetTopologySuite.dll</HintPath>
     </Reference>
-    <Reference Include="Raven.Abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+    <Reference Include="Raven.Abstractions, Version=2.0.3.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RavenDB.Client.2.0.2261\lib\net40\Raven.Abstractions.dll</HintPath>
+      <HintPath>..\packages\RavenDB.Client.2.0.2360\lib\net40\Raven.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Raven.Client.Embedded, Version=2.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+    <Reference Include="Raven.Client.Embedded, Version=2.0.3.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RavenDB.Embedded.2.0.2261\lib\net40\Raven.Client.Embedded.dll</HintPath>
+      <HintPath>..\packages\RavenDB.Embedded.2.0.2360\lib\net40\Raven.Client.Embedded.dll</HintPath>
     </Reference>
-    <Reference Include="Raven.Client.Lightweight, Version=2.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+    <Reference Include="Raven.Client.Lightweight, Version=2.0.3.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RavenDB.Client.2.0.2261\lib\net40\Raven.Client.Lightweight.dll</HintPath>
+      <HintPath>..\packages\RavenDB.Client.2.0.2360\lib\net40\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
-    <Reference Include="Raven.Client.MvcIntegration">
-      <HintPath>..\packages\RavenDB.Client.MvcIntegration.2.0.2261\lib\net40\Raven.Client.MvcIntegration.dll</HintPath>
-    </Reference>
-    <Reference Include="Raven.Database, Version=2.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+    <Reference Include="Raven.Client.MvcIntegration, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RavenDB.Database.2.0.2261\lib\net40\Raven.Database.dll</HintPath>
+      <HintPath>..\packages\RavenDB.Client.MvcIntegration.2.0.2360\lib\net40\Raven.Client.MvcIntegration.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Database, Version=2.0.3.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RavenDB.Database.2.0.2360\lib\net40\Raven.Database.dll</HintPath>
     </Reference>
     <Reference Include="Spatial4n.Core.NTS, Version=0.3.0.0, Culture=neutral, PublicKeyToken=9f9456e1ca16d45e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -165,6 +166,7 @@
     <Compile Include="Indexes\Updating\UpdateEmailStatus.cs" />
     <Compile Include="Listeners\NoStaleQueriesListener.cs" />
     <Compile Include="Membership\RepositoryFactory.cs" />
+    <Compile Include="Services\AuthorDataService.cs" />
     <Compile Include="Services\CategoryDataService.cs" />
     <Compile Include="Services\ConfigurationDataService.cs" />
     <Compile Include="Services\CommentDataService.cs" />
@@ -205,6 +207,10 @@
     <ProjectReference Include="..\Dexter.Dependency\Dexter.Dependency.csproj">
       <Project>{07FF041C-FC20-49A3-8BC4-A38E7F72ABAA}</Project>
       <Name>Dexter.Dependency</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dexter.Exceptions\Dexter.Exceptions.csproj">
+      <Project>{A142FB84-8091-4104-BE08-50E0510CE9FC}</Project>
+      <Name>Dexter.Exceptions</Name>
     </ProjectReference>
     <ProjectReference Include="..\Dexter.Extensions\Dexter.Extensions.csproj">
       <Project>{408d067c-933b-4987-b76f-481708f08470}</Project>

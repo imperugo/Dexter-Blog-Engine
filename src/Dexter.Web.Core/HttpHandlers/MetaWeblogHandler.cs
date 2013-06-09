@@ -33,11 +33,12 @@ namespace Dexter.Web.Core.HttpHandlers
 	using CookComputing.XmlRpc;
 
 	using Dexter.Dependency;
+	using Dexter.Services.Requests;
 	using Dexter.Shared.Dto;
 	using Dexter.Navigation.Contracts;
 	using Dexter.Services;
 	using Dexter.Shared;
-	using Dexter.Shared.Exceptions;
+	using Dexter.Exceptions;
 	using Dexter.Shared.Filters;
 	using Dexter.Shared.Helpers;
 	using Dexter.Shared.Requests;

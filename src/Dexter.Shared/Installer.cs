@@ -18,9 +18,7 @@ namespace Dexter.Shared
 {
 	using Dexter.Dependency;
 	using Dexter.Dependency.Installation;
-	using Dexter.Shared.Automapper;
 	using Dexter.Shared.UserContext;
-	using Dexter.Shared.Validation;
 
 	public class Installer : ILayerInstaller
 	{
@@ -33,12 +31,10 @@ namespace Dexter.Shared
 		public void ServiceRegistration(IDexterContainer container)
 		{
 			container.Register<IUserContext, UserContext.UserContext>(LifeCycle.Singleton);
-			container.Register<IObjectValidator, DataAnnotationsValidator>(LifeCycle.Singleton);
 		}
 
 		public void ServiceRegistrationComplete(IDexterContainer container)
 		{
-			AutoMapperConfiguration.Configure();
 		}
 
 		#endregion

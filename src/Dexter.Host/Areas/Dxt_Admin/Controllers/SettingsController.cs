@@ -29,7 +29,7 @@ namespace Dexter.Host.Areas.Dxt_Admin.Controllers
 	using Dexter.Navigation.Contracts;
 	using Dexter.Services;
 	using Dexter.Shared;
-	using Dexter.Shared.Exceptions;
+	using Dexter.Exceptions;
 	using Dexter.Web.Core.Controllers;
 
 	[Authorize(Roles = Constants.AdministratorRole)]

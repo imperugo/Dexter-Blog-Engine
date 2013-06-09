@@ -18,6 +18,8 @@ namespace Dexter.Data.Raven.AutoMapper
 {
 	using System;
 
+	using Dexter.Shared.Requests;
+
 	using global::AutoMapper;
 
 	using Dexter.Data.Raven.Domain;
@@ -72,6 +74,7 @@ namespace Dexter.Data.Raven.AutoMapper
 			Mapper.CreateMap<CommentDto, Comment>();
 
 			Mapper.CreateMap<AuthorInfo, AuthorInfoDto>();
+			Mapper.CreateMap<AuthorRequest, AuthorInfo>();
 
 			Mapper.CreateMap<Category, CategoryDto>()
 			      .ForMember(dest => dest.Id, opt => opt.MapFrom(x => RavenIdHelper.Resolve(x.Id)))
